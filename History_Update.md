@@ -8,6 +8,48 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
+### [v1.4.0] - 2026-03-28
+
+**Chủ đề:** Review tổng thể lần 3 — Sửa số đếm, Mobile templates, Secrets rule, Dọn sạch game references
+
+**Tính năng mới:**
+
+- `.claude/docs/templates/mobile-architecture.md` — Template kiến trúc ứng dụng mobile (layers, navigation, state, offline, push notifications, security, testing)
+- `.claude/docs/templates/app-store-submission-checklist.md` — Checklist submit App Store/Play Store (iOS + Android riêng biệt, legal, sign-offs)
+- `.claude/rules/secrets-config.md` — Rule quản lý secrets & config (env vars, CI/CD secrets, forbidden patterns, logging scrubbing)
+
+**Sửa số đếm trong docs:**
+
+- `README.md`, `README_en.md` — Cập nhật đúng: 27 agents, 35 skills, 10 rules
+- `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md`, `.claude/docs/quick-start.md`, `.claude/docs/agent-roster.md` — Đồng bộ số đếm
+- `.claude/docs/coding-standards.md` — Thêm cross-reference đến `secrets-config.md`
+
+**Dọn game references — SEVERE (viết lại hoàn toàn):**
+
+- `.claude/docs/templates/pitch-document.md` — "Game Pitch" → "Product Pitch", xóa "Audio Identity", "Player Fantasy" → "User Value Proposition", Steam/Console → Web/Mobile/SaaS
+- `.claude/docs/templates/systems-index.md` — `design/gdd/` → `design/specs/`, "Gameplay" → "Business Logic", xóa category Audio, thêm Integrations
+
+**Dọn game references — MODERATE:**
+
+- `.claude/docs/templates/release-checklist-template.md` — FPS → API response time, xóa Xbox/PlayStation, Console section → Mobile section, ESRB/PEGI → generic
+- `.claude/docs/templates/project-stage-report.md` — "Polish" → "Hardening", `design/levels/` → `design/specs/`
+- `.claude/docs/templates/design-doc-from-implementation.md` — "Player-Facing" → "User-Facing", "Balance and Tuning" → "Configuration and Tuning", `/balance-check` → `/perf-profile`
+- `.claude/docs/templates/architecture-doc-from-code.md` — "60 FPS" → "sub-100ms response time"
+
+**Dọn game references — MINOR (9 files):**
+
+- `changelog-template.md` — "player-visible" → "user-visible", "Healing potions" → API latency, "Thank you for playing!" → fixed
+- `release-notes.md` — "players" → "users", "saved games" → "large datasets", "Thank you for playing!" → fixed
+- `incident-response.md` — "player perspective/report" → "user perspective/report", "XP boost" → "service credit"
+- `milestone-definition.md` — "Vertical Slice" → "Working Demo", "Gold" → "Release Candidate", FPS → API response time
+- `technical-design-document.md` — "game design doc" → "product/feature spec"
+- `test-plan.md` — "save files" → "test data, user accounts"
+- `collaborative-protocols/implementation-agent-protocol.md` — "damage calculation" → "payment processing", `design/gdd/` → `design/specs/`
+- `collaborative-protocols/design-agent-protocol.md` — "crafting system" → "notification system", "game design theory" → "UX/product design theory"
+- `collaborative-protocols/leadership-agent-protocol.md` — "game-designer/crafting" → "product-manager/onboarding", "Hades" → "Basecamp"
+
+---
+
 ### [v1.3.0] - 2026-03-28
 
 **Chủ đề:** Bổ sung Mobile Development & Collaborative Design Principle
@@ -72,4 +114,4 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
-*Last Updated: 2026-03-28*
+Last Updated: 2026-03-28 — v1.4.0
