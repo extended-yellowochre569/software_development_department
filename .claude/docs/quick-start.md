@@ -155,8 +155,8 @@ Templates are in `.claude/docs/templates/`:
 CLAUDE.md                          -- Master config (technology stack, project name)
 .claude/
   settings.json                    -- Claude Code hooks and project settings
-  agents/                          -- 26 agent definitions (YAML frontmatter)
-  skills/                          -- 33 slash command definitions
+  agents/                          -- 27 agent definitions (YAML frontmatter)
+  skills/                          -- 35 slash command definitions
   hooks/                           -- Hook scripts (.sh) wired by settings.json
   rules/                           -- 10 path-specific coding standard files
   docs/

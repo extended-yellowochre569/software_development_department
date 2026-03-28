@@ -31,6 +31,6 @@
 
 ---
 
-**Total: 26 agents** across 3 tiers.
+**Total: 27 agents** across 3 tiers.
 
 See [agent-coordination-map.md](agent-coordination-map.md) for delegation and escalation paths.

@@ -3,7 +3,7 @@
   <p align="center">
     Turn a single Claude Code session into a full software development department.
     <br />
-    26 agents. 33 workflows. One coordinated AI team.
+    27 agents. 35 workflows. One coordinated AI team.
   </p>
 </p>
 
@@ -61,7 +61,7 @@ Tier 3 — Specialists (Sonnet/Haiku)
 
 ## Slash Commands
 
-Type `/` in Claude Code to access all 33 skills:
+Type `/` in Claude Code to access all 35 skills:
 
 **Reviews & Analysis**
 `/design-review` `/code-review` `/api-design` `/db-review` `/scope-check` `/perf-profile` `/tech-debt`
@@ -115,10 +115,10 @@ Type `/` in Claude Code to access all 33 skills:
 CLAUDE.md                           # Master configuration
 .claude/
   settings.json                     # Hooks, permissions, safety rules
-  agents/                           # 26 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 33 slash commands (subdirectory per skill)
+  agents/                           # 27 agent definitions (markdown + YAML frontmatter)
+  skills/                           # 35 slash commands (subdirectory per skill)
   hooks/                            # 8 hook scripts (bash, cross-platform)
-  rules/                            # 11 path-scoped coding standards
+  rules/                            # 10 path-scoped coding standards
   docs/
     quick-start.md                  # Detailed usage guide
     agent-roster.md                 # Full agent table with domains

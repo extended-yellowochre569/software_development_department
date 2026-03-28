@@ -665,8 +665,8 @@ WHEN implementing:
 This principle has been fully embedded across the project:
 
 - **CLAUDE.md** — Collaboration protocol section added
-- **All 26 agent definitions** — Updated to enforce question-asking and approval
-- **All 33 skills** — Updated to require approval before writing
+- **All 27 agent definitions** — Updated to enforce question-asking and approval
+- **All 35 skills** — Updated to require approval before writing
 - **WORKFLOW-GUIDE.md** — Rewritten with software development workflow examples
 - **README.md** — Clarifies collaborative (not autonomous) design
 - **AskUserQuestion tool** — Integrated into team skills for structured option UI
