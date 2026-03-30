@@ -19,7 +19,7 @@
 | `tools-programmer` | 3 — Specialists | Haiku | Developer tooling, build scripts | CLI tools, automation, DX improvements |
 | `ui-programmer` | 3 — Specialists | Sonnet | UI systems, design system implementation | Component libraries, theming |
 | `ux-researcher` | 3 — Specialists | Sonnet | User research, usability testing | Interviews, surveys, analytics analysis |
-| `tech-writer` | 3 — Specialists | Sonnet | Documentation, changelogs, API docs | README, guides, developer docs |
+| `tech-writer` | 3 — Specialists | Haiku | Documentation, changelogs, API docs | README, guides, developer docs |
 | `performance-analyst` | 3 — Specialists | Sonnet | Profiling, bottleneck analysis | Load testing, Core Web Vitals |
 | `devops-engineer` | 3 — Specialists | Sonnet | CI/CD, infrastructure, deployment | Docker, K8s, GitHub Actions |
 | `analytics-engineer` | 3 — Specialists | Sonnet | Event tracking, dashboards, metrics | Analytics pipelines, reporting |

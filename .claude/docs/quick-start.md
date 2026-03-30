@@ -85,6 +85,7 @@ Ask yourself: "What role would handle this in a real software team?"
 | `/team-frontend` | Orchestrate frontend team pipeline |
 | `/team-ui` | Orchestrate UI implementation pipeline |
 | `/team-release` | Orchestrate full release pipeline |
+| `/orchestrate` | Wave-based multi-agent execution — analyzes dependencies, runs agents in parallel/sequential waves |
 
 ### 4. Use Templates for New Documents
 
@@ -125,22 +126,25 @@ Templates are in `.claude/docs/templates/`:
 ### Path A: "I have a product idea but no code"
 
 1. **Run `/brainstorm`** — Explore what to build: core user problem, key flows, constraints
-2. **Create the PRD** — `product-manager` uses `product-requirements-document.md`
+2. **Fill out `PRD.md`** — `product-manager` populates the root `PRD.md` with FR-numbered requirements
 3. **Design the system** — Run `/map-systems` to decompose into components
 4. **Make architecture decisions** — Run `/architecture-decision` to document key choices
 5. **Set up technical preferences** — Fill out `CLAUDE.md` with your stack (Language, Framework, Database, etc.)
-6. **Define the first milestone** — Use `milestone-definition.md`
-7. **Plan the first sprint** — Run `/sprint-plan new`
-8. Start building
+6. **Build the backlog** — `producer` creates `TODO.md` items + `.tasks/NNN-*.md` files from the PRD
+7. **Define the first milestone** — Use `milestone-definition.md`
+8. **Plan the first sprint** — Run `/sprint-plan new`
+9. **Orchestrate** — Run `/orchestrate <task>` to execute multi-agent waves
 
 ### Path B: "I know exactly what I want to build"
 
 1. **Fill out `CLAUDE.md`** with your stack (Language, Framework, Database, Deployment, CI/CD)
-2. **Design APIs and schemas** — Run `/api-design` and `/db-review`
-3. **Create the first ADR** — Run `/architecture-decision`
-4. **Create the first milestone** in `production/milestones/`
-5. **Plan the first sprint** — Run `/sprint-plan new`
-6. Start building
+2. **Fill out `PRD.md`** with FR-numbered requirements
+3. **Design APIs and schemas** — Run `/api-design` and `/db-review`
+4. **Create the first ADR** — Run `/architecture-decision`
+5. **Build the backlog** — `producer` creates `TODO.md` items + `.tasks/NNN-*.md` files
+6. **Create the first milestone** in `production/milestones/`
+7. **Plan the first sprint** — Run `/sprint-plan new`
+8. Start building
 
 ### Path C: "I have an existing project"
 
@@ -153,10 +157,14 @@ Templates are in `.claude/docs/templates/`:
 
 ```
 CLAUDE.md                          -- Master config (technology stack, project name)
+PRD.md                             -- Product requirements (source of truth — human-editable only)
+TODO.md                            -- Living backlog (governed by @producer)
+.tasks/                            -- Task detail files (NNN-short-title.md — one per TODO item)
+  TASK_TEMPLATE.md                 -- Template for creating new task files
 .claude/
   settings.json                    -- Claude Code hooks and project settings
   agents/                          -- 27 agent definitions (YAML frontmatter)
-  skills/                          -- 35 slash command definitions
+  skills/                          -- Slash command definitions
   hooks/                           -- Hook scripts (.sh) wired by settings.json
   rules/                           -- 10 path-specific coding standard files
   docs/
@@ -177,6 +185,13 @@ CLAUDE.md                          -- Master config (technology stack, project n
     templates/                     -- Document templates
 src/                               -- Application source code
 docs/                              -- Technical documentation and ADRs
+  technical/                       -- Architecture, decisions, API, database specs
+    ARCHITECTURE.md                -- System architecture (C4 model)
+    DECISIONS.md                   -- ADR log (append-only)
+    API.md                         -- API reference
+    DATABASE.md                    -- Schema documentation
+  user/                            -- User-facing documentation
+    USER_GUIDE.md                  -- End-user guide
 tests/                             -- Test suites
 infra/                             -- Infrastructure as code
 scripts/                           -- Build and utility scripts

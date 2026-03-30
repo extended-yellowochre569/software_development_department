@@ -24,6 +24,7 @@
 | `/perf-profile` | Structured performance profiling with bottleneck identification and recommendations |
 | `/project-stage-detect` | Automatically analyze project state, detect stage, identify gaps, and recommend next steps |
 | `/reverse-document` | Generate design or architecture documents from existing implementation |
+| `/orchestrate` | Wave-based multi-agent execution — analyzes task dependencies, builds parallel/sequential wave plan, registers work in backlog via @producer, creates feature branch, executes agents wave by wave, synthesizes result |
 | `/team-feature` | Orchestrate feature team: backend-developer + frontend-developer + qa-tester |
 | `/team-backend` | Orchestrate backend team: lead-programmer + backend-developer + data-engineer + qa-tester |
 | `/team-frontend` | Orchestrate frontend team: ux-designer + frontend-developer + ui-programmer + qa-tester |
@@ -31,6 +32,7 @@
 | `/team-release` | Orchestrate release team: release-manager + qa-lead + devops-engineer + producer |
 | `/launch-checklist` | Complete launch readiness validation across all departments |
 | `/patch-notes` | Generate user-facing release notes from git history and internal data |
+| `/sync-template` | Sync `.claude/` from an upstream template repo — shows diff, confirms, applies new/modified files without deleting local customizations |
 | `/brainstorm` | Guided product or feature ideation |
 | `/gate-check` | Validate readiness to advance between development phases (PASS/CONCERNS/FAIL) |
 | `/map-systems` | Decompose a product concept into systems and dependencies |

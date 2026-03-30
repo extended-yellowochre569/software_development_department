@@ -98,3 +98,27 @@ to implement it.]
 ```
 
 5. **Save the ADR** to `docs/architecture/adr-[NNNN]-[slug].md`.
+
+6. **Cross-post a summary entry** to `docs/technical/DECISIONS.md` by appending the following block at the bottom of the file (above the closing comment line if present):
+
+```markdown
+## ADR-[NNN]: [Title]
+
+**Date**: [Date]
+**Status**: Accepted
+**Deciders**: [Name(s) / @agent]
+**Detailed ADR**: [docs/architecture/adr-[NNNN]-[slug].md](../architecture/adr-[NNNN]-[slug].md)
+
+### Context
+[One paragraph summary of the problem]
+
+### Decision
+[One paragraph summary of the decision and primary reason]
+
+### Consequences
+- **Positive**: [Key benefit]
+- **Negative**: [Key trade-off accepted]
+```
+
+   Also update the **Decision Index** table in `docs/technical/DECISIONS.md` by replacing the placeholder row (or appending a new row) with:
+   `| ADR-NNN | [Title] | Accepted | [Date] | [Decider] |`

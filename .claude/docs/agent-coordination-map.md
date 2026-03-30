@@ -65,6 +65,36 @@
 
 ## Common Workflow Patterns
 
+### Pattern 0: Multi-Agent Orchestration (via `/orchestrate`)
+
+Use `/orchestrate <task>` when a task spans multiple agents and you want automatic dependency analysis, wave planning, and backlog registration.
+
+```
+Phase 1  — Ground: read CLAUDE.md, DECISIONS.md, ARCHITECTURE.md, TODO.md, PRD.md
+Phase 2  — Decompose: identify which agents are needed + their deliverables
+Phase 3  — Dependency analysis: sequential vs parallel per hard rules
+Phase 4  — Wave plan presented to user → explicit "y" required to proceed
+Phase 5  — producer registers tasks in TODO.md + .tasks/ files
+Phase 5b — feature branch created automatically
+Phase 6  — TodoWrite tracking per wave
+Phase 7  — Execute wave by wave; stop and ask on failure
+Phase 8  — Synthesis report with PR suggestion
+```
+
+**Hard sequential rules enforced by orchestrator:**
+
+- `technical-director` → all implementation agents (architecture before code)
+- `data-engineer` → `backend-developer` (schema before queries)
+- `ux-designer` → `frontend-developer` (spec before implementation)
+- `backend-developer` → `frontend-developer` (API before integration)
+- `backend-developer` → `security-engineer` (implementation before review)
+- All implementation → `tech-writer` (docs last)
+
+**When to use `/orchestrate` vs `/team-*` skills:**
+
+- `/orchestrate` — open-ended task, unknown agent mix, needs dependency analysis
+- `/team-feature`, `/team-backend`, etc. — known fixed team, faster for standard patterns
+
 ### Pattern 1: New Feature (Full Pipeline)
 
 ```

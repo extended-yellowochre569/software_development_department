@@ -1,8 +1,16 @@
 # User Guide — Software Development Department
 
 > **Tác giả:** [tranhieutt](https://github.com/tranhieutt)
-> **Version:** 1.0 | **Cập nhật:** 2026-03-27
+> **Version:** 1.5.0 | **Cập nhật:** 2026-03-30
 
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-27-blueviolet" alt="27 Agents"></a>
+  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-37-green" alt="37 Skills"></a>
+  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-8-orange" alt="8 Hooks"></a>
+  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
+  <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
+</p>
 ---
 
 ## Mục lục
@@ -10,15 +18,16 @@
 1. [Tổng quan](#1-tổng-quan)
 2. [Cài đặt](#2-cài-đặt)
 3. [Kiến trúc hệ thống](#3-kiến-trúc-hệ-thống)
-4. [Các thành phần chính](#4-các-thành-phần-chính)
-5. [Bắt đầu sử dụng](#5-bắt-đầu-sử-dụng)
-6. [Slash Commands (Skills)](#6-slash-commands-skills)
-7. [Agents — Đội ngũ AI](#7-agents--đội-ngũ-ai)
-8. [Rules — Coding Standards](#8-rules--coding-standards)
-9. [Hooks — Automated Checks](#9-hooks--automated-checks)
-10. [Luồng làm việc thực tế](#10-luồng-làm-việc-thực-tế)
-11. [Nguyên tắc cốt lõi](#11-nguyên-tắc-cốt-lõi)
-12. [Tùy chỉnh template](#12-tùy-chỉnh-template)
+4. [Tài nguyên bổ sung](#4-tài-nguyên-bổ-sung)
+5. [Các thành phần chính](#5-các-thành-phần-chính)
+6. [Bắt đầu sử dụng](#6-bắt-đầu-sử-dụng)
+7. [Slash Commands (Skills)](#7-slash-commands-skills)
+8. [Agents — Đội ngũ AI](#8-agents--đội-ngũ-ai)
+9. [Rules — Coding Standards](#9-rules--coding-standards)
+10. [Hooks — Automated Checks](#10-hooks--automated-checks)
+11. [Luồng làm việc thực tế](#11-luồng-làm-việc-thực-tế)
+12. [Nguyên tắc cốt lõi](#12-nguyên-tắc-cốt-lõi)
+13. [Tùy chỉnh template](#13-tùy-chỉnh-template)
 
 ---
 
@@ -33,7 +42,7 @@ Thay vì một AI đa năng làm mọi thứ, bạn có:
 - **Lead Programmer** giám sát chất lượng code
 - **QA Lead** đảm bảo chất lượng sản phẩm
 - **Security Engineer** bảo vệ hệ thống
-- ... và 21 specialists khác
+- ... và 22 specialists khác
 
 Bạn vẫn là người ra quyết định cuối cùng. AI team cung cấp cấu trúc, chuyên môn và sự kiểm soát.
 
@@ -89,9 +98,9 @@ Bạn (User — người ra quyết định)
 Claude Code Session
         │
         ├── .claude/agents/     ← 27 AI agents chuyên biệt
-        ├── .claude/skills/     ← 35 slash commands (workflows)
+        ├── .claude/skills/     ← 37 slash commands (workflows)
         ├── .claude/hooks/      ←  8 automated validation scripts
-        ├── .claude/rules/      ← 10 path-scoped coding standards
+        ├── .claude/rules/      ← 11 path-scoped coding standards
         └── .claude/docs/       ← Templates, references, guides
 ```
 
@@ -100,6 +109,10 @@ Claude Code Session
 ```
 my-project/
 ├── CLAUDE.md                    # Cấu hình chính — định nghĩa tech stack
+├── PRD.md                       # Product requirements document
+├── TODO.md                      # Living backlog
+├── .claude/                     # Cấu hình AI team, skills, rules
+├── .tasks/                      # Task detail files (mỗi file một TODO)
 ├── src/                         # Source code ứng dụng
 ├── tests/                       # Test suites
 ├── docs/                        # Tài liệu kỹ thuật, ADRs
@@ -111,9 +124,21 @@ my-project/
 
 ---
 
-## 4. Các thành phần chính
+## 4. Tài nguyên bổ sung
 
-### 4.1 CLAUDE.md — File cấu hình chủ
+| File | Mô tả |
+|------|-------------|
+| [`plan_upgrade.md`](plan_upgrade.md) | Roadmap nâng cấp chi tiết và so sánh với các frameworks khác |
+| [`compare_department_orchestrated.md`](compare_department_orchestrated.md) | So sánh: Cách tiếp cận multi-agent orchestration vs AI truyền thống |
+| [`infographic.html`](infographic.html) | Sơ đồ trực quan đồ họa tương tác mô tả cấu trúc phòng ban |
+| [`UPGRADING.md`](UPGRADING.md) | Hướng dẫn cách cập nhật template từ thượng nguồn (upstream) |
+| [`History_Update.md`](History_Update.md) | Toàn bộ lịch sử thay đổi từ phiên bản v1.0.0 đến nay |
+
+---
+
+## 5. Các thành phần chính
+
+### 5.1 CLAUDE.md — File cấu hình chủ
 
 File quan trọng nhất. Định nghĩa:
 
@@ -124,7 +149,7 @@ File quan trọng nhất. Định nghĩa:
 
 Khi bắt đầu project mới, chạy `/start` để hệ thống giúp bạn điền file này.
 
-### 4.2 Agents
+### 5.2 Agents
 
 27 AI agents được tổ chức theo 3 tầng:
 
@@ -145,21 +170,21 @@ Tier 3 — Specialists (model: Sonnet / Haiku)
   qa-tester • accessibility-specialist • community-manager
 ```
 
-### 4.3 Skills (Slash Commands)
+### 5.3 Skills (Slash Commands)
 
-35 workflows được đóng gói thành slash commands. Gõ `/` trong Claude Code để xem danh sách.
+37 workflows được đóng gói thành slash commands. Gõ `/` trong Claude Code để xem danh sách.
 
-### 4.4 Rules
+### 5.4 Rules
 
 11 coding standards tự động áp dụng theo đường dẫn file. Không cần nhớ — hệ thống tự enforce.
 
-### 4.5 Hooks
+### 5.5 Hooks
 
 8 scripts chạy tự động tại các điểm quan trọng (commit, push, session start, v.v.).
 
 ---
 
-## 5. Bắt đầu sử dụng
+## 6. Bắt đầu sử dụng
 
 ### Lần đầu tiên
 
@@ -186,7 +211,7 @@ Phân tích tự động: bạn đang ở phase nào, còn thiếu gì, bước 
 
 ---
 
-## 6. Slash Commands (Skills)
+## 7. Slash Commands (Skills)
 
 ### Khởi đầu & Phân tích
 
@@ -195,6 +220,7 @@ Phân tích tự động: bạn đang ở phase nào, còn thiếu gì, bước 
 | `/start` | Onboarding — xác định bạn đang ở đâu và định hướng tiếp theo |
 | `/project-stage-detect` | Phân tích project hiện tại, xác định phase |
 | `/gate-check` | Kiểm tra readiness để chuyển sang phase tiếp theo |
+| `/orchestrate` | Hướng dẫn orchestration theo sequential & tmux/worktree |
 
 ### Design & Planning
 
@@ -216,6 +242,7 @@ Phân tích tự động: bạn đang ở phase nào, còn thiếu gì, bước 
 | `/db-review` | Review database schema & queries |
 | `/perf-profile` | Phân tích performance bottlenecks |
 | `/tech-debt` | Đánh giá và lên kế hoạch xử lý technical debt |
+| `/architecture-decision` | Đưa ra các quyết định kiến trúc (ADRs) |
 
 ### Sprint & Release
 
@@ -227,6 +254,9 @@ Phân tích tự động: bạn đang ở phase nào, còn thiếu gì, bước 
 | `/retrospective` | Retrospective sau sprint |
 | `/release-checklist` | Checklist release đầy đủ |
 | `/changelog` | Tạo changelog từ commits |
+| `/patch-notes` | Tạo patch notes thân thiện với người dùng |
+| `/hotfix` | Quy trình xử lý lỗi khẩn cấp |
+| `/sync-template` | Cập nhật, sync template với upstream |
 
 ### Team Orchestration
 
@@ -243,7 +273,7 @@ Những commands mạnh nhất — tự động phối hợp nhiều agents:
 
 ---
 
-## 7. Agents — Đội ngũ AI
+## 8. Agents — Đội ngũ AI
 
 ### Gọi agent trực tiếp
 
@@ -274,7 +304,7 @@ Bạn → CTO → Technical Director → Lead Programmer → Backend Developer
 
 ---
 
-## 8. Rules — Coding Standards
+## 9. Rules — Coding Standards
 
 Rules tự động enforce theo **đường dẫn file**. Không cần nhớ, không cần cấu hình thêm.
 
@@ -282,8 +312,10 @@ Rules tự động enforce theo **đường dẫn file**. Không cần nhớ, kh
 |---|---|
 | `src/api/**` | REST/GraphQL conventions, authentication, error format chuẩn |
 | `src/frontend/**` | Accessibility (WCAG), design tokens, i18n, state management |
+| `src/**db**` | Migrations, parameterized queries, indexing |
 | `src/ui/**` | No business logic in UI, localization-ready, keyboard accessible |
 | `src/ai/**` | Performance budgets, model params phải configurable, explainability |
+| `src/networking/**` | Các chuẩn cho WebSocket, real-time event streaming |
 | `config/**` | Schema validation, no hardcoded secrets, version when breaking change |
 | `design/docs/**` | PRD sections bắt buộc, acceptance criteria rõ ràng |
 | `tests/**` | Test naming conventions, coverage requirements, no flaky patterns |
@@ -291,7 +323,7 @@ Rules tự động enforce theo **đường dẫn file**. Không cần nhớ, kh
 
 ---
 
-## 9. Hooks — Automated Checks
+## 10. Hooks — Automated Checks
 
 Scripts chạy tự động, không cần nhớ:
 
@@ -305,7 +337,7 @@ Scripts chạy tự động, không cần nhớ:
 
 ---
 
-## 10. Luồng làm việc thực tế
+## 11. Luồng làm việc thực tế
 
 ### Xây dựng feature mới
 
@@ -357,7 +389,7 @@ Output: Sprint plan với tasks, owners, estimates, acceptance criteria
 
 ---
 
-## 11. Nguyên tắc cốt lõi
+## 12. Nguyên tắc cốt lõi
 
 ### Collaborative, KHÔNG Autonomous
 
@@ -383,7 +415,7 @@ Agents là **advisor và executor**, không phải **decision maker**.
 
 ---
 
-## 12. Tùy chỉnh template
+## 13. Tùy chỉnh template
 
 Template được thiết kế để tùy chỉnh thoải mái:
 

@@ -3,14 +3,14 @@
   <p align="center">
     Turn a single Claude Code session into a full software development department.
     <br />
-    27 agents. 35 workflows. One coordinated AI team.
+    27 agents. 37 workflows. One coordinated AI team.
   </p>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-26-blueviolet" alt="26 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-33-green" alt="33 Skills"></a>
+  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-27-blueviolet" alt="27 Agents"></a>
+  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-37-green" alt="37 Skills"></a>
   <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-8-orange" alt="8 Hooks"></a>
   <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
   <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
@@ -22,7 +22,7 @@
 
 Building software solo with AI is powerful — but a single chat session has no structure. No one stops you from skipping design docs, writing inconsistent APIs, failing security reviews, or accumulating untracked technical debt. There's no peer review, no architecture oversight, no QA pass.
 
-**Claude Code Software Development Department** solves this by giving your AI session the structure of a real department. Instead of one general-purpose assistant, you get 26 specialized agents organized into a department hierarchy — a CTO who guards technical vision, department leads who own their domains, and specialists who do the hands-on work. Each agent has defined responsibilities, escalation paths, and quality gates.
+**Claude Code Software Development Department** solves this by giving your AI session the structure of a real department. Instead of one general-purpose assistant, you get 27 specialized agents organized into a department hierarchy — a CTO who guards technical vision, department leads who own their domains, and specialists who do the hands-on work. Each agent has defined responsibilities, escalation paths, and quality gates.
 
 The result: you still make every decision, but now you have a team that asks the right questions, catches mistakes early, and keeps your project organized from first spec to launch.
 
@@ -32,11 +32,11 @@ The result: you still make every decision, but now you have a team that asks the
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Agents** | 26 | Specialized subagents across product, engineering, design, QA, data, and operations |
-| **Skills** | 33 | Slash commands for common workflows (`/start`, `/sprint-plan`, `/code-review`, `/api-design`, etc.) |
-| **Hooks** | 8 | Automated validation on commits, pushes, asset changes, session lifecycle, agent audit, and gap detection |
-| **Rules** | 11 | Path-scoped coding standards for API, frontend, backend, database, UI, network, test code, and more |
-| **Templates** | 22 | Document templates for PRDs, API designs, system architecture, user stories, ADRs, and more |
+| **Agents** | 27 | Specialized subagents across product, engineering, design, QA, data, and operations |
+| **Skills** | 37 | Slash commands for common workflows (`/start`, `/sprint-plan`, `/code-review`, `/team-feature`, etc.) |
+| **Hooks** | 8 | Automated validation on commits, pushes, asset changes, session lifecycle, pre-compact, and gap detection |
+| **Rules** | 11 | Path-scoped coding standards for API, frontend, backend, database, UI, network, AI, secrets, tests, and more |
+| **Templates** | 22+ | Document templates for PRDs, API designs, system architecture, user stories, ADRs, mobile, and more |
 
 ## Department Hierarchy
 
@@ -52,34 +52,35 @@ Tier 2 — Department Leads (Sonnet)
 
 Tier 3 — Specialists (Sonnet/Haiku)
   frontend-developer  backend-developer    fullstack-developer
-  ai-programmer       network-programmer   tools-programmer
-  ui-programmer       data-engineer        analytics-engineer
-  ux-researcher       tech-writer          prototyper
-  performance-analyst devops-engineer      security-engineer
-  qa-tester           accessibility-specialist community-manager
+  mobile-developer    ai-programmer        network-programmer
+  tools-programmer    ui-programmer        data-engineer
+  analytics-engineer  ux-researcher        tech-writer
+  prototyper          performance-analyst  devops-engineer
+  security-engineer   qa-tester            accessibility-specialist
+  community-manager
 ```
 
 ## Slash Commands
 
-Type `/` in Claude Code to access all 35 skills:
+Type `/` in Claude Code to access all 37 skills:
 
 **Reviews & Analysis**
-`/design-review` `/code-review` `/api-design` `/db-review` `/scope-check` `/perf-profile` `/tech-debt`
+`/design-review` `/code-review` `/api-design` `/db-review` `/scope-check` `/perf-profile` `/tech-debt` `/mobile-review`
 
 **Production**
-`/sprint-plan` `/milestone-review` `/estimate` `/retrospective` `/bug-report`
+`/sprint-plan` `/milestone-review` `/estimate` `/retrospective` `/bug-report` `/architecture-decision`
 
 **Project Management**
-`/start` `/project-stage-detect` `/reverse-document` `/gate-check` `/map-systems` `/design-system`
+`/start` `/project-stage-detect` `/reverse-document` `/gate-check` `/map-systems` `/design-system` `/orchestrate`
 
 **Release**
-`/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix`
+`/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix` `/sync-template`
 
 **Creative & Research**
 `/brainstorm` `/prototype` `/onboard` `/localize`
 
 **Team Orchestration** (coordinate multiple agents on a single feature)
-`/team-feature` `/team-backend` `/team-frontend` `/team-ui` `/team-release`
+`/team-feature` `/team-backend` `/team-frontend` `/team-ui` `/team-release` `/team-mobile`
 
 ## Getting Started
 
@@ -113,17 +114,20 @@ Type `/` in Claude Code to access all 35 skills:
 
 ```
 CLAUDE.md                           # Master configuration
+PRD.md                              # Product requirements document
+TODO.md                             # Living backlog
 .claude/
   settings.json                     # Hooks, permissions, safety rules
   agents/                           # 27 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 35 slash commands (subdirectory per skill)
+  skills/                           # 37 slash commands (subdirectory per skill)
   hooks/                            # 8 hook scripts (bash, cross-platform)
-  rules/                            # 10 path-scoped coding standards
+  rules/                            # 11 path-scoped coding standards
   docs/
     quick-start.md                  # Detailed usage guide
     agent-roster.md                 # Full agent table with domains
     agent-coordination-map.md       # Delegation and escalation paths
-    templates/                      # 22 document templates
+    templates/                      # 22+ document templates
+.tasks/                             # Task detail files (one per TODO item)
 src/                                # Application source code
 docs/                               # Technical documentation and ADRs
 tests/                              # Test suites
@@ -132,6 +136,16 @@ scripts/                            # Build and utility scripts
 design/                             # Wireframes, design specs, research docs
 production/                         # Sprint plans, milestones, release tracking
 ```
+
+## Additional Resources
+
+| File | Description |
+|------|-------------|
+| [`plan_upgrade.md`](plan_upgrade.md) | Detailed upgrade roadmap comparing this template to competing frameworks |
+| [`compare_department_orchestrated.md`](compare_department_orchestrated.md) | Side-by-side comparison: orchestrated multi-agent approach vs traditional |
+| [`infographic.html`](infographic.html) | Interactive visual overview of the department structure |
+| [`UPGRADING.md`](UPGRADING.md) | Guide for cherry-picking upstream improvements into your fork |
+| [`History_Update.md`](History_Update.md) | Full changelog of template evolution from v1.0.0 onwards |
 
 ## How It Works
 
@@ -168,6 +182,8 @@ Coding standards are automatically enforced based on file location:
 | `src/**db**` | Migrations, parameterized queries, indexing |
 | `src/ui/**` | No business logic, localization-ready, accessibility |
 | `src/ai/**` | Performance budgets, debuggability, data-driven parameters |
+| `src/networking/**` | Real-time, WebSocket, event streaming standards |
+| `config/**` | No hardcoded secrets, schema validation |
 | `design/docs/**` | Required PRD sections, acceptance criteria |
 | `tests/**` | Test naming, coverage requirements, fixture patterns |
 | `prototypes/**` | Relaxed standards, README required, hypothesis documented |
@@ -182,9 +198,17 @@ This is a **template**, not a locked framework. Everything is meant to be custom
 - **Add rules** — create new path-scoped rules for your directory structure
 - **Tune hooks** — adjust validation strictness, add new checks
 
+See [`UPGRADING.md`](UPGRADING.md) for guidance on pulling upstream improvements without overwriting your customizations.
+
 ## Platform Support
 
-Tested on **Windows 10** with Git Bash. All hooks use POSIX-compatible patterns and include fallbacks for missing tools. Works on macOS and Linux without modification.
+Tested on **Windows 10/11** with Git Bash. All hooks use POSIX-compatible patterns and include fallbacks for missing tools. Works on macOS and Linux without modification.
+
+## Version
+
+**v1.5.0** — 2026-03-30
+
+See [`History_Update.md`](History_Update.md) for full changelog.
 
 ## License
 
