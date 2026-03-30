@@ -8,9 +8,21 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
-### [v1.7.0] - 2026-03-30
+### [v1.8.0] - 2026-03-30
 
-**Chủ đề:** Nâng cấp Skills — Làm sạch vendor-specific & Map skills vào Agents
+**Chủ đề:** Nâng cấp Quy mô Skills — Tích hợp hệ thống phân tích, framework và công nghệ gốc từ Global System.
+
+**Đột phá bổ sung gần 60 Global Skills:**
+- **SDLC Quyền Trình & Nghiệm thu:** Đã thêm `architecture-decision-records`, `code-review-checklist`, `commit`, `deployment-procedures`, `pr-writer`, `postmortem-writing`, `security-audit`, `tdd-workflow`.
+- **Backend & Database:** Thêm hơn 15 skills chuyên sâu gồm `backend-architect`, `django-pro`, `fastapi-pro`, `nestjs-expert`, `postgres-patterns`, `prisma-expert`, v.v...
+- **Frontend & Mobile:** Cập nhật 15+ patterns chất lượng từ Vercel & Apple: `nextjs-app-router-patterns`, `tailwind-patterns`, `flutter-expert`, `radix-ui-design-system`, v.v.
+- **AI & DevOps:** Mở rộng mảng vận hành MLOps và đám mây với `ml-engineer`, `kubernetes-architect`, `aws-serverless`, `rag-engineer`.
+
+**Rà soát:** Tổng quan thư phòng Skills hiện lên tới **98 Skills** cho Claude Code.
+
+---
+
+### [v1.7.0] - 2026-03-30
 
 **Rà soát & xử lý 8 skills mới:**
 
@@ -230,4 +242,4 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
-Last Updated: 2026-03-30 — v1.6.0
+Last Updated: 2026-03-30 — v1.8.0

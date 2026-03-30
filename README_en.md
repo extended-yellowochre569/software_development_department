@@ -10,7 +10,7 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
   <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-27-blueviolet" alt="27 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-41-green" alt="41 Skills"></a>
+  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-98-green" alt="98 Skills"></a>
   <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-8-orange" alt="8 Hooks"></a>
   <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
   <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
@@ -33,7 +33,7 @@ The result: you still make every decision, but now you have a team that asks the
 | Category | Count | Description |
 |----------|-------|-------------|
 | **Agents** | 27 | Specialized subagents across product, engineering, design, QA, data, and operations |
-| **Skills** | 41 | Slash commands for common workflows (`/start`, `/sprint-plan`, `/code-review`, `/team-feature`, `/orchestrate`, etc.) |
+| **Skills** | 98 | Core workflows and system frameworks (`/start`, `fastapi-pro`, `kubernetes-architect`, etc.) |
 | **Hooks** | 8 | Automated validation on commits, pushes, asset changes, session lifecycle, pre-compact, and gap detection |
 | **Rules** | 11 | Path-scoped coding standards for API, frontend, backend, database, UI, network, AI, secrets, tests, and more |
 | **Templates** | 22+ | Document templates for PRDs, API designs, system architecture, user stories, ADRs, mobile, and more |
@@ -60,9 +60,9 @@ Tier 3 — Specialists (Sonnet/Haiku)
   community-manager
 ```
 
-## Slash Commands
+## Slash Commands & Frameworks
 
-Type `/` in Claude Code to access all 41 skills:
+Type `/` in Claude Code to access all 98 skills and frameworks:
 
 **Reviews & Analysis**
 `/design-review` `/code-review` `/api-design` `/db-review` `/scope-check` `/perf-profile` `/tech-debt` `/mobile-review`
@@ -119,7 +119,7 @@ TODO.md                             # Living backlog
 .claude/
   settings.json                     # Hooks, permissions, safety rules
   agents/                           # 27 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 37 slash commands (subdirectory per skill)
+  skills/                           # 98 workflows & platform domains (subdirectory per skill)
   hooks/                            # 8 hook scripts (bash, cross-platform)
   rules/                            # 11 path-scoped coding standards
   docs/
@@ -206,7 +206,7 @@ Tested on **Windows 10/11** with Git Bash. All hooks use POSIX-compatible patter
 
 ## Version
 
-**v1.6.0** — 2026-03-30
+**v1.8.0** — 2026-03-30
 
 See [`History_Update.md`](History_Update.md) for full changelog.
 

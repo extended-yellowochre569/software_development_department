@@ -1,12 +1,12 @@
 # User Guide — Software Development Department
 
-> **Tác giả:** [tranhieutt](https://github.com/tranhieutt)
-> **Version:** 1.6.0 | **Cập nhật:** 2026-03-30
+> **Author:** [tranhieutt](https://github.com/tranhieutt)
+> **Version:** 1.8.0 | **Updated:** 2026-03-30
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
   <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-27-blueviolet" alt="27 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-41-green" alt="41 Skills"></a>
+  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-98-green" alt="98 Skills"></a>
   <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-8-orange" alt="8 Hooks"></a>
   <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
   <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
@@ -98,7 +98,7 @@ Bạn (User — người ra quyết định)
 Claude Code Session
         │
         ├── .claude/agents/     ← 27 AI agents chuyên biệt
-        ├── .claude/skills/     ← 41 slash commands (workflows)
+        ├── .claude/skills/     ← 98 slash commands (workflows & platform skills)
         ├── .claude/hooks/      ←  8 automated validation scripts
         ├── .claude/rules/      ← 11 path-scoped coding standards
         └── .claude/docs/       ← Templates, references, guides
@@ -170,9 +170,9 @@ Tier 3 — Specialists (model: Sonnet / Haiku)
   qa-tester • accessibility-specialist • community-manager
 ```
 
-### 5.3 Skills (Slash Commands)
+### 5.3 Skills (Slash Commands & Frameworks)
 
-41 workflows được đóng gói thành slash commands. Gõ `/` trong Claude Code để xem danh sách.
+98 workflows và framework skills được đóng gói thành hệ thống. Gõ `/` trong Claude Code để xem danh sách.
 
 ### 5.4 Rules
 
@@ -272,6 +272,14 @@ Những commands mạnh nhất — tự động phối hợp nhiều agents:
 | `/team-mobile` | Mobile team: platform strategy → UX → implement → QA → store release |
 | `/team-ui` | UI team: UX design → implement → review |
 | `/team-release` | Release team: build → test → deploy |
+
+### Mở rộng công nghệ năng lực cực lớn
+
+Ngoài ra, hệ thống đã được cập nhật **kho tàng gần 60 skills framework & kiến trúc mới** giúp các Agents hiểu sâu về:
+- Các ngôn ngữ & framework như `java-pro`, `fastapi-pro`, `nextjs-best-practices`, `flutter-expert`.
+- Cơ sở dữ liệu và Cloud backend `postgres-patterns`, `aws-serverless`, `kubernetes-architect`.
+- AI & Vector DB `rag-engineer`, `llm-app-patterns`.
+- SDLC Processes `architecture-decision-records`, `postmortem-writing`, `tdd-workflow`.
 
 ---
 
