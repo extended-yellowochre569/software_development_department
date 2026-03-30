@@ -8,6 +8,21 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
+### [v1.5.1] - 2026-03-30
+
+**Chủ đề:** Đồng bộ README và bổ sung tài nguyên mới
+
+**Thay đổi chi tiết:**
+
+- Cập nhật `README.md` & `README_en.md`:
+  - Đồng bộ số liệu thực tế: 27 agents, 37 skills, 11 rules, 8 hooks.
+  - Thêm banner badges (license, agents, skills, hooks, rules, v.v.) vào đầu file `README.md`.
+  - Bổ sung thư mục `.tasks/`, `PRD.md`, `TODO.md` vào phần Cấu trúc thư mục.
+  - Thêm phần "Tài nguyên bổ sung" / "Additional Resources" chứa các liên kết cực kỳ hữu ích: `plan_upgrade.md`, `compare_department_orchestrated.md`, `infographic.html`, `UPGRADING.md`, `History_Update.md`.
+  - Cập nhật version lên 1.5.1.
+
+---
+
 ### [v1.5.0] - 2026-03-28
 
 **Chủ đề:** Dọn sạch game references trong toàn bộ `.claude/agents/`
@@ -136,4 +151,4 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
-Last Updated: 2026-03-28 — v1.5.0
+Last Updated: 2026-03-30 — v1.5.1
