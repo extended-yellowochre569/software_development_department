@@ -4,6 +4,8 @@ description: "Reviews a game design document for completeness, internal consiste
 argument-hint: "[path-to-design-doc]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep
+context: fork
+agent: ux-designer
 effort: 2
 when_to_use: "When reviewing a design or feature specification document for completeness, consistency, and implementability"
 ---

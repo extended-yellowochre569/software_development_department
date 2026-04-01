@@ -4,6 +4,8 @@ description: "Reviews database schemas, migrations, and queries for correctness,
 argument-hint: "[path-to-schema-migration-or-query-files]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep
+context: fork
+agent: data-engineer
 effort: 2
 when_to_use: "When reviewing database schemas, migrations, or queries for correctness, performance, and data integrity"
 ---

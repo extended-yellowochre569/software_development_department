@@ -4,6 +4,8 @@ description: "Performs a mobile-specific code review on a React Native, Flutter,
 argument-hint: "[path-to-mobile-file-or-directory]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash
+context: fork
+agent: mobile-developer
 effort: 3
 when_to_use: "When reviewing mobile code (React Native, Flutter, iOS, Android) with mobile-first criteria and platform standards"
 ---

@@ -8,6 +8,27 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
+### [v1.14.0] - 2026-04-01
+
+**Chủ đề:** Tool System Hardening — Deny Rules & Fork Context cho Heavy Skills
+
+Dựa trên phân tích `REPORT-tool-system.md` (Claude Code source code — 23 BashTool security checks, Permission System, Concurrency Model):
+
+- **Bổ sung 10 deny rules mới vào `settings.json`** (tổng từ 12 → 22):
+  - Pipe-to-shell RCE: `curl|sh`, `curl|bash`, `wget|sh`, `wget|bash`
+  - Shell config injection: `>.bashrc`, `>.zshrc`, `>.profile`
+  - Accidental publish: `npm publish`
+  - Container destruction: `docker rm -f`, `docker system prune`
+- **Thêm `context: fork` + `agent:` cho 4 heavy analysis skills:**
+  - `code-review` → `agent: lead-programmer`
+  - `db-review` → `agent: data-engineer`
+  - `design-review` → `agent: ux-designer`
+  - `mobile-review` → `agent: mobile-developer`
+- **Fix `tech-debt` agent:** `lead-programmer` → `technical-director` (strategic concern).
+- **Tổng fork skills:** 10 (trước đó 6: architecture-decision, architecture-decision-records, map-systems, perf-profile, security-audit, tech-debt).
+
+---
+
 ### [v1.13.0] - 2026-04-01
 
 **Chủ đề:** Skill Format Standardization — Audit & chuẩn hóa 99 skills theo Claude Code source
@@ -340,4 +361,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-01 — v1.13.0
+Last Updated: 2026-04-01 — v1.14.0

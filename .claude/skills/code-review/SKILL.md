@@ -4,6 +4,8 @@ description: "Performs an architectural and quality code review on a specified f
 argument-hint: "[path-to-file-or-directory]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash
+context: fork
+agent: lead-programmer
 effort: 2
 when_to_use: "Khi cần full architectural + quality review trước khi merge PR"
 ---
