@@ -26,7 +26,13 @@ Before writing anything, collect the following from the current conversation and
 
 If `$ARGUMENTS` is provided, append it as an additional note in the "Notes" section.
 
-### 2. Write `production/session-state/active.md`
+### 2. Extract Durable Memory (Native System)
+Are there any lessons learned, coding patterns established, constraints added, or technical decisions made in this session that apply globally to the project?
+If so, before writing active.md, extract them to the `.claude/memory/` directory:
+- Write or update a specific topic file (e.g. `project_tech_decisions.md` or `feedback_rules.md`), ensuring it has the required YAML frontmatter (`name`, `description`, `type`).
+- Update `.claude/memory/MEMORY.md` with a pointer to that file if it's not already listed.
+
+### 3. Write `production/session-state/active.md`
 
 Overwrite the file with this structure:
 
@@ -71,12 +77,13 @@ Task: [specific task or leave blank]
 [$ARGUMENTS if provided, otherwise omit this section]
 ```
 
-### 3. Confirm
+### 4. Confirm
 
 Print:
 ```
 Session state saved to production/session-state/active.md
-Resume with: read that file first to recover full context.
+[If memory was extracted]: Durable memories extracted to .claude/memory/MEMORY.md
+Resume with: read active.md first to recover full context.
 ```
 
 ---

@@ -47,3 +47,7 @@ See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for full protocol and examples.
 ## Context Management
 
 @.claude/docs/context-management.md
+
+## Project Durable Memory
+
+@.claude/memory/MEMORY.md

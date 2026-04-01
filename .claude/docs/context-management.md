@@ -7,6 +7,33 @@ Context is the most critical resource in a Claude Code session. Manage it active
 **The file is the memory, not the conversation.** Conversations are ephemeral and
 will be compacted or lost. Files on disk persist across compactions and session crashes.
 
+## Claude Native Auto-Memory System (Durable Memory)
+
+For enduring knowledge (such as user preferences, technical directives, architecture decisions, and important links), we utilize Claude's native 5-Layer memory pattern.
+
+### The Memory Directory (`.claude/memory/`)
+1. **`MEMORY.md` (The Index)**
+   - Acts as the root pointer. Claude reads this on EVERY session start via `CLAUDE.md`.
+   - format: `- [Title](filename.md) - Exact one-line hook`.
+   - **Crucial Limit:** NEVER exceed 200 lines or 25KB, or it will be truncated.
+2. **Topic Files (`.md`)**
+   - Must include strict YAML frontmatter before the markdown content:
+     ```yaml
+     ---
+     name: Descriptive Title
+     description: One line highlighting what this file answers.
+     type: [user | feedback | project | reference]
+     ---
+     ```
+
+### Memory Taxonomy
+- **`user`**: Information about the pilot (skills, role, preferences).
+- **`feedback`**: Do's/Don'ts, coding rules, or specific feedback items that agents must learn.
+- **`project`**: Tech decisions, deadlines, known bugs (Bias towards the whole team).
+- **`reference`**: Pointers to external tools, log files, or Linear/Jira boards.
+
+If `MEMORY.md` gets too long, trigger the `/dream` skill to auto-consolidate.
+
 ### Session State File
 
 Maintain `production/session-state/active.md` as a living checkpoint. Update it
