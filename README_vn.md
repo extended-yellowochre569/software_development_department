@@ -1,7 +1,7 @@
 # User Guide — Software Development Department
 
 > **Author:** [tranhieutt](https://github.com/tranhieutt)
-> **Version:** 1.10.0 | **Updated:** 2026-04-01
+> **Version:** 1.11.0 | **Updated:** 2026-04-01
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
@@ -105,7 +105,8 @@ Claude Code Session
         ├── .claude/skills/     ← 98 slash commands (workflows & platform skills)
         ├── .claude/hooks/      ←  8 automated validation scripts
         ├── .claude/rules/      ← 11 path-scoped coding standards
-        └── .claude/docs/       ← Templates, references, guides
+        ├── .claude/docs/       ← Templates, references, guides
+        └── .claude/docs/context-management-guide.md  ← Deep-dive patterns (không inject)
 ```
 
 ### Cấu trúc thư mục dự án

@@ -45,3 +45,6 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 ## Context Management
 
 @.claude/docs/context-management.md
+
+<!-- Deep-dive examples, misconceptions table, and startup order diagram:
+     .claude/docs/context-management-guide.md (NOT injected — reference only) -->

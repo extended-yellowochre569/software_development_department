@@ -131,6 +131,8 @@ TODO.md                             # Living backlog
   docs/
     quick-start.md                  # Detailed usage guide
     agent-roster.md                 # Full agent table with domains
+    context-management.md           # Context rules (injected into system prompt)
+    context-management-guide.md     # Deep-dive examples & patterns (reference only)
     agent-coordination-map.md       # Delegation and escalation paths
     templates/                      # 22+ document templates
 .tasks/                             # Task detail files (one per TODO item)
@@ -212,7 +214,7 @@ Tested on **Windows 10/11** with Git Bash. All hooks use POSIX-compatible patter
 
 ## Version
 
-**v1.10.0** — 2026-04-01
+**v1.11.0** — 2026-04-01
 
 See [`History_Update.md`](History_Update.md) for full changelog.
 

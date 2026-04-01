@@ -8,6 +8,21 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
+### [v1.11.0] - 2026-04-01
+
+**Chủ đề:** Tối ưu Context Management — Tách Rules & Guide, giảm 75% token/API call
+
+- **Tách `context-management.md` thành 2 file:**
+  - `context-management.md` (Rules — 93 dòng, ~5.7KB) — inject vào system prompt qua `CLAUDE.md`. Chỉ chứa luật ngắn gọn, imperative.
+  - `context-management-guide.md` (Guide — 251 dòng, ~14KB) — file tham khảo, KHÔNG inject. Chứa toàn bộ ví dụ chi tiết, code blocks, bảng Common Misconceptions, Session Startup Order diagram, CLAUDE.md Writing Style guide, Static vs Dynamic Content Strategy, @include Chain Rules, Stop Hook Taxonomy.
+- **Sắp xếp lại thứ tự ưu tiên:** Recovery → Compaction → Session State → Context Budgets → Subagent Delegation → Memory System → Incremental File Writing (quan trọng nhất lên đầu).
+- **Thống nhất ngôn ngữ:** Toàn bộ `context-management.md` chuyển sang Tiếng Anh (trước đó trộn Anh-Việt).
+- **Giảm code blocks:** Loại bỏ toàn bộ 8 code blocks minh họa khỏi rules file, chuyển sang guide file.
+- **Cập nhật `CLAUDE.md`:** Thêm comment chỉ dẫn đến `context-management-guide.md` cho deep-dive patterns.
+- **Ước tính tiết kiệm:** ~4,000-4,500 tokens mỗi API call (giảm từ ~6,000 xuống ~1,500).
+
+---
+
 ### [v1.10.0] - 2026-04-01
 
 **Chủ đề:** Tích hợp Claude Native 5-Layer Memory System & Skill `/dream`
@@ -300,4 +315,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-01 — v1.9.0
+Last Updated: 2026-04-01 — v1.11.0

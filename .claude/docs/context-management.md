@@ -2,84 +2,19 @@
 
 Context is the most critical resource in a Claude Code session. Manage it actively.
 
-## File-Backed State (Primary Strategy)
-
 **The file is the memory, not the conversation.** Conversations are ephemeral and
 will be compacted or lost. Files on disk persist across compactions and session crashes.
 
-## Claude Native Auto-Memory System (Durable Memory)
+> For examples, rationale, and deep-dive patterns, see `context-management-guide.md`.
 
-For enduring knowledge (such as user preferences, technical directives, architecture decisions, and important links), we utilize Claude's native 5-Layer memory pattern.
+## Recovery After Session Crash
 
-### The Memory Directory (`.claude/memory/`)
-1. **`MEMORY.md` (The Index)**
-   - Acts as the root pointer. Claude reads this on EVERY session start via `CLAUDE.md`.
-   - format: `- [Title](filename.md) - Exact one-line hook`.
-   - **Crucial Limit:** NEVER exceed 200 lines or 25KB, or it will be truncated.
-2. **Topic Files (`.md`)**
-   - Must include strict YAML frontmatter before the markdown content:
-     ```yaml
-     ---
-     name: Descriptive Title
-     description: One line highlighting what this file answers.
-     type: [user | feedback | project | reference]
-     ---
-     ```
+If a session dies ("prompt too long") or you start a new session to continue work:
 
-### Memory Taxonomy
-- **`user`**: Information about the pilot (skills, role, preferences).
-- **`feedback`**: Do's/Don'ts, coding rules, or specific feedback items that agents must learn.
-- **`project`**: Tech decisions, deadlines, known bugs (Bias towards the whole team).
-- **`reference`**: Pointers to external tools, log files, or Linear/Jira boards.
-
-If `MEMORY.md` gets too long, trigger the `/dream` skill to auto-consolidate.
-
-### Session State File
-
-Maintain `production/session-state/active.md` as a living checkpoint. Update it
-after each significant milestone:
-
-- Design section approved and written to file
-- Architecture decision made
-- Implementation milestone reached
-- Test results obtained
-
-The state file should contain: current task, progress checklist, key decisions
-made, files being worked on, and open questions.
-
-### Status Line Block (Production+ only)
-
-When the project is in Production, Polish, or Release stage, include a structured
-status block in `active.md` that the status line script can parse:
-
-```markdown
-<!-- STATUS -->
-Epic: Combat System
-Feature: Melee Combat
-Task: Implement hitbox detection
-<!-- /STATUS -->
-```
-
-- All three fields (Epic, Feature, Task) are optional — include only what applies
-- Update this block when switching focus areas
-- The status line displays it as a breadcrumb: `Combat System > Melee Combat > Hitboxes`
-- Remove or empty the block when no active work focus exists
-
-After any disruption (compaction, crash, `/clear`), read the state file first.
-
-### Incremental File Writing
-
-When creating multi-section documents (design docs, architecture docs, lore entries):
-
-1. Create the file immediately with a skeleton (all section headers, empty bodies)
-2. Discuss and draft one section at a time in conversation
-3. Write each section to the file as soon as it's approved
-4. Update the session state file after each section
-5. After writing a section, previous discussion about that section can be safely
-   compacted — the decisions are in the file
-
-This keeps the context window holding only the *current* section's discussion
-(~3-5k tokens) instead of the entire document's conversation history (~30-50k tokens).
+1. The `session-start.sh` hook will detect and preview `active.md` automatically
+2. Read the full state file for context
+3. Read the partially-completed file(s) listed in the state
+4. Continue from the next incomplete section or task
 
 ## Proactive Compaction
 
@@ -89,6 +24,46 @@ This keeps the context window holding only the *current* section's discussion
   after completing a task, before starting a new topic
 - **Focused compaction:** `/compact Focus on [current task] — sections 1-3 are
   written to file, working on section 4`
+- Insert `<!-- COMPACT: timestamp | Task: ... -->` boundary marker before new STATUS
+- After recovery, skip everything above the last COMPACT marker
+
+## Compaction Instructions
+
+When context is compacted, preserve the following in the summary:
+
+- Reference to `production/session-state/active.md` (read it to recover state)
+- List of files modified in this session and their purpose
+- Architectural decisions made and their rationale
+- Active sprint tasks and their current status
+- Agent invocations and their outcomes (success/failure/blocked)
+- Test results (pass/fail counts, specific failures)
+- Unresolved blockers or questions awaiting user input
+- Current task and what step we are on
+- Which sections of the current document are written to file vs. still in progress
+
+**After compaction:** Read `production/session-state/active.md` and any files being
+actively worked on to recover full context. The files contain the decisions; the
+conversation history is secondary.
+
+## Session State File
+
+Maintain `production/session-state/active.md` as a living checkpoint. Update it
+after each significant milestone (design approved, architecture decision made,
+implementation milestone reached, test results obtained).
+
+Contents: current task, progress checklist, key decisions made, files being
+worked on, and open questions.
+
+Requirements:
+- YAML frontmatter with `session`, `branch`, `tags`, `started`, `lastActive` fields
+- After every `/compact` or session resume, re-append `<!-- STATUS -->` block to
+  the END of `active.md` (tail-first re-append, mirrors `reAppendSessionMetadata()`)
+- The **last** `<!-- STATUS -->` block in the file always wins
+- Do NOT delete old status blocks — simply append a new one below
+- After any disruption (compaction, crash, `/clear`), read the state file first
+- Maintain `## Files This Session` section tracking created/modified/deleted files
+- Log partial file reads in `## Partial Reads This Session`
+- Mark cached decisions as potentially stale in `## Cached Decisions (may be stale)`
 
 ## Context Budgets by Task Type
 
@@ -105,30 +80,44 @@ Subagents run in their own context window and return only summaries:
   or doing research that would consume >5k tokens of file reads
 - **Use direct reads** when you know exactly which 1-2 files to check
 - Subagents do not inherit conversation history — provide full context in the prompt
+- Restrict tool access per agent type (memory: Write only to `.claude/memory/`,
+  docs: Write only to `docs/`, summarization: read-only)
+- Log subagent outcomes to `## Subagent Log` in `active.md`
 
-## Compaction Instructions
+### Diminishing Returns Detection
 
-When context is compacted, preserve the following in the summary:
+If the same task has been retried **3+ times** without measurable progress (no new
+files written, no new decisions made, same error recurring):
 
-- Reference to `production/session-state/active.md` (read it to recover state)
-- List of files modified in this session and their purpose
-- Any architectural decisions made and their rationale
-- Active sprint tasks and their current status
-- Agent invocations and their outcomes (success/failure/blocked)
-- Test results (pass/fail counts, specific failures)
-- Unresolved blockers or questions awaiting user input
-- The current task and what step we are on
-- Which sections of the current document are written to file vs. still in progress
+- **Stop the retry loop immediately** — do NOT attempt a 4th retry
+- Log all blockers in `active.md` under `## Open Questions`
+- Surface a diagnosis to the user with every attempted step documented
 
-**After compaction:** Read `production/session-state/active.md` and any files being
-actively worked on to recover full context. The files contain the decisions; the
-conversation history is secondary.
+## Memory System
 
-## Recovery After Session Crash
+For enduring knowledge (user preferences, technical directives, architecture
+decisions), use Claude's native memory in `.claude/memory/`.
 
-If a session dies ("prompt too long") or you start a new session to continue work:
+- **`MEMORY.md` (Index):** Root pointer read every session via `CLAUDE.md`.
+  Format: `- [Title](filename.md) - One-line hook`. **Line 201+ silently dropped
+  without warning.** Keep under 200 lines always.
+- **Recall limit:** At most 5 topic files injected per query. Design each file
+  to be independently useful — do not split one concept across multiple files.
+- **Topic files:** Must include YAML frontmatter with `name`, `description`, `type`.
+  Write `description` as a search query, not a label
+  (e.g. `"When to use monorepo vs multi-repo"` not `"Repo structure"`).
+- **Types:** `user` (pilot info), `feedback` (do's/don'ts — highest ROI),
+  `project` (tech decisions), `reference` (external pointers).
+- **Never save to memory:** API keys, tokens, passwords, PII, raw source code.
+  Save insights only. If unsure — skip it.
+- If `MEMORY.md` gets too long, trigger `/dream` to auto-consolidate.
 
-1. The `session-start.sh` hook will detect and preview `active.md` automatically
-2. Read the full state file for context
-3. Read the partially-completed file(s) listed in the state
-4. Continue from the next incomplete section or task
+## Incremental File Writing
+
+When creating multi-section documents:
+
+1. Create the file immediately with a skeleton (all section headers, empty bodies)
+2. Discuss and draft one section at a time in conversation
+3. Write each section to the file as soon as it's approved
+4. Update the session state file after each section
+5. After writing a section, previous discussion can be safely compacted
