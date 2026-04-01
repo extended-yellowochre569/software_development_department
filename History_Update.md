@@ -46,7 +46,12 @@ Thêm `paths:` vào **48 technology skills** — skills chỉ visible khi mở f
 
 Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
-**Còn lại (Phase 3–5):** `context: fork` cho heavy skills, `effort:` hints, tách CLAUDE.md domain rules.
+**Phase 3–5 — Advanced Settings & Routing:**
+
+- Thêm thuộc tính `context: fork` để chạy độc lập cho 6 analysis skills nặng.
+- Thêm `effort:` (1-5) vào toàn bộ 98 skills giúp mô hình AI phân bổ token & tùy chỉnh Thinking Mode.
+- Thêm `when_to_use:` cho 4 workflow skills dễ nhầm lẫn.
+- Hệ thống hóa CLAUDE.md: chỉ include universal rules, dùng `paths:` cho các domain rules.
 
 ---
 
