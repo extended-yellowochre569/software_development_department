@@ -4,6 +4,7 @@ description: PostgreSQL database patterns for query optimization, schema design,
 origin: ECC
 paths: ["**/*.sql", "**/migrations/**", "**/schema.prisma", "**/drizzle.config.*"]
 when_to_use: "When writing SQL queries, designing PostgreSQL schemas, optimizing indexes, or reviewing database security patterns"
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 effort: 2
 ---

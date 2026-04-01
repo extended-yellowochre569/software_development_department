@@ -3,6 +3,7 @@ name: ios-developer
 description: Develop native iOS applications with Swift/SwiftUI. Masters iOS 18, SwiftUI, UIKit integration, Core Data, networking, and App Store optimization.
 paths: ["**/*.swift", "**/*.xib", "**/*.storyboard", "**/Info.plist"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When developing native iOS applications with Swift/SwiftUI, UIKit integration, or App Store optimization"
 ---

@@ -3,6 +3,7 @@ name: kubernetes-architect
 description: Expert Kubernetes architect specializing in cloud-native infrastructure, advanced GitOps workflows (ArgoCD/Flux), and enterprise container orchestration.
 paths: ["**/*.yaml", "**/k8s/**", "**/helm/**", "**/kustomization*"]
 effort: 4
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When designing Kubernetes platform architecture, implementing GitOps workflows, or managing enterprise container orchestration"
 ---

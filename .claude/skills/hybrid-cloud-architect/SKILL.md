@@ -2,6 +2,7 @@
 name: hybrid-cloud-architect
 description: Expert hybrid cloud architect specializing in complex multi-cloud solutions across AWS/Azure/GCP and private clouds (OpenStack/VMware).
 effort: 4
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When designing complex multi-cloud or hybrid cloud solutions across AWS, Azure, GCP, and private clouds"
 ---

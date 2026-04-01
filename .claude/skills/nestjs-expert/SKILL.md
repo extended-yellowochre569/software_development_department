@@ -3,6 +3,7 @@ name: nestjs-expert
 description: "Nest.js framework expert specializing in module architecture, dependency injection, middleware, guards, interceptors, testing with Jest/Supertest, TypeORM/Mongoose integration, and Passport.js auth..."
 paths: ["**/nest-cli.json", "**/src/**/*.ts", "**/*.module.ts", "**/*.controller.ts", "**/*.service.ts"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When building NestJS applications with module architecture, dependency injection, guards, interceptors, or TypeORM"
 ---

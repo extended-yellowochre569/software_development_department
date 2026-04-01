@@ -4,6 +4,7 @@ description: Frontend development patterns for React, Next.js, state management,
 origin: ECC
 paths: ["**/*.tsx", "**/*.jsx", "**/*.vue"]
 effort: 2
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When building React or Next.js components, managing state, optimizing performance, or implementing frontend best practices"
 ---

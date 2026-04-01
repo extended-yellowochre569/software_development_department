@@ -3,6 +3,7 @@ name: nextjs-best-practices
 description: "Next.js App Router principles. Server Components, data fetching, routing patterns."
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When applying Next.js App Router best practices for routing, data fetching, or Server Components"
 ---

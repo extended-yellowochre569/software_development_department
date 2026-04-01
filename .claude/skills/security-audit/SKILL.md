@@ -4,6 +4,8 @@ description: "Comprehensive security auditing workflow covering web application 
 context: fork
 agent: security-engineer
 when_to_use: "When performing security audits, vulnerability scanning, penetration testing, or hardening web applications and APIs"
+allowed-tools: Read, Glob, Grep, Bash
+argument-hint: "[target: api|frontend|backend|infra|full]"
 user-invocable: true
 effort: 5
 ---

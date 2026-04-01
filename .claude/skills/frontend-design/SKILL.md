@@ -3,6 +3,8 @@ name: frontend-design
 description: "Create distinctive, production-grade frontend interfaces with intentional aesthetics, high craft, and non-generic visual identity. Use when building or styling web UIs, components, pages, dashboard..."
 paths: ["**/*.tsx", "**/*.jsx", "**/*.css", "**/*.scss"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
+argument-hint: "[component or page to design]"
 user-invocable: true
 when_to_use: "When building or styling web UIs, components, dashboards, or pages with distinctive production-grade aesthetics"
 ---

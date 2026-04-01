@@ -3,6 +3,7 @@ name: nodejs-backend-patterns
 description: "Build production-ready Node.js backend services with Express/Fastify, implementing middleware patterns, error handling, authentication, database integration, and API design best practices. Use when..."
 paths: ["**/package.json", "**/src/**/*.ts", "**/src/**/*.js", "**/server.ts", "**/server.js"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When building production-ready Node.js backend services with Express/Fastify, middleware, authentication, or database integration"
 ---

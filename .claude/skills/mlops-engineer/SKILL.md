@@ -3,6 +3,7 @@ name: mlops-engineer
 description: Build comprehensive ML pipelines, experiment tracking, and model registries with MLflow, Kubeflow, and modern MLOps tools.
 paths: ["**/*.py", "**/Dockerfile", "**/requirements*.txt", "**/mlflow*", "**/*.yaml"]
 effort: 4
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When building ML pipelines, experiment tracking systems, or model registries with MLflow or Kubeflow"
 ---

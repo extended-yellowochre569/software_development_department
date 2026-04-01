@@ -3,6 +3,7 @@ name: flutter-expert
 description: Master Flutter development with Dart 3, advanced widgets, and multi-platform deployment.
 paths: ["**/*.dart", "**/pubspec.yaml", "**/pubspec.lock"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When developing Flutter applications with Dart 3, advanced widgets, or multi-platform deployment"
 ---

@@ -3,6 +3,7 @@ name: tailwind-patterns
 description: "Tailwind CSS v4 principles. CSS-first configuration, container queries, modern patterns, design token architecture."
 paths: ["**/*.tsx", "**/*.jsx", "**/*.css", "**/tailwind.config.*"]
 when_to_use: "When writing Tailwind CSS v4, configuring design tokens, implementing container queries, or building responsive layouts"
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 effort: 3
 ---

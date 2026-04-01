@@ -3,6 +3,7 @@ name: nosql-expert
 description: "Expert guidance for distributed NoSQL databases (Cassandra, DynamoDB). Focuses on mental models, query-first modeling, single-table design, and avoiding hot partitions in high-scale systems."
 paths: ["**/mongo*", "**/dynamo*", "**/cassandra*", "**/*.json"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When designing NoSQL database schemas with Cassandra or DynamoDB, applying query-first modeling or single-table design"
 ---

@@ -1,6 +1,8 @@
 ---
 name: code-review-checklist
 description: "Comprehensive checklist for conducting thorough code reviews covering functionality, security, performance, and maintainability"
+allowed-tools: Read, Glob, Grep, Bash
+argument-hint: "[file path or PR number]"
 user-invocable: true
 effort: 3
 when_to_use: "Quick self-check trước khi commit, không cần full review"

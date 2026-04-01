@@ -3,6 +3,7 @@ name: aws-serverless
 description: "Specialized skill for building production-ready serverless applications on AWS. Covers Lambda functions, API Gateway, DynamoDB, SQS/SNS event-driven patterns, SAM/CDK deployment, and cold start opt..."
 paths: ["**/serverless.yml", "**/template.yaml", "**/cdk/**", "**/sam/**"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When building or deploying serverless applications on AWS with Lambda, API Gateway, DynamoDB, or SAM/CDK"
 ---

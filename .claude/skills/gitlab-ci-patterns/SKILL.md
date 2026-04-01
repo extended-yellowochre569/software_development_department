@@ -3,6 +3,7 @@ name: gitlab-ci-patterns
 description: "Build GitLab CI/CD pipelines with multi-stage workflows, caching, and distributed runners for scalable automation. Use when implementing GitLab CI/CD, optimizing pipeline performance, or setting up..."
 paths: ["**/.gitlab-ci.yml", "**/ci/**", "**/.gitlab/**"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When implementing or optimizing GitLab CI/CD pipelines, multi-stage workflows, or distributed runners"
 ---

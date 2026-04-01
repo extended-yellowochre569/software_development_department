@@ -8,6 +8,26 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
+### [v1.15.0] - 2026-04-01
+
+**Chủ đề:** Tool System Optimization — Least Privilege, Allow-list & Argument Hints
+
+- **Idea 3 — Thêm `allowed-tools` cho 58 skills** (tổng 99/99 skills đều có):
+  - `Read, Glob, Grep` cho 21 tech reference skills (read-only)
+  - `Read, Glob, Grep, Bash` cho 3 analysis skills
+  - `Read, Glob, Grep, Write, Edit, Bash` cho 31 tech expert skills
+  - `Read, Glob, Grep, Write, Bash` cho 3 git workflow skills
+- **Idea 4 — Mở rộng Permission Allow-list** (10 → 22 entries):
+  - `cat`, `head`, `tail`, `wc`, `find`, `tree` (file reading)
+  - `npm list`, `pip list` (package inspection)
+  - `git show`, `git stash list` (git read-only)
+  - `npm run build`, `npx tsc --noEmit` (safe build/check)
+- **Idea 5 — Thêm `argument-hint` cho 13 key skills:**
+  - `commit`, `pr-writer`, `security-audit`, `postmortem-writing`, `code-review-checklist`, `architecture-decision-records`, `database-architect`, `cloud-architect`, `deployment-engineer`, `backend-architect`, `frontend-design`, `ml-engineer`, `devops-deploy`.
+- **Idea 6 — Verified:** Tất cả 10 fork skills đều có `agent:` field ✅.
+
+---
+
 ### [v1.14.0] - 2026-04-01
 
 **Chủ đề:** Tool System Hardening — Deny Rules & Fork Context cho Heavy Skills
@@ -361,4 +381,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-01 — v1.14.0
+Last Updated: 2026-04-01 — v1.15.0

@@ -3,6 +3,7 @@ name: mobile-developer
 description: Develop React Native, Flutter, or native mobile apps with modern architecture patterns. Masters cross-platform development, native integrations, offline sync, and app store optimization.
 paths: ["**/*.dart", "**/*.swift", "**/*.kt", "**/pubspec.yaml", "**/app.json"]
 effort: 4
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When developing React Native, Flutter, or native mobile apps with modern architecture patterns or offline sync"
 ---

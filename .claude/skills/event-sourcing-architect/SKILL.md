@@ -2,6 +2,7 @@
 name: event-sourcing-architect
 description: "Expert in event sourcing, CQRS, and event-driven architecture patterns. Masters event store design, projection building, saga orchestration, and eventual consistency patterns. Use PROACTIVELY for e..."
 effort: 4
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When designing event-sourced systems, CQRS patterns, event stores, or systems requiring full audit trail"
 ---

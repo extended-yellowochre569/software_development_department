@@ -3,6 +3,7 @@ name: deployment-procedures
 description: "Production deployment principles and decision-making. Safe deployment workflows, rollback strategies, and verification. Teaches thinking, not scripts."
 paths: ["**/Dockerfile*", "**/deploy/**", "**/.github/workflows/**"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When planning or executing production deployments, choosing rollback strategies, or verifying deployment readiness"
 ---

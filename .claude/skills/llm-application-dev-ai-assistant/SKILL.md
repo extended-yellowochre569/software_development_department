@@ -3,6 +3,7 @@ name: llm-application-dev-ai-assistant
 description: "You are an AI assistant development expert specializing in creating intelligent conversational interfaces, chatbots, and AI-powered applications. Design comprehensive AI assistant solutions with natur"
 paths: ["**/*.py", "**/*.ts", "**/chatbot*", "**/assistant*"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When developing AI assistant or chatbot applications with natural language understanding and context management"
 ---

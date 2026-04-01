@@ -4,6 +4,7 @@ description: Spring Boot architecture patterns, REST API design, layered service
 origin: ECC
 paths: ["**/*.java", "**/pom.xml", "**/build.gradle*", "**/application*.yml"]
 when_to_use: "When building Java Spring Boot backends, designing REST APIs, implementing layered services, or configuring async processing"
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 effort: 3
 ---

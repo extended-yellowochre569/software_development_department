@@ -3,6 +3,7 @@ name: dotnet-backend-patterns
 description: "Master C#/.NET backend development patterns for building robust APIs, MCP servers, and enterprise applications. Covers async/await, dependency injection, Entity Framework Core, Dapper, configuratio..."
 paths: ["**/*.cs", "**/*.csproj", "**/*.sln", "**/appsettings*.json"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When building C#/.NET backend APIs, MCP servers, or enterprise applications with Entity Framework or Dapper"
 ---

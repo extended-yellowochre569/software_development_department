@@ -3,6 +3,7 @@ name: gemini-api-integration
 description: "Use when integrating Google Gemini API into projects. Covers model selection, multimodal inputs, streaming, function calling, and production best practices."
 paths: ["**/*.py", "**/*.ts", "**/google*", "**/gemini*", "**/vertex*"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When integrating Google Gemini API into projects for text generation, multimodal inputs, streaming, or function calling"
 ---

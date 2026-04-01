@@ -3,6 +3,7 @@ name: prisma-expert
 description: "Prisma ORM expert for schema design, migrations, query optimization, relations modeling, and database operations. Use PROACTIVELY for Prisma schema issues, migration problems, query performance, re..."
 paths: ["**/prisma/**", "**/*.prisma", "**/schema.prisma"]
 when_to_use: "When working with Prisma ORM for schema design, migrations, query optimization, or troubleshooting database operations"
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 effort: 3
 ---

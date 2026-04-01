@@ -2,6 +2,8 @@
 name: database-architect
 description: Expert database architect specializing in data layer design from scratch, technology selection, schema modeling, and scalable database architectures.
 effort: 5
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
+argument-hint: "[project type or tech stack]"
 user-invocable: true
 when_to_use: "When selecting database technologies, designing schemas from scratch, or planning data layer migrations"
 ---

@@ -2,6 +2,8 @@
 name: deployment-engineer
 description: Expert deployment engineer specializing in modern CI/CD pipelines, GitOps workflows, and advanced deployment automation.
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
+argument-hint: "[environment: dev|staging|prod]"
 user-invocable: true
 when_to_use: "When designing or improving CI/CD pipelines, implementing GitOps workflows, or automating deployments"
 ---

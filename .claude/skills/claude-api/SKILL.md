@@ -4,6 +4,7 @@ description: Anthropic Claude API patterns for Python and TypeScript. Covers Mes
 origin: ECC
 paths: ["**/*.py", "**/*.ts", "**/anthropic*", "**/claude*"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When building applications using the Anthropic Claude API, SDK, or implementing agent workflows with tool use or streaming"
 ---

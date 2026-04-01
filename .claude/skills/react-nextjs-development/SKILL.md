@@ -3,6 +3,7 @@ name: react-nextjs-development
 description: "React and Next.js 14+ application development with App Router, Server Components, TypeScript, Tailwind CSS, and modern frontend patterns."
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*", "**/tailwind.config.*"]
 when_to_use: "When building React or Next.js 14+ applications with App Router, Server Components, TypeScript, or Tailwind CSS"
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 effort: 3
 ---

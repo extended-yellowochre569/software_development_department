@@ -2,6 +2,7 @@
 name: microservices-patterns
 description: "Design microservices architectures with service boundaries, event-driven communication, and resilience patterns. Use when building distributed systems, decomposing monoliths, or implementing micros..."
 effort: 4
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When designing microservices architectures, decomposing monoliths, or implementing distributed system patterns"
 ---

@@ -3,6 +3,8 @@ name: ml-engineer
 description: Build production ML systems with PyTorch 2.x, TensorFlow, and modern ML frameworks. Implements model serving, feature engineering, A/B testing, and monitoring.
 paths: ["**/*.py", "**/*.ipynb", "**/requirements*.txt", "**/setup.py"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
+argument-hint: "[problem type: classification|regression|nlp|cv]"
 user-invocable: true
 when_to_use: "When building production ML systems with PyTorch or TensorFlow, implementing model serving, or setting up A/B testing"
 ---

@@ -3,6 +3,7 @@ name: django-pro
 description: Master Django 5.x with async views, DRF, Celery, and Django Channels. Build scalable web applications with proper architecture, testing, and deployment.
 paths: ["**/*.py", "**/manage.py", "**/settings.py", "**/urls.py"]
 effort: 3
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
 when_to_use: "When building Django 5.x applications with async views, DRF, Celery, or Django Channels"
 ---

@@ -3,6 +3,7 @@ name: frontend-security-coder
 description: Expert in secure frontend coding practices specializing in XSS prevention, output sanitization, and client-side security patterns.
 paths: ["**/*.tsx", "**/*.jsx", "**/*.ts", "**/*.js"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When implementing frontend security measures such as XSS prevention, output sanitization, or client-side security patterns"
 ---

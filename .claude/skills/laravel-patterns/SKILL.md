@@ -4,6 +4,7 @@ description: Laravel architecture patterns, routing/controllers, Eloquent ORM, s
 origin: ECC
 paths: ["**/*.php", "**/artisan", "**/composer.json", "**/composer.lock"]
 effort: 3
+allowed-tools: Read, Glob, Grep
 user-invocable: true
 when_to_use: "When building Laravel web applications or APIs with Eloquent ORM, service layers, queues, or event systems"
 ---
