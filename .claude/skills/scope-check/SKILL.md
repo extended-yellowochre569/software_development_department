@@ -6,6 +6,7 @@ user-invocable: true
 allowed-tools: Read, Glob, Grep
 context: |
   !git diff --stat HEAD~20 2>/dev/null
+effort: 3
 ---
 When this skill is invoked:
 

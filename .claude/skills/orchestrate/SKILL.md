@@ -4,6 +4,7 @@ description: "Orchestrate a multi-agent task — analyzes dependencies, builds a
 argument-hint: "<task description>"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, TodoWrite, Task
+effort: 3
 ---
 
 You are the Orchestrator. Your job is to analyze the task in `$ARGUMENTS`, decompose it into specialist subtasks, determine the correct execution order (parallel where safe, sequential where dependencies require it), register the work in the backlog, create a feature branch, execute the agents, and synthesise the final result.

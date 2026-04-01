@@ -4,6 +4,9 @@ description: "Structured performance profiling workflow. Identifies bottlenecks,
 argument-hint: "[system-name or 'full']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash
+context: fork
+agent: performance-analyst
+effort: 3
 ---
 When this skill is invoked:
 

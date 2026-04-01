@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/package.json", "**/src/**/*.ts", "**/src/**/*.js", "**/server.ts", "**/server.js"]
+effort: 3
 ---
 
 # Node.js Backend Patterns

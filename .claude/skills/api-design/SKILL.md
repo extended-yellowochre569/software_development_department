@@ -4,6 +4,7 @@ description: "Reviews and designs REST or GraphQL API contracts. Checks endpoint
 argument-hint: "[path-to-api-spec-or-route-files]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, WebSearch
+effort: 3
 ---
 
 When this skill is invoked:

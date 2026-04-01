@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/*.tsx", "**/*.jsx", "**/*.css", "**/tailwind.config.*"]
+effort: 3
 ---
 
 # Tailwind CSS Patterns (v4 - 2025)

@@ -4,6 +4,7 @@ description: "Guided, section-by-section feature specification authoring for a s
 argument-hint: "<feature-name> (e.g., 'user-authentication', 'payment-processing', 'notification-service')"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Task, AskUserQuestion, TodoWrite
+effort: 3
 ---
 
 When this skill is invoked:

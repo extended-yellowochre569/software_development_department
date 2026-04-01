@@ -4,6 +4,7 @@ description: "Orchestrate the frontend team: coordinates ux-designer, ux-researc
 argument-hint: "[UI feature or screen description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite
+effort: 3
 ---
 
 When this skill is invoked, orchestrate the frontend team through a structured delivery pipeline.

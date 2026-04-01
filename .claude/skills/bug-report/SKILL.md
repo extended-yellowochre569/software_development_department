@@ -5,6 +5,7 @@ argument-hint: "[description]
 /bug-report analyze [path-to-file]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
+effort: 1
 ---
 
 When invoked with a description:

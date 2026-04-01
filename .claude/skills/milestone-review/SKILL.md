@@ -4,6 +4,7 @@ description: "Generates a comprehensive milestone progress review including feat
 argument-hint: "[milestone-name|current]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
+effort: 3
 ---
 
 When this skill is invoked:

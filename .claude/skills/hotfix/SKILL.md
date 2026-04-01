@@ -4,6 +4,7 @@ description: "Emergency fix workflow that bypasses normal sprint processes with 
 argument-hint: "[bug-id or description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
+effort: 2
 ---
 When this skill is invoked:
 

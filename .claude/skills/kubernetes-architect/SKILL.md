@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: '2026-02-27'
 paths: ["**/*.yaml", "**/k8s/**", "**/helm/**", "**/kustomization*"]
+effort: 4
 ---
 You are a Kubernetes architect specializing in cloud-native infrastructure, modern GitOps workflows, and enterprise container orchestration at scale.
 

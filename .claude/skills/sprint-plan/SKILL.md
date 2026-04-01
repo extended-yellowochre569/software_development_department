@@ -6,6 +6,7 @@ user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit
 context: |
   !ls production/sprints/ 2>/dev/null
+effort: 3
 ---
 
 When this skill is invoked:

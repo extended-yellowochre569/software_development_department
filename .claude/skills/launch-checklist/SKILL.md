@@ -4,6 +4,7 @@ description: "Complete launch readiness validation covering every department: co
 argument-hint: "[launch-date or 'dry-run']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
+effort: 3
 ---
 
 When this skill is invoked:

@@ -3,6 +3,7 @@ name: springboot-patterns
 description: Spring Boot architecture patterns, REST API design, layered services, data access, caching, async processing, and logging. Use for Java Spring Boot backend work.
 origin: ECC
 paths: ["**/*.java", "**/pom.xml", "**/build.gradle*", "**/application*.yml"]
+effort: 3
 ---
 
 # Spring Boot Development Patterns

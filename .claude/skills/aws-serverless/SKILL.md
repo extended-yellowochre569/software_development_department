@@ -5,6 +5,7 @@ risk: unknown
 source: "vibeship-spawner-skills (Apache 2.0)"
 date_added: "2026-02-27"
 paths: ["**/serverless.yml", "**/template.yaml", "**/cdk/**", "**/sam/**"]
+effort: 3
 ---
 
 # AWS Serverless

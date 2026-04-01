@@ -4,6 +4,7 @@ description: "Expert in event sourcing, CQRS, and event-driven architecture patt
 risk: unknown
 source: community
 date_added: "2026-02-27"
+effort: 4
 ---
 
 # Event Sourcing Architect

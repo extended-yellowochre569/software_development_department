@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/*.py", "**/*.ts", "**/embeddings/**", "**/vector*", "**/pinecone*", "**/qdrant*"]
+effort: 3
 ---
 
 # Vector Database Engineer

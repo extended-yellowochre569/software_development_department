@@ -7,6 +7,7 @@ allowed-tools: Read, Glob, Grep, Bash
 context: |
   !git log --oneline -30 2>/dev/null
   !git tag --list --sort=-v:refname 2>/dev/null | head -5
+effort: 1
 ---
 
 When this skill is invoked:

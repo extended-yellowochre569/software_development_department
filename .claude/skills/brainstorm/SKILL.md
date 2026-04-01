@@ -4,6 +4,7 @@ description: "Guided product concept ideation — from zero idea to a structured
 argument-hint: "[product type or problem hint, or 'open' for fully open brainstorm]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, WebSearch, AskUserQuestion
+effort: 3
 ---
 
 When this skill is invoked:

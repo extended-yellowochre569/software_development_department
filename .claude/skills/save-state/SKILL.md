@@ -4,6 +4,7 @@ description: "Save current working context to production/session-state/active.md
 argument-hint: "[optional note]"
 user-invocable: true
 allowed-tools: Read, Write, Glob, Bash
+effort: 3
 ---
 
 Dump the current working context into `production/session-state/active.md` as a structured checkpoint.

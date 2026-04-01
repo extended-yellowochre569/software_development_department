@@ -4,6 +4,7 @@ description: "Write effective blameless postmortems with root cause analysis, ti
 risk: unknown
 source: community
 date_added: "2026-02-27"
+effort: 3
 ---
 
 # Postmortem Writing

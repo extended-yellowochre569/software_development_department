@@ -4,6 +4,10 @@ description: "Creates an Architecture Decision Record (ADR) documenting a signif
 argument-hint: "[title]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
+context: fork
+agent: cto
+effort: 4
+when_to_use: "Khi cần ra quyết định công nghệ, ghi lại reasoning"
 ---
 
 When this skill is invoked:

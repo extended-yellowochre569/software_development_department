@@ -4,6 +4,7 @@ description: "Performs a mobile-specific code review on a React Native, Flutter,
 argument-hint: "[path-to-mobile-file-or-directory]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash
+effort: 3
 ---
 
 When this skill is invoked:

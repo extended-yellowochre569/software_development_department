@@ -4,6 +4,7 @@ description: "Orchestrate the mobile team end-to-end: coordinates ux-designer, m
 argument-hint: "[mobile feature or screen description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite
+effort: 3
 ---
 
 When this skill is invoked, orchestrate the mobile team through a structured delivery pipeline.

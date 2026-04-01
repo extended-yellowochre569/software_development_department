@@ -3,6 +3,7 @@ name: compose-multiplatform-patterns
 description: Compose Multiplatform and Jetpack Compose patterns for KMP projects — state management, navigation, theming, performance, and platform-specific UI.
 origin: ECC
 paths: ["**/*.kt", "**/build.gradle*", "**/gradle.properties"]
+effort: 3
 ---
 
 # Compose Multiplatform Patterns

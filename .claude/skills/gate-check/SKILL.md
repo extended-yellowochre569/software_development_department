@@ -4,6 +4,7 @@ description: "Validate readiness to advance between development phases. Produces
 argument-hint: "[target-phase: systems-design | technical-setup | pre-production | production | polish | release]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash, Write
+effort: 3
 ---
 
 # Phase Gate Validation

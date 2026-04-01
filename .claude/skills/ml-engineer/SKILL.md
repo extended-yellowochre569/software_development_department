@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: '2026-02-27'
 paths: ["**/*.py", "**/*.ipynb", "**/requirements*.txt", "**/setup.py"]
+effort: 3
 ---
 
 ## Use this skill when

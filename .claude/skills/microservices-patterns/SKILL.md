@@ -4,6 +4,7 @@ description: "Design microservices architectures with service boundaries, event-
 risk: unknown
 source: community
 date_added: "2026-02-27"
+effort: 4
 ---
 
 # Microservices Patterns

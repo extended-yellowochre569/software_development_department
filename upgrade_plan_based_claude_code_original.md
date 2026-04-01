@@ -419,14 +419,14 @@ when_to_use: "Khi cần tạo formal ADR document với full context và alterna
 - [x] **2.1h** Thêm `paths:` cho Nhóm H — AI/LLM (4 skills) ✓ 2026-04-01
 
 ### Phase 3 — Fork Context
-- [ ] **3.1** Thêm `context: fork` + `agent:` cho 6 heavy analysis skills
+- [x] **3.1** Thêm `context: fork` + `agent:` cho 6 heavy analysis skills ✓ 2026-04-01
 
 ### Phase 4 — Effort Hints
-- [ ] **4.1** Thêm `effort:` (1–5) cho tất cả 98 skills
+- [x] **4.1** Thêm `effort:` (1–5) cho tất cả 98 skills ✓ 2026-04-01
 
 ### Phase 5 — CLAUDE.md Optimization
-- [ ] **5.1** Tách coding-standards.md → universal only
-- [ ] **5.2** Thêm `when_to_use:` cho 10–15 workflow skills hay nhầm
+- [x] **5.1** Tách coding-standards.md → universal only ✓ 2026-04-01
+- [x] **5.2** Thêm `when_to_use:` cho 10–15 workflow skills hay nhầm ✓ 2026-04-01
 
 ---
 

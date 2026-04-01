@@ -4,6 +4,7 @@ description: "Orchestrate the UI team: coordinates ux-designer and ui-programmer
 argument-hint: "[UI feature description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite
+effort: 3
 ---
 When this skill is invoked, orchestrate the UI team through a structured pipeline.
 

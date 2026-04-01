@@ -4,6 +4,7 @@ description: "Run the localization workflow: extract strings, validate localizat
 argument-hint: "[scan|extract|validate|status]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Bash
+effort: 1
 ---
 When this skill is invoked:
 

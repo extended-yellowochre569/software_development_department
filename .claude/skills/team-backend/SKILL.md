@@ -4,6 +4,7 @@ description: "Orchestrate the backend team: coordinates technical-director, back
 argument-hint: "[backend feature or system description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite
+effort: 3
 ---
 
 When this skill is invoked, orchestrate the backend team through a structured delivery pipeline.

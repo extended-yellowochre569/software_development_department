@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/*.tsx", "**/*.jsx", "**/app.json", "**/metro.config.*", "**/expo.config.*"]
+effort: 4
 ---
 
 # React Native Architecture

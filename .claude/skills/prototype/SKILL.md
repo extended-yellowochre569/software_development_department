@@ -4,6 +4,7 @@ description: "Rapid prototyping workflow. Skips normal standards to quickly vali
 argument-hint: "[concept-description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
+effort: 3
 ---
 
 When this skill is invoked:

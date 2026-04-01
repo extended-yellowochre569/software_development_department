@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*", "**/app/**/*.ts"]
+effort: 3
 ---
 
 # Next.js App Router Patterns

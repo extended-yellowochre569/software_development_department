@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/*.py", "**/*.ts", "**/openai*", "**/anthropic*", "**/langchain*"]
+effort: 3
 ---
 
 # 🤖 LLM Application Patterns

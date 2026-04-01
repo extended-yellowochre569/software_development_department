@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/mongo*", "**/dynamo*", "**/cassandra*", "**/*.json"]
+effort: 3
 ---
 
 # NoSQL Expert Patterns (Cassandra & DynamoDB)

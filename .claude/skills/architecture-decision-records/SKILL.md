@@ -4,6 +4,10 @@ description: "Write and maintain Architecture Decision Records (ADRs) following 
 risk: unknown
 source: community
 date_added: "2026-02-27"
+context: fork
+agent: technical-director
+effort: 4
+when_to_use: "Khi cần tạo formal ADR document với full context và alternatives"
 ---
 
 # Architecture Decision Records

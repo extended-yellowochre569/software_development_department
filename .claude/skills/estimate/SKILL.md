@@ -4,6 +4,7 @@ description: "Estimates task effort by analyzing complexity, dependencies, histo
 argument-hint: "[task-description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep
+effort: 1
 ---
 
 When this skill is invoked:

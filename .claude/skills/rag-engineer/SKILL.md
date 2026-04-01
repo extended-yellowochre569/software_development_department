@@ -5,6 +5,7 @@ risk: unknown
 source: "vibeship-spawner-skills (Apache 2.0)"
 date_added: "2026-02-27"
 paths: ["**/*.py", "**/requirements*.txt", "**/embeddings/**", "**/vector*"]
+effort: 3
 ---
 
 # RAG Engineer

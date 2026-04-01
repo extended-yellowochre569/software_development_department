@@ -4,6 +4,9 @@ description: "Track, categorize, and prioritize technical debt across the codeba
 argument-hint: "[scan|add|prioritize|report]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
+context: fork
+agent: lead-programmer
+effort: 3
 ---
 When this skill is invoked:
 

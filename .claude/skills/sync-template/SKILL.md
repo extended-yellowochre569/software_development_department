@@ -4,6 +4,7 @@ description: "Sync the .claude/ directory from an upstream template repository i
 argument-hint: "[upstream-repo-url]"
 user-invocable: true
 allowed-tools: Read, Bash, Glob
+effort: 3
 ---
 
 Sync the `.claude/` directory from an upstream template repository into this project.

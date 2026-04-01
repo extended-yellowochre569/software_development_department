@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/*.cs", "**/*.csproj", "**/*.sln", "**/appsettings*.json"]
+effort: 3
 ---
 
 # .NET Backend Development Patterns

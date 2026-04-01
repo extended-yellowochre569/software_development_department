@@ -4,6 +4,7 @@ description: "First-time onboarding — asks where you are, then guides you to t
 argument-hint: "[no arguments]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, AskUserQuestion
+effort: 3
 ---
 
 # Guided Onboarding

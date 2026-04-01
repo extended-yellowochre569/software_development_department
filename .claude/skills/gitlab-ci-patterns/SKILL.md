@@ -5,6 +5,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/.gitlab-ci.yml", "**/ci/**", "**/.gitlab/**"]
+effort: 3
 ---
 
 # GitLab CI Patterns

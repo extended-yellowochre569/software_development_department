@@ -4,6 +4,9 @@ description: "Decompose a game concept into individual systems, map dependencies
 argument-hint: "[optional: 'next' to pick highest-priority undesigned system, or a system name to hand off to /design-system]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion, TodoWrite
+context: fork
+agent: technical-director
+effort: 3
 ---
 
 When this skill is invoked:

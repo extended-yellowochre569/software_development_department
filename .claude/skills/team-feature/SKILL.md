@@ -4,6 +4,7 @@ description: "Orchestrate a cross-functional feature team: coordinates product-m
 argument-hint: "[feature description or user story]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite
+effort: 3
 ---
 
 When this skill is invoked, orchestrate the feature team through a structured delivery pipeline.

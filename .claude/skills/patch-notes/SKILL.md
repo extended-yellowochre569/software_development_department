@@ -4,6 +4,7 @@ description: "Generate player-facing patch notes from git history, sprint data, 
 argument-hint: "[version] [--style brief|detailed|full]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Bash
+effort: 1
 ---
 
 When this skill is invoked:

@@ -4,6 +4,7 @@ description: "Update docs/technical/CODEMAP.md by scanning the current codebase 
 argument-hint: "[optional: specific module or area to update]"
 user-invocable: true
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+effort: 3
 ---
 
 Update `docs/technical/CODEMAP.md` to accurately reflect the current state of the codebase.

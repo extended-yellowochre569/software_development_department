@@ -4,6 +4,7 @@ description: "Orchestrate the release team: coordinates release-manager, qa-lead
 argument-hint: "[version number or 'next']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite
+effort: 3
 ---
 When this skill is invoked, orchestrate the release team through a structured pipeline.
 

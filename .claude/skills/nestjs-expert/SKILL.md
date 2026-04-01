@@ -6,6 +6,7 @@ risk: unknown
 source: community
 date_added: "2026-02-27"
 paths: ["**/nest-cli.json", "**/src/**/*.ts", "**/*.module.ts", "**/*.controller.ts", "**/*.service.ts"]
+effort: 3
 ---
 
 # Nest.js Expert

@@ -6,6 +6,7 @@ user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
 context: |
   !git log --oneline --since="2 weeks ago" 2>/dev/null
+effort: 3
 ---
 
 When this skill is invoked:
