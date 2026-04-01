@@ -1,10 +1,8 @@
 ---
 name: shadcn
 description: Manages shadcn/ui components and projects, providing context, documentation, and usage patterns for building modern design systems.
+when_to_use: "When using shadcn/ui components, configuring component libraries, or building design systems with Radix and Tailwind"
 user-invocable: false
-risk: safe
-source: https://github.com/shadcn-ui/ui/tree/main/skills/shadcn
-date_added: "2026-03-07"
 paths: ["**/*.tsx", "**/*.jsx", "**/components.json"]
 effort: 3
 ---

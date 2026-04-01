@@ -1,10 +1,9 @@
 ---
 name: react-native-architecture
 description: "Build production React Native apps with Expo, navigation, native modules, offline sync, and cross-platform patterns. Use when developing mobile apps, implementing native integrations, or architecti..."
-risk: unknown
-source: community
-date_added: "2026-02-27"
 paths: ["**/*.tsx", "**/*.jsx", "**/app.json", "**/metro.config.*", "**/expo.config.*"]
+when_to_use: "When developing React Native or Expo mobile apps, implementing native modules, navigation, or cross-platform patterns"
+user-invocable: true
 effort: 4
 ---
 

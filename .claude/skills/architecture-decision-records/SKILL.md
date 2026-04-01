@@ -1,11 +1,9 @@
 ---
 name: architecture-decision-records
 description: "Write and maintain Architecture Decision Records (ADRs) following best practices for technical decision documentation. Use when documenting significant technical decisions, reviewing past architect..."
-risk: unknown
-source: community
-date_added: "2026-02-27"
 context: fork
 agent: technical-director
+user-invocable: true
 effort: 4
 when_to_use: "Khi cần tạo formal ADR document với full context và alternatives"
 ---

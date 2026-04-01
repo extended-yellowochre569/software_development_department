@@ -1,9 +1,6 @@
 ---
 name: llm-app-patterns
 description: "Production-ready patterns for building LLM applications. Covers RAG pipelines, agent architectures, prompt IDEs, and LLMOps monitoring. Use when designing AI applications, implementing RAG, buildin..."
-risk: unknown
-source: community
-date_added: "2026-02-27"
 paths: ["**/*.py", "**/*.ts", "**/openai*", "**/anthropic*", "**/langchain*"]
 effort: 3
 user-invocable: true

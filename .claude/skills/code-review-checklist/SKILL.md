@@ -1,9 +1,7 @@
 ---
 name: code-review-checklist
 description: "Comprehensive checklist for conducting thorough code reviews covering functionality, security, performance, and maintainability"
-risk: unknown
-source: community
-date_added: "2026-02-27"
+user-invocable: true
 effort: 3
 when_to_use: "Quick self-check trước khi commit, không cần full review"
 ---

@@ -1,11 +1,9 @@
 ---
 name: react-nextjs-development
 description: "React and Next.js 14+ application development with App Router, Server Components, TypeScript, Tailwind CSS, and modern frontend patterns."
-category: granular-workflow-bundle
-risk: safe
-source: personal
-date_added: "2026-02-27"
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*", "**/tailwind.config.*"]
+when_to_use: "When building React or Next.js 14+ applications with App Router, Server Components, TypeScript, or Tailwind CSS"
+user-invocable: true
 effort: 3
 ---
 

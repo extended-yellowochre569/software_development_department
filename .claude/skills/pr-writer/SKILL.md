@@ -1,6 +1,8 @@
 ---
 name: pr-writer
 description: ALWAYS use this skill when creating or updating pull requests â€” never create or edit a PR directly without it. Follows conventional commit format for PR titles, descriptions, and issue references. Trigger on any create PR, open PR, submit PR, make PR,...
+when_to_use: "When creating or updating pull requests — generates PR title, description, and issue references following conventional commit format"
+user-invocable: true
 effort: 2
 ---
 

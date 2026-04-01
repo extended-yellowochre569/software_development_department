@@ -162,7 +162,6 @@ When approved, write the file with special markers:
 ```markdown
 ---
 status: reverse-documented
-source: src/gameplay/combat/
 date: 2026-02-13
 verified-by: [User name]
 ---

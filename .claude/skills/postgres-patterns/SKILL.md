@@ -3,6 +3,8 @@ name: postgres-patterns
 description: PostgreSQL database patterns for query optimization, schema design, indexing, and security. Based on Supabase best practices.
 origin: ECC
 paths: ["**/*.sql", "**/migrations/**", "**/schema.prisma", "**/drizzle.config.*"]
+when_to_use: "When writing SQL queries, designing PostgreSQL schemas, optimizing indexes, or reviewing database security patterns"
+user-invocable: true
 effort: 2
 ---
 

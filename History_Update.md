@@ -8,6 +8,20 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
+### [v1.13.0] - 2026-04-01
+
+**Chủ đề:** Skill Format Standardization — Audit & chuẩn hóa 99 skills theo Claude Code source
+
+Dựa trên phân tích `REPORT-skills-plugin-system.md` (Claude Code source code), audit toàn bộ 99 skills:
+
+- **Priority 1 — Thêm `user-invocable: true` cho 16 skills:** `architecture-decision-records`, `code-review-checklist`, `postgres-patterns`, `postmortem-writing`, `pr-writer`, `prisma-expert`, `radix-ui-design-system`, `rag-engineer`, `react-native-architecture`, `react-nextjs-development`, `security-audit`, `senior-frontend`, `springboot-patterns`, `sql-optimization-patterns`, `tailwind-patterns`, `vector-database-engineer`.
+- **Priority 2 — Thêm `when_to_use:` cho 15 tech skills:** Mô tả ngữ cảnh routing chi tiết cho 15 technology skills chưa có (cùng danh sách trên, trừ `architecture-decision-records` đã có, thêm `shadcn`).
+- **Priority 3 — Dọn 150 dòng non-standard fields từ 49 skills:** Xóa `source:`, `risk:`, `date_added:`, `category:`, `tags:`, `author:` — các fields Claude Code parser bỏ qua. Giữ `origin:` cho provenance tracking.
+- **Fix `tools:` → `allowed-tools:` trong `devops-deploy`:** Đúng tên field theo Zod schema của Claude Code.
+- **Kết quả audit sau fix:** 99/99 skills ✅ PASS (description, user-invocable, effort, no non-standard fields).
+
+---
+
 ### [v1.12.0] - 2026-04-01
 
 **Chủ đề:** Skill Routing Enhancement — Bổ sung `user-invocable` & `when_to_use` cho 59 skills
@@ -326,4 +340,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-01 — v1.12.0
+Last Updated: 2026-04-01 — v1.13.0

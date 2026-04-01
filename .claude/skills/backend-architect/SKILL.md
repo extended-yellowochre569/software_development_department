@@ -1,9 +1,6 @@
 ---
 name: backend-architect
 description: Expert backend architect specializing in scalable API design, microservices architecture, and distributed systems.
-risk: unknown
-source: community
-date_added: '2026-02-27'
 paths: ["**/src/**/*.ts", "**/src/**/*.js", "**/package.json"]
 effort: 5
 user-invocable: true
