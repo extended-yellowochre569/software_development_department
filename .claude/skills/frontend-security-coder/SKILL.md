@@ -1,5 +1,6 @@
 ---
 name: frontend-security-coder
+type: reference
 description: Expert in secure frontend coding practices specializing in XSS prevention, output sanitization, and client-side security patterns.
 paths: ["**/*.tsx", "**/*.jsx", "**/*.ts", "**/*.js"]
 effort: 3

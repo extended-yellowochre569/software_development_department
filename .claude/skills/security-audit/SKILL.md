@@ -1,5 +1,6 @@
 ---
 name: security-audit
+type: workflow
 description: "Comprehensive security auditing workflow covering web application testing, API security, penetration testing, vulnerability scanning, and security hardening."
 context: fork
 agent: security-engineer
@@ -10,211 +11,181 @@ user-invocable: true
 effort: 5
 ---
 
-# Security Auditing Workflow Bundle
+# Security Auditing Workflow
 
-## Overview
+Systematic security review using static analysis tools available in the codebase.
+Covers OWASP Top 10, secrets exposure, auth patterns, and dependency risk.
 
-Comprehensive security auditing workflow for web applications, APIs, and infrastructure. This bundle orchestrates skills for penetration testing, vulnerability assessment, security scanning, and remediation.
+## Phase 1: Reconnaissance — Map the Attack Surface
 
-## When to Use This Workflow
+1. **Identify entry points** — list all routes/controllers:
 
-Use this workflow when:
-- Performing security audits on web applications
-- Testing API security
-- Conducting penetration tests
-- Scanning for vulnerabilities
-- Hardening application security
-- Compliance security assessments
+   ```bash
+   grep -rn "app\.\(get\|post\|put\|delete\|patch\)\|@app\.route\|router\." src/ --include="*.{js,ts,py}" | head -60
+   ```
 
-## Workflow Phases
+2. **Identify auth middleware** — check which routes are protected:
 
-### Phase 1: Reconnaissance
+   ```bash
+   grep -rn "auth\|middleware\|guard\|require_login\|jwt\|bearer" src/ -i --include="*.{js,ts,py}" | head -40
+   ```
 
-#### Skills to Invoke
-- `scanning-tools` - Security scanning
-- `shodan-reconnaissance` - Shodan searches
-- `top-web-vulnerabilities` - OWASP Top 10
+3. **Map external dependencies** — check package files for known-risky libs:
 
-#### Actions
-1. Identify target scope
-2. Gather intelligence
-3. Map attack surface
-4. Identify technologies
-5. Document findings
+   ```bash
+   cat package.json 2>/dev/null || cat requirements.txt 2>/dev/null || cat go.mod 2>/dev/null
+   ```
 
-#### Copy-Paste Prompts
-```
-Use @scanning-tools to perform initial reconnaissance
-```
+4. **Note findings** — list: total endpoints found, unprotected routes, third-party auth libs.
 
-```
-Use @shodan-reconnaissance to find exposed services
-```
+---
 
-### Phase 2: Vulnerability Scanning
+## Phase 2: Secrets & Sensitive Data Exposure
 
-#### Skills to Invoke
-- `vulnerability-scanner` - Vulnerability analysis
-- `security-scanning-security-sast` - Static analysis
-- `security-scanning-security-dependencies` - Dependency scanning
+1. **Scan for hardcoded secrets**:
 
-#### Actions
-1. Run automated scanners
-2. Perform static analysis
-3. Scan dependencies
-4. Identify misconfigurations
-5. Document vulnerabilities
+   ```bash
+   grep -rn "password\s*=\s*['\"][^'\"]\|api_key\s*=\s*['\"][^'\"]\|secret\s*=\s*['\"][^'\"]" src/ -i | grep -v ".example" | head -30
+   ```
 
-#### Copy-Paste Prompts
-```
-Use @vulnerability-scanner to scan for OWASP Top 10 vulnerabilities
-```
+2. **Scan for tokens/keys in source**:
 
-```
-Use @security-scanning-security-dependencies to audit dependencies
-```
+   ```bash
+   grep -rEn "(sk-|AIza|AKIA|ghp_|xox[baprs]-)[A-Za-z0-9]+" src/ | head -20
+   ```
 
-### Phase 3: Web Application Testing
+3. **Check .env files are gitignored**:
 
-#### Skills to Invoke
-- `top-web-vulnerabilities` - OWASP vulnerabilities
-- `sql-injection-testing` - SQL injection
-- `xss-html-injection` - XSS testing
-- `broken-authentication` - Authentication testing
-- `idor-testing` - IDOR testing
-- `file-path-traversal` - Path traversal
-- `burp-suite-testing` - Burp Suite testing
+   ```bash
+   cat .gitignore | grep -i "\.env" ; ls -la .env* 2>/dev/null
+   ```
 
-#### Actions
-1. Test for injection flaws
-2. Test authentication mechanisms
-3. Test session management
-4. Test access controls
-5. Test input validation
-6. Test security headers
+4. **Check for secrets in logs**:
 
-#### Copy-Paste Prompts
-```
-Use @sql-injection-testing to test for SQL injection vulnerabilities
-```
+   ```bash
+   grep -rn "console\.log.*password\|logger.*token\|print.*secret" src/ -i | head -20
+   ```
 
-```
-Use @xss-html-injection to test for cross-site scripting
-```
+**Flag:** any hardcoded credential or unignored `.env` file is a P0 finding.
 
-```
-Use @broken-authentication to test authentication security
-```
+---
 
-### Phase 4: API Security Testing
+## Phase 3: Injection & Input Validation
 
-#### Skills to Invoke
-- `api-fuzzing-bug-bounty` - API fuzzing
-- `api-security-best-practices` - API security
+1. **SQL injection risk** — look for string concatenation in queries:
 
-#### Actions
-1. Enumerate API endpoints
-2. Test authentication/authorization
-3. Test rate limiting
-4. Test input validation
-5. Test error handling
-6. Document API vulnerabilities
+   ```bash
+   grep -rn "query.*+\|execute.*f\"\|raw.*%s\|SELECT.*\$\{" src/ --include="*.{js,ts,py}" | head -30
+   ```
 
-#### Copy-Paste Prompts
-```
-Use @api-fuzzing-bug-bounty to fuzz API endpoints
-```
+2. **Command injection risk** — shell execution with user input:
 
-### Phase 5: Penetration Testing
+   ```bash
+   grep -rn "exec(\|spawn(\|subprocess\|os\.system\|child_process" src/ --include="*.{js,ts,py}" | head -20
+   ```
 
-#### Skills to Invoke
-- `pentest-commands` - Penetration testing commands
-- `pentest-checklist` - Pentest planning
-- `ethical-hacking-methodology` - Ethical hacking
-- `metasploit-framework` - Metasploit
+3. **XSS risk** — unescaped HTML rendering:
 
-#### Actions
-1. Plan penetration test
-2. Execute attack scenarios
-3. Exploit vulnerabilities
-4. Document proof of concept
-5. Assess impact
+   ```bash
+   grep -rn "innerHTML\|dangerouslySetInnerHTML\|v-html\|\.html(" src/ --include="*.{js,ts,jsx,tsx,vue}" | head -20
+   ```
 
-#### Copy-Paste Prompts
-```
-Use @pentest-checklist to plan penetration test
-```
+4. **Check for input validation middleware** — is there a schema validator at boundaries?
 
-```
-Use @pentest-commands to execute penetration testing
-```
+   ```bash
+   grep -rn "joi\|zod\|yup\|pydantic\|cerberus\|marshmallow" src/ --include="*.{js,ts,py}" | head -10
+   ```
 
-### Phase 6: Security Hardening
+---
 
-#### Skills to Invoke
-- `security-scanning-security-hardening` - Security hardening
-- `auth-implementation-patterns` - Authentication
-- `api-security-best-practices` - API security
+## Phase 4: Authentication & Authorization
 
-#### Actions
-1. Implement security controls
-2. Configure security headers
-3. Set up authentication
-4. Implement authorization
-5. Configure logging
-6. Apply patches
+1. **JWT / token handling** — check for weak configs:
 
-#### Copy-Paste Prompts
-```
-Use @security-scanning-security-hardening to harden application security
-```
+   ```bash
+   grep -rn "algorithm.*HS256\|expiresIn\|verify\|decode" src/ --include="*.{js,ts,py}" | head -20
+   ```
 
-### Phase 7: Reporting
+2. **Password hashing** — confirm bcrypt/argon2, not MD5/SHA1:
 
-#### Skills to Invoke
-- `reporting-standards` - Security reporting
+   ```bash
+   grep -rn "md5\|sha1\|hashSync\|bcrypt\|argon2\|pbkdf2" src/ -i --include="*.{js,ts,py}" | head -20
+   ```
 
-#### Actions
-1. Document findings
-2. Assess risk levels
-3. Provide remediation steps
-4. Create executive summary
-5. Generate technical report
+3. **CORS config** — check for wildcard origins:
 
-## Security Testing Checklist
+   ```bash
+   grep -rn "cors\|Access-Control-Allow-Origin\|\*" src/ --include="*.{js,ts,py}" | head -20
+   ```
+
+4. **Authorization checks** — look for missing ownership checks in update/delete:
+
+   ```bash
+   grep -rn "findById\|findOne\|get_object_or_404" src/ --include="*.{js,ts,py}" | head -20
+   ```
+
+   Review each — does the handler verify `resource.userId === req.user.id`?
+
+---
+
+## Phase 5: Security Headers & Config
+
+1. **HTTP security headers** — check if helmet/similar is configured:
+
+   ```bash
+   grep -rn "helmet\|Content-Security-Policy\|X-Frame-Options\|Strict-Transport" src/ --include="*.{js,ts}" | head -10
+   ```
+
+2. **Rate limiting** — check for brute-force protection on auth routes:
+
+   ```bash
+   grep -rn "rateLimit\|throttle\|rate_limit\|slowDown" src/ --include="*.{js,ts,py}" | head -10
+   ```
+
+3. **HTTPS enforcement** — check redirect config:
+
+   ```bash
+   grep -rn "http://\|forceHttps\|redirectToHttps\|SECURE_SSL_REDIRECT" src/ --include="*.{js,ts,py}" | head -10
+   ```
+
+---
+
+## Phase 6: Report Findings
+
+For each finding, record:
+
+| Severity | Category | File:Line | Description | Remediation |
+|----------|----------|-----------|-------------|-------------|
+| P0 Critical | | | | |
+| P1 High | | | | |
+| P2 Medium | | | | |
+| P3 Low / Info | | | | |
+
+**Severity guide:**
+- **P0**: Hardcoded credential, remote code execution, auth bypass
+- **P1**: SQL injection, XSS, IDOR, broken auth
+- **P2**: Missing rate limit, weak hashing, CORS wildcard
+- **P3**: Missing security header, verbose errors, info disclosure
+
+Save report to `docs/technical/security-audit-{YYYY-MM-DD}.md`.
+
+---
+
+## Security Checklist
 
 ### OWASP Top 10
-- [ ] Injection (SQL, NoSQL, OS, LDAP)
-- [ ] Broken Authentication
-- [ ] Sensitive Data Exposure
-- [ ] XML External Entities (XXE)
-- [ ] Broken Access Control
-- [ ] Security Misconfiguration
-- [ ] Cross-Site Scripting (XSS)
-- [ ] Insecure Deserialization
-- [ ] Using Components with Known Vulnerabilities
-- [ ] Insufficient Logging & Monitoring
+- [ ] A01 Broken Access Control — ownership checks on every mutation
+- [ ] A02 Cryptographic Failures — no hardcoded secrets, strong hashing
+- [ ] A03 Injection — parameterized queries, no string concat in SQL/shell
+- [ ] A04 Insecure Design — auth required on all sensitive routes
+- [ ] A05 Security Misconfiguration — security headers, CORS, HTTPS
+- [ ] A06 Vulnerable Components — no known-CVE dependencies
+- [ ] A07 Auth & Session — JWT config, expiry, refresh token rotation
+- [ ] A08 Integrity Failures — no unverified package installs in CI
+- [ ] A09 Logging & Monitoring — no secrets in logs, audit trail exists
+- [ ] A10 SSRF — no unvalidated URL-fetch from user input
 
-### API Security
-- [ ] Authentication mechanisms
-- [ ] Authorization checks
-- [ ] Rate limiting
-- [ ] Input validation
-- [ ] Error handling
-- [ ] Security headers
+## Related Skills
 
-## Quality Gates
-
-- [ ] All planned tests executed
-- [ ] Vulnerabilities documented
-- [ ] Proof of concepts captured
-- [ ] Risk assessments completed
-- [ ] Remediation steps provided
-- [ ] Report generated
-
-## Related Workflow Bundles
-
-- `development` - Secure development practices
-- `wordpress` - WordPress security
-- `cloud-devops` - Cloud security
-- `testing-qa` - Security testing
+- `code-review` — line-by-line review with security lens
+- `guard` — freeze check before deploying a fix

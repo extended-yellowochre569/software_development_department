@@ -1,14 +1,14 @@
 # User Guide — Software Development Department
 
 > **Author:** [tranhieutt](https://github.com/tranhieutt)
-> **Version:** 1.17.0 | **Updated:** 2026-04-02
+> **Version:** 1.18.0 | **Updated:** 2026-04-03
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
   <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-27-blueviolet" alt="27 Agents"></a>
   <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-98-green" alt="98 Skills"></a>
   <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-8-orange" alt="8 Hooks"></a>
-  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
+  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-12-red" alt="12 Rules"></a>
   <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
 </p>
 ---
@@ -104,7 +104,7 @@ Claude Code Session
         ├── .claude/agents/     ← 27 AI agents chuyên biệt
         ├── .claude/skills/     ← 98 slash commands (workflows & platform skills)
         ├── .claude/hooks/      ←  8 automated validation scripts
-        ├── .claude/rules/      ← 11 path-scoped coding standards
+        ├── .claude/rules/      ← 12 path-scoped coding standards
         ├── .claude/docs/       ← Templates, references, guides
         └── .claude/docs/context-management-guide.md  ← Deep-dive patterns (không inject)
 ```
@@ -183,7 +183,7 @@ Tier 3 — Specialists (model: Sonnet / Haiku)
 
 ### 5.4 Rules
 
-11 coding standards tự động áp dụng theo đường dẫn file. Không cần nhớ — hệ thống tự enforce.
+12 coding standards tự động áp dụng theo đường dẫn file. Không cần nhớ — hệ thống tự enforce.
 
 ### 5.5 Hooks
 

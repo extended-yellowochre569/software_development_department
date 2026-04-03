@@ -1,5 +1,6 @@
 ---
 name: llm-application-dev-ai-assistant
+type: reference
 description: "You are an AI assistant development expert specializing in creating intelligent conversational interfaces, chatbots, and AI-powered applications. Design comprehensive AI assistant solutions with natur"
 paths: ["**/*.py", "**/*.ts", "**/chatbot*", "**/assistant*"]
 effort: 3

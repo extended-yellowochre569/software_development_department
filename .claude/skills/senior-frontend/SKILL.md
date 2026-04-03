@@ -1,5 +1,6 @@
 ---
 name: senior-frontend
+type: reference
 description: Frontend development skill for React, Next.js, TypeScript, and Tailwind CSS applications. Use when building React components, optimizing Next.js performance, analyzing bundle sizes, scaffolding frontend projects, implementing accessibility, or reviewing frontend code quality.
 paths: ["**/*.tsx", "**/*.jsx", "**/*.vue", "**/package.json"]
 when_to_use: "When building React/Next.js components, optimizing frontend performance, analyzing bundle sizes, or reviewing frontend code quality"

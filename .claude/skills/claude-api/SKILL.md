@@ -1,5 +1,6 @@
 ---
 name: claude-api
+type: reference
 description: Anthropic Claude API patterns for Python and TypeScript. Covers Messages API, streaming, tool use, vision, extended thinking, batches, prompt caching, and Claude Agent SDK. Use when building applications with the Claude API or Anthropic SDKs.
 origin: ECC
 paths: ["**/*.py", "**/*.ts", "**/anthropic*", "**/claude*"]

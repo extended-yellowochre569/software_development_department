@@ -1,5 +1,6 @@
 ---
 name: flutter-expert
+type: reference
 description: Master Flutter development with Dart 3, advanced widgets, and multi-platform deployment.
 paths: ["**/*.dart", "**/pubspec.yaml", "**/pubspec.lock"]
 effort: 3

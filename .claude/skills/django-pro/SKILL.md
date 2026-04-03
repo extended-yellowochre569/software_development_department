@@ -1,5 +1,6 @@
 ---
 name: django-pro
+type: reference
 description: Master Django 5.x with async views, DRF, Celery, and Django Channels. Build scalable web applications with proper architecture, testing, and deployment.
 paths: ["**/*.py", "**/manage.py", "**/settings.py", "**/urls.py"]
 effort: 3

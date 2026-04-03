@@ -1,5 +1,6 @@
 ---
 name: nextjs-best-practices
+type: reference
 description: "Next.js App Router principles. Server Components, data fetching, routing patterns."
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*"]
 effort: 3

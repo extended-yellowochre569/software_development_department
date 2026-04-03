@@ -1,5 +1,6 @@
 ---
 name: nestjs-expert
+type: reference
 description: "Nest.js framework expert specializing in module architecture, dependency injection, middleware, guards, interceptors, testing with Jest/Supertest, TypeORM/Mongoose integration, and Passport.js auth..."
 paths: ["**/nest-cli.json", "**/src/**/*.ts", "**/*.module.ts", "**/*.controller.ts", "**/*.service.ts"]
 effort: 3

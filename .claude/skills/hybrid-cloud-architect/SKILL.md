@@ -1,5 +1,6 @@
 ---
 name: hybrid-cloud-architect
+type: reference
 description: Expert hybrid cloud architect specializing in complex multi-cloud solutions across AWS/Azure/GCP and private clouds (OpenStack/VMware).
 effort: 4
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

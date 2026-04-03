@@ -1,5 +1,6 @@
 ---
 name: frontend-patterns
+type: reference
 description: Frontend development patterns for React, Next.js, state management, performance optimization, and UI best practices.
 origin: ECC
 paths: ["**/*.tsx", "**/*.jsx", "**/*.vue"]

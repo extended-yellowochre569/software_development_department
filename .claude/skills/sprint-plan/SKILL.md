@@ -1,5 +1,6 @@
 ---
 name: sprint-plan
+type: workflow
 description: "Generates a new sprint plan or updates an existing one based on the current milestone, completed work, and available capacity. Pulls context from production documents and design backlogs."
 argument-hint: "[new|update|status]"
 user-invocable: true
@@ -14,16 +15,21 @@ When this skill is invoked:
 1. **Read the current milestone** from `production/milestones/`.
 
 2. **Read the previous sprint** (if any) from `production/sprints/` to
-   understand velocity and carryover.
+   understand velocity and carryover. Use `Glob("production/sprints/*.md")`
+   then read the file with the highest sprint number.
 
-3. **Scan design documents** in `design/gdd/` for features tagged as ready
+3. **Scan design documents** in `design/` for features tagged as ready
    for implementation.
 
-4. **Check the risk register** at `production/risk-register/`.
+4. **Check the risk register** at `production/risk-register/` if it exists.
 
 For `new`:
 
-5. **Generate a sprint plan** following this format:
+1. **Determine sprint number** — count existing files in `production/sprints/`
+   and increment by 1. Sprint N = number of existing sprint files + 1.
+
+2. **Generate a sprint plan** following this format, then **save to
+   `production/sprints/sprint-{N}.md`** (confirm path with user before writing):
 
 ```markdown
 # Sprint [N] -- [Start Date] to [End Date]
@@ -69,9 +75,31 @@ For `new`:
 - [ ] Code reviewed and merged
 ```
 
+For `update`:
+
+1. **Identify the current sprint file** — find the latest file in
+   `production/sprints/` (highest sprint number). Read it.
+
+2. **Ask the user** which task(s) to update: task ID, new status
+   (`done` / `in-progress` / `blocked`), and any notes or blocker details.
+
+3. **Edit the sprint file in place** using the Edit tool:
+   - Move completed tasks to the "Completed" section if tracking status inline
+   - Add blocker info to the Blocked table
+   - Update `% Done` estimates for in-progress tasks
+
+4. **Append a brief update log** at the bottom of the file:
+
+   ```markdown
+   ## Update Log
+   - [YYYY-MM-DD]: [Summary of changes made]
+   ```
+
+5. **Confirm** the edit to the user: "Sprint {N} updated — {X} task(s) changed."
+
 For `status`:
 
-5. **Generate a status report**:
+1. **Generate a status report**:
 
 ```markdown
 # Sprint [N] Status -- [Date]

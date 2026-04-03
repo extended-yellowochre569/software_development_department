@@ -1,5 +1,6 @@
 ---
 name: fastapi-pro
+type: reference
 description: Build high-performance async APIs with FastAPI, SQLAlchemy 2.0, and Pydantic V2. Master microservices, WebSockets, and modern Python async patterns.
 paths: ["**/*.py", "**/requirements*.txt", "**/pyproject.toml", "**/main.py"]
 effort: 3

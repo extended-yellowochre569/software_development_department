@@ -8,6 +8,18 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ---
 
+### [v1.18.0] - 2026-04-03
+
+**Chủ đề:** Skill Validation & Consistency Enhancement
+
+- **Skill Validation:** Bổ sung tập lệnh `validate-skills.sh` và `eval-skill.py` hỗ trợ đánh giá tự động (LLM-as-a-judge) chất lượng của các file cấu hình SKILL.md.
+- **Rules Cập Nhật:** Bổ sung file `.claude/rules/git-push.md` nhắc nhở việc tự động nâng cấp History log và nội dung README trước mỗi khi thao tác lệnh PUSH.
+- **Metadata Format:** Cập nhật thuộc tính `type: reference` và `type: workflow` vào YAML frontmatter của toàn bộ thư viện các skill theo tiêu chuẩn xác thực mới.
+- **Thư mục Mới:** Tổ chức lại và bổ sung cấu trúc cho `freeze`, `unfreeze`, `guard`, và `templates` hỗ trợ quản lý trạng thái luồng làm việc.
+- **Nâng cấp version**: Bump version toàn bộ framework lên 1.18.0 và cập nhật số Rules (12 Rules).
+
+---
+
 ### [v1.17.0] - 2026-04-02
 
 **Chủ đề:** Tích hợp Hệ thống GitNexus Knowledge Graph
@@ -405,4 +417,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-02 — v1.17.0
+Last Updated: 2026-04-03 — v1.18.0

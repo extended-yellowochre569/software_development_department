@@ -1,5 +1,6 @@
 ---
 name: frontend-ui-dark-ts
+type: reference
 description: "Build dark-themed React applications using Tailwind CSS with custom theming, glassmorphism effects, and Framer Motion animations. Use when creating dashboards, admin panels, or data-rich interfaces..."
 paths: ["**/*.tsx", "**/*.jsx", "**/*.css"]
 effort: 3

@@ -1,5 +1,6 @@
 ---
 name: cloud-run-puppeteer
+type: reference
 description: Deploy Puppeteer + headless Chrome to Google Cloud Run — gen2 requirement, Chrome dependencies, Secret Manager mount, launch config, and performance tuning.
 effort: 2
 allowed-tools: Read, Glob, Grep, Bash

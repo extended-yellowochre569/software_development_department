@@ -1,5 +1,6 @@
 ---
 name: angular-best-practices
+type: reference
 description: "Angular performance optimization and best practices guide. Use when writing, reviewing, or refactoring Angular code for optimal performance, bundle size, and rendering efficiency."
 paths: ["**/*.ts", "**/*.html", "**/angular.json"]
 effort: 3

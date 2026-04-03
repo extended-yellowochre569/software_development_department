@@ -1,5 +1,6 @@
 ---
 name: backend-security-coder
+type: reference
 description: Expert in secure backend coding practices specializing in input validation, authentication, and API security. Use PROACTIVELY for backend security implementations or security code reviews.
 paths: ["**/src/**/*.ts", "**/src/**/*.js", "**/middlewares/**", "**/guards/**"]
 effort: 3

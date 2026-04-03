@@ -1,5 +1,6 @@
 ---
 name: aws-serverless
+type: reference
 description: "Specialized skill for building production-ready serverless applications on AWS. Covers Lambda functions, API Gateway, DynamoDB, SQS/SNS event-driven patterns, SAM/CDK deployment, and cold start opt..."
 paths: ["**/serverless.yml", "**/template.yaml", "**/cdk/**", "**/sam/**"]
 effort: 3

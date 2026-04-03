@@ -1,5 +1,6 @@
 ---
 name: deployment-procedures
+type: reference
 description: "Production deployment principles and decision-making. Safe deployment workflows, rollback strategies, and verification. Teaches thinking, not scripts."
 paths: ["**/Dockerfile*", "**/deploy/**", "**/.github/workflows/**"]
 effort: 3

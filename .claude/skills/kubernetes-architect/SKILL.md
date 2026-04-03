@@ -1,5 +1,6 @@
 ---
 name: kubernetes-architect
+type: reference
 description: Expert Kubernetes architect specializing in cloud-native infrastructure, advanced GitOps workflows (ArgoCD/Flux), and enterprise container orchestration.
 paths: ["**/*.yaml", "**/k8s/**", "**/helm/**", "**/kustomization*"]
 effort: 4

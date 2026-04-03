@@ -1,5 +1,6 @@
 ---
 name: mobile-developer
+type: reference
 description: Develop React Native, Flutter, or native mobile apps with modern architecture patterns. Masters cross-platform development, native integrations, offline sync, and app store optimization.
 paths: ["**/*.dart", "**/*.swift", "**/*.kt", "**/pubspec.yaml", "**/app.json"]
 effort: 4

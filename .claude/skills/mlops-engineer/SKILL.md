@@ -1,5 +1,6 @@
 ---
 name: mlops-engineer
+type: reference
 description: Build comprehensive ML pipelines, experiment tracking, and model registries with MLflow, Kubeflow, and modern MLOps tools.
 paths: ["**/*.py", "**/Dockerfile", "**/requirements*.txt", "**/mlflow*", "**/*.yaml"]
 effort: 4

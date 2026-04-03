@@ -1,5 +1,6 @@
 ---
 name: dotnet-backend-patterns
+type: reference
 description: "Master C#/.NET backend development patterns for building robust APIs, MCP servers, and enterprise applications. Covers async/await, dependency injection, Entity Framework Core, Dapper, configuratio..."
 paths: ["**/*.cs", "**/*.csproj", "**/*.sln", "**/appsettings*.json"]
 effort: 3

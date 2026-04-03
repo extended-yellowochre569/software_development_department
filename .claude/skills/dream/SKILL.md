@@ -1,8 +1,8 @@
 ---
 name: dream
 description: "Memory consolidation — 4-phase reflective pass: Orient → Gather → Consolidate → Prune. Scans session transcripts and daily logs for new signals, merges/deduplicates topic files, keeps MEMORY.md under 200 lines. Run after intensive sessions or when memories feel stale."
-argument_hint: "[optional: topic keyword to focus on, e.g. 'feedback' or 'project']"
-user_invocable: true
+argument-hint: "[optional: topic keyword to focus on, e.g. 'feedback' or 'project']"
+user-invocable: true
 allowed-tools: Read, Write, Glob, Grep, Bash
 effort: 4
 when_to_use: "Clean up and consolidate the memory directory (MEMORY.md + topic files) after long sessions, when memories are duplicated, or when MEMORY.md is approaching the 200-line/25KB limit"

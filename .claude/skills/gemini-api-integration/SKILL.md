@@ -1,5 +1,6 @@
 ---
 name: gemini-api-integration
+type: reference
 description: "Use when integrating Google Gemini API into projects. Covers model selection, multimodal inputs, streaming, function calling, and production best practices."
 paths: ["**/*.py", "**/*.ts", "**/google*", "**/gemini*", "**/vertex*"]
 effort: 3
