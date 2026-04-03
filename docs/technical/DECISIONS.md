@@ -36,8 +36,56 @@
 
 | ADR | Title | Status | Date | Decider |
 | --- | --- | --- | --- | --- |
-| — | No decisions recorded yet | — | — | — |
+| 001 | ESM vs CJS Npm Package Compatibility | Accepted | 2026-04-03 | @technical-director |
+| 002 | Puppeteer Launch Config for Serverless | Accepted | 2026-04-03 | @devops-engineer |
 
 ---
 
 <!-- ADR entries go below this line, appended in order -->
+
+## ADR-001: ESM vs CJS Npm Package Compatibility
+
+**Date**: 2026-04-03
+**Status**: Accepted
+**Deciders**: @technical-director, @backend-developer
+**Source**: Crawler Webgame — Lesson #3, #4
+
+### Context
+Khi dự án Crawler sử dụng `google-spreadsheet@5`, package này phụ thuộc vào `ky` — một thư viện ESM-only. Toàn bộ project viết bằng CommonJS (`require()`), dẫn đến lỗi `ERR_REQUIRE_ESM` không thể khắc phục bằng `npm overrides`. Ngoài ra, API breaking changes giữa các major version (v4 bỏ `useServiceAccountAuth()`) gây mất thời gian debug.
+
+### Decision
+1. **Trước khi chọn npm package**, PHẢI kiểm tra tương thích ESM/CJS với hệ thống module hiện tại.
+2. **Pin exact version** trong `package.json` cho các thư viện core (database, auth, API clients).
+3. **Luôn đọc CHANGELOG** của thư viện khi gặp lỗi `xxx is not a function` — đây thường là dấu hiệu của breaking change giữa major versions.
+
+### Consequences
+- **Positive**: Tránh mất hàng giờ debug lỗi module incompatibility; rollback dễ dàng nhờ pin version.
+- **Negative**: Cần thêm bước kiểm tra thủ công trước khi `npm install` (chưa tự động hóa).
+
+---
+
+## ADR-002: Puppeteer Launch Config for Serverless (Cloud Run)
+
+**Date**: 2026-04-03
+**Status**: Accepted
+**Deciders**: @devops-engineer, @backend-developer
+**Source**: Crawler Webgame — Lesson #5, #6, #7
+
+### Context
+Khi deploy Puppeteer lên Google Cloud Run, gặp 3 vấn đề liên tiếp:
+1. **gen1 sandbox (gVisor)** chặn syscall cần thiết cho Chrome → Puppeteer không launch.
+2. **Thiếu system dependencies** (`libasound.so.2`, `libgbm1`...) trong Docker image `node:18`.
+3. **Cold start timeout** — Puppeteer mặc định 30s không đủ cho môi trường serverless.
+
+### Decision
+1. **Bắt buộc `--execution-environment gen2`** cho mọi Cloud Run service cần headless browser.
+2. **Sử dụng Dockerfile template chuẩn** tại `infra/templates/Dockerfile.puppeteer` với đầy đủ Chrome dependencies.
+3. **Puppeteer launch args chuẩn** cho serverless:
+   ```javascript
+   { timeout: 60000, args: ['--no-sandbox', '--disable-setuid-sandbox',
+     '--disable-dev-shm-usage', '--single-process', '--no-zygote', '--disable-gpu'] }
+   ```
+
+### Consequences
+- **Positive**: Mọi project cần scraping/automation có template sẵn, deploy xong chạy ngay lần đầu.
+- **Negative**: gen2 tốn tài nguyên hơn gen1; image Docker lớn hơn ~200MB do Chrome deps.

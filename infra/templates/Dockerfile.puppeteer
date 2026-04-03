@@ -1,0 +1,46 @@
+# Dockerfile Template: Node.js + Puppeteer on Cloud Run
+
+# ── Base image ───────────────────────────────────────────────────────────
+FROM node:18-slim
+
+# ── Chrome system dependencies (REQUIRED for Puppeteer) ──────────────────
+# Source: Crawler Webgame Lesson #6
+RUN apt-get update && apt-get install -y \
+    ca-certificates fonts-liberation libasound2 libatk-bridge2.0-0 \
+    libatk1.0-0 libcairo2 libcups2 libdbus-1-3 libdrm2 libgbm1 \
+    libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 \
+    libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 \
+    libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 \
+    libxtst6 xdg-utils --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# ── App setup ────────────────────────────────────────────────────────────
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+
+# ── Secret path: MUST be OUTSIDE WORKDIR ─────────────────────────────────
+# Source: Crawler Webgame Lesson #1
+# Mount via: --set-secrets "/secrets/service-account.json=SECRET_NAME:latest"
+# DO NOT mount at /app/... — it will shadow the entire /app directory!
+ENV GOOGLE_CREDS_PATH=/secrets/service-account.json
+
+# ── Server config ────────────────────────────────────────────────────────
+ENV PORT=8080
+EXPOSE 8080
+
+CMD ["node", "server.js"]
+
+# ── Deploy command ───────────────────────────────────────────────────────
+# IMPORTANT: Must use gen2 for Puppeteer (Lesson #5)
+#
+# gcloud run deploy SERVICE_NAME \
+#   --source . \
+#   --region asia-southeast1 \
+#   --execution-environment gen2 \
+#   --memory 1Gi --cpu 1 --timeout 300 \
+#   --set-secrets "/secrets/service-account.json=SECRET_NAME:latest" \
+#   --allow-unauthenticated

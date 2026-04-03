@@ -9,6 +9,18 @@
 - **Verification-driven development**: Write tests first when adding new features or systems.
   For UI changes, verify with screenshots. Compare expected output to actual output
   before marking work complete. Every implementation should have a way to prove it works.
+- **Defensive external API calls**: Every call to an external service (Google APIs, Stripe,
+  third-party SDKs) MUST be wrapped in `try/catch` with a meaningful fallback or retry.
+  Never assume external APIs will return the expected shape.
+  *(Source: Crawler Lesson #9 — `getRows()` throws if sheet has no header)*
+- **ESM/CJS compatibility check**: Before adding any npm dependency, verify its module
+  system matches the project (`require()` = CJS, `import` = ESM). Check the package's
+  `"type"` field and its transitive dependencies. Pin exact versions for core libraries.
+  *(Source: Crawler Lesson #3 — google-spreadsheet v5 broke CJS projects)*
+- **Scraping performance**: When using Puppeteer/Playwright for web scraping, enable
+  request interception to block `image`, `stylesheet`, `font`, `media` resources.
+  This reduces bandwidth by 60-80% and speeds up page load significantly.
+  *(Source: Crawler Lesson #10)*
 
 # Design Document Standards
 
