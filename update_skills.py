@@ -27,7 +27,7 @@ skills_dir = '.claude/skills'
 
 def update_skill(path):
     skill_name = os.path.basename(os.path.dirname(path))
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
         content = f.read()
 
     # match frontmatter
