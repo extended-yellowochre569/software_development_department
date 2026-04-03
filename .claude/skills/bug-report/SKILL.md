@@ -30,7 +30,7 @@ When invoked with a description:
 **Reporter**: [Name]
 
 ## Classification
-- **Category**: [Gameplay / UI / Audio / Visual / Performance / Crash / Network]
+- **Category**: [Business / UI / Audio / Visual / Performance / Crash / Network]
 - **System**: [Which game system is affected]
 - **Frequency**: [Always / Often (>50%) / Sometimes (10-50%) / Rare (<10%)]
 - **Regression**: [Yes/No/Unknown -- was this working before?]

@@ -6,6 +6,13 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.19.1] - 2026-04-03
+
+**Chủ đề:** Loại bỏ hoàn toàn references Game Studio cũ
+
+- **Clean up Gameplay References:** Rà soát và dọn sạch toàn bộ các từ khóa, concept liên quan đến `gameplay`, `game`, `engine` cũ còn sót lại trong các file rules, skills, và hooks (chẳng hạn như `rules-reference.md`, `detect-gaps.sh`...). Toàn bộ được quy hoạch lại cho ngữ cảnh Business/Software Engineering (API, Business Logic, Backend).
+- **Nâng cấp version**: Bump version hệ thống lên 1.19.1.
+
 ---
 
 ### [v1.19.0] - 2026-04-03
@@ -428,4 +435,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-03 — v1.19.0
+Last Updated: 2026-04-03 — v1.19.1

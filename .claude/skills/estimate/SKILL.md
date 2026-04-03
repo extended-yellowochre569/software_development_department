@@ -65,7 +65,7 @@ Generated: [Date]
 
 | Factor | Assessment | Notes |
 |--------|-----------|-------|
-| Systems affected | [List] | [Core, gameplay, UI, etc.] |
+| Systems affected | [List] | [Core, business, UI, etc.] |
 | Files likely modified | [Count] | [Key files listed below] |
 | New code vs modification | [Ratio, e.g., 70% new / 30% modification] | |
 | Integration points | [Count] | [Which systems interact] |

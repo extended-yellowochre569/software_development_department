@@ -76,5 +76,5 @@ exit 0
 When this hook fails:
 1. Build failure: invoke `lead-programmer` to diagnose
 2. Unit test failure: invoke `qa-tester` to identify the failing test and
-   `gameplay-programmer` or relevant programmer to fix
+   `backend-developer` or relevant programmer to fix
 3. Performance regression: invoke `performance-analyst` to analyze

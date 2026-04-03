@@ -110,10 +110,10 @@ if [ -d "src/core" ] || [ -d "src/engine" ]; then
   fi
 fi
 
-# --- Check 4: Gameplay systems without design docs ---
-if [ -d "src/gameplay" ]; then
-  # Find major gameplay subdirectories (those with 5+ files)
-  GAMEPLAY_SYSTEMS=$(find src/gameplay -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
+# --- Check 4: Business systems without design docs ---
+if [ -d "src/api" ]; then
+  # Find major business subdirectories (those with 5+ files)
+  GAMEPLAY_SYSTEMS=$(find src/api -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
 
   if [ -n "$GAMEPLAY_SYSTEMS" ]; then
     while IFS= read -r system_dir; do
@@ -129,9 +129,9 @@ if [ -d "src/gameplay" ]; then
         design_doc_2="design/gdd/${system_name}.md"
 
         if [ ! -f "$design_doc_1" ] && [ ! -f "$design_doc_2" ]; then
-          echo "⚠️  GAP: Gameplay system 'src/gameplay/$system_name/' ($file_count files) has no design doc"
+          echo "⚠️  GAP: Business system 'src/api/$system_name/' ($file_count files) has no design doc"
           echo "    Expected: design/gdd/${system_name}-system.md or design/gdd/${system_name}.md"
-          echo "    Suggested action: /reverse-document design src/gameplay/$system_name"
+          echo "    Suggested action: /reverse-document design src/api/$system_name"
         fi
       fi
     done <<< "$GAMEPLAY_SYSTEMS"

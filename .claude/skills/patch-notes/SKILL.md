@@ -23,7 +23,7 @@ When this skill is invoked:
 
 3. **Categorize all changes** into player-facing categories:
    - **New Content**: new features, maps, characters, items, modes
-   - **Gameplay Changes**: balance adjustments, mechanic changes, progression changes
+   - **Business Logic Changes**: balance adjustments, mechanic changes, progression changes
    - **Quality of Life**: UI improvements, convenience features, accessibility
    - **Bug Fixes**: grouped by system (combat, UI, networking, etc.)
    - **Performance**: optimization improvements players might notice
@@ -69,7 +69,7 @@ When this skill is invoked:
 ### [Feature Name]
 [2-3 sentences describing the feature and why players should be excited]
 
-## Gameplay Changes
+## Business Logic Changes
 ### Balance
 | Change | Before | After | Reason |
 | ---- | ---- | ---- | ---- |

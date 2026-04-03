@@ -119,7 +119,7 @@ Generated: [Date]
 - [ ] Load times within budget on all platforms
 - [ ] Memory usage within budget on all platforms
 - [ ] Network bandwidth within targets (if multiplayer)
-- [ ] No frame hitches in critical gameplay moments
+- [ ] No frame hitches in critical business critical moments
 
 ---
 

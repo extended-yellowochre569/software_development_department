@@ -23,12 +23,12 @@ EXIT_CODE=0
 
 if [ -n "$CODE_FILES" ]; then
     for file in $CODE_FILES; do
-        # Check for hardcoded magic numbers in gameplay code
-        if [[ "$file" == src/gameplay/* ]]; then
+        # Check for hardcoded magic numbers in business code
+        if [[ "$file" == src/api/* ]]; then
             # Look for numeric literals that are likely balance values
             # Adjust the pattern for your language
             if grep -nE '(damage|health|speed|rate|chance|cost|duration)[[:space:]]*[:=][[:space:]]*[0-9]+' "$file"; then
-                echo "WARNING: $file may contain hardcoded gameplay values. Use data files."
+                echo "WARNING: $file may contain hardcoded business logic values. Use data files."
                 # Warning only, not blocking
             fi
         fi

@@ -112,8 +112,8 @@ it cannot function without that other system existing first.
 For each system, list its dependencies. Use these dependency heuristics:
 - **Input/output dependencies**: System A produces data System B needs
 - **Structural dependencies**: System A provides the framework System B plugs into
-- **UI dependencies**: Every gameplay system has a corresponding UI system that
-  depends on it (but UI is designed after the gameplay system)
+- **UI dependencies**: Every business system has a corresponding UI system that
+  depends on it (but UI is designed after the business system)
 
 ### Step 3b: Sort by Dependency Order
 
@@ -121,7 +121,7 @@ Arrange systems into layers:
 1. **Foundation**: Systems with zero dependencies (designed and built first)
 2. **Core**: Systems depending only on Foundation systems
 3. **Feature**: Systems depending on Core systems
-4. **Presentation**: UI and feedback systems that wrap gameplay systems
+4. **Presentation**: UI and feedback systems that wrap business systems
 5. **Polish**: Meta-systems, tutorials, analytics, accessibility
 
 ### Step 3c: Detect Circular Dependencies
@@ -153,7 +153,7 @@ Use these heuristics for initial assignment:
 - **MVP**: Systems mentioned in the concept's "Required for MVP" section, plus their
   Foundation-layer dependencies
 - **Vertical Slice**: Systems needed for a complete experience in one area
-- **Alpha**: All remaining gameplay systems
+- **Alpha**: All remaining business systems
 - **Full Vision**: Polish, meta, and nice-to-have systems
 
 ### Step 4b: User Review

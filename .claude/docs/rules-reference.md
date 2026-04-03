@@ -3,15 +3,15 @@
 Rules in `.claude/rules/` are automatically enforced when editing files in matching paths:
 
 | Rule File | Path Pattern | Enforces |
+| Rule File | Path Pattern | Enforces |
 | ---- | ---- | ---- |
-| `gameplay-code.md` | `src/gameplay/**` | Data-driven values, delta time, no UI references |
-| `engine-code.md` | `src/core/**` | Zero allocs in hot paths, thread safety, API stability |
-| `ai-code.md` | `src/ai/**` | Performance budgets, debuggability, data-driven params |
-| `network-code.md` | `src/networking/**` | Server-authoritative, versioned messages, security |
-| `ui-code.md` | `src/ui/**` | No game state ownership, localization-ready, accessibility |
-| `design-docs.md` | `design/gdd/**` | Required 8 sections, formula format, edge cases |
-| `narrative.md` | `design/narrative/**` | Lore consistency, character voice, canon levels |
-| `data-files.md` | `assets/data/**` | JSON validity, naming conventions, schema rules |
-| `test-standards.md` | `tests/**` | Test naming, coverage requirements, fixture patterns |
+| `api-code.md` | `src/api/**` | REST/GraphQL conventions, authentication, error format |
+| `frontend-code.md` | `src/frontend/**` | Accessibility (WCAG), design tokens, i18n, state management |
+| `db-code.md` | `src/**db**` | Migrations, parameterized queries, indexing |
+| `ui-code.md` | `src/ui/**` | No business logic in UI, localization-ready, keyboard accessible |
+| `ai-code.md` | `src/ai/**` | Performance budgets, model params must be configurable, explainability |
+| `network-code.md` | `src/networking/**` | WebSocket standards, real-time event streaming |
+| `config-code.md` | `config/**` | Schema validation, no hardcoded secrets, versioning |
+| `design-docs.md` | `design/docs/**` | Required PRD sections, clear acceptance criteria |
+| `test-standards.md` | `tests/**` | Test naming conventions, coverage requirements, no flaky patterns |
 | `prototype-code.md` | `prototypes/**` | Relaxed standards, README required, hypothesis documented |
-| `shader-code.md` | `assets/shaders/**` | Naming conventions, performance targets, cross-platform rules |

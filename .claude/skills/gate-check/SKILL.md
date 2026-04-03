@@ -102,7 +102,7 @@ The project progresses through these stages:
 **Required Artifacts:**
 - [ ] `src/` has active code organized into subsystems
 - [ ] All core mechanics from GDD are implemented (cross-reference `design/gdd/` with `src/`)
-- [ ] Main gameplay path is playable end-to-end
+- [ ] Main user flow is playable end-to-end
 - [ ] Test files exist in `tests/`
 - [ ] At least 1 playtest report (or `/playtest-report` has been run)
 

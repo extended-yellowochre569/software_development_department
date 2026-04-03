@@ -35,11 +35,11 @@ When this skill is invoked:
    that were implemented during this period.
 
 5. **Categorize every change** into one of these categories:
-   - **New Features**: Entirely new gameplay systems, modes, or content
+   - **New Features**: Entirely new business systems, modes, or content
    - **Improvements**: Enhancements to existing features, UX improvements,
      performance gains
    - **Bug Fixes**: Corrections to broken behavior
-   - **Balance Changes**: Tuning of gameplay values, difficulty, economy
+   - **Balance Changes**: Tuning of business logic values, difficulty, economy
    - **Known Issues**: Issues the team is aware of but have not yet resolved
 
 6. **Generate the INTERNAL changelog** (full technical detail):

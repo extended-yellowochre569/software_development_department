@@ -22,7 +22,7 @@ how it works internally. Include a screenshot or GIF reference if applicable.]
 
 ---
 
-## Gameplay Changes
+## Business Logic Changes
 
 ### Balance Adjustments
 
@@ -51,7 +51,7 @@ how it works internally. Include a screenshot or GIF reference if applicable.]
 - Fixed [describe what users experienced, e.g., "a crash when importing
   large datasets from version 1.0"]
 
-### Gameplay Fixes
+### Business Logic Fixes
 - Fixed [describe the incorrect behavior and the correct behavior now]
 
 ### UI Fixes

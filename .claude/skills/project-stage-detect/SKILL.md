@@ -35,7 +35,7 @@ Analyze project structure and content:
 **Source Code** (`src/`):
 - Count source files (language-agnostic)
 - Identify major systems (directories with 5+ files)
-- Check for core/, gameplay/, ai/, networking/, ui/ directories
+- Check for core/, business/, ai/, networking/, ui/ directories
 - Estimate lines of code (rough scale)
 
 **Production Artifacts** (`production/`):
@@ -76,7 +76,7 @@ auto-detect using these heuristics (check from most-advanced backward):
 
 **DO NOT** just list missing files. Instead, **ask clarifying questions**:
 
-- "I see combat code (`src/gameplay/combat/`) but no `design/gdd/combat-system.md`. Was this prototyped first, or should we reverse-document?"
+- "I see combat code (`src/api/auth/`) but no `design/gdd/combat-system.md`. Was this prototyped first, or should we reverse-document?"
 - "You have 15 ADRs but no architecture overview. Should I create one to help new contributors?"
 - "No sprint plans in `production/`. Are you tracking work elsewhere (Jira, Trello, etc.)?"
 - "I found a game concept but no systems index. Have you decomposed the concept into individual systems yet, or should we run `/map-systems`?"

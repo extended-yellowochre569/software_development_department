@@ -1,7 +1,7 @@
 ---
 name: reverse-document
 description: "Generate design or architecture documents from existing implementation. Works backwards from code/prototypes to create missing planning docs."
-argument-hint: "<type> <path> (e.g., 'design src/gameplay/combat' or 'architecture src/core')"
+argument-hint: "<type> <path> (e.g., 'design src/api/auth' or 'architecture src/core')"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 effort: 3
@@ -30,13 +30,13 @@ appropriate design or architecture documentation. Use this when:
 - `concept` → Generate a concept document from prototype
 
 **Path**: Directory or file to analyze
-- `src/gameplay/combat/` → All combat-related code
+- `src/api/auth/` → All combat-related code
 - `src/core/event-system.cpp` → Specific file
 - `prototypes/stealth-mech/` → Prototype directory
 
 **Examples**:
 ```bash
-/reverse-document design src/gameplay/magic-system
+/reverse-document design src/api/payment
 /reverse-document architecture src/core/entity-component
 /reverse-document concept prototypes/vehicle-combat
 ```
@@ -47,7 +47,7 @@ appropriate design or architecture documentation. Use this when:
 
 **For design docs (GDD):**
 - Identify mechanics, rules, formulas
-- Extract gameplay values (damage, cooldowns, ranges)
+- Extract business logic values (damage, cooldowns, ranges)
 - Find state machines, ability systems, progression
 - Detect edge cases handled in code
 - Map dependencies (what systems interact?)
@@ -61,7 +61,7 @@ appropriate design or architecture documentation. Use this when:
 
 **For concept docs (prototype analysis):**
 - Identify core mechanic
-- Extract emergent gameplay patterns
+- Extract emergent business patterns
 - Note what worked vs what didn't
 - Find technical feasibility insights
 - Document player fantasy / feel
@@ -94,7 +94,7 @@ appropriate design or architecture documentation. Use this when:
 Before drafting, show what you discovered:
 
 ```
-I've analyzed src/gameplay/combat/. Here's what I found:
+I've analyzed src/api/auth/. Here's what I found:
 
 MECHANICS IMPLEMENTED:
 - 3-hit combo system with timing windows
@@ -199,7 +199,7 @@ Would you like me to tackle any of these now?
 
 | If analyzing... | Use template... | Because... |
 |----------------|-----------------|------------|
-| `src/gameplay/*` | design-doc-from-implementation.md | Gameplay mechanics → GDD |
+| `src/api/*` | design-doc-from-implementation.md | Business mechanics → GDD |
 | `src/core/*`, `src/ai/*` | architecture-doc-from-code.md | Core systems → ADR |
 | `prototypes/*` | concept-doc-from-prototype.md | Experiments → concept doc |
 | `src/networking/*` | architecture-doc-from-code.md | Technical systems → ADR |
@@ -210,12 +210,12 @@ Would you like me to tackle any of these now?
 ## Example Session: Reverse-Document Combat Code
 
 ```
-User: /reverse-document design src/gameplay/combat
+User: /reverse-document design src/api/auth
 
 Agent: I'll analyze your combat implementation to create a design doc.
        [Reads code, discovers mechanics, formulas]
 
-Agent: I've analyzed src/gameplay/combat/. Here's what I found:
+Agent: I've analyzed src/api/auth/. Here's what I found:
        [Shows mechanics, formulas, unclear areas]
 
        Before drafting, could you clarify:

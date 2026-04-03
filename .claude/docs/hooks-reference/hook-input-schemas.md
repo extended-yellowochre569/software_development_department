@@ -25,7 +25,7 @@ Fired before a tool is executed. Can **allow** (exit 0) or **block** (exit 2).
 {
   "tool_name": "Write",
   "tool_input": {
-    "file_path": "src/gameplay/health.gd",
+    "file_path": "src/api/health.gd",
     "content": "extends Node\n..."
   }
 }
@@ -37,7 +37,7 @@ Fired before a tool is executed. Can **allow** (exit 0) or **block** (exit 2).
 {
   "tool_name": "Edit",
   "tool_input": {
-    "file_path": "src/gameplay/health.gd",
+    "file_path": "src/api/health.gd",
     "old_string": "var health = 100",
     "new_string": "var health: int = 100"
   }
@@ -50,7 +50,7 @@ Fired before a tool is executed. Can **allow** (exit 0) or **block** (exit 2).
 {
   "tool_name": "Read",
   "tool_input": {
-    "file_path": "src/gameplay/health.gd"
+    "file_path": "src/api/health.gd"
   }
 }
 ```
