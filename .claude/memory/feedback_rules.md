@@ -4,4 +4,4 @@ description: Team rules, code review feedback, and "do/don't" guidelines that ag
 type: feedback
 ---
 
-Nơi tập hợp những lỗi sai phổ biến hoặc quy định đặc thù do người dùng (user) sửa sai trong quá trình làm việc, giúp hệ thống không lặp lại lỗi đó.
+A repository of common mistakes or specific regulations corrected by the user during work, ensuring the system does not repeat those errors.
