@@ -133,3 +133,12 @@ Report issues at [link].
 - Known issues should be honest -- players appreciate transparency
 - If the git history is messy (merge commits, reverts, fixup commits), clean
   up the narrative rather than listing every commit literally
+
+## Output
+
+Deliver exactly:
+
+- **Internal changelog** — developer-facing, grouped by category (Features, Fixes, Performance, etc.)
+- **Player-facing changelog** — user-friendly language, no internal references
+- **Both saved** to `production/releases/[version]/changelog.md` and `changelog-player.md`
+- **Excluded items count** — internal-only changes omitted from player version

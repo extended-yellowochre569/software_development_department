@@ -98,3 +98,12 @@ When this skill is invoked:
 - Total prototype effort should be timeboxed to 1-3 days equivalent of work
 - If the prototype scope starts growing, stop and reassess whether the
   question can be simplified
+
+## Output
+
+Deliver exactly:
+
+- **Prototype code** in `prototypes/[concept-name]/` (throwaway — never imported by `src/`)
+- **Report** saved to `prototypes/[concept-name]/REPORT.md`
+- **Hypothesis verdict**: `VALIDATED` / `INVALIDATED` / `INCONCLUSIVE`
+- **Recommendation**: `PROCEED` (rewrite from scratch in `src/`) / `PIVOT` / `ABANDON`

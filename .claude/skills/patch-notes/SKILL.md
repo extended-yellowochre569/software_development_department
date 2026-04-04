@@ -119,3 +119,11 @@ Includes everything from Detailed, plus:
 
 8. **Output to the user**: the complete patch notes, the file path, a count of
    changes by category, and any internal changes that were excluded (for review).
+
+## Output
+
+Deliver exactly:
+
+- **Patch notes file** saved to `production/releases/[version]/patch-notes.md`
+- **Change count by category** (Features: X, Fixes: Y, Balance: Z, etc.)
+- **Excluded internal items** — list of changes omitted from player-facing notes

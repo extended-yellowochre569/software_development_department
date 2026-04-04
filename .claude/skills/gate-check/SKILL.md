@@ -224,6 +224,18 @@ echo -n "Production" > production/stage.txt
 
 ---
 
+## Output
+
+Deliver exactly:
+
+- **Gate being checked**: `[Current Phase] → [Target Phase]`
+- **Artifacts**: X/Y present (with list of missing items)
+- **Quality checks**: X/Y passing (with list of failures and MANUAL CHECK NEEDED items)
+- **Blockers**: numbered list, or "None"
+- **Verdict**: `PASS` / `CONCERNS` / `FAIL`
+
+---
+
 ## 7. Follow-Up Actions
 
 Based on the verdict, suggest specific next steps:

@@ -82,3 +82,13 @@ When this skill is invoked:
        the systems index status for this system to 'In Review'."
      - Note: This skill is read-only. The user (or `/design-system`) must
        perform the actual status update in the systems index.
+
+## Output
+
+Deliver exactly:
+
+- **Completeness score** (X/8 required sections present)
+- **Consistency issues** — contradictions or undefined terms (or "None")
+- **Implementability concerns** — sections too vague to build from (or "None")
+- **Verdict**: `APPROVED` / `NEEDS REVISION` / `MAJOR REVISION NEEDED`
+- **Next skill** — one recommended follow-up (e.g., `/map-systems`, update systems index)

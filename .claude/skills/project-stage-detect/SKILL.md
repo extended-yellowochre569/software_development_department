@@ -191,3 +191,12 @@ This skill follows the collaborative design principle:
 5. **Get Approval**: "May I write to production/project-stage-report.md?"
 
 **Never** silently write files. **Always** show findings and ask before creating artifacts.
+
+## Output
+
+Deliver exactly:
+
+- **Detected stage** — one of: Concept / Systems Design / Technical Setup / Pre-Production / Production / Polish / Release
+- **Evidence** — artifacts found that support this stage detection
+- **Gaps** — missing artifacts for current and next stage
+- **Recommended next skill** — single highest-value action to take right now (e.g., `/map-systems`, `/sprint-plan`)

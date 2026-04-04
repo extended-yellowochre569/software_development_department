@@ -126,3 +126,12 @@ to implement it.]
 
    Also update the **Decision Index** table in `docs/technical/DECISIONS.md` by replacing the placeholder row (or appending a new row) with:
    `| ADR-NNN | [Title] | Accepted | [Date] | [Decider] |`
+
+## Output
+
+Deliver exactly:
+
+- **ADR file** saved to `docs/architecture/adr-[NNNN]-[slug].md`
+- **Decision Index** entry appended to `docs/technical/DECISIONS.md`
+- **Summary** in 2 sentences: what was decided and why
+- **Top risk** to watch from the Consequences section

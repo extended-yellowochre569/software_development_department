@@ -133,5 +133,15 @@ For `status`:
 ### Agent Consultation
 
 For comprehensive sprint planning, consider consulting:
+
 - `producer` agent for capacity planning, risk assessment, and cross-department coordination
 - `game-designer` agent for feature prioritization and design readiness assessment
+
+## Output
+
+Deliver exactly:
+
+- **`new`**: Sprint file saved to `production/sprints/sprint-[N].md` with Must Have / Should Have / Nice to Have tasks, estimates, and risks
+- **`update`**: In-place edit to current sprint file + update log entry appended
+- **`status`**: Status report with progress %, completed/in-progress/blocked tables, and burndown assessment
+- **Next action**: One sentence on what the team should do immediately

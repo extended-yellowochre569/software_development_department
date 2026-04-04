@@ -71,3 +71,12 @@ Total items: [N] | Estimated total effort: [T-shirt sizes summed]
 - Every debt entry must explain WHY it was accepted (deadline, prototype, missing info)
 - "Scan" should run at least once per sprint to catch new debt
 - Items older than 3 sprints without action should either be fixed or consciously accepted with a documented reason
+
+## Output
+
+Deliver exactly:
+
+- **`scan`**: debt register updated at `docs/technical/tech-debt.md` + count of new items found by category
+- **`add`**: new TD-[NNN] entry appended to register with effort, impact, and WHY it was accepted
+- **`prioritize`**: ranked list of top 5 items by impact/effort score with recommended sprint to fix
+- **`report`**: summary table — total items, effort distribution (S/M/L/XL), critical items count

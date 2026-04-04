@@ -1,7 +1,7 @@
 ---
 name: pr-writer
 description: ALWAYS use this skill when creating or updating pull requests — never create or edit a PR directly without it. Follows conventional commit format for PR titles, descriptions, and issue references. Trigger on any create PR, open PR, submit PR, make PR,...
-when_to_use: "When creating or updating pull requests � generates PR title, description, and issue references following conventional commit format"
+when_to_use: "When creating or updating pull requests � generates PR title, description, and issue references following conventional commit format"
 allowed-tools: Read, Glob, Grep, Write, Bash
 argument-hint: "[PR title or empty for auto-generate from commits]"
 user-invocable: true
@@ -181,6 +181,14 @@ gh api -X PATCH repos/{owner}/{repo}/pulls/PR_NUMBER \
 ```
 
 Note: `gh pr edit` is currently broken due to GitHub's Projects (classic) deprecation.
+
+## Output
+
+Deliver exactly:
+
+- **PR title** — conventional commit format (`type(scope): description`, max 72 chars)
+- **PR body** — Summary, Test plan, and breaking changes sections
+- **`gh pr create` command** — ready to copy-paste or execute directly
 
 ## References
 

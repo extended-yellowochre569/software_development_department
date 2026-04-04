@@ -78,3 +78,12 @@ When this skill is invoked:
 
 ### Verdict: [APPROVED / APPROVED WITH SUGGESTIONS / CHANGES REQUIRED]
 ```
+
+## Output
+
+Deliver exactly:
+
+- **Schema score** (X/6 design checks passing)
+- **Migration safety**: `SAFE` / `RISKY` / `BLOCKING` with specific risks listed
+- **Required changes** — must fix before applying migration (or "None")
+- **Verdict**: `APPROVED` / `APPROVED WITH SUGGESTIONS` / `CHANGES REQUIRED`

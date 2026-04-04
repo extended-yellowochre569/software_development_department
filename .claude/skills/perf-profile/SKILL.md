@@ -94,3 +94,12 @@ When this skill is invoked:
 - Distinguish between CPU-bound, GPU-bound, and I/O-bound bottlenecks
 - Consider worst-case scenarios (maximum entities, lowest spec hardware, worst network conditions)
 - Static analysis (this skill) identifies candidates; runtime profiling confirms
+
+## Output
+
+Deliver exactly:
+
+- **Top 3 hotspots** — system, estimated impact, and recommended fix
+- **Budget headroom** — actual vs target for each metric in `technical-preferences.md`
+- **Optimization priority list** — ranked by impact/effort ratio
+- **Next action**: `PROFILE CONFIRMED` (static analysis sufficient) or `RUNTIME PROFILING NEEDED` (list what to measure)

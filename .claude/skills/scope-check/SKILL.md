@@ -72,3 +72,12 @@ When this skill is invoked:
 - Not all additions are bad — some are discovered requirements. But they must be acknowledged and accounted for.
 - When recommending cuts, prioritize preserving the core player experience over nice-to-haves
 - Always quantify scope changes — "it feels bigger" is not actionable, "+35% items" is
+
+## Output
+
+Deliver exactly:
+
+- **Scope delta**: +X% items vs original plan (quantified, not subjective)
+- **Additions list**: new items not in original plan, each tagged as discovered requirement or gold-plating
+- **Recommended cuts**: specific items to remove to restore original scope (or "None needed")
+- **Verdict**: `ON TRACK` / `MINOR CREEP` / `SIGNIFICANT CREEP` / `OUT OF CONTROL — RE-PLAN`

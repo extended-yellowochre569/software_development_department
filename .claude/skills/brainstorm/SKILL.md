@@ -216,3 +216,13 @@ Ground the concept in reality:
    - MVP definition (1 sentence)
    - Biggest risk
    - File path of saved concept doc
+
+## Output
+
+Deliver exactly:
+
+- **Concept document** saved to `design/gdd/game-concept.md` (or `design/product-concept.md`)
+- **Elevator pitch** — 1 sentence
+- **MVP definition** — 1 sentence
+- **Biggest risk** — 1 item
+- **Next skill** — `/map-systems` (if concept approved) or `/prototype [core-feature]`

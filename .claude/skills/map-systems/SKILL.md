@@ -294,3 +294,12 @@ This skill follows the collaborative design principle at every phase:
 **Never** auto-generate the full systems list and write it without review.
 **Never** start designing a system without user confirmation.
 **Always** show the enumeration, dependencies, and priorities for user validation.
+
+## Output
+
+Deliver exactly:
+
+- **Systems index** saved to `design/gdd/systems-index.md` — all systems enumerated with dependencies and MVP tier
+- **Dependency map** — which systems must be designed before others
+- **Design order** — priority-ranked list of systems to GDD next
+- **Next skill**: `/design-system [first-priority-system]`

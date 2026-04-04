@@ -185,6 +185,15 @@ Save report to `docs/technical/security-audit-{YYYY-MM-DD}.md`.
 - [ ] A09 Logging & Monitoring — no secrets in logs, audit trail exists
 - [ ] A10 SSRF — no unvalidated URL-fetch from user input
 
+## Output
+
+Deliver exactly:
+
+- **Findings table** with severity (P0–P3), file:line, description, and remediation for each issue
+- **OWASP Top 10 checklist** — 10 items marked pass / fail / N/A
+- **Report file** saved to `docs/technical/security-audit-{YYYY-MM-DD}.md`
+- **Verdict**: `CLEAN` / `LOW RISK` / `MEDIUM RISK` / `HIGH RISK — DO NOT DEPLOY`
+
 ## Related Skills
 
 - `code-review` — line-by-line review with security lens

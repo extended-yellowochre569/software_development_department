@@ -165,3 +165,11 @@ resolution and estimated time to address them.]
 
 10. **Output a summary** to the user with: total checklist items, number of
     known blockers (FIXME/HACK counts, known bugs), and the file path.
+
+## Output
+
+Deliver exactly:
+
+- **Checklist file** saved to `production/releases/release-checklist-[version].md`
+- **Summary**: total items / blockers count (FIXME/HACK/known bugs) / sign-offs pending
+- **Verdict**: `READY TO RELEASE` / `CONDITIONAL` / `BLOCKED — DO NOT RELEASE`

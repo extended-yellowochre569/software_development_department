@@ -221,3 +221,11 @@ Generated: [Date]
 
 6. **Output a summary** to the user: total items, blocking items count,
    conditional items count, departments with incomplete sections, and the file path.
+
+## Output
+
+Deliver exactly:
+
+- **Checklist file** saved to `production/releases/launch-checklist-[date].md`
+- **Summary**: total items / blocking count / conditional count / incomplete departments
+- **Verdict**: `GO` / `CONDITIONAL GO` / `NO-GO` with blocking items listed

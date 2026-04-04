@@ -447,3 +447,11 @@ This is great because [explain why]
 ---
 
 **Pro Tip:** Use a checklist template for every review to ensure consistency and thoroughness. Customize it for your team's specific needs!
+
+## Output
+
+Deliver exactly:
+
+- **Checklist score** (X/Y items passing) across all categories
+- **Blocking items** — must fix before merge, with file:line references (or "None")
+- **Verdict**: `APPROVED` / `APPROVED WITH CONDITIONS` / `CHANGES REQUIRED`

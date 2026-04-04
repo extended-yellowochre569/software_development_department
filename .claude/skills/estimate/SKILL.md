@@ -163,3 +163,12 @@ cross-cutting concerns across many systems.
   individually.
 - Do not pad estimates silently. If risk exists, call it out explicitly in
   the risk factors section so the team can decide how to handle it.
+
+## Output
+
+Deliver exactly:
+
+- **Estimate**: X days (rounded to half-day increments)
+- **Confidence**: High / Medium / Low with one-sentence reason
+- **Risk factors**: explicit list — no silent padding
+- **Recommendation**: proceed / run a spike first / break into smaller tasks

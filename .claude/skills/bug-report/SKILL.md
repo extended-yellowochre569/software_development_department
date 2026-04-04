@@ -75,3 +75,10 @@ When invoked with `analyze`:
    transitions.
 3. **For each potential bug**, generate a bug report with the likely trigger
    scenario and recommended fix.
+
+## Output
+
+Deliver exactly:
+
+- **Bug report** with: title, severity (Critical/High/Medium/Low), reproduction steps, expected vs actual behavior, environment, and suggested fix
+- **`/bug-report analyze` mode**: list of potential bugs found with file:line, trigger scenario, and recommended fix per issue

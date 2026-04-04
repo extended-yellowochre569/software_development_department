@@ -390,6 +390,15 @@ Don't full-flush cache in production; use targeted invalidation.
 - [Etsy's Blameless Postmortems](https://codeascraft.com/2012/05/22/blameless-postmortems/)
 - [PagerDuty Postmortem Guide](https://postmortems.pagerduty.com/)
 
+## Output
+
+Deliver exactly:
+
+- **Postmortem document** saved to `docs/technical/postmortem-[YYYY-MM-DD]-[slug].md`
+- **Timeline**: chronological incident events
+- **Root cause**: 1 sentence (the "5 Whys" conclusion)
+- **Action items**: max 5, each with owner and deadline — no busywork
+
 ## When to Use
 
 - Use when Write effective blameless postmortems with root cause analysis, timelines, and action items. Use when conducting incident reviews, writing postmortem documents, or improving incident response proce...

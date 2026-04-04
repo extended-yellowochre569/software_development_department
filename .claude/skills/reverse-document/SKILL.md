@@ -260,3 +260,12 @@ This skill follows the collaborative design principle:
 8. **Flag Follow-Up**: Suggest related work, don't auto-execute
 
 **Never assume intent. Always ask before documenting "why".**
+
+## Output
+
+Deliver exactly:
+
+- **Document type** — `design`, `architecture`, or `concept` (based on argument)
+- **Generated document** saved to `design/specs/[name].md` or `docs/technical/[name].md`
+- **Uncertainty flags** — sections where intent was inferred rather than confirmed (user must verify)
+- **Follow-up suggestions** — related docs that are also missing

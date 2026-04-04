@@ -91,3 +91,13 @@ When this skill is invoked:
 | # | Action | Owner | Deadline |
 |---|--------|-------|----------|
 ```
+
+## Output
+
+Deliver exactly:
+
+- **Feature completeness** score (X/Y features done)
+- **Quality metrics**: test pass rate, known bug count by severity
+- **Top 3 risks** with probability and impact
+- **Recommendation**: `GO` / `CONDITIONAL GO` / `NO-GO` with rationale
+- **Action items table** — numbered, with owner and deadline

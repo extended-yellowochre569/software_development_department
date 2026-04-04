@@ -74,3 +74,12 @@ When this skill is invoked:
 
 ### Verdict: [APPROVED / APPROVED WITH SUGGESTIONS / CHANGES REQUIRED]
 ```
+
+## Output
+
+Deliver exactly:
+
+- **Endpoint compliance score** (X/Y checks passing across naming, methods, validation, errors)
+- **Security issues** with severity — CRITICAL / HIGH / MEDIUM (or "None")
+- **Required changes** — must fix before shipping (or "None")
+- **Verdict**: `APPROVED` / `APPROVED WITH SUGGESTIONS` / `CHANGES REQUIRED`

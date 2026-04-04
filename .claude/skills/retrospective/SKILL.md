@@ -157,3 +157,12 @@ the single most important thing to change going forward?]
   items are a process smell.
 - If this is a milestone retrospective, also evaluate whether the milestone
   goals were achieved and what that means for the overall project timeline.
+
+## Output
+
+Deliver exactly:
+
+- **Retrospective document** saved to `production/retrospectives/retro-[sprint/milestone].md`
+- **Velocity delta** — this sprint vs previous (faster/slower/same + %)
+- **Top pattern** — the single most recurring theme (positive or negative)
+- **Action items**: max 5, each with owner and deadline — verified not repeats from last retro

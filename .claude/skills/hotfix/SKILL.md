@@ -70,3 +70,12 @@ When this skill is invoked:
 - Hotfix branches merge to BOTH the release branch AND the development branch
 - All hotfixes require a post-incident review within 48 hours
 - If the fix is complex enough to need more than 4 hours, escalate to technical-director for a scope decision
+
+## Output
+
+Deliver exactly:
+
+- **Hotfix summary**: severity, root cause (1 sentence), fix applied, files changed
+- **Rollback plan**: documented steps to revert if the fix causes regressions
+- **Approvals needed**: list of sign-offs still outstanding before deployment
+- **Post-incident review**: scheduled within 48 hours (link to `/postmortem-writing`)

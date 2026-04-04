@@ -86,3 +86,12 @@ Framework: [React Native / Flutter / SwiftUI / Compose]
 
 ### Verdict: [APPROVED / APPROVED WITH SUGGESTIONS / CHANGES REQUIRED]
 ```
+
+## Output
+
+Deliver exactly:
+
+- **Platform & framework detected** (iOS / Android / Cross-platform + RN / Flutter / Swift / Kotlin)
+- **Category scores** — Performance X/7, Platform X/6, Security X/4, Offline X/4, Accessibility X/4
+- **Blocking issues** — must fix before release (or "None")
+- **Verdict**: `APPROVED` / `APPROVED WITH SUGGESTIONS` / `CHANGES REQUIRED`

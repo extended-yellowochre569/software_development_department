@@ -78,3 +78,13 @@ When this skill is invoked:
 
 ### Verdict: [APPROVED / APPROVED WITH SUGGESTIONS / CHANGES REQUIRED]
 ```
+
+## Output
+
+Deliver exactly:
+
+- **Risk Tier** (Low / Medium / High) with one-sentence justification
+- **Standards & Architecture compliance** score (X/6, X/5)
+- **Blocking issues** — must fix before merge (or "None")
+- **Suggestions** — optional improvements, max 3
+- **Verdict**: `APPROVED` / `APPROVED WITH SUGGESTIONS` / `CHANGES REQUIRED`
