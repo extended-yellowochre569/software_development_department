@@ -164,6 +164,14 @@ cross-cutting concerns across many systems.
 - Do not pad estimates silently. If risk exists, call it out explicitly in
   the risk factors section so the team can decide how to handle it.
 
+## Protocol
+
+- **Question**: Reads task description from argument; asks for clarification if scope is too vague to estimate
+- **Options**: Skip — single analysis path
+- **Decision**: Skip — estimate is advisory
+- **Draft**: Full estimate shown in conversation only
+- **Approval**: Skip — read-only; no files written
+
 ## Output
 
 Deliver exactly:

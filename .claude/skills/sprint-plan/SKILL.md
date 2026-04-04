@@ -137,6 +137,14 @@ For comprehensive sprint planning, consider consulting:
 - `producer` agent for capacity planning, risk assessment, and cross-department coordination
 - `game-designer` agent for feature prioritization and design readiness assessment
 
+## Protocol
+
+- **Question**: Reads mode from argument (`new` / `update` / `status`); `update` mode asks which tasks changed
+- **Options**: Skip — mode drives execution path
+- **Decision**: `update` mode — user specifies task IDs, new status, and blocker details
+- **Draft**: Plan or status report shown in conversation before writing
+- **Approval**: "May I write to `production/sprints/sprint-[N].md`?"
+
 ## Output
 
 Deliver exactly:

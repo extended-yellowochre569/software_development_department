@@ -192,6 +192,14 @@ This skill follows the collaborative design principle:
 
 **Never** silently write files. **Always** show findings and ask before creating artifacts.
 
+## Protocol
+
+- **Question**: Asks clarifying questions about gaps (never just lists missing files)
+- **Options**: Skip — role filter from argument narrows recommendations
+- **Decision**: Skip
+- **Draft**: Stage analysis summary shown before saving
+- **Approval**: "May I write to `production/project-stage-report.md`?"
+
 ## Output
 
 Deliver exactly:

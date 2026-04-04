@@ -134,6 +134,14 @@ Report issues at [link].
 - If the git history is messy (merge commits, reverts, fixup commits), clean
   up the narrative rather than listing every commit literally
 
+## Protocol
+
+- **Question**: Reads version or sprint number from argument; verifies git repo availability before starting
+- **Options**: Skip — both internal and player-facing versions always generated
+- **Decision**: Skip
+- **Draft**: Both changelogs shown in conversation before saving
+- **Approval**: "May I write to `production/releases/[version]/changelog.md`?"
+
 ## Output
 
 Deliver exactly:

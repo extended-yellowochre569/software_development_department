@@ -127,6 +127,14 @@ to implement it.]
    Also update the **Decision Index** table in `docs/technical/DECISIONS.md` by replacing the placeholder row (or appending a new row) with:
    `| ADR-NNN | [Title] | Accepted | [Date] | [Decider] |`
 
+## Protocol
+
+- **Question**: Clarify title, context, constraints, and alternatives if the argument alone is insufficient
+- **Options**: Alternatives Considered section — presents and evaluates 2+ options before deciding
+- **Decision**: User confirms the decision to record before ADR is drafted
+- **Draft**: Full ADR shown in conversation before saving
+- **Approval**: "May I write to `docs/architecture/adr-[NNN]-[slug].md`?"
+
 ## Output
 
 Deliver exactly:

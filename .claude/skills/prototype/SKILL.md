@@ -99,6 +99,14 @@ When this skill is invoked:
 - If the prototype scope starts growing, stop and reassess whether the
   question can be simplified
 
+## Protocol
+
+- **Question**: Reads concept from argument; if vague, states the core hypothesis explicitly before proceeding
+- **Options**: Skip
+- **Decision**: Prototype plan (3-5 bullets) shown and confirmed before implementation begins
+- **Draft**: REPORT.md summary shown before saving
+- **Approval**: "May I create `prototypes/[concept-name]/` and implement the prototype?"
+
 ## Output
 
 Deliver exactly:

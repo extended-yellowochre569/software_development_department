@@ -295,6 +295,14 @@ This skill follows the collaborative design principle at every phase:
 **Never** start designing a system without user confirmation.
 **Always** show the enumeration, dependencies, and priorities for user validation.
 
+## Protocol
+
+- **Question**: AskUserQuestion at every phase — missing systems, dependency ordering, priority assignments
+- **Options**: Phase 2 — systems enumeration reviewed and adjusted collaboratively before proceeding
+- **Decision**: User approves enumeration, dependency map, and priority tiers before writing
+- **Draft**: Systems index summary shown before saving
+- **Approval**: "May I write the systems index to `design/gdd/systems-index.md`?"
+
 ## Output
 
 Deliver exactly:

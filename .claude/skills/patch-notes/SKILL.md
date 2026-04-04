@@ -120,6 +120,14 @@ Includes everything from Detailed, plus:
 8. **Output to the user**: the complete patch notes, the file path, a count of
    changes by category, and any internal changes that were excluded (for review).
 
+## Protocol
+
+- **Question**: Reads version and `--style` argument; defaults to `detailed` if style is omitted
+- **Options**: Style choice if unspecified — `brief` / `detailed` / `full`
+- **Decision**: Skip — style drives output format
+- **Draft**: Full patch notes shown in conversation before saving
+- **Approval**: "May I write to `production/releases/[version]/patch-notes.md`?"
+
 ## Output
 
 Deliver exactly:

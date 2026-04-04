@@ -182,6 +182,14 @@ gh api -X PATCH repos/{owner}/{repo}/pulls/PR_NUMBER \
 
 Note: `gh pr edit` is currently broken due to GitHub's Projects (classic) deprecation.
 
+## Protocol
+
+- **Question**: Verifies no uncommitted changes before starting; runs `commit` skill first if found
+- **Options**: Skip
+- **Decision**: Skip
+- **Draft**: PR title and body shown in conversation before creating
+- **Approval**: "May I run `gh pr create` with this title and description?"
+
 ## Output
 
 Deliver exactly:

@@ -71,6 +71,14 @@ When this skill is invoked:
 - All hotfixes require a post-incident review within 48 hours
 - If the fix is complex enough to need more than 4 hours, escalate to technical-director for a scope decision
 
+## Protocol
+
+- **Question**: Confirms severity (S1/S2 = proceed; S3+ = defer to normal workflow)
+- **Options**: Skip — severity drives path
+- **Decision**: User approves fix approach before implementation begins
+- **Draft**: Hotfix summary shown before committing fix
+- **Approval**: "May I write to `production/hotfixes/hotfix-[date]-[name].md`?"
+
 ## Output
 
 Deliver exactly:

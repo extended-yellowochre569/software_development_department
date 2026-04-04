@@ -92,6 +92,14 @@ When this skill is invoked:
 |---|--------|-------|----------|
 ```
 
+## Protocol
+
+- **Question**: Reads milestone name or `current` from argument
+- **Options**: Skip
+- **Decision**: Skip — Go/No-Go is a recommendation, not a gate
+- **Draft**: Full review shown in conversation before saving
+- **Approval**: "May I write to `production/milestones/[milestone]-review.md`?"
+
 ## Output
 
 Deliver exactly:

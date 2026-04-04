@@ -76,6 +76,14 @@ When invoked with `analyze`:
 3. **For each potential bug**, generate a bug report with the likely trigger
    scenario and recommended fix.
 
+## Protocol
+
+- **Question**: Parses description argument; asks for clarification if reproduction steps or severity are missing
+- **Options**: Skip — single report format (or `analyze` mode for static code scan)
+- **Decision**: Skip
+- **Draft**: Structured report shown in conversation before saving
+- **Approval**: "May I write BUG-[NNN] to `[filepath]`?"
+
 ## Output
 
 Deliver exactly:

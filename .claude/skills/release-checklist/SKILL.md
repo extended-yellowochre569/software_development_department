@@ -166,6 +166,14 @@ resolution and estimated time to address them.]
 10. **Output a summary** to the user with: total checklist items, number of
     known blockers (FIXME/HACK counts, known bugs), and the file path.
 
+## Protocol
+
+- **Question**: Reads platform argument (`pc` / `console` / `mobile` / `all`); defaults to `all`
+- **Options**: Skip
+- **Decision**: Skip — checklist is generated; Go/No-Go is advisory
+- **Draft**: Summary shown before writing
+- **Approval**: "May I write to `production/releases/release-checklist-[version].md`?"
+
 ## Output
 
 Deliver exactly:

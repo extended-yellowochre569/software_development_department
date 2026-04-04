@@ -217,6 +217,14 @@ Ground the concept in reality:
    - Biggest risk
    - File path of saved concept doc
 
+## Protocol
+
+- **Question**: Phase 1 uses AskUserQuestion at every discovery step (problems, experience, constraints)
+- **Options**: Phase 2 presents 3 distinct concepts via Verb-First, Problem-Inversion, Intersection techniques
+- **Decision**: User picks concept, confirms pillars, user segments, scope tier, and tech stack
+- **Draft**: Concept document shown in conversation before saving
+- **Approval**: "May I write to `design/docs/product-concept.md`?"
+
 ## Output
 
 Deliver exactly:

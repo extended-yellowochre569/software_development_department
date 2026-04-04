@@ -448,6 +448,14 @@ This is great because [explain why]
 
 **Pro Tip:** Use a checklist template for every review to ensure consistency and thoroughness. Customize it for your team's specific needs!
 
+## Protocol
+
+- **Question**: Auto-starts from argument (file path or PR number)
+- **Options**: Skip — single checklist path
+- **Decision**: Skip — verdict is advisory
+- **Draft**: Checklist results and verdict shown in conversation only
+- **Approval**: Skip — read-only; no files written
+
 ## Output
 
 Deliver exactly:

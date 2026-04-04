@@ -73,6 +73,14 @@ When this skill is invoked:
 - When recommending cuts, prioritize preserving the core player experience over nice-to-haves
 - Always quantify scope changes — "it feels bigger" is not actionable, "+35% items" is
 
+## Protocol
+
+- **Question**: Reads feature name, sprint number, or milestone from argument
+- **Options**: Skip
+- **Decision**: Skip — findings are advisory
+- **Draft**: Scope check report shown in conversation only
+- **Approval**: Skip — read-only; no files written
+
 ## Output
 
 Deliver exactly:

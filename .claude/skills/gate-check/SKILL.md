@@ -224,6 +224,14 @@ echo -n "Production" > production/stage.txt
 
 ---
 
+## Protocol
+
+- **Question**: Asks about unverifiable quality checks (playtesting, performance, informal validation)
+- **Options**: Skip — gate is auto-detected or specified by argument
+- **Decision**: User confirms whether to advance on PASS verdict
+- **Draft**: Full gate check report shown in conversation before updating stage
+- **Approval**: "May I update `production/stage.txt` to '[new-stage]'?" — only on PASS + user confirmation
+
 ## Output
 
 Deliver exactly:

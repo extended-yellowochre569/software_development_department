@@ -75,6 +75,14 @@ When this skill is invoked:
 ### Verdict: [APPROVED / APPROVED WITH SUGGESTIONS / CHANGES REQUIRED]
 ```
 
+## Protocol
+
+- **Question**: Auto-starts from argument (path to API spec or route files); no clarification needed
+- **Options**: Skip — single review path
+- **Decision**: Skip — verdict is advisory
+- **Draft**: Full review report shown in conversation only
+- **Approval**: Skip — read-only; no files written
+
 ## Output
 
 Deliver exactly:

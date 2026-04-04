@@ -72,6 +72,14 @@ Total items: [N] | Estimated total effort: [T-shirt sizes summed]
 - "Scan" should run at least once per sprint to catch new debt
 - Items older than 3 sprints without action should either be fixed or consciously accepted with a documented reason
 
+## Protocol
+
+- **Question**: Reads mode from argument (`scan` / `add` / `prioritize` / `report`); `add` mode prompts for debt details
+- **Options**: Skip — mode drives execution path
+- **Decision**: `add` mode — user provides description, category, effort estimate, and justification (why accepted)
+- **Draft**: Changes shown in conversation before updating register
+- **Approval**: "May I update `docs/technical/tech-debt.md`?"
+
 ## Output
 
 Deliver exactly:

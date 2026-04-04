@@ -222,6 +222,14 @@ Generated: [Date]
 6. **Output a summary** to the user: total items, blocking items count,
    conditional items count, departments with incomplete sections, and the file path.
 
+## Protocol
+
+- **Question**: Reads launch date or `dry-run` argument; gathers context from CLAUDE.md and milestone files
+- **Options**: Skip
+- **Decision**: Skip — checklist is generated; Go/No-Go is advisory
+- **Draft**: Summary statistics shown before saving
+- **Approval**: "May I write to `production/releases/launch-checklist-[date].md`?"
+
 ## Output
 
 Deliver exactly:

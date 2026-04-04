@@ -185,6 +185,14 @@ Save report to `docs/technical/security-audit-{YYYY-MM-DD}.md`.
 - [ ] A09 Logging & Monitoring — no secrets in logs, audit trail exists
 - [ ] A10 SSRF — no unvalidated URL-fetch from user input
 
+## Protocol
+
+- **Question**: Reads target scope from argument (`api` / `frontend` / `backend` / `infra` / `full`)
+- **Options**: Skip
+- **Decision**: Skip — audit is comprehensive; scope from argument
+- **Draft**: Findings table shown in conversation before saving report
+- **Approval**: "May I write to `docs/technical/security-audit-[YYYY-MM-DD].md`?"
+
 ## Output
 
 Deliver exactly:

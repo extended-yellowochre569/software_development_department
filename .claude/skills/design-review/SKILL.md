@@ -83,6 +83,14 @@ When this skill is invoked:
      - Note: This skill is read-only. The user (or `/design-system`) must
        perform the actual status update in the systems index.
 
+## Protocol
+
+- **Question**: Auto-starts from argument (path to design doc)
+- **Options**: Skip — single review path
+- **Decision**: Skip — verdict is advisory
+- **Draft**: Full review shown in conversation only
+- **Approval**: Skip — read-only; this skill never writes files
+
 ## Output
 
 Deliver exactly:

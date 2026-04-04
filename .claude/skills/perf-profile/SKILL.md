@@ -95,6 +95,14 @@ When this skill is invoked:
 - Consider worst-case scenarios (maximum entities, lowest spec hardware, worst network conditions)
 - Static analysis (this skill) identifies candidates; runtime profiling confirms
 
+## Protocol
+
+- **Question**: Reads system name or `full` from argument
+- **Options**: Skip
+- **Decision**: Skip
+- **Draft**: Profile report shown in conversation only
+- **Approval**: Skip — read-only; no files written by default
+
 ## Output
 
 Deliver exactly:

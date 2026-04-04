@@ -390,6 +390,14 @@ Don't full-flush cache in production; use targeted invalidation.
 - [Etsy's Blameless Postmortems](https://codeascraft.com/2012/05/22/blameless-postmortems/)
 - [PagerDuty Postmortem Guide](https://postmortems.pagerduty.com/)
 
+## Protocol
+
+- **Question**: Clarifies incident description if context is insufficient for root cause analysis
+- **Options**: Template — Standard / 5 Whys / Quick Postmortem (based on severity and duration)
+- **Decision**: User confirms template and scope before drafting
+- **Draft**: Full postmortem shown in conversation before saving
+- **Approval**: "May I write to `docs/technical/postmortem-[YYYY-MM-DD]-[slug].md`?"
+
 ## Output
 
 Deliver exactly:

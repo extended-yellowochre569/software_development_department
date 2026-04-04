@@ -158,6 +158,14 @@ the single most important thing to change going forward?]
 - If this is a milestone retrospective, also evaluate whether the milestone
   goals were achieved and what that means for the overall project timeline.
 
+## Protocol
+
+- **Question**: Reads sprint number or milestone name from argument
+- **Options**: Skip
+- **Decision**: Skip — retrospective is advisory
+- **Draft**: Full retrospective shown in conversation before saving
+- **Approval**: "May I write to `production/retrospectives/retro-[name].md`?"
+
 ## Output
 
 Deliver exactly:

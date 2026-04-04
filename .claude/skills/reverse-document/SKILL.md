@@ -261,6 +261,14 @@ This skill follows the collaborative design principle:
 
 **Never assume intent. Always ask before documenting "why".**
 
+## Protocol
+
+- **Question**: Analyzes code, then asks about design intent — never assumes "why" from "what"
+- **Options**: Type drives template — `design` → GDD, `architecture` → ADR, `concept` → concept doc
+- **Decision**: User clarifies intent for all unclear areas before the draft is written
+- **Draft**: Draft shown with additions and uncertainty flags before saving
+- **Approval**: "May I write to `design/gdd/[system].md`?" (or architecture/concept path)
+
 ## Output
 
 Deliver exactly:
