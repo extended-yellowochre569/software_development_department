@@ -1,13 +1,13 @@
-# Tóm tắt Bộ nhớ Dự án (Project Memory)
+# Project Memory Summary
 
-- [Quy định Chung](feedback_rules.md) - Ghi chú các rule bắt buộc tự phát sinh (do/don't)
-- [Cơ cấu Người dùng](user_role.md) - Sở thích, vai trò, thói quen lập trình của người dùng
-- [Công nghệ & Server](project_tech_decisions.md) - Các config hạ tầng, server hoặc key architect decision
-- [Tài nguyên Ngoài](reference_links.md) - Token hoặc Links đến Slack/Trello/Database admin
+- [General Rules](feedback_rules.md) - Notes on mandatory auto-generated rules (do/don't)
+- [User Profile](user_role.md) - Preferences, roles, and programming habits of the user
+- [Technology & Servers](project_tech_decisions.md) - Infrastructure configs, servers, or key architecture decisions
+- [External Resources](reference_links.md) - Tokens or Links to Slack/Trello/Database admin
 
 - [GitNexus Registry](gitnexus-registry.md) — Indexed repos, last analysis date, freshness policy for impact tools
 
-> **Chú ý cho Agents:**
-> 1. File này KHÔNG ĐƯỢC CHỨA frontmatter. Giữ danh sách dạng `- [Title](filename) - Description`.
-> 2. Tuyệt đối không để file này vượt quá 200 dòng (giới hạn context token).
-> 3. Nếu danh sách đầy, dùng lệnh `/dream` để hợp nhất (consolidate) & gộp các file cũ.
+> **Note for Agents:**
+> 1. This file MUST NOT CONTAIN frontmatter. Keep lists in the format `- [Title](filename) - Description`.
+> 2. Absolutely do not let this file exceed 200 lines (context token limit).
+> 3. If the list is full, use the `/dream` command to consolidate & merge old files.
