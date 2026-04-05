@@ -63,7 +63,7 @@ Generated: [Date]
 ### Content Complete
 - [ ] All placeholder assets replaced with final versions
 - [ ] All TODO/FIXME in content files resolved or documented
-- [ ] All player-facing text proofread
+- [ ] All user-facing text proofread
 - [ ] All text localization-ready (no hardcoded strings)
 - [ ] Audio mix finalized and approved
 - [ ] Credits complete and accurate

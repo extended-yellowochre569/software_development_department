@@ -31,15 +31,15 @@ When invoked with a description:
 
 ## Classification
 - **Category**: [Business / UI / Audio / Visual / Performance / Crash / Network]
-- **System**: [Which game system is affected]
+- **System**: [Which product system is affected]
 - **Frequency**: [Always / Often (>50%) / Sometimes (10-50%) / Rare (<10%)]
 - **Regression**: [Yes/No/Unknown -- was this working before?]
 
 ## Environment
 - **Build**: [Version or commit hash]
 - **Platform**: [OS, hardware if relevant]
-- **Scene/Level**: [Where in the game]
-- **Game State**: [Relevant state -- inventory, quest progress, etc.]
+- **Scene/Level**: [Where in the product]
+- **Product State**: [Relevant state -- inventory, quest progress, etc.]
 
 ## Reproduction Steps
 **Preconditions**: [Required state before starting]

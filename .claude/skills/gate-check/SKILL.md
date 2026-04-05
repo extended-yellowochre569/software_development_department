@@ -20,8 +20,8 @@ This skill is prescriptive ("are we ready to advance?" with a formal verdict).
 
 The project progresses through these stages:
 
-1. **Concept** — Brainstorming, game concept document
-2. **Systems Design** — Mapping systems, writing GDDs
+1. **Concept** — Brainstorming, product concept document
+2. **Systems Design** — Mapping systems, writing PRDs
 3. **Technical Setup** — Engine config, architecture decisions
 4. **Pre-Production** — Prototyping, vertical slice validation
 5. **Production** — Feature development (Epic/Feature/Task tracking active)
@@ -46,11 +46,11 @@ The project progresses through these stages:
 ### Gate: Concept → Systems Design
 
 **Required Artifacts:**
-- [ ] `design/gdd/game-concept.md` exists and has content
-- [ ] Game pillars defined (in concept doc or `design/gdd/game-pillars.md`)
+- [ ] `design/docs/product-concept.md` exists and has content
+- [ ] Product pillars defined (in concept doc or `design/docs/product-pillars.md`)
 
 **Quality Checks:**
-- [ ] Game concept has been reviewed (`/design-review` verdict not MAJOR REVISION NEEDED)
+- [ ] Product concept has been reviewed (`/design-review` verdict not MAJOR REVISION NEEDED)
 - [ ] Core loop is described and understood
 - [ ] Target audience is identified
 
@@ -59,11 +59,11 @@ The project progresses through these stages:
 ### Gate: Systems Design → Technical Setup
 
 **Required Artifacts:**
-- [ ] Systems index exists at `design/gdd/systems-index.md` with at least MVP systems enumerated
-- [ ] At least 1 GDD in `design/gdd/` (beyond game-concept.md and systems-index.md)
+- [ ] Systems index exists at `design/docs/systems-index.md` with at least MVP systems enumerated
+- [ ] At least 1 PRD in `design/docs/` (beyond product-concept.md and systems-index.md)
 
 **Quality Checks:**
-- [ ] GDD(s) pass design review (8 required sections present)
+- [ ] PRD(s) pass design review (8 required sections present)
 - [ ] System dependencies are mapped in the systems index
 - [ ] MVP priority tier is defined
 
@@ -88,11 +88,11 @@ The project progresses through these stages:
 **Required Artifacts:**
 - [ ] At least 1 prototype in `prototypes/` with a README
 - [ ] First sprint plan exists in `production/sprints/`
-- [ ] All MVP-tier GDDs from systems index are complete
+- [ ] All MVP-tier PRDs from systems index are complete
 
 **Quality Checks:**
 - [ ] Prototype validates the core loop hypothesis
-- [ ] Sprint plan references real work items from GDDs
+- [ ] Sprint plan references real work items from PRDs
 - [ ] Vertical slice scope is defined
 
 ---
@@ -101,7 +101,7 @@ The project progresses through these stages:
 
 **Required Artifacts:**
 - [ ] `src/` has active code organized into subsystems
-- [ ] All core mechanics from GDD are implemented (cross-reference `design/gdd/` with `src/`)
+- [ ] All core mechanics from PRD are implemented (cross-reference `design/docs/` with `src/`)
 - [ ] Main user flow is playable end-to-end
 - [ ] Test files exist in `tests/`
 - [ ] At least 1 playtest report (or `/playtest-report` has been run)
@@ -109,7 +109,7 @@ The project progresses through these stages:
 **Quality Checks:**
 - [ ] Tests are passing (run test suite via Bash)
 - [ ] No critical/blocker bugs in any bug tracker or known issues
-- [ ] Core loop plays as designed (compare to GDD acceptance criteria)
+- [ ] Core loop plays as designed (compare to PRD acceptance criteria)
 - [ ] Performance is within budget (check technical-preferences.md targets)
 
 ---
@@ -119,7 +119,7 @@ The project progresses through these stages:
 **Required Artifacts:**
 - [ ] All features from milestone plan are implemented
 - [ ] Content is complete (all levels, assets, dialogue referenced in design docs exist)
-- [ ] Localization strings are externalized (no hardcoded player-facing text in `src/`)
+- [ ] Localization strings are externalized (no hardcoded user-facing text in `src/`)
 - [ ] QA test plan exists
 - [ ] Balance data has been reviewed (`/balance-check` run)
 - [ ] Release checklist completed (`/release-checklist` or `/launch-checklist` run)
@@ -149,13 +149,13 @@ For each item in the target gate:
 
 ### Quality Checks
 - For test checks: Run the test suite via `Bash` if a test runner is configured
-- For design review checks: `Read` the GDD and check for the 8 required sections
+- For design review checks: `Read` the PRD and check for the 8 required sections
 - For performance checks: `Read` technical-preferences.md and compare against any
   profiling data in `tests/performance/` or recent `/perf-profile` output
 - For localization checks: `Grep` for hardcoded strings in `src/`
 
 ### Cross-Reference Checks
-- Compare `design/gdd/` documents against `src/` implementations
+- Compare `design/docs/` documents against `src/` implementations
 - Check that every system referenced in architecture docs has corresponding code
 - Verify sprint plans reference real work items
 
@@ -182,12 +182,12 @@ For items that can't be automatically verified, **ask the user**:
 **Checked by**: gate-check skill
 
 ### Required Artifacts: [X/Y present]
-- [x] design/gdd/game-concept.md — exists, 2.4KB
+- [x] design/docs/product-concept.md — exists, 2.4KB
 - [ ] docs/architecture/ — MISSING (no ADRs found)
 - [x] production/sprints/ — exists, 1 sprint plan
 
 ### Quality Checks: [X/Y passing]
-- [x] GDD has 8/8 required sections
+- [x] PRD has 8/8 required sections
 - [ ] Tests — FAILED (3 failures in tests/unit/)
 - [?] Core loop playtested — MANUAL CHECK NEEDED
 
@@ -248,9 +248,9 @@ Deliver exactly:
 
 Based on the verdict, suggest specific next steps:
 
-- **No game concept?** → `/brainstorm` to create one
+- **No product concept?** → `/brainstorm` to create one
 - **No systems index?** → `/map-systems` to decompose the concept into systems
-- **Missing design docs?** → `/reverse-document` or delegate to `game-designer`
+- **Missing design docs?** → `/reverse-document` or delegate to `product-manager`
 - **Missing ADRs?** → `/architecture-decision`
 - **Tests failing?** → delegate to `lead-programmer` or `qa-tester`
 - **No playtest data?** → `/playtest-report`

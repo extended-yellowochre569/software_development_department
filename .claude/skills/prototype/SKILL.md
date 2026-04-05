@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: "Rapid prototyping workflow. Skips normal standards to quickly validate a game concept or mechanic. Produces throwaway code and a structured prototype report."
+description: "Rapid prototyping workflow. Skips normal standards to quickly validate a product concept or mechanic. Produces throwaway code and a structured prototype report."
 argument-hint: "[concept-description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
@@ -61,7 +61,7 @@ When this skill is invoked:
 - Frame time: [if relevant]
 - Feel assessment: [subjective but specific -- "response felt sluggish at
   200ms delay" not "felt bad"]
-- Player action counts: [if relevant]
+- User action counts: [if relevant]
 - Iteration count: [how many attempts to get it working]
 
 ### Recommendation: [PROCEED / PIVOT / KILL]

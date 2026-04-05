@@ -28,7 +28,7 @@ When this skill is invoked:
    - Nested loops over large collections
    - String operations in hot paths
    - Allocation patterns in per-frame code
-   - Unoptimized search/sort over game entities
+   - Unoptimized search/sort over data entities
    - Expensive physics queries (raycasts, overlaps) every frame
 
    **Memory Profiling Targets**:

@@ -1,6 +1,6 @@
 ---
 name: design-review
-description: "Reviews a game design document for completeness, internal consistency, implementability, and adherence to project design standards. Run this before handing a design document to programmers."
+description: "Reviews a product design document for completeness, internal consistency, implementability, and adherence to project design standards. Run this before handing a design document to programmers."
 argument-hint: "[path-to-design-doc]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep
@@ -17,11 +17,11 @@ When this skill is invoked:
 2. **Read the master CLAUDE.md** to understand project context and standards.
 
 3. **Read related design documents** referenced or implied by the target doc
-   (check `design/gdd/` for related systems).
+   (check `design/docs/` for related systems).
 
 4. **Evaluate against the Design Document Standard checklist**:
    - [ ] Has Overview section (one-paragraph summary)
-   - [ ] Has Player Fantasy section (intended feeling)
+   - [ ] Has User Fantasy section (intended feeling)
    - [ ] Has Detailed Rules section (unambiguous mechanics)
    - [ ] Has Formulas section (all math defined with variables)
    - [ ] Has Edge Cases section (unusual situations handled)
@@ -42,7 +42,7 @@ When this skill is invoked:
 7. **Check for cross-system consistency**:
    - Does this conflict with any existing mechanic?
    - Does this create unintended interactions with other systems?
-   - Is this consistent with the game's established tone and pillars?
+   - Is this consistent with the product's established tone and pillars?
 
 8. **Output the review** in this format:
 
@@ -68,13 +68,13 @@ When this skill is invoked:
 ```
 
 9. **Contextual next step recommendations**:
-   - If the document being reviewed is `game-concept.md` or `game-pillars.md`:
-     - Check if `design/gdd/systems-index.md` exists
+   - If the document being reviewed is `product-concept.md` or `product-pillars.md`:
+     - Check if `design/docs/systems-index.md` exists
      - If it does NOT exist, add to Recommendations:
        > "This concept is ready for systems decomposition. Run `/map-systems`
        > to break it down into individual systems with dependencies and priorities,
-       > then write per-system GDDs."
-   - If the document is an individual system GDD:
+       > then write per-system PRDs."
+   - If the document is an individual system PRD:
      - Check if the systems index references this system
      - If verdict is APPROVED: suggest "Update the systems index status for
        this system to 'Approved'."

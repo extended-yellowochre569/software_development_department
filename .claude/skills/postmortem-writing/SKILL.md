@@ -362,7 +362,7 @@ Don't full-flush cache in production; use targeted invalidation.
 
 | Anti-Pattern | Problem | Better Approach |
 |--------------|---------|-----------------|
-| **Blame game** | Shuts down learning | Focus on systems |
+| **Blame product** | Shuts down learning | Focus on systems |
 | **Shallow analysis** | Doesn't prevent recurrence | Ask "why" 5 times |
 | **No action items** | Waste of time | Always have concrete next steps |
 | **Unrealistic actions** | Never completed | Scope to achievable tasks |

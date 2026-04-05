@@ -1,6 +1,6 @@
 ---
 name: map-systems
-description: "Decompose a game concept into individual systems, map dependencies, prioritize design order, and create the systems index."
+description: "Decompose a product concept into individual systems, map dependencies, prioritize design order, and create the systems index."
 argument-hint: "[optional: 'next' to pick highest-priority undesigned system, or a system name to hand off to /design-system]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion, TodoWrite
@@ -25,19 +25,19 @@ Two modes:
 
 ## 2. Phase 1: Read Concept (Required Context)
 
-Read the game concept and any existing design work. This provides the raw material
+Read the product concept and any existing design work. This provides the raw material
 for systems decomposition.
 
 **Required:**
-- Read `design/gdd/game-concept.md` — **fail with a clear message if missing**:
-  > "No game concept found at `design/gdd/game-concept.md`. Run `/brainstorm` first
+- Read `design/docs/product-concept.md` — **fail with a clear message if missing**:
+  > "No product concept found at `design/docs/product-concept.md`. Run `/brainstorm` first
   > to create one, then come back to decompose it into systems."
 
 **Optional (read if they exist):**
-- Read `design/gdd/game-pillars.md` — pillars constrain priority and scope
-- Read `design/gdd/systems-index.md` — if exists, **resume** from where it left off
+- Read `design/docs/product-pillars.md` — pillars constrain priority and scope
+- Read `design/docs/systems-index.md` — if exists, **resume** from where it left off
   (update, don't recreate from scratch)
-- Glob `design/gdd/*.md` — check which system GDDs already exist
+- Glob `design/docs/*.md` — check which system PRDs already exist
 
 **If the systems index already exists:**
 - Read it and present current status to the user
@@ -51,13 +51,13 @@ for systems decomposition.
 
 ## 3. Phase 2: Systems Enumeration (Collaborative)
 
-Extract and identify all systems the game needs. This is the creative core of the
+Extract and identify all systems the product needs. This is the creative core of the
 skill — it requires human judgment because concept docs rarely enumerate every
 system explicitly.
 
 ### Step 2a: Extract Explicit Systems
 
-Scan the game concept for directly mentioned systems and mechanics:
+Scan the product concept for directly mentioned systems and mechanics:
 - Core Mechanics section (most explicit)
 - Core Loop section (implies what systems drive each loop tier)
 - Technical Considerations section (networking, procedural generation, etc.)
@@ -65,7 +65,7 @@ Scan the game concept for directly mentioned systems and mechanics:
 
 ### Step 2b: Identify Implicit Systems
 
-For each explicit system, identify the **hidden systems** it implies. Games always
+For each explicit system, identify the **hidden systems** it implies. Products always
 need more systems than the concept doc mentions. Use this inference pattern:
 
 - "Inventory" implies: item database, equipment slots, weight/capacity rules,
@@ -75,7 +75,7 @@ need more systems than the concept doc mentions. Use this inference pattern:
 - "Open world" implies: streaming/chunking, LOD system, fast travel, map/minimap,
   point of interest tracking, world state persistence
 - "Multiplayer" implies: networking layer, lobby/matchmaking, state synchronization,
-  anti-cheat, network UI (ping, player list)
+  anti-cheat, network UI (ping, user list)
 - "Crafting" implies: recipe database, ingredient gathering, crafting UI,
   success/failure mechanics, recipe discovery/learning
 - "Dialogue" implies: dialogue tree system, dialogue UI, choice tracking, NPC
@@ -96,7 +96,7 @@ Present the enumeration organized by category. For each system, show:
 Then use `AskUserQuestion` to capture feedback:
 - "Are there systems missing from this list?"
 - "Should any of these be combined or split?"
-- "Are there systems listed that this game does NOT need?"
+- "Are there systems listed that this product does NOT need?"
 
 Iterate until the user approves the enumeration.
 
@@ -176,7 +176,7 @@ Combine dependency sort + priority tier to produce the final design order:
 4. Vertical Slice Foundation/Core systems
 5. ...and so on
 
-This is the order the team should write GDDs in.
+This is the order the team should write PRDs in.
 
 ---
 
@@ -190,7 +190,7 @@ systems index with all data from Phases 2-4:
 - Fill the dependency map
 - Fill the recommended design order
 - Fill the high-risk systems
-- Fill progress tracker (all systems "Not Started" initially, unless GDDs already exist)
+- Fill progress tracker (all systems "Not Started" initially, unless PRDs already exist)
 
 ### Step 5b: Approval
 
@@ -200,7 +200,7 @@ Present a summary of the document:
 - First 3 systems in the design order
 - Any high-risk items
 
-Ask: "May I write the systems index to `design/gdd/systems-index.md`?"
+Ask: "May I write the systems index to `design/docs/systems-index.md`?"
 
 Wait for approval. Write the file only after "yes."
 
@@ -209,8 +209,8 @@ Wait for approval. Write the file only after "yes."
 After writing, update `production/session-state/active.md` with:
 - Task: Systems decomposition
 - Status: Systems index created
-- File: design/gdd/systems-index.md
-- Next: Design individual system GDDs
+- File: design/docs/systems-index.md
+- Next: Design individual system PRDs
 
 ---
 
@@ -236,8 +236,8 @@ system, or stop here?"
 
 Once a system is selected, invoke the `/design-system [system-name]` skill.
 
-The `/design-system` skill handles the full GDD authoring process:
-- Gathers context from game concept, systems index, and dependency GDDs
+The `/design-system` skill handles the full PRD authoring process:
+- Gathers context from product concept, systems index, and dependency PRDs
 - Creates a file skeleton immediately
 - Walks through all 8 required sections one at a time (collaborative, incremental)
 - Cross-references existing docs to prevent contradictions
@@ -247,7 +247,7 @@ The `/design-system` skill handles the full GDD authoring process:
 - Updates the systems index
 
 **Do not duplicate the /design-system workflow here.** This skill owns the systems
-*index*; `/design-system` owns individual system *GDDs*.
+*index*; `/design-system` owns individual system *PRDs*.
 
 ### Step 6c: Loop or Stop
 
@@ -265,8 +265,8 @@ If continuing, return to Step 6a.
 After the systems index is created (or after designing some systems), suggest
 the appropriate next actions:
 
-- "Run `/design-system [system-name]` to write the next system's GDD"
-- "Run `/design-review [path]` on each completed GDD to validate quality"
+- "Run `/design-system [system-name]` to write the next system's PRD"
+- "Run `/design-review [path]` on each completed PRD to validate quality"
 - "Run `/gate-check pre-production` to check if you're ready to start building"
 - "Prototype the highest-risk system with `/prototype [system]`"
 - "Plan the first implementation sprint with `/sprint-plan new`"
@@ -286,7 +286,7 @@ This skill follows the collaborative design principle at every phase:
    - Phase 6: "Start designing, pick different, or stop?" then hand off to `/design-system`
 3. **"May I write to [filepath]?"** before every file write
 4. **Incremental writing**: Update the systems index after each system is designed
-5. **Handoff**: Individual GDD authoring is owned by `/design-system`, which handles
+5. **Handoff**: Individual PRD authoring is owned by `/design-system`, which handles
    incremental section writing, cross-referencing, design review, and index updates
 6. **Session state updates**: Write to `production/session-state/active.md` after
    each milestone (index created, system designed, priorities changed)
@@ -301,13 +301,13 @@ This skill follows the collaborative design principle at every phase:
 - **Options**: Phase 2 — systems enumeration reviewed and adjusted collaboratively before proceeding
 - **Decision**: User approves enumeration, dependency map, and priority tiers before writing
 - **Draft**: Systems index summary shown before saving
-- **Approval**: "May I write the systems index to `design/gdd/systems-index.md`?"
+- **Approval**: "May I write the systems index to `design/docs/systems-index.md`?"
 
 ## Output
 
 Deliver exactly:
 
-- **Systems index** saved to `design/gdd/systems-index.md` — all systems enumerated with dependencies and MVP tier
+- **Systems index** saved to `design/docs/systems-index.md` — all systems enumerated with dependencies and MVP tier
 - **Dependency map** — which systems must be designed before others
-- **Design order** — priority-ranked list of systems to GDD next
+- **Design order** — priority-ranked list of systems to PRD next
 - **Next skill**: `/design-system [first-priority-system]`

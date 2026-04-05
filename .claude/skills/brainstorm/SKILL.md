@@ -229,7 +229,7 @@ Ground the concept in reality:
 
 Deliver exactly:
 
-- **Concept document** saved to `design/gdd/game-concept.md` (or `design/product-concept.md`)
+- **Concept document** saved to `design/docs/product-concept.md`
 - **Elevator pitch** — 1 sentence
 - **MVP definition** — 1 sentence
 - **Biggest risk** — 1 item

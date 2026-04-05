@@ -25,7 +25,7 @@ appropriate design or architecture documentation. Use this when:
 **Format**: `/reverse-document <type> <path>`
 
 **Type options**:
-- `design` → Generate a game design document (GDD section)
+- `design` → Generate a product design document (PRD section)
 - `architecture` → Generate an Architecture Decision Record (ADR)
 - `concept` → Generate a concept document from prototype
 
@@ -45,7 +45,7 @@ appropriate design or architecture documentation. Use this when:
 
 **Read and understand the code/prototype**:
 
-**For design docs (GDD):**
+**For design docs (PRD):**
 - Identify mechanics, rules, formulas
 - Extract business logic values (damage, cooldowns, ranges)
 - Find state machines, ability systems, progression
@@ -64,7 +64,7 @@ appropriate design or architecture documentation. Use this when:
 - Extract emergent business patterns
 - Note what worked vs what didn't
 - Find technical feasibility insights
-- Document player fantasy / feel
+- Document user fantasy / feel
 
 ### 3. Ask Clarifying Questions (Collaborative Protocol)
 
@@ -87,7 +87,7 @@ appropriate design or architecture documentation. Use this when:
 
 **Concept questions**:
 - "The prototype emphasizes stealth over combat. Is that the intended pillar?"
-- "Players seem to exploit the grappling hook for speed. Feature or bug?"
+- "Users seem to exploit the grappling hook for speed. Feature or bug?"
 
 ### 4. Present Findings
 
@@ -123,7 +123,7 @@ Based on type, use appropriate template:
 
 | Type | Template | Output Path |
 |------|----------|-------------|
-| `design` | `templates/design-doc-from-implementation.md` | `design/gdd/[system-name].md` |
+| `design` | `templates/design-doc-from-implementation.md` | `design/docs/[system-name].md` |
 | `architecture` | `templates/architecture-doc-from-code.md` | `docs/architecture/[decision-name].md` |
 | `concept` | `templates/concept-doc-from-prototype.md` | `prototypes/[name]/CONCEPT.md` or `design/concepts/[name].md` |
 
@@ -150,7 +150,7 @@ SECTIONS MARKED AS INCOMPLETE:
 - "Enemy AI interaction with stagger" (not fully implemented yet)
 - "Weapon variety and scaling" (only sword implemented so far)
 
-May I write this to design/gdd/combat-system.md?
+May I write this to design/docs/combat-system.md?
 ```
 
 Wait for approval. User may request changes before writing.
@@ -180,7 +180,7 @@ verified-by: [User name]
 After writing, suggest next steps:
 
 ```
-✅ Written to design/gdd/combat-system.md
+✅ Written to design/docs/combat-system.md
 
 FOLLOW-UP RECOMMENDED:
 1. Run /balance-check on combat formulas (exponential scaling concern)
@@ -199,7 +199,7 @@ Would you like me to tackle any of these now?
 
 | If analyzing... | Use template... | Because... |
 |----------------|-----------------|------------|
-| `src/api/*` | design-doc-from-implementation.md | Business mechanics → GDD |
+| `src/api/*` | design-doc-from-implementation.md | Business mechanics → PRD |
 | `src/core/*`, `src/ai/*` | architecture-doc-from-code.md | Core systems → ADR |
 | `prototypes/*` | concept-doc-from-prototype.md | Experiments → concept doc |
 | `src/networking/*` | architecture-doc-from-code.md | Technical systems → ADR |
@@ -230,18 +230,18 @@ User: 1. Stamina is for pacing, prevent button mashing
 Agent: Perfect, that clarifies the vision. Let me draft the design doc.
        [Shows draft with clarified intent]
 
-       May I write this to design/gdd/combat-system.md?
+       May I write this to design/docs/combat-system.md?
 
 User: Yes, write it.
 
-Agent: ✅ Written to design/gdd/combat-system.md
+Agent: ✅ Written to design/docs/combat-system.md
        ✅ Marked as [REVERSE-DOCUMENTED]
        ✅ Flagged damage scaling for rebalancing
 
        Next steps:
        - Update damage formula to linear scaling
        - Run /balance-check to validate progression curve
-       - Document stagger as core pillar in game-pillars.md
+       - Document stagger as core pillar in product-pillars.md
 ```
 
 ---
@@ -264,10 +264,10 @@ This skill follows the collaborative design principle:
 ## Protocol
 
 - **Question**: Analyzes code, then asks about design intent — never assumes "why" from "what"
-- **Options**: Type drives template — `design` → GDD, `architecture` → ADR, `concept` → concept doc
+- **Options**: Type drives template — `design` → PRD, `architecture` → ADR, `concept` → concept doc
 - **Decision**: User clarifies intent for all unclear areas before the draft is written
 - **Draft**: Draft shown with additions and uncertainty flags before saving
-- **Approval**: "May I write to `design/gdd/[system].md`?" (or architecture/concept path)
+- **Approval**: "May I write to `design/docs/[system].md`?" (or architecture/concept path)
 
 ## Output
 

@@ -30,7 +30,7 @@ When this skill is invoked:
 # Onboarding: [Role/Area]
 
 ## Project Summary
-[2-3 sentence summary of what this game is and its current state]
+[2-3 sentence summary of what this product is and its current state]
 
 ## Your Role
 [What this role does on this project, key responsibilities, who you report to]

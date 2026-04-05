@@ -135,7 +135,7 @@ For `status`:
 For comprehensive sprint planning, consider consulting:
 
 - `producer` agent for capacity planning, risk assessment, and cross-department coordination
-- `game-designer` agent for feature prioritization and design readiness assessment
+- `product-manager` agent for feature prioritization and design readiness assessment
 
 ## Protocol
 

@@ -30,7 +30,7 @@ When this skill is invoked:
 4. **Generate the launch checklist**:
 
 ```markdown
-# Launch Checklist: [Game Title]
+# Launch Checklist: [Product Title]
 Target Launch: [Date or DRY RUN]
 Generated: [Date]
 
@@ -79,20 +79,20 @@ Generated: [Date]
 - [ ] Asset naming conventions enforced
 
 ### Text and Localization
-- [ ] All player-facing text proofread
+- [ ] All user-facing text proofread
 - [ ] No hardcoded strings (all externalized for localization)
 - [ ] All supported languages translated and verified
 - [ ] Text fits UI in all languages (text fitting pass complete)
 - [ ] Font coverage verified for all supported languages
 - [ ] Credits complete, accurate, and up to date
 
-### Game Content
+### Product Content
 - [ ] All levels/maps playable from start to finish
-- [ ] Tutorial flow complete and tested with new players
+- [ ] Tutorial flow complete and tested with new users
 - [ ] All achievements/trophies implemented and tested
-- [ ] Save/load works correctly for all game states
+- [ ] Save/load works correctly for all application states
 - [ ] Difficulty settings balanced and tested
-- [ ] End-game/credits sequence complete
+- [ ] End-product/credits sequence complete
 
 ---
 

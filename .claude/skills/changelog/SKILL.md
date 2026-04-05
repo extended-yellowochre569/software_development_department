@@ -1,6 +1,6 @@
 ---
 name: changelog
-description: "Auto-generates a changelog from git commits, sprint data, and design documents. Produces both internal and player-facing versions."
+description: "Auto-generates a changelog from git commits, sprint data, and design documents. Produces both internal and user-facing versions."
 argument-hint: "[version|sprint-number]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash
@@ -31,7 +31,7 @@ When this skill is invoked:
 3. **Read sprint reports** from `production/sprints/` for the relevant period
    to understand planned work and context behind changes.
 
-4. **Read completed design documents** from `design/gdd/` for any new features
+4. **Read completed design documents** from `design/docs/` for any new features
    that were implemented during this period.
 
 5. **Categorize every change** into one of these categories:
@@ -85,59 +85,59 @@ Commits: [Count] ([first-hash]..[last-hash])
 - Lines removed: [N]
 ```
 
-7. **Generate the PLAYER-FACING changelog** (friendly, non-technical):
+7. **Generate the USER-FACING changelog** (friendly, non-technical):
 
 ```markdown
 # What is New in [Version]
 
 ## New Features
-- **[Feature Name]**: [Player-friendly description of what they can now do
+- **[Feature Name]**: [User-friendly description of what they can now do
   and why it is exciting. Focus on the experience, not the implementation.]
 
 ## Improvements
-- **[What improved]**: [How this makes the game better for the player.
+- **[What improved]**: [How this makes the product better for the user.
   Be specific but avoid jargon.]
 
 ## Bug Fixes
-- Fixed an issue where [describe what the player experienced, not what was
+- Fixed an issue where [describe what the user experienced, not what was
   wrong in the code]
-- Fixed [player-visible symptom]
+- Fixed [user-visible symptom]
 
 ## Balance Changes
-- [What changed in player-understandable terms and the design intent.
+- [What changed in user-understandable terms and the design intent.
   Example: "Healing potions now restore 50 HP (up from 30) -- we felt
-  players needed more recovery options in late-game encounters."]
+  users needed more recovery options in late-product encounters."]
 
 ## Known Issues
-- We are aware of [issue description in player terms] and are working on a
+- We are aware of [issue description in user terms] and are working on a
   fix. [Workaround if one exists.]
 
 ---
-Thank you for playing! Your feedback helps us make the game better.
+Thank you for playing! Your feedback helps us make the product better.
 Report issues at [link].
 ```
 
 8. **Output both changelogs** to the user. The internal changelog is the
-   primary working document. The player-facing changelog is ready for
+   primary working document. The user-facing changelog is ready for
    community posting after review.
 
 ### Guidelines
 
 - Never expose internal code references, file paths, or developer names in
-  the player-facing changelog
+  the user-facing changelog
 - Group related changes together rather than listing individual commits
 - If a commit message is unclear, check the associated files and sprint data
   for context
 - Balance changes should always include the design reasoning, not just the
   numbers
-- Known issues should be honest -- players appreciate transparency
+- Known issues should be honest -- users appreciate transparency
 - If the git history is messy (merge commits, reverts, fixup commits), clean
   up the narrative rather than listing every commit literally
 
 ## Protocol
 
 - **Question**: Reads version or sprint number from argument; verifies git repo availability before starting
-- **Options**: Skip — both internal and player-facing versions always generated
+- **Options**: Skip — both internal and user-facing versions always generated
 - **Decision**: Skip
 - **Draft**: Both changelogs shown in conversation before saving
 - **Approval**: "May I write to `production/releases/[version]/changelog.md`?"
@@ -147,6 +147,6 @@ Report issues at [link].
 Deliver exactly:
 
 - **Internal changelog** — developer-facing, grouped by category (Features, Fixes, Performance, etc.)
-- **Player-facing changelog** — user-friendly language, no internal references
-- **Both saved** to `production/releases/[version]/changelog.md` and `changelog-player.md`
-- **Excluded items count** — internal-only changes omitted from player version
+- **User-facing changelog** — user-friendly language, no internal references
+- **Both saved** to `production/releases/[version]/changelog.md` and `changelog-user.md`
+- **Excluded items count** — internal-only changes omitted from user version

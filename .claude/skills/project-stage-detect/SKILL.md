@@ -25,12 +25,12 @@ of artifacts, and gaps that need attention. It's especially useful when:
 Analyze project structure and content:
 
 **Design Documentation** (`design/`):
-- Count GDD files in `design/gdd/*.md`
-- Check for game-concept.md, game-pillars.md, systems-index.md
+- Count PRD files in `design/docs/*.md`
+- Check for product-concept.md, product-pillars.md, systems-index.md
 - If systems-index.md exists, count total systems vs. designed systems
 - Analyze completeness (Overview, Detailed Design, Edge Cases, etc.)
 - Count narrative docs in `design/narrative/`
-- Count level designs in `design/levels/`
+- Count level designs in `design/specs/`
 
 **Source Code** (`src/`):
 - Count source files (language-agnostic)
@@ -64,8 +64,8 @@ auto-detect using these heuristics (check from most-advanced backward):
 
 | Stage | Indicators |
 |-------|-----------|
-| **Concept** | No game concept doc, brainstorming phase |
-| **Systems Design** | Game concept exists, systems index missing or incomplete |
+| **Concept** | No product concept doc, brainstorming phase |
+| **Systems Design** | Product concept exists, systems index missing or incomplete |
 | **Technical Setup** | Systems index exists, engine not configured |
 | **Pre-Production** | Engine configured, `src/` has <10 source files |
 | **Production** | `src/` has 10+ source files, active development |
@@ -76,10 +76,10 @@ auto-detect using these heuristics (check from most-advanced backward):
 
 **DO NOT** just list missing files. Instead, **ask clarifying questions**:
 
-- "I see combat code (`src/api/auth/`) but no `design/gdd/combat-system.md`. Was this prototyped first, or should we reverse-document?"
+- "I see combat code (`src/api/auth/`) but no `design/docs/combat-system.md`. Was this prototyped first, or should we reverse-document?"
 - "You have 15 ADRs but no architecture overview. Should I create one to help new contributors?"
 - "No sprint plans in `production/`. Are you tracking work elsewhere (Jira, Trello, etc.)?"
-- "I found a game concept but no systems index. Have you decomposed the concept into individual systems yet, or should we run `/map-systems`?"
+- "I found a product concept but no systems index. Have you decomposed the concept into individual systems yet, or should we run `/map-systems`?"
 - "Prototypes directory has 3 projects with no READMEs. Were these experiments, or do they need documentation?"
 
 ### 4. Generate Stage Report
@@ -117,7 +117,7 @@ If user provided a role argument (e.g., `/project-stage-detect programmer`):
 - Code-to-docs gaps
 
 **Designer**:
-- Focus on GDD completeness, missing design sections
+- Focus on PRD completeness, missing design sections
 - Prototype documentation
 
 **Producer**:

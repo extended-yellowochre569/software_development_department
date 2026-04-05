@@ -33,7 +33,7 @@ Delegate to **ux-designer**:
 - Create wireframes for each screen/state
 - Specify interaction patterns: how does keyboard/mouse AND gamepad navigate this?
 - Define accessibility requirements: text sizes, contrast, colorblind safety
-- Identify data the UI needs to display (what game state does it read?)
+- Identify data the UI needs to display (what application state does it read?)
 - Output: UX spec with wireframes and interaction map
 
 ### Phase 2: Visual Design

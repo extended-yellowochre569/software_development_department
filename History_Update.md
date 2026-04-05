@@ -6,6 +6,15 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.21.1] - 2026-04-05
+
+**Chủ đề:** Loại bỏ triệt để các tàn dư Game Studio trong Workflow Skills
+
+- **Clean up Workflow Skills:** Chạy kịch bản dọn dẹp hàng loạt 19 skills còn sót tham chiếu định dạng Game Studio cũ (như `gdd`, `gameplay`, `game concept`, `player`, `level design`).
+- **Nâng cấp version:** Bump version lên 1.21.1, đảm bảo toàn bộ `SKILL.md` thống nhất ngữ cảnh Software Engineering.
+
+---
+
 ### [v1.21.0] - 2026-04-04
 
 **Chủ đề:** Tích hợp bộ kỹ năng Khởi nghiệp tinh gọn (The Minimalist Entrepreneur)
@@ -454,4 +463,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-04 — v1.21.0
+Last Updated: 2026-04-05 — v1.21.1

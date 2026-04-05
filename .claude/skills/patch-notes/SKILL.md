@@ -1,6 +1,6 @@
 ---
 name: patch-notes
-description: "Generate player-facing patch notes from git history, sprint data, and internal changelogs. Translates developer language into clear, engaging player communication."
+description: "Generate user-facing patch notes from git history, sprint data, and internal changelogs. Translates developer language into clear, engaging user communication."
 argument-hint: "[version] [--style brief|detailed|full]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Bash
@@ -21,19 +21,19 @@ When this skill is invoked:
    - Read any balance change documents in `design/balance/`
    - Read bug fix records from QA if available
 
-3. **Categorize all changes** into player-facing categories:
+3. **Categorize all changes** into user-facing categories:
    - **New Content**: new features, maps, characters, items, modes
    - **Business Logic Changes**: balance adjustments, mechanic changes, progression changes
    - **Quality of Life**: UI improvements, convenience features, accessibility
    - **Bug Fixes**: grouped by system (combat, UI, networking, etc.)
-   - **Performance**: optimization improvements players might notice
+   - **Performance**: optimization improvements users might notice
    - **Known Issues**: transparency about unresolved problems
 
-4. **Translate developer language to player language**:
+4. **Translate developer language to user language**:
    - "Refactored damage calculation pipeline" → "Improved hit detection accuracy"
    - "Fixed null reference in inventory manager" → "Fixed a crash when opening inventory"
    - "Reduced GC allocations in combat loop" → "Improved combat performance"
-   - Remove purely internal changes that don't affect players
+   - Remove purely internal changes that don't affect users
    - Preserve specific numbers for balance changes (damage: 50 → 45)
 
 5. **Generate the patch notes** using the appropriate style:
@@ -67,7 +67,7 @@ When this skill is invoked:
 
 ## New Content
 ### [Feature Name]
-[2-3 sentences describing the feature and why players should be excited]
+[2-3 sentences describing the feature and why users should be excited]
 
 ## Business Logic Changes
 ### Balance
@@ -83,7 +83,7 @@ When this skill is invoked:
 
 ## Bug Fixes
 ### Combat
-- Fixed [description of what players experienced]
+- Fixed [description of what users experienced]
 
 ### UI
 - Fixed [description]
@@ -92,7 +92,7 @@ When this skill is invoked:
 - Fixed [description]
 
 ## Performance
-- [Improvement players will notice]
+- [Improvement users will notice]
 
 ## Known Issues
 - [Issue and workaround if available]
@@ -108,11 +108,11 @@ Includes everything from Detailed, plus:
 ```
 
 6. **Review the output** for:
-   - No internal jargon (replace technical terms with player-friendly language)
+   - No internal jargon (replace technical terms with user-friendly language)
    - No references to internal systems, tickets, or sprint numbers
    - Balance changes include before/after values
-   - Bug fixes describe the player experience, not the technical cause
-   - Tone matches the game's voice (adjust formality based on game style)
+   - Bug fixes describe the user experience, not the technical cause
+   - Tone matches the product's voice (adjust formality based on product style)
 
 7. **Save the patch notes** to `production/releases/[version]/patch-notes.md`,
    creating the directory if needed.
@@ -134,4 +134,4 @@ Deliver exactly:
 
 - **Patch notes file** saved to `production/releases/[version]/patch-notes.md`
 - **Change count by category** (Features: X, Fixes: Y, Balance: Z, etc.)
-- **Excluded internal items** — list of changes omitted from player-facing notes
+- **Excluded internal items** — list of changes omitted from user-facing notes

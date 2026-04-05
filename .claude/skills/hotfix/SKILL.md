@@ -12,7 +12,7 @@ When this skill is invoked:
 > **Explicit invocation only**: This skill should only run when the user explicitly requests it with `/hotfix`. Do not auto-invoke based on context matching.
 
 1. **Assess the emergency** — Read the bug description or ID. Determine severity:
-   - **S1 (Critical)**: Game unplayable, data loss, security vulnerability — hotfix immediately
+   - **S1 (Critical)**: Product unplayable, data loss, security vulnerability — hotfix immediately
    - **S2 (Major)**: Significant feature broken, workaround exists — hotfix within 24 hours
    - If severity is S3 or lower, recommend using the normal bug fix workflow instead
 
@@ -26,7 +26,7 @@ When this skill is invoked:
    Status: IN PROGRESS
 
    ### Problem
-   [Clear description of what is broken and the player impact]
+   [Clear description of what is broken and the user impact]
 
    ### Root Cause
    [To be filled during investigation]
