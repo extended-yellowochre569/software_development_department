@@ -93,6 +93,41 @@ if [ -n "$SRC_FILES" ]; then
     done <<< "$SRC_FILES"
 fi
 
+# ─── Auto-lint: ruff check on staged Python files ────────────────────────────
+PY_FILES=$(echo "$STAGED" | grep -E '\.py$')
+if [ -n "$PY_FILES" ]; then
+    PYTHON_CMD=""
+    for cmd in python python3 py; do
+        if command -v "$cmd" >/dev/null 2>&1; then
+            PYTHON_CMD="$cmd"
+            break
+        fi
+    done
+
+    RUFF_AVAILABLE=false
+    if command -v ruff >/dev/null 2>&1; then
+        RUFF_AVAILABLE=true
+    elif [ -n "$PYTHON_CMD" ] && "$PYTHON_CMD" -m ruff --version >/dev/null 2>&1; then
+        RUFF_AVAILABLE=true
+        alias ruff="$PYTHON_CMD -m ruff"
+    fi
+
+    if [ "$RUFF_AVAILABLE" = true ]; then
+        LINT_OUTPUT=""
+        while IFS= read -r pyfile; do
+            [ -f "$pyfile" ] || continue
+            RESULT=$(ruff check "$pyfile" 2>&1)
+            if [ -n "$RESULT" ]; then
+                LINT_OUTPUT="$LINT_OUTPUT\n  $pyfile:\n$(echo "$RESULT" | head -5 | sed 's/^/    /')"
+            fi
+        done <<< "$PY_FILES"
+
+        if [ -n "$LINT_OUTPUT" ]; then
+            WARNINGS="$WARNINGS\nLINT: ruff found issues in staged Python files:$LINT_OUTPUT"
+        fi
+    fi
+fi
+
 # Print warnings (non-blocking) and allow commit
 if [ -n "$WARNINGS" ]; then
     echo -e "=== Commit Validation Warnings ===$WARNINGS\n================================" >&2

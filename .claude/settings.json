@@ -85,6 +85,11 @@
         "hooks": [
           {
             "type": "command",
+            "command": "bash .claude/hooks/bash-guard.sh",
+            "timeout": 5
+          },
+          {
+            "type": "command",
             "command": "bash .claude/hooks/validate-commit.sh",
             "timeout": 15
           },
