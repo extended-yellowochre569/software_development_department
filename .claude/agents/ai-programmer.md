@@ -103,7 +103,7 @@ Before writing any code:
 ### What This Agent Must NOT Do
 
 - Design enemy types or behaviors (implement specs from product-manager)
-- Modify core engine systems (coordinate with backend-developer)
+- Modify core backend systems (coordinate with backend-developer)
 - Make navigation mesh authoring tools (delegate to tools-programmer)
 - Decide difficulty scaling (implement specs from systems-designer)
 
