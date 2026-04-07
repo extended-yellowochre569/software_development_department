@@ -6,6 +6,33 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.23.0] - 2026-04-07
+
+**Chủ đề:** Nâng cấp theo 12 Agentic Harness Patterns từ Claude Code
+
+Dựa trên phân tích bài báo [12 Agentic Harness Patterns from Claude Code](https://generativeprogrammer.com/p/12-agentic-harness-patterns-from) — đối chiếu SDD với mã nguồn Claude Code bị rò rỉ và nâng cấp từ 7/12 lên **10/12 patterns đầy đủ**.
+
+**Pattern #3 — Tiered Memory (nâng cấp):**
+- Tái cấu trúc `MEMORY.md` thành Tier 1 index thuần túy (max 50 dòng) với keyword trigger cho Tier 2
+- Tạo thư mục `archive/sessions/`, `archive/decisions/`, `archive/dreams/` làm Tier 3 cold storage
+- Tạo `archive/README.md` hướng dẫn cách search và promote records giữa các tầng
+
+**Pattern #4 — Dream Consolidation (nâng cấp):**
+- Tạo mới `.claude/hooks/auto-dream.sh` — script consolidation 5 phase tự động (Orient → Detect → Archive → Prune → Log)
+- Nâng cấp `session-stop.sh` với 3 điều kiện kích hoạt auto-dream: index >40 dòng / mỗi 5 phiên / topic files stale >7 ngày
+- Auto-update dòng "Last session" trong MEMORY.md cuối mỗi phiên
+
+**Pattern #8 — Fork-Join Parallelism (mới hoàn toàn):**
+- Tạo mới `.claude/hooks/fork-join.sh` — full git worktree lifecycle manager (fork/status/list/join/purge)
+- Tạo mới `.claude/skills/fork-join/SKILL.md` — kỹ năng `/fork-join` 7 phase cho parallel agent execution
+- Cập nhật `.gitignore` bổ sung `.worktrees/` và temp files từ graphify
+
+**Cập nhật .gitignore:** Thêm rules bảo vệ `.worktrees/`, `graphify-out/`, `.graphify_*`
+
+**Tổng kết nâng cấp:** SDD đạt 10/12 Harness Patterns (83% tương đương Claude Code gốc). 2 pattern còn lại (#5, #9) bị giới hạn bởi platform Anthropic, không thể tự implement từ project level.
+
+---
+
 ### [v1.22.0] - 2026-04-05
 
 **Chủ đề:** Nâng cấp hệ thống Validation Workflow & Bash Guard
@@ -482,4 +509,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-05 — v1.21.2
+Last Updated: 2026-04-07 — v1.23.0

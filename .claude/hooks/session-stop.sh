@@ -77,11 +77,93 @@ fi
     echo ""
 } >> "$SESSION_LOG_DIR/session-log.md" 2>/dev/null
 
+# ─── Tier 3: Archive session summary into .claude/memory/archive/sessions/ ───
+ARCHIVE_SESSION_DIR=".claude/memory/archive/sessions"
+mkdir -p "$ARCHIVE_SESSION_DIR" 2>/dev/null
+
+ARCHIVE_FILENAME="$ARCHIVE_SESSION_DIR/$(date +%Y-%m-%d_%H-%M)_session.md"
+{
+    echo "# Session Summary: $(date '+%Y-%m-%d %H:%M')"
+    echo "Session ID: $SESSION_ID"
+    echo ""
+    echo "## Stats"
+    echo "- Agents invoked: $AGENTS_INVOKED"
+    [ -n "$AGENT_NAMES" ] && echo "- Agent names: $AGENT_NAMES"
+    echo "- Commits made: $COMMIT_COUNT"
+    if [ -n "$RECENT_COMMITS" ]; then
+        echo ""
+        echo "## Commits"
+        echo "$RECENT_COMMITS"
+    fi
+    if [ -n "$MODIFIED_FILES" ]; then
+        echo ""
+        echo "## Uncommitted Files"
+        echo "$MODIFIED_FILES"
+    fi
+} > "$ARCHIVE_FILENAME" 2>/dev/null
+
+# ─── Update Tier 1: Write "Last session" line into MEMORY.md ─────────────────
+MEMORY_FILE=".claude/memory/MEMORY.md"
+if [ -f "$MEMORY_FILE" ]; then
+    # Update the "Last session" line in place
+    sed -i "s|^- Last session:.*|- Last session: $(date '+%Y-%m-%d %H:%M') · agents=$AGENTS_INVOKED · commits=$COMMIT_COUNT|" "$MEMORY_FILE" 2>/dev/null
+fi
+
+# ─── Auto-Dream: Smart trigger ───────────────────────────────────────────────
+# Runs auto-dream.sh automatically when any of these conditions are met:
+#   1. MEMORY.md exceeds 40 lines (approaching the 50-line limit)
+#   2. Every 5th session (periodic maintenance — archives accumulate)
+#   3. More than 3 topic files exist not accessed in last 7 days
+
+MEMORY_FILE=".claude/memory/MEMORY.md"
+MEMORY_LINES=$(wc -l < "$MEMORY_FILE" 2>/dev/null | tr -d ' ')
+AUTO_DREAM_HOOK=".claude/hooks/auto-dream.sh"
+DREAM_TRIGGERED=false
+DREAM_REASON=""
+
+# Condition 1: Index is bloated
+if [ "$MEMORY_LINES" -gt 40 ] 2>/dev/null; then
+    DREAM_TRIGGERED=true
+    DREAM_REASON="MEMORY.md is ${MEMORY_LINES} lines (limit: 50)"
+fi
+
+# Condition 2: Periodic — every 5 sessions
+if [ "$DREAM_TRIGGERED" = false ]; then
+    SESSION_COUNT=$(find ".claude/memory/archive/sessions" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+    REMAINDER=$((SESSION_COUNT % 5))
+    if [ "$REMAINDER" -eq 0 ] && [ "$SESSION_COUNT" -gt 0 ] 2>/dev/null; then
+        DREAM_TRIGGERED=true
+        DREAM_REASON="Periodic maintenance (session #${SESSION_COUNT})"
+    fi
+fi
+
+# Condition 3: Stale topic files accumulating
+if [ "$DREAM_TRIGGERED" = false ]; then
+    STALE=$(find ".claude/memory" -maxdepth 1 -name "*.md" \
+        ! -name "MEMORY.md" -mtime +7 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$STALE" -gt 3 ] 2>/dev/null; then
+        DREAM_TRIGGERED=true
+        DREAM_REASON="$STALE topic files not updated in 7+ days"
+    fi
+fi
+
+# Execute auto-dream if triggered
+DREAM_OUTPUT=""
+if [ "$DREAM_TRIGGERED" = true ] && [ -f "$AUTO_DREAM_HOOK" ]; then
+    DREAM_OUTPUT=$(bash "$AUTO_DREAM_HOOK" 2>/dev/null)
+fi
+
 # ─── Print summary to stdout (visible in Claude's context) ───────────────────
 echo "=== Session Complete ==="
 echo "Agents invoked : $AGENTS_INVOKED"
 [ -n "$AGENT_NAMES" ] && echo "Agents         : $AGENT_NAMES"
 echo "Commits        : $COMMIT_COUNT"
+echo "Archived to    : $ARCHIVE_FILENAME"
+if [ "$DREAM_TRIGGERED" = true ]; then
+    echo ""
+    echo "🌙 Auto-Dream triggered: $DREAM_REASON"
+    [ -n "$DREAM_OUTPUT" ] && echo "$DREAM_OUTPUT"
+fi
 echo "========================"
 
 exit 0

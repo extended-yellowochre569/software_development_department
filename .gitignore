@@ -16,6 +16,16 @@ CLAUDE.local.md
 production/session-logs/
 production/session-state/*.md
 
+# === Fork-Join Worktrees ===
+.worktrees/
+
+# === Graphify temp files ===
+.graphify_*.json
+.graphify_python
+.graphify_uncached.txt
+graphify-out/
+
+
 # === Internal Planning (not for public) ===
 docs/IMPROVEMENTS-PROPOSAL.md
 docs/MULTI-STAGE-DOCUMENT-WORKFLOW.md
@@ -138,3 +148,8 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 .vercel
+
+# === LinkedIn App ===
+linkedin-dashboard.html
+linkedin-post.md
+scripts/screenshot-slides.mjs
