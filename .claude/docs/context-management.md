@@ -121,3 +121,59 @@ When creating multi-section documents:
 3. Write each section to the file as soon as it's approved
 4. Update the session state file after each section
 5. After writing a section, previous discussion can be safely compacted
+
+## Incremental Context Loading
+
+> **Principle (from Context Hub):** Fetch only what you need. Unneeded context
+> wastes tokens and degrades reasoning quality. A keyword trigger match is NOT
+> sufficient reason to load a Tier 2 file.
+
+### 3-Question Relevance Gate
+
+Before loading any Tier 2 memory file, answer these questions:
+
+**Q1: Does this task ACTUALLY require this file's content?**
+- Keyword match ≠ automatic load
+- "Fix CSS button color" → skip `project_tech_decisions.md` even if branch name says "arch-refactor"
+- If you cannot state exactly which fact from the file you will use → skip it
+
+**Q2: Will I use this within the next 3 agent turns?**
+- "Maybe later" = do NOT load now. Load just-in-time.
+- Loading speculatively poisons context without benefit
+
+**Q3: Is a subset sufficient?**
+- If only 1 section needed → read that section by line range, not the whole file
+- Example: `view_file(feedback_rules.md, start_line=10, end_line=25)` instead of full file
+
+### Load Decision Matrix
+
+| Task type | Load | Skip |
+|-----------|------|------|
+| Bug fix in existing code | `annotations.md` (if API-related) | `user_role.md`, `project_tech_decisions.md` |
+| New API / SDK integration | `annotations.md`, `reference_links.md` | `gitnexus-registry.md`, `user_role.md` |
+| Architecture / stack decision | `project_tech_decisions.md` | `feedback_rules.md`, `reference_links.md` |
+| Code review / PR feedback | `feedback_rules.md` | `project_tech_decisions.md`, `gitnexus-registry.md` |
+| Codebase impact analysis | `gitnexus-registry.md` | all others |
+| Style / personalization request | `user_role.md` | all others |
+| Debugging unknown gotcha | `annotations.md` | all others |
+
+### Loading Sequence
+
+```
+Task received
+  1. MEMORY.md          ← already loaded (via CLAUDE.md)
+  2. Relevance gate     ← apply 3 questions above to each Tier 2 candidate
+  3. Load matched files ← max 3, subsections preferred over full files
+  4. Budget check       ← if context < 30% remaining → stop, summarize loaded
+  5. Tier 3             ← only if user explicitly asks "what did we decide about X"
+```
+
+### Hard Limits
+
+- **Tier 2 cap:** Maximum **3 files** per session. If a 4th is needed, summarize the
+  least-referenced one to 3 bullets and release it from context.
+- **Subsection reads:** Always prefer targeted line reads over full-file reads.
+- **Never speculate:** Do not load Tier 2 "just in case". Load when a specific need arises.
+- **Promote insights, not data:** After using a Tier 2 file, extract the 1-2 facts you
+  actually used. The rest does not need to stay in context.
+
