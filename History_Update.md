@@ -6,6 +6,30 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.24.0] - 2026-04-07
+
+**Chủ đề:** Tích hợp 2 patterns từ Context Hub (Andrew Ng)
+
+Dựa trên phân tích [Context Hub](https://github.com/andrewyng/context-hub) — một curated API documentation registry do Andrew Ng tạo ra, rút ra 2 patterns áp dụng vào SDD.
+
+**Pattern: Annotation System (persistent gotcha store)**
+
+- Tạo mới `.claude/memory/annotations.md` — Tier 2 memory file lưu trữ gotchas, caveats, và learned lessons theo service/library với định dạng `[YYYY-MM-DD] <mô tả cụ thể> — <workaround>`
+- Tạo mới `.claude/skills/annotate/SKILL.md` — Skill `/annotate` 4 phase: Parse → Format (quality check) → Find/Create section → Write + Confirm
+- Cập nhật `CLAUDE.md` — Thêm **ANNOTATION PROTOCOL** vào CRITICAL RULES: agent phải ghi gotcha ngay lập tức khi phát hiện, không chờ user nhắc
+- Cập nhật `MEMORY.md` — Đăng ký `annotations.md` vào Tier 2 index với trigger keywords: `api, sdk, gotcha, caveat, workaround, integration, version, compatibility`
+
+**Pattern: Incremental Context Loading (fetch only what you need)**
+
+- Viết lại `MEMORY.md` — Comment rõ "keyword match là KHÔNG đủ", max 3 Tier 2 files/session, pointer đến full rules
+- Thêm section "Incremental Context Loading" vào `.claude/docs/context-management.md`:
+  - **3-Question Relevance Gate** trước khi load bất kỳ Tier 2 file nào (actual need / timing / subset check)
+  - **Load Decision Matrix** — 7 loại task với chỉ định file nào load/skip
+  - **Loading Sequence** với budget gate (stop nếu context < 30%)
+  - **Hard Limits**: max 3 files, subsection line reads, never speculative loading
+
+---
+
 ### [v1.23.0] - 2026-04-07
 
 **Chủ đề:** Nâng cấp theo 12 Agentic Harness Patterns từ Claude Code
@@ -509,4 +533,4 @@ Kết quả: Gõ `/` khi làm Next.js project → ~20 skills thay vì 98.
 
 ---
 
-Last Updated: 2026-04-07 — v1.23.0
+Last Updated: 2026-04-07 — v1.24.0
