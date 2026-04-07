@@ -10,6 +10,8 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 - **GIT SNAPSHOT WARNING:** The Internal Git status is a STALE SNAPSHOT! You MUST run `git status` or `git diff` via BashTool before making git operations or tracking git state.
 - **SAFETY TIERS & RISK ASSESSMENT:** Before editing code or executing commands, assign a Risk Tier (Low: reversible; Medium: shared code, needs rollback plan; High: destructive/prod, requires explicit approval).
 - **TOOL CONSTRAINTS (READ BEFORE WRITE/EDIT):** You MUST read a file's contents before writing to or editing it. For edits, strictly adhere to string replacement uniqueness constraints.
+- **ANNOTATION PROTOCOL:** When you discover unexpected API behavior, undocumented caveats, version bugs, or non-obvious workarounds — **immediately** add a dated entry to `.claude/memory/annotations.md` via `/annotate`. Do NOT wait to be asked. Knowledge that is not persisted is lost.
+
 
 ## Project Durable Memory
 

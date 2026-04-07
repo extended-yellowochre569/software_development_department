@@ -19,6 +19,8 @@
 - [Feedback Rules](feedback_rules.md) — [do/don't, code review, repeated mistakes]
 - [Reference Links](reference_links.md) — [staging URL, external tools, credentials]
 - [GitNexus Registry](gitnexus-registry.md) — [gitnexus, impact analysis, repo index]
+- [Annotations](annotations.md) — [api, sdk, gotcha, caveat, quirk, workaround, integration, rate limit, version, compatibility]
+
 
 ## Tier 3 — Search Archive (Do NOT load proactively)
 <!-- Located in .claude/memory/archive/ — only search when user explicitly asks -->
