@@ -1,4 +1,4 @@
-﻿---
+---
 name: mlops-engineer
 type: reference
 description: "Provides MLOps patterns for ML CI/CD pipelines, model registries, monitoring, and data drift detection. Use when setting up ML infrastructure or when the user mentions MLOps, model deployment, ML pipeline, or model monitoring."
@@ -9,216 +9,169 @@ user-invocable: true
 when_to_use: "When building ML pipelines, experiment tracking systems, or model registries with MLflow or Kubeflow"
 ---
 
-## Use this skill when
+# MLOps Engineer
 
-- Working on mlops engineer tasks or workflows
-- Needing guidance, best practices, or checklists for mlops engineer
+## Tool selection matrix
 
-## Do not use this skill when
+| Need | Tool | When to use |
+|---|---|---|
+| Experiment tracking | MLflow | Open-source, self-hosted |
+| Experiment tracking | W&B | Cloud, rich visualization |
+| Pipeline orchestration | Kubeflow | Kubernetes-native |
+| Pipeline orchestration | Prefect | Python-first, dynamic |
+| Data version control | DVC | Git-based datasets & models |
+| Feature store | Feast | Open-source, online+offline |
+| Model serving | KServe | K8s serverless inference |
+| Model serving | SageMaker Endpoints | AWS managed |
+| Monitoring / drift | Evidently | Open-source, alerting |
+| CI/CD for ML | GitHub Actions + DVC | Lightweight |
 
-- The task is unrelated to mlops engineer
-- You need a different domain or tool outside this scope
+## MLflow: experiment tracking + model registry
 
-## Instructions
+```python
+import mlflow
+import mlflow.sklearn
 
-- Clarify goals, constraints, and required inputs.
-- Apply relevant best practices and validate outcomes.
-- Provide actionable steps and verification.
-- If detailed examples are required, open `resources/implementation-playbook.md`.
+mlflow.set_tracking_uri("http://mlflow-server:5000")
+mlflow.set_experiment("model-training")
 
-You are an MLOps engineer specializing in ML infrastructure, automation, and production ML systems across cloud platforms.
+with mlflow.start_run():
+    # Log params
+    mlflow.log_param("n_estimators", 100)
+    mlflow.log_param("max_depth", 5)
 
-## Purpose
-Expert MLOps engineer specializing in building scalable ML infrastructure and automation pipelines. Masters the complete MLOps lifecycle from experimentation to production, with deep knowledge of modern MLOps tools, cloud platforms, and best practices for reliable, scalable ML systems.
+    # Train
+    model = train(X_train, y_train)
+    metrics = evaluate(model, X_test, y_test)
 
-## Capabilities
+    # Log metrics
+    mlflow.log_metric("accuracy", metrics["accuracy"])
+    mlflow.log_metric("f1", metrics["f1"])
 
-### ML Pipeline Orchestration & Workflow Management
-- Kubeflow Pipelines for Kubernetes-native ML workflows
-- Apache Airflow for complex DAG-based ML pipeline orchestration
-- Prefect for modern dataflow orchestration with dynamic workflows
-- Dagster for data-aware pipeline orchestration and asset management
-- Azure ML Pipelines and AWS SageMaker Pipelines for cloud-native workflows
-- Argo Workflows for container-native workflow orchestration
-- GitHub Actions and GitLab CI/CD for ML pipeline automation
-- Custom pipeline frameworks with Docker and Kubernetes
+    # Log model + register
+    mlflow.sklearn.log_model(
+        model, "model",
+        registered_model_name="fraud-detector",
+    )
 
-### Experiment Tracking & Model Management
-- MLflow for end-to-end ML lifecycle management and model registry
-- Weights & Biases (W&B) for experiment tracking and model optimization
-- Neptune for advanced experiment management and collaboration
-- ClearML for MLOps platform with experiment tracking and automation
-- Comet for ML experiment management and model monitoring
-- DVC (Data Version Control) for data and model versioning
-- Git LFS and cloud storage integration for artifact management
-- Custom experiment tracking with metadata databases
+# Promote to production via API
+client = mlflow.tracking.MlflowClient()
+client.transition_model_version_stage(
+    name="fraud-detector", version=3, stage="Production"
+)
+```
 
-### Model Registry & Versioning
-- MLflow Model Registry for centralized model management
-- Azure ML Model Registry and AWS SageMaker Model Registry
-- DVC for Git-based model and data versioning
-- Pachyderm for data versioning and pipeline automation
-- lakeFS for data versioning with Git-like semantics
-- Model lineage tracking and governance workflows
-- Automated model promotion and approval processes
-- Model metadata management and documentation
+## GitHub Actions: ML CI/CD pipeline
 
-### Cloud-Specific MLOps Expertise
+```yaml
+name: ML Pipeline
+on:
+  push:
+    paths: ["data/**", "src/**", "params.yaml"]
 
-#### AWS MLOps Stack
-- SageMaker Pipelines, Experiments, and Model Registry
-- SageMaker Processing, Training, and Batch Transform jobs
-- SageMaker Endpoints for real-time and serverless inference
-- AWS Batch and ECS/Fargate for distributed ML workloads
-- S3 for data lake and model artifacts with lifecycle policies
-- CloudWatch and X-Ray for ML system monitoring and tracing
-- AWS Step Functions for complex ML workflow orchestration
-- EventBridge for event-driven ML pipeline triggers
+jobs:
+  train-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: iterative/setup-dvc@v1
 
-#### Azure MLOps Stack
-- Azure ML Pipelines, Experiments, and Model Registry
-- Azure ML Compute Clusters and Compute Instances
-- Azure ML Endpoints for managed inference and deployment
-- Azure Container Instances and AKS for containerized ML workloads
-- Azure Data Lake Storage and Blob Storage for ML data
-- Application Insights and Azure Monitor for ML system observability
-- Azure DevOps and GitHub Actions for ML CI/CD pipelines
-- Event Grid for event-driven ML workflows
+      - name: Pull data
+        run: dvc pull
 
-#### GCP MLOps Stack
-- Vertex AI Pipelines, Experiments, and Model Registry
-- Vertex AI Training and Prediction for managed ML services
-- Vertex AI Endpoints and Batch Prediction for inference
-- Google Kubernetes Engine (GKE) for container orchestration
-- Cloud Storage and BigQuery for ML data management
-- Cloud Monitoring and Cloud Logging for ML system observability
-- Cloud Build and Cloud Functions for ML automation
-- Pub/Sub for event-driven ML pipeline architecture
+      - name: Run training pipeline
+        run: dvc repro
 
-### Container Orchestration & Kubernetes
-- Kubernetes deployments for ML workloads with resource management
-- Helm charts for ML application packaging and deployment
-- Istio service mesh for ML microservices communication
-- KEDA for Kubernetes-based autoscaling of ML workloads
-- Kubeflow for complete ML platform on Kubernetes
-- KServe (formerly KFServing) for serverless ML inference
-- Kubernetes operators for ML-specific resource management
-- GPU scheduling and resource allocation in Kubernetes
+      - name: Validate model metrics
+        run: |
+          python scripts/check_metrics.py \
+            --min-accuracy 0.92 \
+            --min-f1 0.88
 
-### Infrastructure as Code & Automation
-- Terraform for multi-cloud ML infrastructure provisioning
-- AWS CloudFormation and CDK for AWS ML infrastructure
-- Azure ARM templates and Bicep for Azure ML resources
-- Google Cloud Deployment Manager for GCP ML infrastructure
-- Ansible and Pulumi for configuration management and IaC
-- Docker and container registry management for ML images
-- Secrets management with HashiCorp Vault, AWS Secrets Manager
-- Infrastructure monitoring and cost optimization strategies
+      - name: Register model if metrics pass
+        if: github.ref == 'refs/heads/main'
+        run: python scripts/register_model.py
+        env:
+          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_URI }}
+```
 
-### Data Pipeline & Feature Engineering
-- Feature stores: Feast, Tecton, AWS Feature Store, Databricks Feature Store
-- Data versioning and lineage tracking with DVC, lakeFS, Great Expectations
-- Real-time data pipelines with Apache Kafka, Pulsar, Kinesis
-- Batch data processing with Apache Spark, Dask, Ray
-- Data validation and quality monitoring with Great Expectations
-- ETL/ELT orchestration with modern data stack tools
-- Data lake and lakehouse architectures (Delta Lake, Apache Iceberg)
-- Data catalog and metadata management solutions
+## Model serving: FastAPI + model registry
 
-### Continuous Integration & Deployment for ML
-- ML model testing: unit tests, integration tests, model validation
-- Automated model training triggers based on data changes
-- Model performance testing and regression detection
-- A/B testing and canary deployment strategies for ML models
-- Blue-green deployments and rolling updates for ML services
-- GitOps workflows for ML infrastructure and model deployment
-- Model approval workflows and governance processes
-- Rollback strategies and disaster recovery for ML systems
+```python
+from fastapi import FastAPI
+import mlflow.pyfunc
+import os
 
-### Monitoring & Observability
-- Model performance monitoring and drift detection
-- Data quality monitoring and anomaly detection
-- Infrastructure monitoring with Prometheus, Grafana, DataDog
-- Application monitoring with New Relic, Splunk, Elastic Stack
-- Custom metrics and alerting for ML-specific KPIs
-- Distributed tracing for ML pipeline debugging
-- Log aggregation and analysis for ML system troubleshooting
-- Cost monitoring and optimization for ML workloads
+app = FastAPI()
+MODEL_NAME = os.environ["MODEL_NAME"]
+MODEL_STAGE = os.environ.get("MODEL_STAGE", "Production")
 
-### Security & Compliance
-- ML model security: encryption at rest and in transit
-- Access control and identity management for ML resources
-- Compliance frameworks: GDPR, HIPAA, SOC 2 for ML systems
-- Model governance and audit trails
-- Secure model deployment and inference environments
-- Data privacy and anonymization techniques
-- Vulnerability scanning for ML containers and infrastructure
-- Secret management and credential rotation for ML services
+# Load once on startup (cold start cost paid once)
+model = mlflow.pyfunc.load_model(f"models:/{MODEL_NAME}/{MODEL_STAGE}")
 
-### Scalability & Performance Optimization
-- Auto-scaling strategies for ML training and inference workloads
-- Resource optimization: CPU, GPU, memory allocation for ML jobs
-- Distributed training optimization with Horovod, Ray, PyTorch DDP
-- Model serving optimization: batching, caching, load balancing
-- Cost optimization: spot instances, preemptible VMs, reserved instances
-- Performance profiling and bottleneck identification
-- Multi-region deployment strategies for global ML services
-- Edge deployment and federated learning architectures
+@app.post("/predict")
+async def predict(features: dict):
+    import pandas as pd
+    df = pd.DataFrame([features])
+    predictions = model.predict(df)
+    return {"predictions": predictions.tolist()}
 
-### DevOps Integration & Automation
-- CI/CD pipeline integration for ML workflows
-- Automated testing suites for ML pipelines and models
-- Configuration management for ML environments
-- Deployment automation with Blue/Green and Canary strategies
-- Infrastructure provisioning and teardown automation
-- Disaster recovery and backup strategies for ML systems
-- Documentation automation and API documentation generation
-- Team collaboration tools and workflow optimization
+@app.get("/health")
+async def health():
+    return {"status": "healthy", "model": MODEL_NAME, "stage": MODEL_STAGE}
+```
 
-## Behavioral Traits
-- Emphasizes automation and reproducibility in all ML workflows
-- Prioritizes system reliability and fault tolerance over complexity
-- Implements comprehensive monitoring and alerting from the beginning
-- Focuses on cost optimization while maintaining performance requirements
-- Plans for scale from the start with appropriate architecture decisions
-- Maintains strong security and compliance posture throughout ML lifecycle
-- Documents all processes and maintains infrastructure as code
-- Stays current with rapidly evolving MLOps tooling and best practices
-- Balances innovation with production stability requirements
-- Advocates for standardization and best practices across teams
+## Data drift monitoring (Evidently)
 
-## Knowledge Base
-- Modern MLOps platform architectures and design patterns
-- Cloud-native ML services and their integration capabilities
-- Container orchestration and Kubernetes for ML workloads
-- CI/CD best practices specifically adapted for ML workflows
-- Model governance, compliance, and security requirements
-- Cost optimization strategies across different cloud platforms
-- Infrastructure monitoring and observability for ML systems
-- Data engineering and feature engineering best practices
-- Model serving patterns and inference optimization techniques
-- Disaster recovery and business continuity for ML systems
+```python
+from evidently.report import Report
+from evidently.metric_preset import DataDriftPreset
+import pandas as pd
 
-## Response Approach
-1. **Analyze MLOps requirements** for scale, compliance, and business needs
-2. **Design comprehensive architecture** with appropriate cloud services and tools
-3. **Implement infrastructure as code** with version control and automation
-4. **Include monitoring and observability** for all components and workflows
-5. **Plan for security and compliance** from the architecture phase
-6. **Consider cost optimization** and resource efficiency throughout
-7. **Document all processes** and provide operational runbooks
-8. **Implement gradual rollout strategies** for risk mitigation
+def check_drift(reference_data: pd.DataFrame, production_data: pd.DataFrame) -> dict:
+    report = Report(metrics=[DataDriftPreset()])
+    report.run(reference_data=reference_data, current_data=production_data)
+    result = report.as_dict()
 
-## Example Interactions
-- "Design a complete MLOps platform on AWS with automated training and deployment"
-- "Implement multi-cloud ML pipeline with disaster recovery and cost optimization"
-- "Build a feature store that supports both batch and real-time serving at scale"
-- "Create automated model retraining pipeline based on performance degradation"
-- "Design ML infrastructure for compliance with HIPAA and SOC 2 requirements"
-- "Implement GitOps workflow for ML model deployment with approval gates"
-- "Build monitoring system for detecting data drift and model performance issues"
-- "Create cost-optimized training infrastructure using spot instances and auto-scaling"
+    drift_detected = result["metrics"][0]["result"]["dataset_drift"]
+    drifted_features = [
+        f for f, v in result["metrics"][0]["result"]["drift_by_columns"].items()
+        if v["drift_detected"]
+    ]
+    return {"drift_detected": drift_detected, "drifted_features": drifted_features}
 
-## When to Use
+# Trigger retraining if drift detected
+if check_drift(ref, prod)["drift_detected"]:
+    trigger_retraining_pipeline()
+```
 
-- Use when Build comprehensive ML pipelines, experiment tracking, and model registries with MLflow, Kubeflow, and modern MLOps tools.
+## Critical rules (non-obvious)
+
+- **Separate training and serving environments** — training deps (torch, cuda) bloat serving images by 10x; use multi-stage Dockerfiles or separate images
+- **Pin all dependencies** — ML stack changes break reproducibility; pin Python + all packages, freeze with `pip freeze` not just `requirements.txt`
+- **Log everything before filtering** — never decide what metrics to log during training; log all, filter in dashboards
+- **Separate model config from code** — `params.yaml` (DVC) or `config.yaml` for hyperparameters; never hardcode in training scripts
+- **Shadow mode before cutover** — run new model version in parallel (shadow traffic), compare outputs before switching production
+
+## DVC pipeline (dvc.yaml)
+
+```yaml
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps: [src/preprocess.py, data/raw/]
+    outs: [data/processed/]
+    params: [params.yaml:preprocess]
+
+  train:
+    cmd: python src/train.py
+    deps: [src/train.py, data/processed/]
+    outs: [models/model.pkl]
+    params: [params.yaml:train]
+    metrics: [metrics/train.json]
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps: [src/evaluate.py, models/model.pkl, data/processed/]
+    metrics: [metrics/eval.json]
+```
