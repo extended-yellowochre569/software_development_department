@@ -1,6 +1,6 @@
----
+﻿---
 name: unfreeze
-description: "Khi cần mở khóa codebase sau release hoặc sau khi freeze period kết thúc"
+description: "Unlocks the codebase after a release freeze or incident freeze period to resume normal development. Use when a freeze period ends or when the user mentions unfreezing or lifting the code freeze."
 argument-hint: "[no arguments]"
 user-invocable: true
 allowed-tools: Read, Write, Bash, Edit

@@ -1,6 +1,6 @@
----
+﻿---
 name: patch-notes
-description: "Generate user-facing patch notes from git history, sprint data, and internal changelogs. Translates developer language into clear, engaging user communication."
+description: "Generates user-facing patch notes from git history and internal changelogs, translating technical changes into clear user communication. Use when preparing patch notes or when the user mentions patch notes or user-facing changelog."
 argument-hint: "[version] [--style brief|detailed|full]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Bash

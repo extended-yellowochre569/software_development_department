@@ -1,6 +1,6 @@
----
+﻿---
 name: onboard
-description: "Generates a contextual onboarding document for a new contributor or agent joining the project. Summarizes project state, architecture, conventions, and current priorities relevant to the specified role or area."
+description: "Generates a contextual onboarding document for a new contributor or agent joining the project, summarizing architecture, conventions, and current priorities. Use when onboarding a new team member, contributor, or agent."
 argument-hint: "[role|area]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write

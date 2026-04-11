@@ -1,7 +1,7 @@
----
+﻿---
 name: deployment-procedures
 type: reference
-description: "Production deployment principles and decision-making. Safe deployment workflows, rollback strategies, and verification. Teaches thinking, not scripts."
+description: "Defines step-by-step deployment procedures for staging and production environments with rollback plans. Use when creating runbooks or when the user mentions deployment procedure, release procedure, or production deployment."
 paths: ["**/Dockerfile*", "**/deploy/**", "**/.github/workflows/**"]
 effort: 3
 allowed-tools: Read, Glob, Grep

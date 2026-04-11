@@ -1,6 +1,6 @@
----
+﻿---
 name: guard
-description: "Kiểm tra xem codebase có đang bị freeze không — dùng trước khi merge, deploy, hoặc push lên branch chính"
+description: "Enforces project safety constraints by blocking risky operations outside their approved scope during active development. Use when activating a safety guard or constraint for the current session."
 argument-hint: "[no arguments]"
 user-invocable: true
 allowed-tools: Read, Bash

@@ -1,7 +1,7 @@
----
+﻿---
 name: aws-serverless
 type: reference
-description: "Specialized skill for building production-ready serverless applications on AWS. Covers Lambda functions, API Gateway, DynamoDB, SQS/SNS event-driven patterns, SAM/CDK deployment, and cold start opt..."
+description: "Provides AWS serverless architecture patterns for Lambda, API Gateway, DynamoDB, SQS, and SAM/CDK. Use when working with AWS serverless files (serverless.yml, CDK stacks) or when the user mentions Lambda, API Gateway, serverless, or AWS SAM."
 paths: ["**/serverless.yml", "**/template.yaml", "**/cdk/**", "**/sam/**"]
 effort: 3
 allowed-tools: Read, Glob, Grep

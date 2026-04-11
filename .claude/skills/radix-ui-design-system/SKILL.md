@@ -1,7 +1,7 @@
----
+﻿---
 name: radix-ui-design-system
 type: reference
-description: "Build accessible design systems with Radix UI primitives. Headless component customization, theming strategies, and compound component patterns for production-grade UI libraries."
+description: "Provides Radix UI patterns for building accessible design systems with headless components, theming, and compound component architecture. Use when building UI with Radix UI primitives or when the user mentions Radix UI, headless components, or accessible component libraries."
 paths: ["**/*.tsx", "**/*.jsx", "**/components.json"]
 when_to_use: "When building accessible component libraries with Radix UI primitives, headless components, or design system theming"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

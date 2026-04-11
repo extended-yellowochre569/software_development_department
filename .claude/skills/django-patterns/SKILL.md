@@ -1,7 +1,7 @@
----
+﻿---
 name: django-patterns
 type: reference
-description: Django architecture patterns, REST API design with DRF, ORM best practices, caching, signals, middleware, and production-grade Django apps.
+description: "Provides Django ORM, view, serializer, and authentication patterns for Python web applications. Use when working with Django files (models.py, views.py, urls.py) or when the user mentions Django or Django REST Framework."
 origin: ECC
 paths: ["**/*.py", "**/manage.py", "**/models.py", "**/views.py"]
 effort: 3

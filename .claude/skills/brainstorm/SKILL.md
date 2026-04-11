@@ -1,6 +1,6 @@
----
+﻿---
 name: brainstorm
-description: "Guided product concept ideation — from zero idea to a structured product concept document. Uses professional product thinking frameworks, user psychology, and structured creative exploration."
+description: "Facilitates structured product ideation to define user needs, core value, and product direction. Use when the user wants to explore a new product idea, has a vague concept to develop, or mentions brainstorming or ideation."
 argument-hint: "[product type or problem hint, or 'open' for fully open brainstorm]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, WebSearch, AskUserQuestion

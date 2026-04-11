@@ -1,6 +1,6 @@
----
+﻿---
 name: code-review-checklist
-description: "Comprehensive checklist for conducting thorough code reviews covering functionality, security, performance, and maintainability"
+description: "Provides a comprehensive code review checklist for pull requests covering security, performance, maintainability, and testing. Use as a reference during code reviews or when the user asks for a review checklist."
 allowed-tools: Read, Glob, Grep, Bash
 argument-hint: "[file path or PR number]"
 user-invocable: true

@@ -1,7 +1,7 @@
----
+﻿---
 name: gitlab-ci-patterns
 type: reference
-description: "Build GitLab CI/CD pipelines with multi-stage workflows, caching, and distributed runners for scalable automation. Use when implementing GitLab CI/CD, optimizing pipeline performance, or setting up..."
+description: "Provides GitLab CI/CD pipeline patterns including stages, jobs, artifacts, caching, and environment deployments. Use when working with .gitlab-ci.yml or when the user mentions GitLab CI or GitLab pipelines."
 paths: ["**/.gitlab-ci.yml", "**/ci/**", "**/.gitlab/**"]
 effort: 3
 allowed-tools: Read, Glob, Grep

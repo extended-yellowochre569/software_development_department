@@ -1,6 +1,6 @@
----
+﻿---
 name: perf-profile
-description: "Structured performance profiling workflow. Identifies bottlenecks, measures against budgets, and generates optimization recommendations with priority rankings."
+description: "Identifies performance bottlenecks, measures against budgets, and generates prioritized optimization recommendations. Use when investigating slow performance or when the user mentions performance profiling, bottleneck, or optimization."
 argument-hint: "[system-name or 'full']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash

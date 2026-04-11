@@ -1,7 +1,7 @@
----
+﻿---
 name: ios-developer
 type: reference
-description: Develop native iOS applications with Swift/SwiftUI. Masters iOS 18, SwiftUI, UIKit integration, Core Data, networking, and App Store optimization.
+description: "Provides Swift and SwiftUI patterns for iOS app development including navigation, data persistence, networking, and App Store preparation. Use when working with Swift files (*.swift) or when the user mentions iOS, SwiftUI, Xcode, or App Store."
 paths: ["**/*.swift", "**/*.xib", "**/*.storyboard", "**/Info.plist"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

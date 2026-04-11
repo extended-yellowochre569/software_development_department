@@ -1,6 +1,6 @@
----
+﻿---
 name: release-checklist
-description: "Generates a comprehensive pre-release validation checklist covering build verification, certification requirements, store metadata, and launch readiness."
+description: "Generates a comprehensive pre-release validation checklist covering build verification, store metadata, and launch readiness. Use when preparing to release a product version or when the user mentions release checklist or pre-release validation."
 argument-hint: "[platform: pc|console|mobile|all]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write

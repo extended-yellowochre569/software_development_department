@@ -1,6 +1,6 @@
----
+﻿---
 name: devops-deploy
-description: 'DevOps e deploy de aplicacoes — Docker, CI/CD com GitHub Actions, AWS Lambda, SAM, Terraform, infraestrutura como codigo e monitoramento. Ativar para: dockerizar aplicacao, configurar pipeline...'
+description: "Executes infrastructure deployment operations including provisioning, configuration management, and service orchestration. Use when deploying infrastructure or when the user mentions DevOps, deployment, or infrastructure provisioning."
 - devops
 - docker
 - ci-cd

@@ -1,6 +1,6 @@
----
+﻿---
 name: db-review
-description: "Reviews database schemas, migrations, and queries for correctness, performance, data integrity, and naming conventions. Checks indexes, constraints, migration safety, and ORM usage patterns."
+description: "Reviews database schemas, queries, and migrations for correctness, performance, security, and best practices. Use when reviewing SQL migration files or when the user mentions database review, schema review, or query audit."
 argument-hint: "[path-to-schema-migration-or-query-files]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep

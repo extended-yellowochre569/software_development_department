@@ -1,6 +1,6 @@
----
+﻿---
 name: cloud-architect
-description: Expert cloud architect specializing in AWS/Azure/GCP multi-cloud infrastructure design, advanced IaC (Terraform/OpenTofu/CDK), FinOps cost optimization, and modern architectural patterns.
+description: "Designs multi-cloud and hybrid cloud architectures across AWS, GCP, and Azure. Use when designing cloud infrastructure or when the user mentions cloud architecture, AWS, GCP, Azure, or multi-cloud."
 paths: ["**/terraform/**", "**/pulumi/**", "**/infra/**", "**/*.tf"]
 effort: 5
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

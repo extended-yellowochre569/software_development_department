@@ -1,6 +1,6 @@
----
+﻿---
 name: project-stage-detect
-description: "Automatically analyze project state, detect stage, identify gaps, and recommend next steps based on existing artifacts."
+description: "Analyzes existing project artifacts to detect development stage, identify documentation gaps, and recommend next steps. Use when starting a new session on an existing project, or when the user mentions project analysis, stage detection, or gap analysis."
 argument-hint: "[optional: role filter like 'programmer' or 'designer']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash

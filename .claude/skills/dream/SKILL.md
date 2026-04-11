@@ -1,6 +1,6 @@
----
+﻿---
 name: dream
-description: "Memory consolidation — 4-phase reflective pass: Orient → Gather → Consolidate → Prune. Scans session transcripts and daily logs for new signals, merges/deduplicates topic files, keeps MEMORY.md under 200 lines. Run after intensive sessions or when memories feel stale."
+description: "Consolidates and prunes the memory directory through a 4-phase reflective pass: Orient, Gather, Consolidate, Prune. Run after intensive sessions, when memories feel duplicated, or when MEMORY.md approaches the 200-line limit."
 argument-hint: "[optional: topic keyword to focus on, e.g. 'feedback' or 'project']"
 user-invocable: true
 allowed-tools: Read, Write, Glob, Grep, Bash
@@ -80,7 +80,7 @@ For any topic file flagged in Phase 1, add the required YAML frontmatter:
 ```markdown
 ---
 name: {{memory name}}
-description: {{one-line description — used for future relevance matching, be specific}}
+description: "Consolidates and prunes the memory directory through a 4-phase reflective pass: Orient, Gather, Consolidate, Prune. Run after intensive sessions, when memories feel duplicated, or when MEMORY.md approaches the 200-line limit."
 type: {{user | feedback | project | reference}}
 ---
 ```

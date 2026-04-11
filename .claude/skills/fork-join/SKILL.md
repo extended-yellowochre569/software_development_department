@@ -1,6 +1,6 @@
----
+﻿---
 name: fork-join
-description: "Fork-Join Parallelism — decomposes a task into isolated git worktrees, runs subagents in parallel on independent branches, then merges all results. Use when migrating multiple independent files, generating parallel UI components, running concurrent refactors, or any batch work with no cross-file dependencies."
+description: "Runs multiple specialist subagents in parallel then merges their outputs into a unified result. Use when a task can be split into independent parallel workstreams that need to be recombined."
 argument-hint: "<task description>"
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash, Task, TodoWrite

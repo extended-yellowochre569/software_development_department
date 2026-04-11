@@ -1,7 +1,7 @@
----
+﻿---
 name: hybrid-cloud-architect
 type: reference
-description: Expert hybrid cloud architect specializing in complex multi-cloud solutions across AWS/Azure/GCP and private clouds (OpenStack/VMware).
+description: "Designs hybrid cloud architectures connecting on-premises infrastructure with public cloud services. Use when designing systems spanning on-prem and cloud, or when the user mentions hybrid cloud or multi-environment architecture."
 effort: 4
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true

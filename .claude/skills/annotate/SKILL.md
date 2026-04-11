@@ -1,6 +1,6 @@
----
+﻿---
 name: annotate
-description: "Persist a gotcha, caveat, or learned lesson about an API, library, or project behavior into the annotations memory. Call this whenever you discover unexpected behavior, non-obvious workarounds, or version-specific bugs — so the next agent session remembers what was learned."
+description: "Records unexpected API behaviors, undocumented caveats, version bugs, or non-obvious workarounds into .claude/memory/annotations.md. Use immediately when an undocumented behavior or surprising caveat is discovered during development."
 argument-hint: "<service-or-library> <what-you-discovered>"
 user-invocable: true
 allowed-tools: Read, Edit, Bash

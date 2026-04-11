@@ -1,6 +1,6 @@
----
+﻿---
 name: feature-spec
-description: "Guided, section-by-section feature specification authoring for a single software feature or module. Gathers context from existing docs, walks through each required section collaboratively, cross-references dependencies, and writes incrementally to file."
+description: "Decomposes a product concept into architectural components, domain systems, data models, and integration boundaries. Use when starting system architecture or when the user mentions system design or component breakdown."
 argument-hint: "<feature-name> (e.g., 'user-authentication', 'payment-processing', 'notification-service')"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Task, AskUserQuestion, TodoWrite

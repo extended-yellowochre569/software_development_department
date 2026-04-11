@@ -1,7 +1,7 @@
----
+﻿---
 name: django-pro
 type: reference
-description: Master Django 5.x with async views, DRF, Celery, and Django Channels. Build scalable web applications with proper architecture, testing, and deployment.
+description: "Expert-level Django development covering advanced ORM, signals, middleware, Celery integration, and performance optimization. Use when working on complex Django features or when the user mentions advanced Django, signals, or Django performance."
 paths: ["**/*.py", "**/manage.py", "**/settings.py", "**/urls.py"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

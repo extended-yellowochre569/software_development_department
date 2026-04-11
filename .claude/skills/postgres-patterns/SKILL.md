@@ -1,7 +1,7 @@
----
+﻿---
 name: postgres-patterns
 type: reference
-description: PostgreSQL database patterns for query optimization, schema design, indexing, and security. Based on Supabase best practices.
+description: "Provides PostgreSQL patterns for query optimization, schema design, indexing strategies, RLS, and security. Use when working with PostgreSQL SQL files or when the user mentions PostgreSQL, Postgres, pgvector, Supabase, or database optimization."
 origin: ECC
 paths: ["**/*.sql", "**/migrations/**", "**/schema.prisma", "**/drizzle.config.*"]
 when_to_use: "When writing SQL queries, designing PostgreSQL schemas, optimizing indexes, or reviewing database security patterns"

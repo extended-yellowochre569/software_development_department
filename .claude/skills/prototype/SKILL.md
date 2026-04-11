@@ -1,6 +1,6 @@
----
+﻿---
 name: prototype
-description: "Rapid prototyping workflow. Skips normal standards to quickly validate a product concept or mechanic. Produces throwaway code and a structured prototype report."
+description: "Executes a rapid prototyping workflow that skips normal standards to quickly validate a product concept or core mechanic, producing throwaway code and a prototype report. Use when the user wants to quickly test an idea or mentions prototyping, proof of concept, or MVP spike."
 argument-hint: "[concept-description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

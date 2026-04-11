@@ -1,6 +1,6 @@
----
+﻿---
 name: commit
-description: ALWAYS use this skill when committing code changes — never commit directly without it. Creates commits with proper conventional commit format and issue references. Trigger on any commit, git commit, save changes, or commit message task.
+description: "Creates a well-formed git commit following conventional commit format with type, scope, and descriptive message. Use when the user is ready to commit changes or mentions conventional commits."
 effort: 1
 allowed-tools: Read, Glob, Grep, Write, Bash
 argument-hint: "[commit message or empty for auto-generate]"

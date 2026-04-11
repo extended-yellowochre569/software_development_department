@@ -1,6 +1,6 @@
----
+﻿---
 name: team-ui
-description: "Orchestrate the UI team: coordinates ux-designer and ui-programmer to design, implement, and polish a user interface feature from wireframe to final."
+description: "Orchestrates the UI team of ux-designer and ui-programmer to design, implement, and polish a UI feature from wireframe to final implementation. Use when a UI component or page needs both design and engineering coordination."
 argument-hint: "[UI feature description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite

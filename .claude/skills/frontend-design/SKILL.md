@@ -1,6 +1,6 @@
----
+﻿---
 name: frontend-design
-description: "Create distinctive, production-grade frontend interfaces with intentional aesthetics, high craft, and non-generic visual identity. Use when building or styling web UIs, components, pages, dashboard..."
+description: "Designs frontend UI architecture including component hierarchy, state management strategy, design tokens, and accessibility requirements. Use when starting frontend design or when the user mentions UI architecture, component design, or frontend planning."
 paths: ["**/*.tsx", "**/*.jsx", "**/*.css", "**/*.scss"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

@@ -1,6 +1,6 @@
----
+﻿---
 name: save-state
-description: "Save current working context to production/session-state/active.md so it survives context compaction, /clear, or session restart. Run this before any major context reset or when context usage is above 60%."
+description: "Saves current working context to production/session-state/active.md to survive context compaction, /clear, or session restart. Run before any major context reset, when context usage exceeds 60%, or when ending a work session."
 argument-hint: "[optional note]"
 user-invocable: true
 allowed-tools: Read, Write, Glob, Bash

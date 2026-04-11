@@ -1,7 +1,7 @@
----
+﻿---
 name: react-nextjs-development
 type: reference
-description: "React and Next.js 14+ application development with App Router, Server Components, TypeScript, Tailwind CSS, and modern frontend patterns."
+description: "Provides React and Next.js 14+ development patterns for App Router, Server Components, TypeScript, and Tailwind CSS. Use when working with React or Next.js files or when the user mentions React development, Next.js, JSX, or TSX."
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*", "**/tailwind.config.*"]
 when_to_use: "When building React or Next.js 14+ applications with App Router, Server Components, TypeScript, or Tailwind CSS"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

@@ -1,7 +1,7 @@
----
+﻿---
 name: flutter-expert
 type: reference
-description: Master Flutter development with Dart 3, advanced widgets, and multi-platform deployment.
+description: "Provides Flutter and Dart patterns for widget composition, state management, navigation, and platform channels. Use when working with Dart files (*.dart, pubspec.yaml) or when the user mentions Flutter, Dart, or cross-platform mobile."
 paths: ["**/*.dart", "**/pubspec.yaml", "**/pubspec.lock"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

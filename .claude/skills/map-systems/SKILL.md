@@ -1,6 +1,6 @@
----
+﻿---
 name: map-systems
-description: "Decompose a product concept into individual systems, map dependencies, prioritize design order, and create the systems index."
+description: "Creates a visual and textual map of the project systems, services, data flows, and integration boundaries. Use when documenting system architecture or when the user mentions system map, architecture diagram, or service boundaries."
 argument-hint: "[optional: 'next' to pick highest-priority undesigned system, or a system name to hand off to /design-system]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion, TodoWrite

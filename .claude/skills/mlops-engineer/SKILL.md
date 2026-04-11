@@ -1,7 +1,7 @@
----
+﻿---
 name: mlops-engineer
 type: reference
-description: Build comprehensive ML pipelines, experiment tracking, and model registries with MLflow, Kubeflow, and modern MLOps tools.
+description: "Provides MLOps patterns for ML CI/CD pipelines, model registries, monitoring, and data drift detection. Use when setting up ML infrastructure or when the user mentions MLOps, model deployment, ML pipeline, or model monitoring."
 paths: ["**/*.py", "**/Dockerfile", "**/requirements*.txt", "**/mlflow*", "**/*.yaml"]
 effort: 4
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

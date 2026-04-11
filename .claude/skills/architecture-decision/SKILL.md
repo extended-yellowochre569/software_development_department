@@ -1,6 +1,6 @@
----
+﻿---
 name: architecture-decision
-description: "Creates an Architecture Decision Record (ADR) documenting a significant technical decision, its context, alternatives considered, and consequences. Every major technical choice should have an ADR."
+description: "Documents architectural and technology decisions as Architecture Decision Records (ADRs). Use when a significant tech-stack choice, design pattern, or infrastructure decision needs to be recorded with context and rationale."
 argument-hint: "[title]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write

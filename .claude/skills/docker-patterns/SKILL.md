@@ -1,7 +1,7 @@
----
+﻿---
 name: docker-patterns
 type: reference
-description: Docker and Docker Compose patterns for local development, container security, networking, volume strategies, and multi-service orchestration.
+description: "Provides Docker and Docker Compose patterns including multi-stage builds, networking, volumes, and production configurations. Use when working with Dockerfile or docker-compose.yml, or when the user mentions Docker, containers, or containerization."
 origin: ECC
 paths: ["**/Dockerfile*", "**/docker-compose*", "**/.dockerignore"]
 effort: 2

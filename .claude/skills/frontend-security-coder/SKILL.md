@@ -1,7 +1,7 @@
----
+﻿---
 name: frontend-security-coder
 type: reference
-description: Expert in secure frontend coding practices specializing in XSS prevention, output sanitization, and client-side security patterns.
+description: "Audits frontend code for XSS, CSRF, insecure storage, and input validation vulnerabilities. Use when reviewing frontend code for security or when the user mentions frontend security, XSS, CSRF, or client-side vulnerabilities."
 paths: ["**/*.tsx", "**/*.jsx", "**/*.ts", "**/*.js"]
 effort: 3
 allowed-tools: Read, Glob, Grep

@@ -1,6 +1,6 @@
----
+﻿---
 name: localize
-description: "Run the localization workflow: extract strings, validate localization readiness, check for hardcoded text, and generate translation-ready string tables."
+description: "Generates or updates i18n localization files, translation keys, and locale configurations. Use when adding a new language, updating translation strings, or when the user mentions localization, i18n, translation, or l10n."
 argument-hint: "[scan|extract|validate|status]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Bash

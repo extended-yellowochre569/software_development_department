@@ -1,7 +1,7 @@
----
+﻿---
 name: laravel-patterns
 type: reference
-description: Laravel architecture patterns, routing/controllers, Eloquent ORM, service layers, queues, events, caching, and API resources for production apps.
+description: "Provides Laravel PHP patterns for Eloquent ORM, Artisan commands, queues, middleware, and API resources. Use when working with PHP Laravel files (*.php) or when the user mentions Laravel, Eloquent, or PHP framework."
 origin: ECC
 paths: ["**/*.php", "**/artisan", "**/composer.json", "**/composer.lock"]
 effort: 3

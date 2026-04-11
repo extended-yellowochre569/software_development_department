@@ -1,7 +1,7 @@
----
+﻿---
 name: microservices-patterns
 type: reference
-description: "Design microservices architectures with service boundaries, event-driven communication, and resilience patterns. Use when building distributed systems, decomposing monoliths, or implementing micros..."
+description: "Provides microservices design patterns including service decomposition, API gateway, service mesh, circuit breakers, and saga orchestration. Use when designing a microservices system or when the user mentions microservices, service mesh, or distributed patterns."
 effort: 4
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true

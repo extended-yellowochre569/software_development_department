@@ -1,6 +1,6 @@
----
+﻿---
 name: bug-report
-description: "Creates a structured bug report from a description, or analyzes code to identify potential bugs. Ensures every bug report has full reproduction steps, severity assessment, and context."
+description: "Creates a structured bug report with reproduction steps, expected vs actual behavior, environment details, and severity assessment. Use when a bug or defect is found and needs to be formally documented."
 argument-hint: "[description]
 /bug-report analyze [path-to-file]"
 user-invocable: true

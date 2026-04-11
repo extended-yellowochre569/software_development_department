@@ -1,6 +1,6 @@
----
+﻿---
 name: estimate
-description: "Estimates task effort by analyzing complexity, dependencies, historical velocity, and risk factors. Produces a structured estimate with confidence levels."
+description: "Produces time and complexity estimates for features, tasks, or sprints using story points, t-shirt sizing, or day estimates. Use when the user asks for an estimate, wants to size a feature, or mentions estimation or planning poker."
 argument-hint: "[task-description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep

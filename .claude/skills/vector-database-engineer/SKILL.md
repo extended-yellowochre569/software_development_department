@@ -1,7 +1,7 @@
----
+﻿---
 name: vector-database-engineer
 type: reference
-description: "Expert in vector databases, embedding strategies, and semantic search implementation. Masters Pinecone, Weaviate, Qdrant, Milvus, and pgvector for RAG applications, recommendation systems, and similar"
+description: "Provides vector database and semantic search patterns for Pinecone, Weaviate, Qdrant, Milvus, and pgvector in RAG and recommendation systems. Use when implementing vector search or when the user mentions vector database, semantic search, embeddings, or similarity search."
 paths: ["**/*.py", "**/*.ts", "**/embeddings/**", "**/vector*", "**/pinecone*", "**/qdrant*"]
 when_to_use: "When implementing vector search with Pinecone, Weaviate, Qdrant, Milvus, or pgvector for semantic search and RAG applications"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

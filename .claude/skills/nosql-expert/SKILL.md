@@ -1,7 +1,7 @@
----
+﻿---
 name: nosql-expert
 type: reference
-description: "Expert guidance for distributed NoSQL databases (Cassandra, DynamoDB). Focuses on mental models, query-first modeling, single-table design, and avoiding hot partitions in high-scale systems."
+description: "Provides distributed NoSQL patterns for Cassandra and DynamoDB covering query-first modeling, single-table design, and partition key strategies. Use when designing NoSQL schemas or when the user mentions Cassandra, DynamoDB, or NoSQL modeling."
 paths: ["**/mongo*", "**/dynamo*", "**/cassandra*", "**/*.json"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

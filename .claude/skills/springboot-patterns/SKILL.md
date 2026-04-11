@@ -1,7 +1,7 @@
----
+﻿---
 name: springboot-patterns
 type: reference
-description: Spring Boot architecture patterns, REST API design, layered services, data access, caching, async processing, and logging. Use for Java Spring Boot backend work.
+description: "Provides Spring Boot architecture patterns for REST APIs, layered services, JPA data access, caching, async processing, and logging. Use when working with Java Spring Boot files (*.java, pom.xml) or when the user mentions Spring Boot, Spring Framework, or Java backend."
 origin: ECC
 paths: ["**/*.java", "**/pom.xml", "**/build.gradle*", "**/application*.yml"]
 when_to_use: "When building Java Spring Boot backends, designing REST APIs, implementing layered services, or configuring async processing"

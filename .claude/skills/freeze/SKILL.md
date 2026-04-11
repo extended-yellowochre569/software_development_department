@@ -1,6 +1,6 @@
----
+﻿---
 name: freeze
-description: "Khi cần lock codebase trước một release hoặc deploy — ngăn merge non-critical changes vào branch chính"
+description: "Locks the codebase to prevent unintended writes during a freeze period such as before a release or during an incident. Use when the user mentions freezing, code lock, or release lockdown."
 argument-hint: "[reason]"
 user-invocable: true
 allowed-tools: Read, Write, Bash

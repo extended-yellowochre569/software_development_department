@@ -1,7 +1,7 @@
----
+﻿---
 name: sprint-plan
 type: workflow
-description: "Generates a new sprint plan or updates an existing one based on the current milestone, completed work, and available capacity. Pulls context from production documents and design backlogs."
+description: "Generates or updates sprint plans with task breakdowns, capacity estimates, dependencies, and risk flags based on milestone goals and past velocity. Use when starting a new sprint, updating sprint progress, or checking sprint status."
 argument-hint: "[new|update|status]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit

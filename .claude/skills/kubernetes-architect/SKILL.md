@@ -1,7 +1,7 @@
----
+﻿---
 name: kubernetes-architect
 type: reference
-description: Expert Kubernetes architect specializing in cloud-native infrastructure, advanced GitOps workflows (ArgoCD/Flux), and enterprise container orchestration.
+description: "Designs Kubernetes deployments, services, ingress, RBAC, Helm charts, and cluster architecture. Use when working with Kubernetes YAML files or when the user mentions Kubernetes, K8s, Helm, or container orchestration."
 paths: ["**/*.yaml", "**/k8s/**", "**/helm/**", "**/kustomization*"]
 effort: 4
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

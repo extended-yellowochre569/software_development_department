@@ -1,6 +1,6 @@
----
+﻿---
 name: postmortem-writing
-description: "Write effective blameless postmortems with root cause analysis, timelines, and action items. Use when conducting incident reviews, writing postmortem documents, or improving incident response proce..."
+description: "Writes blameless postmortems with root cause analysis, incident timelines, contributing factors, and action items. Use when conducting incident reviews or when the user mentions postmortem, root cause analysis, or blameless review."
 when_to_use: "When conducting incident reviews, writing blameless postmortems, or documenting root cause analysis after production incidents"
 allowed-tools: Read, Glob, Grep, Bash
 argument-hint: "[incident description or ticket ID]"

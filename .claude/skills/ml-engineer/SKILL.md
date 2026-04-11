@@ -1,6 +1,6 @@
----
+﻿---
 name: ml-engineer
-description: Build production ML systems with PyTorch 2.x, TensorFlow, and modern ML frameworks. Implements model serving, feature engineering, A/B testing, and monitoring.
+description: "Provides machine learning engineering patterns for model training pipelines, feature engineering, experiment tracking, and model serving. Use when working with ML code or when the user mentions ML engineering, model training, or feature pipelines."
 paths: ["**/*.py", "**/*.ipynb", "**/requirements*.txt", "**/setup.py"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

@@ -1,6 +1,6 @@
----
+﻿---
 name: orchestrate
-description: "Orchestrate a multi-agent task — analyzes dependencies, builds a wave execution plan, coordinates with @producer for backlog registration, creates a feature branch, and runs specialist agents in parallel and sequential waves. Usage: /orchestrate <task description>"
+description: "Analyzes task dependencies, builds a wave execution plan, and runs specialist agents in parallel and sequential waves to complete a complex multi-agent task. Use when a task spans multiple domains and needs coordinated multi-agent execution."
 argument-hint: "<task description>"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, TodoWrite, Task

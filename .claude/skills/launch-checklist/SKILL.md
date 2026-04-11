@@ -1,6 +1,6 @@
----
+﻿---
 name: launch-checklist
-description: "Complete launch readiness validation covering every department: code, content, store, marketing, community, infrastructure, legal, and go/no-go sign-offs."
+description: "Generates a comprehensive product launch checklist covering technical readiness, marketing, support, and go-live steps. Use when preparing for a product launch or when the user mentions launch checklist or go-live readiness."
 argument-hint: "[launch-date or 'dry-run']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write

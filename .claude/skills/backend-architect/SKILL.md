@@ -1,6 +1,6 @@
----
+﻿---
 name: backend-architect
-description: Expert backend architect specializing in scalable API design, microservices architecture, and distributed systems.
+description: "Designs scalable backend architectures covering microservices, event-driven systems, API gateways, and data stores. Use when designing a backend system or when the user mentions backend architecture, scalability, or distributed systems."
 paths: ["**/src/**/*.ts", "**/src/**/*.js", "**/package.json"]
 effort: 5
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

@@ -1,7 +1,7 @@
----
+﻿---
 name: nextjs-best-practices
 type: reference
-description: "Next.js App Router principles. Server Components, data fetching, routing patterns."
+description: "Provides Next.js best practices for App Router, data fetching, caching, image optimization, and performance. Use when working with Next.js projects or when the user mentions Next.js performance or App Router best practices."
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*"]
 effort: 3
 allowed-tools: Read, Glob, Grep

@@ -1,7 +1,7 @@
----
+﻿---
 name: llm-application-dev-ai-assistant
 type: reference
-description: "You are an AI assistant development expert specializing in creating intelligent conversational interfaces, chatbots, and AI-powered applications. Design comprehensive AI assistant solutions with natur"
+description: "Provides implementation patterns for building AI assistants with conversation management, tool integration, and streaming responses. Use when building a conversational AI assistant or when the user mentions chatbot, AI assistant, or conversational AI."
 paths: ["**/*.py", "**/*.ts", "**/chatbot*", "**/assistant*"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

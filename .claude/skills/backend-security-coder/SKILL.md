@@ -1,7 +1,7 @@
----
+﻿---
 name: backend-security-coder
 type: reference
-description: Expert in secure backend coding practices specializing in input validation, authentication, and API security. Use PROACTIVELY for backend security implementations or security code reviews.
+description: "Audits and hardens backend code against OWASP vulnerabilities, injection attacks, auth weaknesses, and insecure configurations. Use when reviewing backend code for security or when the user mentions backend security, vulnerability, or OWASP."
 paths: ["**/src/**/*.ts", "**/src/**/*.js", "**/middlewares/**", "**/guards/**"]
 effort: 3
 allowed-tools: Read, Glob, Grep

@@ -1,6 +1,6 @@
----
+﻿---
 name: pr-writer
-description: ALWAYS use this skill when creating or updating pull requests — never create or edit a PR directly without it. Follows conventional commit format for PR titles, descriptions, and issue references. Trigger on any create PR, open PR, submit PR, make PR,...
+description: "Creates and formats pull request titles, descriptions, and linked issue references following conventional commit standards. Use when creating or updating a pull request or when the user mentions PR description, pull request, or opening a PR."
 when_to_use: "When creating or updating pull requests � generates PR title, description, and issue references following conventional commit format"
 allowed-tools: Read, Glob, Grep, Write, Bash
 argument-hint: "[PR title or empty for auto-generate from commits]"

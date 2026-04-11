@@ -1,6 +1,6 @@
----
+﻿---
 name: design-review
-description: "Reviews a product design document for completeness, internal consistency, implementability, and adherence to project design standards. Run this before handing a design document to programmers."
+description: "Reviews UI/UX designs, wireframes, and design systems for usability, accessibility, consistency, and implementation feasibility. Use when reviewing design specs or when the user mentions design review, UX review, or design feedback."
 argument-hint: "[path-to-design-doc]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep

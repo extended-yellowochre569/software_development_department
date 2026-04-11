@@ -1,7 +1,7 @@
----
+﻿---
 name: rag-engineer
 type: reference
-description: "Expert in building Retrieval-Augmented Generation systems. Masters embedding models, vector databases, chunking strategies, and retrieval optimization for LLM applications. Use when: building RAG, ..."
+description: "Provides Retrieval-Augmented Generation patterns covering embedding models, vector databases, chunking strategies, and retrieval optimization. Use when building RAG systems or when the user mentions RAG, vector search, embeddings, or retrieval-augmented generation."
 paths: ["**/*.py", "**/requirements*.txt", "**/embeddings/**", "**/vector*"]
 when_to_use: "When building RAG pipelines, choosing embedding models, implementing vector search, or optimizing retrieval for LLM applications"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

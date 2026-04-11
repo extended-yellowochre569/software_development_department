@@ -1,7 +1,7 @@
----
+﻿---
 name: compose-multiplatform-patterns
 type: reference
-description: Compose Multiplatform and Jetpack Compose patterns for KMP projects — state management, navigation, theming, performance, and platform-specific UI.
+description: "Provides Kotlin Multiplatform Compose patterns for shared UI across Android, iOS, and desktop. Use when working with KMP files (*.kt, build.gradle.kts) or when the user mentions Compose Multiplatform or KMP."
 origin: ECC
 paths: ["**/*.kt", "**/build.gradle*", "**/gradle.properties"]
 effort: 3

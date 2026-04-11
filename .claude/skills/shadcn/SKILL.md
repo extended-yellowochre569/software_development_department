@@ -1,7 +1,7 @@
----
+﻿---
 name: shadcn
 type: reference
-description: Manages shadcn/ui components and projects, providing context, documentation, and usage patterns for building modern design systems.
+description: "Provides shadcn/ui component integration patterns, theming, and design system composition for React projects. Use when working with shadcn/ui or when the user mentions shadcn, shadcn/ui, or building a component library."
 when_to_use: "When using shadcn/ui components, configuring component libraries, or building design systems with Radix and Tailwind"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: false

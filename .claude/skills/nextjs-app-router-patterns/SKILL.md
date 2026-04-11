@@ -1,7 +1,7 @@
----
+﻿---
 name: nextjs-app-router-patterns
 type: reference
-description: "Master Next.js 14+ App Router with Server Components, streaming, parallel routes, and advanced data fetching. Use when building Next.js applications, implementing SSR/SSG, or optimizing React Serve..."
+description: "Provides Next.js App Router patterns for Server Components, Client Components, layouts, loading states, and server actions. Use when working with Next.js app directory files or when the user mentions App Router, Server Components, or server actions."
 paths: ["**/*.tsx", "**/*.jsx", "**/next.config.*", "**/app/**/*.ts"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

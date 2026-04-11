@@ -1,7 +1,7 @@
----
+﻿---
 name: tailwind-patterns
 type: reference
-description: "Tailwind CSS v4 principles. CSS-first configuration, container queries, modern patterns, design token architecture."
+description: "Provides Tailwind CSS v4 patterns for CSS-first configuration, container queries, design tokens, and utility-first component architecture. Use when working with Tailwind CSS files or when the user mentions Tailwind, Tailwind v4, or utility-first CSS."
 paths: ["**/*.tsx", "**/*.jsx", "**/*.css", "**/tailwind.config.*"]
 when_to_use: "When writing Tailwind CSS v4, configuring design tokens, implementing container queries, or building responsive layouts"
 allowed-tools: Read, Glob, Grep

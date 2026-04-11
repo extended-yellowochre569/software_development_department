@@ -1,7 +1,7 @@
----
+﻿---
 name: llm-app-patterns
 type: reference
-description: "Production-ready patterns for building LLM applications. Covers RAG pipelines, agent architectures, prompt IDEs, and LLMOps monitoring. Use when designing AI applications, implementing RAG, buildin..."
+description: "Provides architectural patterns for LLM-powered applications including prompt engineering, RAG, agent loops, and evaluation. Use when building LLM-based features or when the user mentions LLM app architecture, prompt design, or AI system patterns."
 paths: ["**/*.py", "**/*.ts", "**/openai*", "**/anthropic*", "**/langchain*"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

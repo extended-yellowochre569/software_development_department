@@ -1,7 +1,7 @@
----
+﻿---
 name: security-audit
 type: workflow
-description: "Comprehensive security auditing workflow covering web application testing, API security, penetration testing, vulnerability scanning, and security hardening."
+description: "Conducts a comprehensive security audit covering web application vulnerabilities, API security, OWASP Top 10, and security hardening recommendations. Use when auditing a codebase for security or when the user mentions security audit, penetration testing, or vulnerability scan."
 context: fork
 agent: security-engineer
 when_to_use: "When performing security audits, vulnerability scanning, penetration testing, or hardening web applications and APIs"

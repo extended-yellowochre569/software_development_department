@@ -1,7 +1,7 @@
----
+﻿---
 name: react-native-architecture
 type: reference
-description: "Build production React Native apps with Expo, navigation, native modules, offline sync, and cross-platform patterns. Use when developing mobile apps, implementing native integrations, or architecti..."
+description: "Provides React Native architecture patterns for navigation, state management, native module integration, offline sync, and Expo workflows. Use when working with React Native files or when the user mentions React Native, Expo, or mobile app."
 paths: ["**/*.tsx", "**/*.jsx", "**/app.json", "**/metro.config.*", "**/expo.config.*"]
 when_to_use: "When developing React Native or Expo mobile apps, implementing native modules, navigation, or cross-platform patterns"
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

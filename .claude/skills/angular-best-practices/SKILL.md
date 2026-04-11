@@ -1,7 +1,7 @@
----
+﻿---
 name: angular-best-practices
 type: reference
-description: "Angular performance optimization and best practices guide. Use when writing, reviewing, or refactoring Angular code for optimal performance, bundle size, and rendering efficiency."
+description: "Provides Angular best practices for components, modules, services, and reactive patterns. Use when working with Angular TypeScript files, component templates, NgModules, RxJS observables, or when the user mentions Angular, ng, or Angular CLI."
 paths: ["**/*.ts", "**/*.html", "**/angular.json"]
 effort: 3
 allowed-tools: Read, Glob, Grep

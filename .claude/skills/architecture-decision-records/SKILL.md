@@ -1,6 +1,6 @@
----
+﻿---
 name: architecture-decision-records
-description: "Write and maintain Architecture Decision Records (ADRs) following best practices for technical decision documentation. Use when documenting significant technical decisions, reviewing past architect..."
+description: "Manages the ADR (Architecture Decision Record) registry in docs/decisions/. Use when listing, searching, or creating ADRs, or when the user mentions architectural decisions, ADR, or design records."
 context: fork
 agent: technical-director
 allowed-tools: Read, Glob, Grep, Write, Bash

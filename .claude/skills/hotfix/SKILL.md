@@ -1,6 +1,6 @@
----
+﻿---
 name: hotfix
-description: "Emergency fix workflow that bypasses normal sprint processes with a full audit trail. Creates hotfix branch, tracks approvals, and ensures the fix is backported correctly."
+description: "Executes a hotfix workflow: creates a hotfix branch, applies the targeted fix, runs verification, and prepares release artifacts. Use when a critical production bug needs immediate patching or when the user mentions hotfix or emergency fix."
 argument-hint: "[bug-id or description]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

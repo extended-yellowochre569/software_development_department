@@ -1,6 +1,6 @@
----
+﻿---
 name: code-review
-description: "Performs an architectural and quality code review on a specified file or set of files. Checks for coding standard compliance, architectural pattern adherence, SOLID principles, testability, and performance concerns."
+description: "Performs architectural and quality code review checking coding standards, SOLID principles, architectural compliance, and common software issues. Use when reviewing a file or directory before merge, or when the user mentions code review, PR review, or quality check."
 argument-hint: "[path-to-file-or-directory]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash

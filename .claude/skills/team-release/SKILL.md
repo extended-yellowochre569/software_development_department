@@ -1,6 +1,6 @@
----
+﻿---
 name: team-release
-description: "Orchestrate the release team: coordinates release-manager, qa-lead, devops-engineer, and producer to execute a release from candidate to deployment."
+description: "Orchestrates the release team of release-manager, qa-lead, devops-engineer, and producer to execute a release from candidate to production deployment. Use when coordinating a release across QA, DevOps, and release management."
 argument-hint: "[version number or 'next']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite

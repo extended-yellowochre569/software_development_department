@@ -1,7 +1,7 @@
----
+﻿---
 name: drizzle-orm-expert
 type: reference
-description: "Expert in Drizzle ORM for TypeScript — schema design, relational queries, migrations, and serverless database integration. Use when building type-safe database layers with Drizzle."
+description: "Provides Drizzle ORM schema design, query patterns, migrations, and TypeScript integration for SQL databases. Use when working with Drizzle files (schema.ts, drizzle.config.ts) or when the user mentions Drizzle ORM or drizzle-kit."
 paths: ["**/drizzle.config.*", "**/db/**/*.ts", "**/db/**/*.js"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

@@ -1,7 +1,7 @@
----
+﻿---
 name: backend-patterns
 type: reference
-description: Backend architecture patterns, API design, database optimization, and server-side best practices for Node.js, Express, and Next.js API routes.
+description: "Applies production backend patterns: middleware, error handling, auth, database integration, and API design. Use when working with backend service files or when the user mentions Express, Fastify, NestJS, backend patterns, or service architecture."
 origin: ECC
 paths: ["**/src/**/*.ts", "**/src/**/*.js", "**/routes/**", "**/controllers/**"]
 effort: 2

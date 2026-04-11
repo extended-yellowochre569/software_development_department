@@ -1,7 +1,7 @@
----
+﻿---
 name: sql-optimization-patterns
 type: reference
-description: "Master SQL query optimization, indexing strategies, and EXPLAIN analysis to dramatically improve database performance and eliminate slow queries. Use when debugging slow queries, designing database..."
+description: "Provides SQL query optimization techniques, indexing strategies, and EXPLAIN analysis for improving database performance and eliminating slow queries. Use when debugging slow SQL queries or when the user mentions SQL optimization, slow queries, or database performance."
 paths: ["**/*.sql", "**/migrations/**", "**/schema.*", "**/*.prisma"]
 when_to_use: "When debugging slow SQL queries, designing indexing strategies, or analyzing EXPLAIN plans for performance optimization"
 allowed-tools: Read, Glob, Grep

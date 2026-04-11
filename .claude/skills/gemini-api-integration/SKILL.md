@@ -1,7 +1,7 @@
----
+﻿---
 name: gemini-api-integration
 type: reference
-description: "Use when integrating Google Gemini API into projects. Covers model selection, multimodal inputs, streaming, function calling, and production best practices."
+description: "Provides code patterns for Google Gemini API integration including text generation, multimodal inputs, and streaming. Use when working with Google AI SDK or when the user mentions Gemini API, Google AI, or Vertex AI."
 paths: ["**/*.py", "**/*.ts", "**/google*", "**/gemini*", "**/vertex*"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash

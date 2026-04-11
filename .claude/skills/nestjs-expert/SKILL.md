@@ -1,7 +1,7 @@
----
+﻿---
 name: nestjs-expert
 type: reference
-description: "Nest.js framework expert specializing in module architecture, dependency injection, middleware, guards, interceptors, testing with Jest/Supertest, TypeORM/Mongoose integration, and Passport.js auth..."
+description: "Provides NestJS patterns for modules, controllers, providers, guards, interceptors, and microservices. Use when working with NestJS TypeScript files (*.module.ts, *.controller.ts) or when the user mentions NestJS, Nest.js, or NestJS modules."
 paths: ["**/nest-cli.json", "**/src/**/*.ts", "**/*.module.ts", "**/*.controller.ts", "**/*.service.ts"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
