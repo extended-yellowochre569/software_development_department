@@ -17,6 +17,8 @@ If the user invokes these short commands, or if the task context implies them, Y
 - **`/plan`**: ALWAYS trigger the `planning-and-task-breakdown` skill first for complex epics. Output an atomic markdown task checklist. **Do NOT write code yet.**
 - **`/spec`**: ALWAYS trigger the `spec-driven-development` skill before writing logic for a task. Secure explicit blueprint/architecture approval from the user.
 - **`/tdd`**: ALWAYS trigger the `test-driven-development` skill when writing the source. Write failing tests, check CMD outputs (🔴 RED), implement, and pass (🟢 GREEN). **Never claim success without terminal test logs.**
+- **`/context`** or **`/memory`**: ALWAYS trigger the `context-engineering` skill. Diagnose context stuffing, optimize persistent vs episodic knowledge, and enforce the Research-Plan-Reset-Implement cycle using `mcp_supermemory` tools.
+
 
 ## Project Durable Memory
 
