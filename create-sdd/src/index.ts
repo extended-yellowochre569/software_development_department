@@ -26,9 +26,12 @@ if (process.argv[1]?.endsWith('create-sdd') || process.argv[1]?.endsWith('create
     new Command('create')
       .description('Create SDD in a new directory')
       .argument('[dir]', 'Target directory', '.')
-      .action(async (dir: string) => {
+      .option('--stack <preset>', 'Use a preset stack (ts-nextjs, py-fastapi, go-gin, ...)')
+      .option('--minimal', 'Install only CLAUDE.md and core rules')
+      .option('-y, --yes', 'Skip all confirmation prompts')
+      .action(async (dir: string, opts: { stack?: string; minimal?: boolean; yes?: boolean }) => {
         const { run } = await import('./commands/create.js');
-        await run(dir);
+        await run(dir, opts);
       })
   );
 

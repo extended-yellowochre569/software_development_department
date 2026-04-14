@@ -7,10 +7,12 @@ import { promptModules, ALL_MODULES, MINIMAL_MODULES } from '../prompts/modules.
 import { buildVars } from '../template/engine.js';
 import { install } from '../template/installer.js';
 import { readPackageVersion } from '../utils/version.js';
+import { isGitRepo, writeGitignore } from '../utils/git.js';
 
 export interface CreateOptions {
   stack?: string;
   minimal?: boolean;
+  yes?: boolean;   // skip all confirmation prompts
 }
 
 /** Called when binary is invoked as `npx create-sdd [dir]` */
@@ -19,6 +21,7 @@ export function createCommand(args: string[]): void {
   const opts: CreateOptions = {
     stack:   args.includes('--stack')   ? args[args.indexOf('--stack') + 1]   : undefined,
     minimal: args.includes('--minimal'),
+    yes:     args.includes('--yes') || args.includes('-y'),
   };
   run(dir, opts).catch((err) => {
     console.error(chalk.red('Error:'), err.message);
@@ -32,8 +35,9 @@ export async function run(targetDir: string, opts: CreateOptions = {}): Promise<
 
   p.intro(chalk.bgCyan(' create-sdd ') + '  Claude Code Software Development Department');
 
-  // 1. Confirm target directory
-  if (existsSync(absTarget) && targetDir !== '.') {
+  // 1. Confirm target directory (skip if --yes or dir is empty/new)
+  const dirExists = existsSync(absTarget) && targetDir !== '.';
+  if (dirExists && !opts.yes) {
     const overwrite = await p.confirm({
       message: `Directory "${projectName}" already exists. Continue anyway?`,
       initialValue: false,
@@ -42,11 +46,17 @@ export async function run(targetDir: string, opts: CreateOptions = {}): Promise<
   }
   mkdirSync(absTarget, { recursive: true });
 
-  // 2. Stack selection
-  const stackVars = await promptStack(opts.stack);
+  // 2. Stack selection (skip TTY prompts when preset is provided)
+  const stackVars = opts.stack
+    ? await promptStack(opts.stack)                        // preset → no TTY needed
+    : opts.yes
+      ? {}                                                 // --yes without stack → unconfigured
+      : await promptStack();                               // interactive
 
-  // 3. Module selection
-  const modules = await promptModules(opts.minimal);
+  // 3. Module selection (skip TTY prompts when --minimal or --yes)
+  const modules = (opts.minimal || opts.yes)
+    ? (opts.minimal ? MINIMAL_MODULES : ALL_MODULES)
+    : await promptModules();
 
   // 4. Build template vars
   const sddVersion = readPackageVersion();
@@ -67,7 +77,13 @@ export async function run(targetDir: string, opts: CreateOptions = {}): Promise<
     p.log.warn(`Skipped ${result.skipped.length} existing files (preserved user content)`);
   }
 
-  // 6. Next steps
+  // 6. Git setup
+  writeGitignore(absTarget);
+  if (!isGitRepo(absTarget)) {
+    p.log.info('No git repo detected — run `git init` to start tracking changes');
+  }
+
+  // 7. Next steps
   p.outro(
     chalk.green('✓ SDD installed!') +
     `\n\n  Next steps:\n` +
