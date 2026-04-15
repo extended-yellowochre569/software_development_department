@@ -10,7 +10,11 @@
 | `ux-designer` | 2 — Leads | Sonnet | User flows, wireframes, interaction design | Accessibility, design systems |
 | `qa-lead` | 2 — Leads | Sonnet | Test strategy, QA processes, quality gates | Test planning, risk-based testing |
 | `release-manager` | 2 — Leads | Sonnet | Release planning, deployment, rollback | Versioning, release checklists |
+| `investigator` | 2 — Leads | Sonnet | Root cause analysis, execution tracing | Reverse engineering, evidence collection |
+| `verifier` | 2 — Leads | Sonnet | Hypothesis validation, reproduction | Devil's advocate, testing rigor |
+| `solver` | 2 — Leads | Sonnet | Solution design, tradeoff analysis | Surgical architecture, technical strategy |
 | `frontend-developer` | 3 — Specialists | Sonnet | UI components, client-side logic | React/Vue/Angular, CSS, accessibility |
+| `ui-spec-designer` | 3 — Specialists | Sonnet | UI Specifications, component decomposition | Component state matrices, EARS interactions |
 | `backend-developer` | 3 — Specialists | Sonnet | APIs, business logic, server-side | REST/GraphQL, auth, integrations |
 | `fullstack-developer` | 3 — Specialists | Sonnet | End-to-end feature delivery | Frontend + backend integration |
 | `data-engineer` | 3 — Specialists | Sonnet | Database schemas, migrations, pipelines | Schema design, query optimization |

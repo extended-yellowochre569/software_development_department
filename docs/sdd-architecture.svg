@@ -1,0 +1,118 @@
+
+<svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+            <polyline points="0 0, 10 3.5, 0 7" fill="none" stroke="#1d1916" stroke-width="1.5" />
+        </marker>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap');
+        </style>
+    </defs>
+    
+    <rect width="1000" height="800" fill="#f8f6f3" />
+    
+    <text x="500" y="50" font-family="Inter, sans-serif" font-size="32" font-weight="600" fill="#1d1916" text-anchor="middle">SDD PROJECT ARCHITECTURE: STEEL DISCIPLINE</text>
+    <text x="500" y="80" font-family="Inter, sans-serif" font-size="16" fill="#7d6350" text-anchor="middle">Style 6: Claude Official Premium Branding</text>
+
+    <text x="150" y="150" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#7d6350">TIER 1: STRATEGIC</text>
+    
+    <g>
+        <polygon points="343.30127018922195,225.0 300.0,250.0 256.69872981077805,225.0 256.69872981077805,175.0 300.0,150.0 343.3012701892219,174.99999999999997" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="300" y="205" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@cto</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="543.3012701892219,225.0 500.0,250.0 456.69872981077805,225.0 456.69872981077805,175.0 500.0,150.0 543.3012701892219,174.99999999999997" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="500" y="205" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@tech-director</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="743.3012701892219,225.0 700.0,250.0 656.6987298107781,225.0 656.6987298107781,175.0 700.0,150.0 743.3012701892219,174.99999999999997" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="700" y="205" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@producer</text>
+    </g>
+    
+
+    <text x="150" y="350" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#7d6350">TIER 2: TACTICAL</text>
+    
+    <g>
+        <polygon points="243.30127018922195,425.0 200.0,450.0 156.69872981077805,425.0 156.69872981077808,375.0 200.0,350.0 243.30127018922192,375.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="200" y="405" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@product-mgr</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="443.30127018922195,425.0 400.0,450.0 356.69872981077805,425.0 356.69872981077805,375.0 400.0,350.0 443.3012701892219,375.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="400" y="405" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@lead-prog</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="643.3012701892219,425.0 600.0,450.0 556.6987298107781,425.0 556.6987298107781,375.0 600.0,350.0 643.3012701892219,375.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="600" y="405" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@qa-lead</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="843.3012701892219,425.0 800.0,450.0 756.6987298107781,425.0 756.6987298107781,375.0 800.0,350.0 843.3012701892219,375.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="800" y="405" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@release-mgr</text>
+    </g>
+    
+
+    <text x="150" y="550" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#7d6350">TIER 3: OPERATIONAL</text>
+    
+    <g>
+        <polygon points="243.30127018922195,625.0 200.0,650.0 156.69872981077805,625.0 156.69872981077808,575.0 200.0,550.0 243.30127018922192,575.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="200" y="605" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@frontend</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="443.30127018922195,625.0 400.0,650.0 356.69872981077805,625.0 356.69872981077805,575.0 400.0,550.0 443.3012701892219,575.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="400" y="605" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@backend</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="643.3012701892219,625.0 600.0,650.0 556.6987298107781,625.0 556.6987298107781,575.0 600.0,550.0 643.3012701892219,575.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="600" y="605" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@ui-spec</text>
+    </g>
+    
+    
+    <g>
+        <polygon points="843.3012701892219,625.0 800.0,650.0 756.6987298107781,625.0 756.6987298107781,575.0 800.0,550.0 843.3012701892219,575.0" fill="#c99b20" stroke="#1d1916" stroke-width="2" />
+        <text x="800" y="605" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1d1916" text-anchor="middle">@specialists</text>
+    </g>
+    
+
+    
+    <g>
+        <path d="M 425 710 L 425 750 A 75.0 10 0 0 0 575 750 L 575 710 A 75.0 10 0 0 0 425 710 Z" fill="#7d6350" stroke="#1d1916" stroke-width="2" />
+        <ellipse cx="500.0" cy="710" rx="75.0" ry="10" fill="#7d6350" stroke="#1d1916" stroke-width="2" />
+        <text x="500.0" y="735.0" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#f8f6f3" text-anchor="middle">SUPERMEMORY</text>
+    </g>
+    
+
+    
+    <line x1="300" y1="250" x2="400" y2="350" stroke="#1d1916" stroke-width="2" marker-end="url(#arrowhead)"  />
+    
+    
+    <line x1="700" y1="250" x2="800" y2="350" stroke="#1d1916" stroke-width="2" marker-end="url(#arrowhead)"  />
+    
+    
+    <line x1="200" y1="450" x2="200" y2="550" stroke="#1d1916" stroke-width="2" marker-end="url(#arrowhead)"  />
+    
+    
+    <line x1="400" y1="450" x2="400" y2="550" stroke="#1d1916" stroke-width="2" marker-end="url(#arrowhead)"  />
+    
+    
+    <line x1="600" y1="450" x2="600" y2="550" stroke="#1d1916" stroke-width="2" marker-end="url(#arrowhead)"  />
+    
+    
+    
+    <line x1="500" y1="700" x2="400" y2="650" stroke="#7d6350" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5" />
+    
+    
+    <text x="500" y="780" font-family="Inter, sans-serif" font-size="12" fill="#1d1916" text-anchor="middle">2026 SDD System Integration | High Fidelity Architecture</text>
+</svg>

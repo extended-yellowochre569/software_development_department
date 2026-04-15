@@ -18,6 +18,9 @@ If the user invokes these short commands, or if the task context implies them, Y
 - **`/spec`**: ALWAYS trigger the `spec-driven-development` skill before writing logic for a task. Secure explicit blueprint/architecture approval from the user.
 - **`/tdd`**: ALWAYS trigger the `test-driven-development` skill when writing the source. Write failing tests, check CMD outputs (🔴 RED), implement, and pass (🟢 GREEN). **Never claim success without terminal test logs.**
 - **`/context`** or **`/memory`**: ALWAYS trigger the `context-engineering` skill. Diagnose context stuffing, optimize persistent vs episodic knowledge, and enforce the Research-Plan-Reset-Implement cycle using `mcp_supermemory` tools.
+- **`/diagnose`**: ALWAYS trigger the `diagnose` skill for complex, non-obvious failures. Use sequential Investigator -> Verifier -> Solver logic.
+- **`/vertical-slice`**: ALWAYS trigger the `vertical-slicing` skill when planning fullstack features. Divide work into functional end-to-end units.
+- **`/ui-spec`**: ALWAYS trigger the `ui-spec-creation` skill. Transform PRDs and prototypes into rigorous technical UI specifications with state matrices.
 
 
 ## Project Durable Memory

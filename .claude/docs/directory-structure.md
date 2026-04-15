@@ -10,11 +10,17 @@
 ├── src/                         # Application source code (api, frontend, backend, ai, networking, ui, tools)
 ├── design/                      # Design files (wireframes, research, design specs)
 ├── docs/                        # Technical documentation
+│   ├── ui-spec/                 # UI Specifications
+│   │   ├── assets/              # Prototype code and screenshots
+│   │   └── feature-ui-spec.md   # Feature-specific UI spec
 │   ├── technical/               # Architecture, decisions, API, database specs
-│   │   ├── ARCHITECTURE.md      # System architecture (C4 model) — owned by @technical-director
-│   │   ├── DECISIONS.md         # ADR log (append-only) — owned by @technical-director / @cto
+│   │   ├── ARCHITECTURE.md      # System architecture — owned by @technical-director
+│   │   ├── DECISIONS.md         # ADR log — owned by @technical-director / @cto
 │   │   ├── API.md               # API reference — owned by @backend-developer
-│   │   └── DATABASE.md          # Schema documentation — owned by @data-engineer
+│   │   ├── DATABASE.md          # Schema documentation — owned by @data-engineer
+│   │   ├── INVESTIGATIONS.md    # Investigation history — owned by @investigator
+│   │   ├── VERIFICATIONS.md     # Verification reports — owned by @verifier
+│   │   └── SOLUTIONS.md         # Proposed solution designs — owned by @solver
 │   └── user/                    # User-facing documentation
 │       └── USER_GUIDE.md        # End-user guide — owned by @tech-writer
 ├── tests/                       # Test suites (unit, integration, e2e, performance)

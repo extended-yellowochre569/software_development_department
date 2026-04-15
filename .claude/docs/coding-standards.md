@@ -36,3 +36,9 @@
   7. **Configuration Parameters** -- configurable values with safe ranges identified
   8. **Acceptance Criteria** -- testable success conditions
 - All configurable values must link to their source rationale
+
+# Fullstack Development Patterns
+
+- **Vertical Slice First**: When creating a new feature that spans backend and frontend, implement the smallest functional slice first.
+- **Contract Enforcement**: Define the interface between frontend and backend in a Design Doc or ADR before writing implementation code.
+- **E2E Integration Verification**: A task is only "Integration Complete" when the data flows correctly from the database to the UI.

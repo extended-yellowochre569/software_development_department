@@ -64,3 +64,9 @@
     - Examples of weak criteria: "looks good", "should be fine", "works as expected"
     - Do not begin implementation until the plan has been presented and approved
     - Single-step tasks with obvious success criteria are exempt
+
+13. **Fullstack Vertical Slicing**: When implementing fullstack features, plan work in vertical slices:
+    - Each slice is a functional unit covering database, backend, and frontend.
+    - API contracts between layers must be locked (via Design Doc or ADR) before implementation.
+    - A slice is not complete until it is integrated and verified end-to-end.
+    - Prefer multiple small vertical slices over one large monolithic fullstack task.

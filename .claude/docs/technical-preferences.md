@@ -11,6 +11,12 @@
 - **Backend Framework**: [not configured] <!-- e.g. Express / FastAPI / NestJS / Rails -->
 - **Database**: [not configured] <!-- e.g. PostgreSQL 16 / MySQL 8 / MongoDB / SQLite -->
 
+## Development Philosophy
+
+- **Vertical Slicing**: Features are developed and delivered in end-to-end "slices" (DB schema → API → UI) rather than horizontal layers. Each slice must be functional and testable on its own.
+- **Value-First Planning**: Work plans are organized by user-value units, ensuring that each phase produces a working piece of the feature.
+- **Surgical Changes**: Adhere to "Steel Discipline" by making the minimal necessary changes to achieve the goal, preserving system stability.
+
 ## Naming Conventions
 
 - **Classes / Types**: PascalCase

@@ -12,11 +12,11 @@
         +--------+        +------+------+    (coordinates all)
         |                 |      |      |
  product-manager    lead-programmer  qa-lead  release-manager
-        |                 |
-   ux-designer     +------+------+------+------+------+------+
-   ux-researcher   |      |      |      |      |      |      |
-                frontend backend  full  data   ai    net   tools
-                -devlpr -devlpr stack  -engr  -prg   -prg  -prg
+        |                 |      |      |
+   ux-designer     +------+------+      +------+------+------+
+   ux-researcher   |      |      |      |             |      |
+                frontend backend  full investigator verifier solver
+                -devlpr -devlpr stack  (Tier 2 Leads for Diagnosis)
                            |
                     ui-programmer
 
@@ -29,6 +29,7 @@
     tech-writer           -- API docs, changelogs, developer guides
     community-manager     -- User comms, feedback synthesis, release announcements
     prototyper            -- Rapid PoC builds, technical spikes
+    ui-spec-designer      -- Detailed UI specifications, state matrices, interaction definitions
 ```
 
 ## Delegation Rules
@@ -40,10 +41,13 @@
 | `cto` | `technical-director`, `product-manager`, `producer` |
 | `technical-director` | `lead-programmer`, `devops-engineer`, `security-engineer`, `performance-analyst` |
 | `producer` | Any agent (task assignment within their domain only) |
-| `product-manager` | `ux-designer`, `ux-researcher`, `tech-writer`, `community-manager` |
-| `lead-programmer` | `frontend-developer`, `backend-developer`, `fullstack-developer`, `data-engineer`, `ai-programmer`, `network-programmer`, `tools-programmer`, `ui-programmer` |
+| `product-manager` | `ux-designer`, `ux-researcher`, `ui-spec-designer`, `tech-writer`, `community-manager` |
+| `lead-programmer` | `frontend-developer`, `backend-developer`, `fullstack-developer`, `data-engineer`, `ai-programmer`, `network-programmer`, `tools-programmer`, `ui-programmer`, `ui-spec-designer` |
 | `qa-lead` | `qa-tester` |
 | `release-manager` | `devops-engineer` (build/deploy), `qa-lead` (release testing), `tech-writer` (release notes) |
+| `investigator` | `backend-developer`, `frontend-developer`, `qa-tester` (probes/logs) |
+| `verifier` | `qa-tester` (reproduction), `performance-analyst` |
+| `solver` | `backend-developer`, `frontend-developer`, `tech-writer` |
 | `security-engineer` | `lead-programmer` (secure patterns), `devops-engineer` (infra security) |
 | `accessibility-specialist` | `ux-designer` (accessible flows), `frontend-developer` (implementation), `qa-tester` (a11y testing) |
 | `prototyper` | *(works independently, reports findings to leads)* |
@@ -111,7 +115,20 @@ Phase 8  — Synthesis report with PR suggestion
 11. producer          -- Marks feature complete
 ```
 
-### Pattern 2: Bug Fix
+### Pattern 2: Deep Bug Diagnosis (Investigator -> Verifier -> Solver)
+
+Use `/diagnose <bug-id>` for complex, non-obvious failures that require deep tracing.
+
+```
+1. investigator       -- Maps execution path, builds evidence matrix, localized fault
+2. verifier           -- Attempts to refute findings, reproducing symptom via triangulation
+3. solver             -- Proposes 3-option solution design with surgical implementation plan
+4. lead-programmer    -- Reviews solution and selects option
+5. [specialist dev]   -- Implements the surgical fix
+6. qa-tester          -- Verifies fix and runs regression
+```
+
+### Pattern 3: Standard Bug Fix
 
 ```
 1. qa-tester          -- Files bug report with /bug-report
