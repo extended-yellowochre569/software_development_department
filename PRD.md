@@ -9,10 +9,10 @@
 
 ---
 
-**Version**: 1.0
-**Status**: Draft
-**Last updated by human**: [YYYY-MM-DD]
-**Product owner**: [Name]
+**Version**: 1.31.0
+**Status**: Active / Refinement
+**Last updated by human**: 2026-04-17
+**Product owner**: Software Development Department Engineer
 
 ---
 
@@ -28,7 +28,7 @@
 
 ## 1. Executive Summary
 
-[3–5 sentences. What is this product? What core problem does it solve? Who are the primary users? What is the intended outcome after using it?]
+SDD-Upgrade is a **governed multi-agent harness for Claude Code** designed to bring enterprise-grade structure, observability, and discipline to AI-assisted software development. It solves the problem of context sprawl and coordination fatigue by implementing specialized subagents with clear domain ownership, a 5-layer tiered memory architecture, and deterministic lifecycle hooks. The intended outcome is to enable developers to build complex systems reliably, maintaining high code quality and architectural integrity over long-term projects.
 
 ---
 
@@ -36,15 +36,18 @@
 
 ### 2.1 Current Situation
 
-[Describe the world as it is today — what are users doing now without this product? What tools, workarounds, or manual processes do they rely on?]
+Modern AI coding tools like Claude Code are incredibly powerful but often operate in a "stateless" or "episodic" manner. Users manually manage context, repeat instructions, and struggle to maintain consistent patterns across multiple files and sessions. Complex architectural decisions are often lost in chat history, leading to technical debt and drift from original requirements.
 
 ### 2.2 The Problem
 
-[Precisely define the problem. What friction, inefficiency, or unmet need exists? Be specific.]
+As project complexity grows, the "single-agent" approach fails due to context limits and cognitive overload. There is a lack of:
+1.  **Domain Specialization:** One agent trying to be architect, coder, and tester.
+2.  **Long-term Memory:** Important constraints and decisions are forgotten when context is compacted.
+3.  **Process Governance:** No automated checks for security, coding standards, or workflow compliance.
 
 ### 2.3 Why Now
 
-[Why is this the right time to build this? Market conditions, user demand, technology availability, business opportunity.]
+The shift from "AI autocompletion" to "Agentic Software Engineering" requires a robust infrastructure (harness) to manage autonomous agents. SDD-Upgrade provides this harness, allowing developers to scale their productivity without sacrificing control or quality.
 
 ---
 
@@ -52,17 +55,18 @@
 
 ### 3.1 Business Goals
 
-- [Goal 1: e.g., "Reduce customer support tickets related to onboarding by 40%"]
-- [Goal 2]
-- [Goal 3]
+- **G-001**: Reduce "context-sprawl" by at least 50% through tiered memory management.
+- **G-002**: Enable 100% adherence to critical security and formatting rules via automated hooks.
+- **G-003**: Provide a reusable scaffold for 5+ diverse tech stacks (Nexjs, Django, FastAPI, etc.).
 
 ### 3.2 Success Metrics
 
 | Metric | Baseline | Target | How Measured |
 |--------|----------|--------|--------------|
-| [e.g., Onboarding completion rate] | [0%] | [80%] | [Analytics event] |
-| [e.g., Time to first value] | [N/A] | [< 5 min] | [Session recording] |
-| [e.g., Weekly active users] | [0] | [500 in 3 months] | [Analytics] |
+| Project Adoption Rate | 0 | 10+ projects | Internal tally |
+| Skill Reuse % | < 10% | > 40% | /harness-audit metrics |
+| Time-to-First-PRD | > 1 hour | < 30 min | User feedback / timing |
+| Governance Score | 50/100 | > 90/100 | `scripts/harness-audit.js` |
 
 ---
 
@@ -88,23 +92,23 @@
 
 ## 5. Functional Requirements
 
-> Requirements are numbered FR-XXX for unambiguous cross-referencing by agents and in tests.
+### 5.1 Multi-Agent Orchestration
 
-### 5.1 [Feature Area: e.g., Authentication]
+- **FR-001**: Must support 25+ specialized agent domains (Backend, Frontend, QA, etc.).
+- **FR-002**: A2A Handoff Contracts to ensure data fidelity between agents.
+- **FR-003**: Circuit Breaker pattern to prevent infinite agent loops and token waste.
 
-- **FR-001**: [Users must be able to register with email and password]
-- **FR-002**: [Users must be able to log in with existing credentials]
-- **FR-003**: [Users must be able to reset their password via email]
-- **FR-004**: [Sessions must expire after 30 days of inactivity]
+### 5.2 Memory Infrastructure
 
-### 5.2 [Feature Area: e.g., Dashboard]
+- **FR-010**: 5-Layer Tiered Memory (Immediate -> Episodic -> Durable -> Archive -> Supermemory).
+- **FR-011**: Automated "Dream" consolidation to migrate episodic knowledge to durable logs.
+- **FR-012**: YAML frontmatter support for all Tier-2 memory files for programmatic indexing.
 
-- **FR-010**: [...]
-- **FR-011**: [...]
+### 5.3 Governance & Hooks
 
-### 5.3 [Feature Area: e.g., Settings]
-
-- **FR-020**: [...]
+- **FR-020**: Security Shield hooks to intercept and block destructive bash commands.
+- **FR-021**: Decision Ledger (JSONL) to record all architecture/compliance decisions.
+- **FR-022**: Automated `/harness-audit` command to score repository health.
 
 ---
 

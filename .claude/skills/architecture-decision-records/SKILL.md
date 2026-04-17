@@ -1,16 +1,24 @@
----
 name: architecture-decision-records
-description: "Manages the ADR (Architecture Decision Record) registry in docs/decisions/. Use when listing, searching, or creating ADRs, or when the user mentions architectural decisions, ADR, or design records."
+description: "Manages the ADR (Architecture Decision Record) registry. Use when recording tech-stack choices, design patterns, or infrastructure decisions with context, alternatives, and rationale. Supports listing, searching, or creating formal ADR documents."
 context: fork
 agent: technical-director
 allowed-tools: Read, Glob, Grep, Write, Bash
-argument-hint: "[decision topic or question]"
+argument-hint: "[title or decision topic]"
 user-invocable: true
 effort: 4
-when_to_use: "When needing to create a formal ADR document with full context and alternatives"
+when_to_use: "When needing to make a formal technology decision and record the underlying reasoning in docs/architecture/."
 ---
 
 # Architecture Decision Records
+
+## Workflow Protocol
+
+1. **Determine the next ADR number** by scanning `docs/architecture/` for existing ADRs.
+2. **Gather context** by reading related code and existing ADRs.
+3. **Guide the user through the decision** by asking clarifying questions if the title alone is insufficient.
+4. **Generate the ADR** following the template below.
+5. **Save the ADR** to `docs/architecture/adr-[NNNN]-[slug].md`.
+6. **Update the Index** Table in `docs/architecture/README.md` or `docs/technical/DECISIONS.md`.
 
 ## When to write an ADR vs skip
 

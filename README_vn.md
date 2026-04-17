@@ -4,20 +4,29 @@
     Hệ thống agentic có cấu trúc — biến một session Claude Code đơn lẻ<br />
     thành một software engineering organization thực sự.
     <br /><br />
-    27 agents · 127 context-optimized skills · 10/12 agentic harness patterns · MAS Infrastructure · Steel Discipline
+    31 agents · 123 context-optimized skills · 10/12 agentic harness patterns · MAS Infrastructure · Steel Discipline
   </p>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-27-blueviolet" alt="27 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-127-green" alt="127 Skills"></a>
-  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-13-orange" alt="13 Hooks"></a>
-  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-16-red" alt="16 Rules"></a>
+  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-31-blueviolet" alt="31 Agents"></a>
+  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-123-green" alt="123 Skills"></a>
+  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
+  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-13-red" alt="13 Rules"></a>
   <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
 </p>
 
 ---
+
+## Yêu cầu hệ thống (Platform Parity)
+
+- **Claude Code**: `npm install -g @anthropic-ai/claude-code`
+- **Git**: Bắt buộc để quản lý phiên bản và chạy hooks.
+- **Người dùng Windows**: Yêu cầu **Git Bash 2.40+** HOẶC **WSL2**. CMD/PowerShell có thể dùng cho hầu hết các lệnh, nhưng các automated validation hooks yêu cầu môi trường POSIX-compliant shell để hoạt động chính xác.
+- **jq** (khuyến nghị): Được dùng bởi các validation hooks để parse JSON.
+- **Python 3** (khuyến nghị): Được dùng bởi các script đánh giá skill và audit.
+
 
 ## Vấn đề
 
@@ -39,7 +48,7 @@ Kết quả:
 - **Process được enforced**: Spec trước implementation, plan trước code, tests trước merge — thực thi qua hooks và verification gates, không phải lời khuyên
 - **Memory tồn tại liên tục**: 5-layer durable memory architecture (Tier 1 index → Tier 2 topic files → Tier 3 cold archive → MCP Supermemory semantic store) sống qua từng session
 - **Context được dùng chính xác**: Incremental loading với 3-Question Relevance Gate ngăn chặn context stuffing; tối đa 3 Tier 2 files mỗi session
-- **Routing chính xác**: 108 skills với `paths:` triggers, `when_to_use:` semantics, và `effort:` scores cho phép AI tự route mà không cần người dùng điều hướng thủ công
+- **Routing chính xác**: 123 skills với `paths:` triggers, `when_to_use:` semantics, và `effort:` scores cho phép AI tự route mà không cần người dùng điều hướng thủ công
 
 ---
 
@@ -83,12 +92,12 @@ SDD triển khai **10 trong 12** patterns từ kiến trúc agentic harness nộ
 
 | Pattern | Trạng thái | Triển khai |
 |---|---|---|
-| #1 Structured Agent Definitions | ✅ | 27 agents với YAML frontmatter + domain ownership |
-| #2 Path-Scoped Rules | ✅ | 12 rules tự động enforce theo file path |
+| #1 Structured Agent Definitions | ✅ | 31 agents với YAML frontmatter + domain ownership |
+| #2 Path-Scoped Rules | ✅ | 13 rules tự động enforce theo file path |
 | #3 Tiered Memory | ✅ | 5 tầng: MEMORY.md → topic files → archive → Supermemory |
 | #4 Dream Consolidation | ✅ | `auto-dream.sh` — 5-phase consolidation tự động |
 | #6 Context: Fork | ✅ | 10 analysis skills nặng chạy trong subagent context độc lập |
-| #7 Skill Routing | ✅ | 108 skills với metadata `paths:`, `when_to_use:`, `effort:` |
+| #7 Skill Routing | ✅ | 123 skills với metadata `paths:`, `when_to_use:`, `effort:` |
 | #8 Fork-Join Parallelism | ✅ | `fork-join.sh` — git worktree lifecycle manager |
 | #10 Least Privilege Tools | ✅ | `allowed-tools:` per skill + 22-entry permission allow-list |
 | #11 Bash Guard | ✅ | `bash-guard.sh` chặn RCE patterns và các lệnh nguy hiểm |
@@ -153,7 +162,7 @@ Tier 5  CLAUDE.md @include chain     — Static universal context, luôn trong p
 
 ## Skill System
 
-### 108 Skills trên 7 Domain
+### 123 Skills trên 7 Domain
 
 | Domain | Skills tiêu biểu |
 |---|---|
@@ -175,7 +184,7 @@ Skills activate có điều kiện dựa trên file bạn đang mở:
 Đang edit Dockerfile, *.tf      → Skills DevOps, Kubernetes, AWS activate
 ```
 
-Gõ `/` trong Claude Code — bạn thấy cái relevant, không phải cả 108.
+Gõ `/` trong Claude Code — bạn thấy cái relevant, không phải cả 123.
 
 ---
 
@@ -183,10 +192,10 @@ Gõ `/` trong Claude Code — bạn thấy cái relevant, không phải cả 108
 
 | Thành phần | Số lượng | Mô tả |
 |---|---|---|
-| **Agents** | 27 | Agents chuyên biệt cho product, engineering, design, QA, data, operations |
-| **Skills** | 108 | Core workflows và technology frameworks với context-aware routing |
-| **Hooks** | 8 | Automated validation: commits, pushes, asset changes, session lifecycle, pre-compact, gap detection, bash guard, fork-join |
-| **Rules** | 12 | Coding standards tự động enforce theo file path |
+| **Agents** | 31 | Agents chuyên biệt cho product, engineering, design, QA, data, operations |
+| **Skills** | 123 | Core workflows và technology frameworks với context-aware routing |
+| **Hooks** | 15 | Automated validation: commits, pushes, asset changes, session lifecycle, pre-compact, gap detection, bash guard, fork-join |
+| **Rules** | 13 | Coding standards tự động enforce theo file path |
 | **Templates** | 22+ | PRDs, API designs, system architecture, ADRs, mobile, incident response, postmortem |
 
 ---
@@ -210,7 +219,7 @@ claude
 
 Chạy `/start` — hệ thống hỏi bạn đang ở đâu (ý tưởng mới, codebase có sẵn, hoặc task cụ thể) và hướng dẫn từ đó.
 
-**Antigravity Platform**: Mở thư mục trong Antigravity. Kiến trúc `.claude/` tự động load. Toàn bộ 108 workflows sẵn sàng ngay — chỉ cần giao việc.
+**Antigravity Platform**: Mở thư mục trong Antigravity. Kiến trúc `.claude/` tự động load. Toàn bộ 123 workflows sẵn sàng ngay — chỉ cần giao việc.
 
 ### Entry Point phù hợp với từng tình huống
 
@@ -232,10 +241,10 @@ PRD.md                              # Product requirements document
 TODO.md                             # Living backlog (quản lý bởi @producer)
 .claude/
   settings.json                     # Permissions, deny rules, hook registration
-  agents/                           # 27 agent definitions với domain ownership
-  skills/                           # 108 skills (mỗi subdirectory một skill)
-  hooks/                            # 8 hook scripts
-  rules/                            # 12 path-scoped coding standards
+  agents/                           # 31 agent definitions với domain ownership
+  skills/                           # 123 skills (mỗi subdirectory một skill)
+  hooks/                            # 15 hook scripts
+  rules/                            # 13 path-scoped coding standards
   memory/                           # 5-layer durable memory system
   docs/
     quick-start.md
@@ -326,7 +335,7 @@ Xem [`UPGRADING.md`](UPGRADING.md) để pull upstream changes mà không overwr
 
 ## Version
 
-**v1.26.0** — 2026-04-13
+**v1.31.0** — 2026-04-17
 
 Xem [`History_Update.md`](History_Update.md) để biết full changelog.
 

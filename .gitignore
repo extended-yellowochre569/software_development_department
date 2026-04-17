@@ -14,7 +14,9 @@ Desktop.ini
 .claude/docs/UPGRADE-PLAN.md
 CLAUDE.local.md
 production/session-logs/
-production/session-state/*.md
+production/session-state/
+production/traces/
+production/backups/
 
 # === Fork-Join Worktrees ===
 .worktrees/

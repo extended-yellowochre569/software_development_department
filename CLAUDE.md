@@ -5,7 +5,7 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 ## 🚨 CRITICAL RULES (Must obey on every turn)
 - **NO AUTOPILOT:** Every task follows **Question -> Options -> Decision -> Draft -> Approval**.
-- **NEVER WRITE/EDIT DIRECTLY:** MUST ask "May I write this to [filepath]?" before using Write/Edit tools.
+- **CONFIRM BEFORE PROACTIVE WRITES:** If the agent decides to create/edit a file *outside* the explicitly requested scope, MUST ask "May I write this to [filepath]?". If the user explicitly named the file or `acceptEdits` mode is active, skip the question.
 - **NO COMMITS WITHOUT PERMISSION:** Multi-file changes require explicit approval for the full changeset.
 - **GIT SNAPSHOT WARNING:** The Internal Git status is a STALE SNAPSHOT! You MUST run `git status` or `git diff` via BashTool before making git operations or tracking git state.
 - **SAFETY TIERS & RISK ASSESSMENT:** Before editing code or executing commands, assign a Risk Tier (Low: reversible; Medium: shared code, needs rollback plan; High: destructive/prod, requires explicit approval).
@@ -29,13 +29,12 @@ If the user invokes these short commands, or if the task context implies them, Y
 
 ## Technology Stack
 
-<!-- Replace each [not configured] line with your chosen value after running /start -->
-- **Language**: [not configured] <!-- e.g. TypeScript / Python / Go / Java -->
-- **Frontend Framework**: [not configured] <!-- e.g. React / Vue / Angular / Next.js / none -->
-- **Backend Framework**: [not configured] <!-- e.g. Express / FastAPI / NestJS / Rails -->
-- **Database**: [not configured] <!-- e.g. PostgreSQL / MySQL / MongoDB -->
-- **Deployment**: [not configured] <!-- e.g. Docker / Kubernetes / Vercel / Railway -->
-- **CI/CD**: [not configured] <!-- e.g. GitHub Actions / GitLab CI / CircleCI -->
+- **Language**: Shell (Bash), JavaScript (Node.js), PowerShell
+- **Frontend Framework**: none (CLI Infrastructure)
+- **Backend Framework**: Model Context Protocol (MCP), Git Bash Hooks
+- **Database**: Filesystem (Markdown/JSONL), Supermemory MCP
+- **Deployment**: Shell installation scripts (`init-sdd.sh`, `init-sdd.ps1`)
+- **CI/CD**: GitHub Actions (planned)
 
 > **First session?** If no stack has been configured yet, run `/start` to begin
 > the guided onboarding flow.

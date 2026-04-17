@@ -1,15 +1,19 @@
 ---
 name: llm-app-patterns
 type: reference
-description: "Provides architectural patterns for LLM-powered applications including prompt engineering, RAG, agent loops, and evaluation. Use when building LLM-based features or when the user mentions LLM app architecture, prompt design, or AI system patterns."
-paths: ["**/*.py", "**/*.ts", "**/openai*", "**/anthropic*", "**/langchain*"]
+description: "Provides architectural patterns for LLM-powered applications and AI assistants, including prompt engineering, RAG, agent loops, conversation management, and evaluation. Use when building AI-based features, chatbots, or complex AI system architectures."
+paths: ["**/*.py", "**/*.ts", "**/openai*", "**/anthropic*", "**/langchain*", "**/chatbot*", "**/assistant*"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
-when_to_use: "When designing LLM applications, implementing RAG pipelines, building agent architectures, or setting up LLMOps monitoring"
+when_to_use: "When designing LLM applications, building AI assistants/chatbots, implementing RAG pipelines, or setting up agent architectures."
 ---
 
-# LLM Application Patterns
+# LLM Application & AI Assistant Patterns
+
+## Resources
+
+- `resources/implementation-playbook.md` for detailed patterns and examples.
 
 ## Architecture decision matrix
 

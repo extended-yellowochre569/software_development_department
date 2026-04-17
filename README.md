@@ -4,20 +4,29 @@
     A structured agentic system that transforms a single Claude Code session<br />
     into a coordinated software engineering organization.
     <br /><br />
-    27 agents · 127 context-optimized skills · 10/12 agentic harness patterns · MAS Infrastructure · Steel-discipline enforcement · Visual Engineering
+    31 agents · 118 context-optimized skills · 10/12 agentic harness patterns · MAS Infrastructure · Steel-discipline enforcement · Visual Engineering
   </p>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <img src="https://img.shields.io/badge/agents-27-blueviolet" alt="27 Agents">
-  <img src="https://img.shields.io/badge/skills-127-green" alt="127 Skills">
-  <img src="https://img.shields.io/badge/hooks-13-orange" alt="13 Hooks">
-  <img src="https://img.shields.io/badge/rules-16-red" alt="16 Rules">
+  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-31-blueviolet" alt="31 Agents"></a>
+  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-118-green" alt="118 Skills"></a>
+  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
+  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-13-red" alt="13 Rules"></a>
   <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
 </p>
 
 ---
+
+## Prerequisites (Platform Parity)
+
+- **Claude Code**: `npm install -g @anthropic-ai/claude-code`
+- **Git**: Mandatory for version control and hooks.
+- **Windows Users**: Requires **Git Bash 2.40+** OR **WSL2**. CMD/PowerShell are supported for most commands, but the automated validation hooks require a POSIX-compliant shell.
+- **jq** (recommended): Used by validation hooks for JSON parsing.
+- **Python 3** (recommended): Used by skill evaluation and audit scripts.
+
 
 ## The Problem
 
@@ -39,7 +48,7 @@ The result is a system where:
 - **Process is enforced**: spec before implementation, plan before code, tests before merge — enforced via hooks and verification gates, not suggestions
 - **Memory persists**: a 5-layer durable memory architecture (Tier 1 index → Tier 2 topic files → Tier 3 cold archive → MCP Supermemory semantic store) survives across sessions (**Privacy-first: Bring Your Own Brain**)
 - **Context is surgical**: incremental loading with a 3-Question Relevance Gate prevents context stuffing; max 3 Tier 2 files per session
-- **Routing is precise**: 122 skills with `paths:` triggers, `when_to_use:` semantics, and `effort:` scores let the AI self-route without human navigation
+- **Routing is precise**: 118 skills with `paths:` triggers, `when_to_use:` semantics, and `effort:` scores let the AI self-route without human navigation
 - **Visual Intelligence**: Automated Technical Diagramming (SVG/PNG) for architectures, sequence flows, and process models via `/visualize`. 
 
 ---
@@ -84,12 +93,12 @@ SDD implements **10 of 12** patterns from Claude Code's internal agentic harness
 
 | Pattern | Status | Implementation |
 |---|---|---|
-| #1 Structured Agent Definitions | ✅ | 27 agents with YAML frontmatter + domain ownership |
-| #2 Path-Scoped Rules | ✅ | 12 rules auto-enforced by file path |
+| #1 Structured Agent Definitions | ✅ | 31 agents with YAML frontmatter + domain ownership |
+| #2 Path-Scoped Rules | ✅ | 13 rules auto-enforced by file path |
 | #3 Tiered Memory | ✅ | 5-layer: MEMORY.md → topic files → archive → Supermemory |
 | #4 Dream Consolidation | ✅ | `auto-dream.sh` — 5-phase automated consolidation |
 | #6 Context: Fork | ✅ | 10 heavy analysis skills run in isolated subagent context |
-| #7 Skill Routing | ✅ | 108 skills with `paths:`, `when_to_use:`, `effort:` metadata |
+| #7 Skill Routing | ✅ | 118 skills with `paths:`, `when_to_use:`, `effort:` metadata |
 | #8 Fork-Join Parallelism | ✅ | `fork-join.sh` — git worktree lifecycle manager |
 | #10 Least Privilege Tools | ✅ | `allowed-tools:` per skill + 22-entry permission allow-list |
 | #11 Bash Guard | ✅ | `bash-guard.sh` blocks RCE patterns, destructive commands |
@@ -154,7 +163,7 @@ Tier 5  CLAUDE.md @include chain     — Static universal context, always in pro
 
 ## Skill System
 
-### 108 Skills Across 7 Domains
+### 118 Skills Across 7 Domains
 
 | Domain | Representative Skills |
 |---|---|
@@ -177,7 +186,7 @@ Editing *.py, manage.py       → Django, FastAPI, ML skills surface
 Editing Dockerfile, *.tf      → DevOps, Kubernetes, AWS skills activate
 ```
 
-Type `/` in Claude Code — you see what's relevant, not all 108.
+Type `/` in Claude Code — you see what's relevant, not all 123.
 
 ---
 
@@ -185,10 +194,10 @@ Type `/` in Claude Code — you see what's relevant, not all 108.
 
 | Category | Count | Description |
 |---|---|---|
-| **Agents** | 27 | Specialized subagents across product, engineering, design, QA, data, and operations |
-| **Skills** | 108 | Core workflows and technology frameworks with context-aware routing |
-| **Hooks** | 8 | Automated validation: commits, pushes, asset changes, session lifecycle, pre-compact, gap detection, bash guard, fork-join |
-| **Rules** | 12 | Path-scoped coding standards enforced automatically by file location |
+| **Agents** | 31 | Specialized subagents across product, engineering, design, QA, data, and operations |
+| **Skills** | 118 | Core workflows and technology frameworks with context-aware routing |
+| **Hooks** | 15 | Automated validation: commits, pushes, asset changes, session lifecycle, pre-compact, gap detection, bash guard, fork-join |
+| **Rules** | 13 | Path-scoped coding standards enforced automatically by file location |
 | **Templates** | 22+ | PRDs, API designs, system architecture, ADRs, mobile, incident response, postmortem |
 
 ---
@@ -212,7 +221,7 @@ claude
 
 Run `/start` — the system asks where you are (new concept, existing codebase, or specific task) and guides you from there.
 
-**Antigravity Platform**: Open the directory in Antigravity. The `.claude/` architecture loads automatically. All 108 workflows are available immediately — just assign tasks.
+**Antigravity Platform**: Open the directory in Antigravity. The `.claude/` architecture loads automatically. All 123 workflows are available immediately — just assign tasks.
 
 ### Entry Points
 
@@ -234,10 +243,10 @@ PRD.md                              # Product requirements document
 TODO.md                             # Living backlog (governed by @producer)
 .claude/
   settings.json                     # Permissions, deny rules, hook registration
-  agents/                           # 27 agent definitions with domain ownership
-  skills/                           # 108 skills (one subdirectory each)
-  hooks/                            # 8 hook scripts
-  rules/                            # 12 path-scoped coding standards
+  agents/                           # 31 agent definitions with domain ownership
+  skills/                           # 118 skills (one subdirectory each)
+  hooks/                            # 15 hook scripts
+  rules/                            # 13 path-scoped coding standards
   memory/                           # 5-layer durable memory system
   docs/
     quick-start.md
@@ -328,7 +337,7 @@ Tested on **Windows 10/11** with Git Bash. All hooks use POSIX-compatible patter
 
 ## Version
 
-**v1.27.0** — 2026-04-14
+**v1.31.0** — 2026-04-17
 
 See [`History_Update.md`](History_Update.md) for full changelog.
 

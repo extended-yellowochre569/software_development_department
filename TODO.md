@@ -7,24 +7,27 @@
 
 ## In Progress
 
-- [ ] (WIP) #001 — [Short description of what's currently being worked on] [area: setup] → [.tasks/001-short-title.md](.tasks/001-short-title.md)
+- [ ] (WIP) #001 — Perform P1-1 Dogfooding: Update PRD, TODO, and CLAUDE.md [area: setup] → [.tasks/001-dogfooding-setup.md](.tasks/001-dogfooding-setup.md)
 
 ---
 
 ## Up Next (prioritized)
 
-- [ ] #002 — [Short description] [area: backend] → [.tasks/002-short-title.md](.tasks/002-short-title.md)
-- [ ] #003 — [Short description] [area: frontend] → [.tasks/003-short-title.md](.tasks/003-short-title.md)
-- [ ] #004 — [Short description] [area: database] → [.tasks/004-short-title.md](.tasks/004-short-title.md)
+- [ ] #002 — Sync badges and number occurrences across READMEs [area: docs] → [.tasks/002-sync-badges.md](.tasks/002-sync-badges.md)
+- [ ] #003 — Cleanup root directory and move reports to docs/ [area: setup] → [.tasks/003-root-cleanup.md](.tasks/003-root-cleanup.md)
+- [ ] #004 — Fix MEMORY.md broken link comments in Tier 2.5 [area: setup] → [.tasks/004-fix-memory-links.md](.tasks/004-fix-memory-links.md)
+- [ ] #005 — Configure or strip Supermemory MCP in .mcp.json [area: tools] → [.tasks/005-supermemory-config.md](.tasks/005-supermemory-config.md)
+- [ ] #006 — Add YAML frontmatter to Tier-2 memory topic files [area: setup] → [.tasks/006-memory-frontmatter.md](.tasks/006-memory-frontmatter.md)
+- [ ] #007 — Bootstrap minimal test harness and CI workflow [area: qa] → [.tasks/007-test-harness.md](.tasks/007-test-harness.md)
 
 ---
 
 ## Backlog
 
-- [ ] #005 — [Short description] [area: frontend] → [.tasks/005-short-title.md](.tasks/005-short-title.md)
-- [ ] #006 — [Short description] [area: backend] → [.tasks/006-short-title.md](.tasks/006-short-title.md)
-- [ ] #007 — [Short description] [area: docs] → [.tasks/007-short-title.md](.tasks/007-short-title.md)
-- [ ] #008 — [Short description] [area: qa] → [.tasks/008-short-title.md](.tasks/008-short-title.md)
+- [ ] #008 — Populate decision_ledger.jsonl with backfilled entries [area: setup] → [.tasks/008-populate-ledger.md](.tasks/008-populate-ledger.md)
+- [ ] #009 — Relax CLAUDE.md proactively writing rule [area: setup] → [.tasks/009-relax-write-rule.md](.tasks/009-relax-write-rule.md)
+- [ ] #010 — Implement skill audit to remove duplicate skills [area: tools] → [.tasks/010-skill-audit.md](.tasks/010-skill-audit.md)
+- [ ] #011 — Build observability dashboard/viewer for JSONL logs [area: tools] → [.tasks/011-obs-dashboard.md](.tasks/011-obs-dashboard.md)
 
 ---
 

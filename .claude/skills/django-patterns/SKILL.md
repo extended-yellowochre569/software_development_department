@@ -1,15 +1,21 @@
 ---
 name: django-patterns
 type: reference
-description: "Provides Django ORM, view, serializer, and authentication patterns for Python web applications. Use when working with Django files (models.py, views.py, urls.py) or when the user mentions Django or Django REST Framework."
-paths: ["**/*.py", "**/manage.py", "**/settings.py", "**/urls.py"]
+description: "Provides expert-level Django development patterns covering App Router (indirectly via REST/GraphQL), async views, DRF, Celery, signals, middleware, and performance optimization. Use when building complex Django 5.x applications or identifying N+1 query issues."
+paths: ["**/*.py", "**/manage.py", "**/settings.py", "**/urls.py", "**/serializers.py"]
 effort: 3
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
 user-invocable: true
-when_to_use: "When building Django or Django REST Framework applications"
+when_to_use: "When building Django 5.x applications requiring async support, background tasks (Celery), real-time features (Channels), or advanced ORM optimization."
 ---
 
-# Django Patterns
+# Django & DRF Professional Patterns
+
+## Core Expertise
+- **Modern Django:** 5.x features, async views/middleware, ASGI deployment.
+- **Background & Real-time:** Celery integration, Django Channels.
+- **ORM Optimization:** select_related, prefetch_related, custom managers.
+- **Security:** JWT auth, OAuth2, RBAC, protection against SQLi/XSS/CSRF.
 
 ## Critical rules (non-obvious)
 
