@@ -8,12 +8,14 @@
 
 INPUT=$(cat)
 
-# Parse command -- use jq if available, fall back to grep
-if command -v jq >/dev/null 2>&1; then
-    COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
-else
-    COMMAND=$(echo "$INPUT" | grep -oE '"command"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"command"[[:space:]]*:[[:space:]]*"//;s/"$//')
+# ─── REQUIRE jq ─────────────────────────────────────────────────────────────
+# Regex fallback is a bypass vector for commands with quotes or escape sequences.
+if ! command -v jq >/dev/null 2>&1; then
+    echo "[HOOK:ValidatePush] ERROR: jq is required but not installed. Install jq to proceed." >&2
+    exit 1
 fi
+
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 
 # Only process git push commands
 if ! echo "$COMMAND" | grep -qE '^git[[:space:]]+push'; then

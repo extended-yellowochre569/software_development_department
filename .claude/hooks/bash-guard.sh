@@ -9,17 +9,18 @@
 
 INPUT=$(cat)
 
-# Parse command
-if command -v jq >/dev/null 2>&1; then
-    COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
-else
-    COMMAND=$(echo "$INPUT" | grep -oE '"command"[[:space:]]*:[[:space:]]*"[^"]*"' | \
-        sed 's/"command"[[:space:]]*:[[:space:]]*"//;s/"$//')
+# ─── REQUIRE jq ─────────────────────────────────────────────────────────────
+# Do NOT fall back to regex: command strings containing quotes or escape sequences
+# can bypass all block_if_match checks via the grep/sed approach.
+if ! command -v jq >/dev/null 2>&1; then
+    echo "[HOOK:BashGuard] BLOCKED: jq is required but not installed. Install jq to proceed." >&2
+    exit 1
 fi
 
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+
 # Only process Bash tool
-TOOL_NAME=$(echo "$INPUT" | grep -oE '"tool_name"[[:space:]]*:[[:space:]]*"[^"]*"' | \
-    sed 's/"tool_name"[[:space:]]*:[[:space:]]*"//;s/"$//')
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // empty')
 if [ "$TOOL_NAME" != "Bash" ]; then
     exit 0
 fi
@@ -43,12 +44,15 @@ block_if_match() {
 block_if_match ':\s*\(\s*\)\s*\{' \
     "Fork bomb pattern detected: :(){ :|:& };:"
 
-# rm -rf variants (Hard blocks for root/all patterns)
+# rm -rf variants (Hard blocks for root/all patterns + local directory variants)
 block_if_match 'rm\s+(-r\s*-f|-f\s*-r|-rf|-fr)\s+/' \
     "rm -rf on root is forbidden"
 
 block_if_match 'rm\s+(-r\s*-f|-f\s*-r|-rf|-fr)\s+\*' \
     "rm -rf on all files (*) is forbidden via BashGuard"
+
+block_if_match 'rm\s+(-r\s*-f|-f\s*-r|-rf|-fr)\s+\.(/|$)' \
+    "rm -rf on current directory (./ or .) is forbidden"
 
 # tee .env overwrites
 block_if_match 'tee\s+.*\.env' \

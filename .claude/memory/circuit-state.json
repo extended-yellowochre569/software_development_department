@@ -1,0 +1,9 @@
+{
+    "state": "CLOSED",
+    "fail_count": 0,
+    "last_fail_ts": null,
+    "last_success_ts": null,
+    "open_reason": null,
+    "retry_backoff_s": 0,
+    "_comment": "Managed by UFSM — see docs/internal/adr/ADR-004-unified-failure-state-machine.md"
+}

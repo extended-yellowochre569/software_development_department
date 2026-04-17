@@ -9,13 +9,16 @@
 
 INPUT=$(cat)
 
-if command -v jq >/dev/null 2>&1; then
-    PROMPT=$(echo "$INPUT" | jq -r '.prompt // ""')
-    SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
-else
-    PROMPT=$(echo "$INPUT" | grep -oE '"prompt":"[^"]*"' | sed 's/"prompt":"//;s/"$//')
-    SESSION_ID="unknown"
+# ─── REQUIRE jq ─────────────────────────────────────────────────────────────
+# Do NOT fall back to regex: prompt injection via special chars in user input.
+# This hook must NOT block workflow (exit 0 on failure).
+if ! command -v jq >/dev/null 2>&1; then
+    echo "[HOOK:PromptContext] WARNING: jq not found, memory injection skipped." >&2
+    exit 0
 fi
+
+PROMPT=$(echo "$INPUT" | jq -r '.prompt // ""')
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
 
 [ -z "$PROMPT" ] && exit 0
 

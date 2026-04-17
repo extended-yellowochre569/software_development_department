@@ -8,7 +8,7 @@
 <!-- Agents update this section on every significant decision -->
 
 - Stack: [not configured] — run `/start` to populate
-- Last session: 2026-04-17 11:16 · agents=4 · commits=1
+- Last session: 2026-04-17 14:55 · agents=4 · commits=4
 - Current focus: _(agent fills in at session start)_
 
 ## Tier 2 — Load On Demand (max 3 files per session)
@@ -24,14 +24,7 @@
 
 ## Tier 2.5 — Specialist Namespace (1 file max, active agent only)
 
-- [Backend](specialists/backend-developer.md)
-- [Frontend](specialists/frontend-developer.md)
-- [QA Tester](specialists/qa-tester.md)
-- [Data Engineer](specialists/data-engineer.md)
-- [Fullstack](specialists/fullstack-developer.md)
-- [Investigator](specialists/investigator.md)
-- [Technical Director](specialists/technical-director.md)
-- [Merged Decisions](consensus/merged-decisions.md)
+- See [structure.md](structure.md) for full specialist list.
 
 ## Tier 3 — Search Archive (Do NOT load proactively)
 
