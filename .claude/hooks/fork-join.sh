@@ -24,6 +24,26 @@ ensure_git() {
     git rev-parse --is-inside-work-tree > /dev/null 2>&1 || die "Not inside a git repository."
 }
 
+# ─── H3 FIX: Validate branch name to prevent command injection ───────────────
+# Branch names containing ; $() ` & | < > could inject into commit message strings.
+# Git itself allows many special chars in branch names, but we restrict to safe subset.
+validate_branch_name() {
+    local BRANCH="$1"
+    # Allow: alphanumeric, hyphen, underscore, dot, forward-slash (for feature/name patterns)
+    # Block: shell metacharacters ; $ ` & | < > ( ) spaces
+    if echo "$BRANCH" | grep -qE '[;$`&|<>()" ]'; then
+        die "Branch name '$BRANCH' contains shell metacharacters. Use only: letters, digits, -, _, ., /"
+    fi
+    # Block path traversal
+    if echo "$BRANCH" | grep -qE '\.\.'; then
+        die "Branch name '$BRANCH' contains path traversal pattern (..)"
+    fi
+    # Max length sanity check
+    if [ ${#BRANCH} -gt 200 ]; then
+        die "Branch name too long (max 200 chars)"
+    fi
+}
+
 # ─── FORK: Create a new worktree for parallel work ───────────────────────────
 cmd_fork() {
     local BRANCH="${2:-}"
@@ -31,6 +51,7 @@ cmd_fork() {
     local BASE_BRANCH="${4:-$(git branch --show-current)}"
 
     [ -z "$BRANCH" ] && die "Usage: fork-join.sh fork <branch-name> <worktree-dir> [base-branch]"
+    validate_branch_name "$BRANCH"
     [ -z "$WORKTREE_DIR" ] && WORKTREE_DIR="$WORKTREE_BASE/$(echo "$BRANCH" | tr '/' '-')"
 
     ensure_git
@@ -113,6 +134,9 @@ cmd_join() {
     local FEATURE_BRANCH=$(git -C "$WORKTREE_DIR" branch --show-current 2>/dev/null)
     local BASE_BRANCH=$(git branch --show-current 2>/dev/null)
 
+    # Validate branch names before using in commit message (H3: command injection defense)
+    validate_branch_name "$FEATURE_BRANCH"
+
     # Ensure worktree has clean state
     local UNCOMMITTED=$(git -C "$WORKTREE_DIR" diff --name-only 2>/dev/null | wc -l | tr -d ' ')
     if [ "$UNCOMMITTED" -gt 0 ]; then
@@ -122,8 +146,9 @@ cmd_join() {
     info "Merging $FEATURE_BRANCH → $BASE_BRANCH"
 
     # Merge feature branch into current branch (no fast-forward for traceability)
-    git merge --no-ff "$FEATURE_BRANCH" \
-        -m "chore: join fork-join worktree '$FEATURE_BRANCH' into '$BASE_BRANCH'" 2>/dev/null || {
+    # Use printf to build message safely — never interpolate branch names directly into -m string
+    MERGE_MSG=$(printf "chore: join fork-join worktree '%s' into '%s'" "$FEATURE_BRANCH" "$BASE_BRANCH")
+    git merge --no-ff "$FEATURE_BRANCH" -m "$MERGE_MSG" 2>/dev/null || {
         warn "Merge conflict detected. Resolve conflicts, then run 'git merge --continue'."
         warn "After resolving, run: bash .claude/hooks/fork-join.sh purge $WORKTREE_DIR"
         exit 1

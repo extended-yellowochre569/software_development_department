@@ -17,6 +17,14 @@ fi
 
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 
+# ─── M2 FIX: Self-timeout guard (25s < 30s Claude Code hook timeout) ─────────
+# Makes fail-open explicit and visible instead of a silent SIGKILL bypass.
+SELF_PID=$$
+(sleep 25 && kill -TERM "$SELF_PID" 2>/dev/null) &
+WATCHDOG_PID=$!
+trap 'echo "[HOOK:ValidateCommit] WARN: Validation timed out (25s) — commit allowed (fail-open). Consider splitting large commits or increasing timeout." >&2; kill "$WATCHDOG_PID" 2>/dev/null; exit 0' TERM
+trap 'kill "$WATCHDOG_PID" 2>/dev/null' EXIT
+
 # Only process git commit commands
 if ! echo "$COMMAND" | grep -qE '^git[[:space:]]+commit'; then
     exit 0

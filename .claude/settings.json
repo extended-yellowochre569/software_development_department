@@ -116,12 +116,22 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/validate-commit.sh",
-            "timeout": 15
+            "timeout": 30
           },
           {
             "type": "command",
             "command": "bash .claude/hooks/validate-push.sh",
             "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/circuit-guard.sh",
+            "timeout": 5
           }
         ]
       },
