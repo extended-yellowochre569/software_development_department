@@ -1,5 +1,6 @@
 ---
 name: visual-engineer
+type: workflow
 description: "Generates high-fidelity architecture diagrams, sequence flows, and component maps for SDD projects. Use when finalizing a design phase, documenting system architecture, or visualizing agentic workflows. Default style: Style 6 (Claude Official)."
 argument-hint: "[diagram description or context]"
 user-invocable: true

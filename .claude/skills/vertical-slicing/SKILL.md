@@ -1,5 +1,6 @@
 ---
 name: vertical-slicing
+type: workflow
 description: "Guidelines and procedures for planning and implementing end-to-end functional slices for fullstack features."
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
