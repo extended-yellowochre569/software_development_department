@@ -6,6 +6,78 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.37.0] - 2026-04-18
+
+**Chủ đề:** UFSM Phase 2+3 — Hoàn thành vòng lặp Circuit Breaker (Sprint A Items 1 & 2)
+
+Phiên bản này đóng nốt 2/3 Phase còn thiếu của ADR-004 Unified Failure State Machine. Trước sprint này, `circuit-guard.sh` chỉ *đọc* trạng thái mà không bao giờ *ghi* — circuit không bao giờ transition sang HALF_OPEN hay OPEN trong thực tế. Sau sprint, toàn bộ vòng lặp UFSM hoạt động đầy đủ: PreToolUse đọc state, PostToolUse ghi state.
+
+#### New — `.claude/hooks/decision-ledger-writer.sh` (Phase 2 — PostToolUse:Task)
+
+- Tự động append 1 entry `ledger/v1` vào `production/traces/decision_ledger.jsonl` sau **mỗi Task tool invocation**, thực thi Rule 15 cho sub-agent calls.
+- `task_id` được tạo từ `session + sha256(description + timestamp)` — stable và unique.
+- Outcome classification từ `exit_code`: `0 → pass`, `2 → blocked`, `else → fail`.
+- Risk classification từ task content (regex matching giống `log-commit.sh`):
+  - **High:** auth, security, secret, migration, database schema, infra, production, deploy, circuit, hooks, settings.json, credentials
+  - **Low:** docs, readme, changelog, explain, describe, summarize, analysis, report
+  - **Medium:** mọi thứ còn lại (default)
+- Fail-open tuyệt đối (always exit 0) — không bao giờ block caller.
+
+#### New — `.claude/hooks/circuit-updater.sh` (Phase 3 — PostToolUse:Task)
+
+- Cập nhật `.claude/memory/circuit-state.json` sau mỗi Task tool call theo transition rules trong ADR-004.
+- **Success (exit_code 0):** reset `fail_count=0`, `retry_backoff_s=0`, `state=CLOSED`.
+- **Failure trong CLOSED:** `fail_count++` → nếu `fail_count >= 3`: chuyển sang `HALF_OPEN`.
+- **Failure trong HALF_OPEN:** `fail_count++` → nếu `fail_count >= 4`: chuyển sang `OPEN`.
+- **OPEN:** chỉ refresh `last_fail_ts`, không increment thêm (TTL/reset xử lý bởi `circuit-guard.sh` read-path).
+- Backoff schedule: Fail 1 → 2s, Fail 2 → 4s, Fail 3+ → 8s.
+- Auto-tạo `circuit-state.json` nếu missing (mirrors `circuit-guard.sh` behavior).
+- Fail-open tuyệt đối (always exit 0).
+
+#### settings.json — Đăng ký PostToolUse:Task block mới
+
+```json
+{
+  "matcher": "Task",
+  "hooks": [
+    { "command": "bash .claude/hooks/decision-ledger-writer.sh", "timeout": 5 },
+    { "command": "bash .claude/hooks/circuit-updater.sh",        "timeout": 5 }
+  ]
+}
+```
+
+Thứ tự: `decision-ledger-writer` trước (ghi audit trail trước), `circuit-updater` sau (cập nhật state dựa trên outcome).
+
+#### UFSM State Machine — Trạng thái sau Sprint A Items 1 & 2
+
+```
+Task invocation
+    │
+    ├── PreToolUse ──► circuit-guard.sh     [Phase 1 ✅ v1.33]
+    │                  (đọc state, block nếu OPEN)
+    │
+    └── PostToolUse ─► decision-ledger-writer.sh [Phase 2 ✅ v1.37]
+                       (append ledger entry)
+                    ─► circuit-updater.sh         [Phase 3 ✅ v1.37]
+                       (ghi state transitions)
+```
+
+#### Số liệu v1.37.0
+
+- Files mới: **2** (circuit-updater.sh + decision-ledger-writer.sh)
+- Files edit: **1** (settings.json — thêm PostToolUse:Task block)
+- LOC thêm: ~220 (không tính CHANGELOG)
+- Hook inventory: **18 → 20** (+2 PostToolUse Task hooks)
+- UFSM completeness: Phase 1 ✅ / Phase 2 ✅ / Phase 3 ✅ — **100% complete**
+- ADR-004 status: **CLOSED** (tất cả 3 phases đã implement)
+
+#### Còn lại trong Sprint A (items 3 & 4)
+
+- Item 3: Xóa `production/session-state/circuit-state.json` (legacy nested schema, deprecated)
+- Item 4: Viết ADR-005 — chính thức resolve mâu thuẫn Rule 14 (per-agent) vs ADR-004 (global flat)
+
+---
+
 ### [v1.36.0] - 2026-04-18
 
 **Chủ đề:** Sprint "SDD Enforcement Closure" — Activate Rule 15 (Decision Ledger) & Memory Tier 2 persistence
