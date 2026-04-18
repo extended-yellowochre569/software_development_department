@@ -38,7 +38,7 @@ for skill_dir in "$SKILLS_DIR"/*/; do
   fi
 
   # Extract frontmatter (giữa hai dòng ---)
-  frontmatter=$(awk 'BEGIN { bom=sprintf("%c%c%c",239,187,191) } { line=$0; sub(/\r$/, "", line) } line=="---" || line==bom"---" { found++; if(found==2) exit; next } found==1 { print line }' "$skill_file")
+  frontmatter=$(sed $'1s/^\xef\xbb\xbf//;s/\r$//' "$skill_file" | awk '/^---$/{found++; if(found==2) exit; next} found==1 { print }')
   skill_failed=0; missing_required=(); missing_optional=()
 
   # Đọc type (mặc định là workflow nếu không có — backward compat)
