@@ -6,6 +6,97 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.36.0] - 2026-04-18
+
+**Chủ đề:** Sprint "SDD Enforcement Closure" — Activate Rule 15 (Decision Ledger) & Memory Tier 2 persistence
+
+Phiên bản này đóng 2/3 enforcement gap đã được xác định qua architecture review (Anthropic CTO perspective). Trước sprint này, các quy tắc governance (Rule 15, Memory Tier 2) chỉ tồn tại dưới dạng *documentation theater* — không có hook/script nào thực sự ghi dữ liệu. Sau sprint, mọi commit tự động log vào decision ledger, và user prompts với explicit markers tự persist vào Tier 2 memory.
+
+Epic 2 (Circuit Runtime) được chủ động **skip** vì phát hiện contradiction giữa `coordination-rules.md` Rule 14 (per-agent fallback) và `ADR-004` (unified flat state) — cần team decision chính thức trước khi implement.
+
+#### Epic 3 — Decision Ledger Writer (Rule 15)
+
+**Fix 1 — UTF-16 encoding corruption (`production/traces/decision_ledger.jsonl`)**
+- Entry #2 của ledger bị PowerShell `Out-File` default encoding ghi dưới dạng UTF-16 LE, khiến JSON.parse fail và `file` command báo `data` thay vì `NDJSON`.
+- Fix: Node script decode UTF-16 → re-encode UTF-8 no-BOM. 2 entries legacy được preserve nguyên content.
+
+**New — `scripts/ledger-append.sh` (115 LOC)**
+- CLI helper append 1 entry vào ledger theo schema `ledger/v1` (Rule 15).
+- Flags: `--agent`, `--task-id`, `--choice`, `--outcome`, `--risk`, `--request`, `--reasoning`, `--duration-s`.
+- Auto-populate `ts` (ISO UTC), `session` (git branch).
+- Validation: enum check cho `outcome` (pass/fail/blocked/skipped) và `risk` (High/Medium/Low).
+- JSON construction: prefer `jq`, fallback `node` (cho Windows git bash không có jq).
+- Fail-open per Rule 9 (missing deps → warning + exit 2, no block).
+- Atomic append qua `>>` (O_APPEND, safe cho <4KB writes).
+
+**New — `.claude/hooks/log-commit.sh` (80 LOC)**
+- PostToolUse hook cho Bash matcher: tự động log mọi `git commit` vào ledger.
+- Risk classification từ file patterns:
+  - **High:** `.claude/hooks/`, `.claude/agents/`, `.claude/settings`, `src/auth/`, `migrations/`, `infra/`, `scripts/`
+  - **Low:** docs-only commits (`docs/`, `README*`, `CHANGELOG*`, `*.md`)
+  - **Medium:** mọi thứ còn lại (default)
+- Outcome từ `tool_response.exit_code` (0 → pass, else fail).
+- Fail-open tuyệt đối (suppress stderr, silent skip on parse error).
+- Registered vào `settings.json` PostToolUse > matcher: `Bash`, timeout 5s.
+
+**New — `scripts/trace-history.sh` (115 LOC)**
+- Backing executable cho skill `/trace-history`.
+- Flags: `--agent`, `--risk`, `--task`, `--outcome`, `--since`, `--last`, `--format`.
+- Output modes: `pretty` (timeline với risk badges 🔴🟡🟢 + outcome emojis ✅❌⛔⏭️) hoặc `json` (raw array).
+- Auto-hint `/resume-from <task_id>` khi có fail/blocked entries.
+- Skips legacy entries (pre-`ledger/v1` schema) trong pretty mode, preserve trong json mode.
+
+**Refactor — `.claude/skills/trace-history/SKILL.md`**
+- Bỏ 60 LOC boilerplate (manual parsing instructions cho LLM).
+- Skill giờ delegate hoàn toàn sang `scripts/trace-history.sh $ARGUMENTS`.
+- Deterministic output thay vì LLM-tokenized rendering per query.
+
+#### Epic 1 — Memory Tier 2 Persistence
+
+**New — `.claude/docs/memory-write-schema.md` (110 lines)**
+- Định nghĩa explicit markers deterministic (không LLM classify) để extract insights từ user prompts.
+- Bilingual triggers: EN (`feedback:`, `don't`, `from now on`, `we chose`, `I prefer`) + VN (`từ giờ`, `đừng`, `quyết định:`, `chọn dùng`, `tôi là`, `tôi dùng`, `tôi thích`).
+- 4-file routing: `feedback_rules.md` / `project_tech_decisions.md` / `user_role.md` / `reference_links.md`.
+- Size bounds: body 10-400 chars (reject noise + paste dumps).
+- Dedup: case-insensitive exact substring match trước append.
+- Size guard: 300-line warning (non-blocking, gợi ý `/dream`).
+- Fail-open tuyệt đối per Rule 9.
+
+**New — `.claude/hooks/persist-memory.sh` (130 LOC)**
+- UserPromptSubmit hook implement schema trên.
+- First-match-wins scanning với 15 regex markers (ưu tiên explicit labels → imperative sentences → Vietnamese).
+- Auto-tạo target file với frontmatter nếu chưa tồn tại.
+- Append block format: `## YYYY-MM-DD — <auto-title>\n**Trigger:** "..."\n**Source:** user-prompt\n<body>`.
+- Ledger tie-in: marker type `feedback|project` với body chứa `security|migrate|break|prod|critical` → auto-append 1 ledger entry risk=High (tránh spam cho insights thường).
+- Errors log vào `production/session-logs/memory-write-errors.log` (không expose UI).
+- Registered vào `settings.json` UserPromptSubmit, timeout 5s.
+
+#### Cleanup
+
+**Deleted — `docs/technical/sdd-architecture.{png,svg}` + `sdd_architecture{,_en}.html`**
+- 4 file architecture diagram legacy (~200 KB) được thay thế bởi `docs/hooks_visual_report.html` từ v1.35.
+- Decision pending từ v1.34 refactor, clear trong sprint này.
+
+#### Skipped — Epic 2 (Circuit Runtime)
+
+- Phát hiện **doc-vs-ADR contradiction:**
+  - `coordination-rules.md` Rule 14 spec **per-agent** fallback pairs (backend→fullstack, qa-tester→qa-lead)
+  - `ADR-004` spec **global flat** unified state (và đã được `circuit-guard.sh` implement)
+- Không phải bug code — là governance mismatch cần ADR-005 để chính thức deprecate 1 trong 2.
+- Legacy file `production/session-state/circuit-state.json` (2033 bytes, nested schema, không hook nào dùng) an toàn xoá sau khi ADR quyết định.
+
+#### Số liệu v1.36.0
+
+- Files mới: **5** (2 hooks + 2 scripts + 1 schema doc)
+- Files edit: **2** (settings.json, trace-history SKILL.md)
+- Files xoá: **4** (legacy architecture diagrams)
+- LOC thêm: ~450 (không tính CHANGELOG)
+- Hook inventory: **16 → 18** (PostToolUse Bash + UserPromptSubmit persist-memory)
+- Rule enforcement mới: **Rule 15 active** (decision ledger), **Tier 2 persistence active**
+- Test coverage: 24 fixture tests (5 Phase 3.2 + 3 Phase 3.3 + 8 Phase 3.4 + 8 Phase 1.2) — all pass
+
+---
+
 ### [v1.35.0] - 2026-04-18
 
 **Chủ đề:** Hooks Visual Report — Redesign chuẩn Anthropic Technical Docs

@@ -13,81 +13,47 @@ when_to_use: "Use to audit why a decision was made, debug a failed task, review 
 Read `production/traces/decision_ledger.jsonl` and display a filtered, human-readable
 timeline of agent decisions.
 
-## Steps
+## Execution
 
-### 1. Parse arguments
+The rendering and filtering logic is implemented in `scripts/trace-history.sh`.
+This skill delegates to that script — do NOT re-implement parsing here.
 
-Parse `$ARGUMENTS` for the following optional flags:
+### 1. Run the backing script
+
+Invoke exactly once, passing `$ARGUMENTS` through unchanged:
+
+```bash
+bash scripts/trace-history.sh $ARGUMENTS
+```
+
+The script handles: flag parsing, filtering, rendering (pretty or JSON),
+empty-ledger short-circuit, and invalid-argument rejection. Return the script's
+stdout verbatim to the user.
+
+### 2. Supported flags (all optional)
 
 | Flag | Default | Meaning |
 | :--- | :--- | :--- |
-| `--agent <name>` | all | Filter by `agent_id` (e.g. `backend-developer`) |
-| `--risk <tier>` | all | Filter by `risk_tier`: `High`, `Medium`, or `Low` |
-| `--task <id>` | all | Filter by `task_id` |
-| `--outcome <value>` | all | Filter by `outcome`: `pass`, `fail`, `blocked`, `skipped` |
-| `--since <date>` | no limit | Only entries with `ts >= YYYY-MM-DD` |
-| `--last <N>` | 20 | Show only the last N entries after other filters |
+| `--agent <name>` | all | Filter by `agent_id` |
+| `--risk <High\|Medium\|Low>` | all | Filter by `risk_tier` |
+| `--task <id>` | all | Substring match on `task_id` |
+| `--outcome <pass\|fail\|blocked\|skipped>` | all | Filter by `outcome` |
+| `--since <YYYY-MM-DD>` | no limit | Only entries with `ts >= date` |
+| `--last <N>` | 20 | Keep last N after other filters |
+| `--format <pretty\|json>` | pretty | Output format |
 
-If no arguments are provided, show the last 20 entries across all agents.
+### 3. Output format
 
-### 2. Read the ledger
+**Pretty (default):** timeline with risk badges (🔴🟡🟢) and outcome emojis
+(✅❌⛔⏭️), grouped with separators and totals. Failed/blocked entries trigger
+a `/resume-from` hint automatically.
 
-Read `production/traces/decision_ledger.jsonl`.
+**JSON:** raw matching entries as a JSON array — use when piping to another tool.
 
-If the file is empty or contains only the schema header line:
+### 4. Empty or no-match
 
-```text
-📭 Decision ledger is empty — no decisions have been traced yet.
-   Decisions are written automatically when agents use /save-state or
-   make High/Medium risk choices per coordination-rules.md Rule 15.
-```
-
-Skip the first line (schema header — starts with `"_schema"`).
-
-### 3. Apply filters
-
-Filter entries by the parsed flags. Each entry is one JSON object per line with fields:
-`ts`, `session`, `agent_id`, `task_id`, `request`, `reasoning`, `choice`, `outcome`, `risk_tier`, `duration_s`.
-
-### 4. Render timeline
-
-Display results in this format:
-
-```text
-📋 Decision Trace — [applied filters summary]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[ts] [risk_tier badge] @[agent_id] · task:[task_id]
-  Request  : [request]
-  Reasoning: [reasoning]
-  Choice   : [choice]
-  Outcome  : [outcome emoji] [outcome] ([duration_s]s)
-
-─────────────────────────────────────────────
-[repeat for each entry]
-
-Total: [N] decisions shown · [H] High · [M] Medium · [L] Low risk
-```
-
-Risk tier badges:
-- `High` → `🔴`
-- `Medium` → `🟡`
-- `Low` → `🟢`
-
-Outcome emojis:
-- `pass` → `✅`
-- `fail` → `❌`
-- `blocked` → `⛔`
-- `skipped` → `⏭️`
-
-### 5. Suggest follow-up
-
-After displaying results, if any `fail` or `blocked` outcomes are shown:
-
-```text
-💡 Failed decisions above may have checkpoints in .tasks/checkpoints/
-   Run: /resume-from <task_id> to recover.
-```
+The script emits `📭` messages for an empty ledger or zero-match filter. Return
+those messages as-is; do not fabricate data.
 
 ---
 
