@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDD Hook System — Technical Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+        :root {
+            --bg:          #F7F4EF;
+            --surface:     #FFFFFF;
+            --surface-2:   #F2EEE8;
+            --border:      #E3DDD5;
+            --border-2:    #D0C9BF;
+            --text:        #1A1614;
+            --text-2:      #4A4440;
+            --text-3:      #7A7068;
+
+            --orange:      #CF6631;
+            --orange-dim:  #F5E6DF;
+            --orange-mid:  #E8CDB8;
+
+            --green:       #1A6B3C;
+            --green-dim:   #DFF0E8;
+            --red:         #A4161A;
+            --red-dim:     #FCE8E8;
+            --blue:        #1B5FA8;
+            --blue-dim:    #E0ECFA;
+            --purple:      #5E2D91;
+            --purple-dim:  #EEE5FB;
+            --amber:       #92540A;
+            --amber-dim:   #FEF3E0;
+
+            --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+            --sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+            --radius-sm: 4px;
+            --radius:    8px;
+            --radius-lg: 12px;
+
+            --sidebar-w: 224px;
+        }
+
+        /* ── RESET ─────────────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ── PAGE SHELL ────────────────────────────────────────────── */
+        .shell {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── SIDEBAR NAV ───────────────────────────────────────────── */
+        .sidebar {
+            width: var(--sidebar-w);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid var(--border);
+            background: var(--surface);
+            padding: 32px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            padding: 0 20px 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .brand-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--orange);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .brand-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .nav-group-label {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: var(--text-3);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0 20px;
+            margin: 16px 0 6px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 20px;
+            font-size: 0.8125rem;
+            color: var(--text-2);
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-link:hover { background: var(--bg); color: var(--text); }
+        .nav-link.active { color: var(--orange); font-weight: 600; }
+
+        .nav-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--border-2);
+        }
+        .nav-dot.green  { background: var(--green);  }
+        .nav-dot.red    { background: var(--red);    }
+        .nav-dot.blue   { background: var(--blue);   }
+        .nav-dot.purple { background: var(--purple); }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-3);
+            line-height: 1.7;
+        }
+
+        /* ── MAIN CONTENT ──────────────────────────────────────────── */
+        .main {
+            flex: 1;
+            min-width: 0;
+            padding: 56px 64px;
+            max-width: 900px;
+        }
+
+        /* ── DOCUMENT HEADER ───────────────────────────────────────── */
+        .doc-header {
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 48px;
+        }
+
+        .doc-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-3);
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .doc-eyebrow-sep { color: var(--border-2); }
+
+        .doc-title {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .doc-subtitle {
+            font-size: 1rem;
+            color: var(--text-2);
+            line-height: 1.5;
+            max-width: 560px;
+        }
+
+        .doc-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .meta-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .meta-num {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .meta-label {
+            font-size: 0.8rem;
+            color: var(--text-3);
+        }
+
+        .meta-sep { color: var(--border-2); font-size: 1.2rem; }
+
+        /* ── LIFECYCLE DIAGRAM ─────────────────────────────────────── */
+        .diagram-block {
+            background: var(--text);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-bottom: 48px;
+            overflow-x: auto;
+        }
+
+        .diagram-caption {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--orange);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        pre.diagram {
+            font-family: var(--mono);
+            font-size: 0.8125rem;
+            line-height: 1.7;
+            color: #D4C8BC;
+            white-space: pre;
+        }
+
+        pre.diagram .hl { color: #F5A673; }
+        pre.diagram .dim { color: #6B6058; }
+
+        /* ── SECTION ───────────────────────────────────────────────── */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-anchor { scroll-margin-top: 32px; }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .section-num {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--text-3);
+            letter-spacing: 0.06em;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--text);
+        }
+
+        .section-desc {
+            font-size: 0.875rem;
+            color: var(--text-3);
+            margin-bottom: 24px;
+            padding-left: 36px;
+        }
+
+        /* ── HOOK TABLE ────────────────────────────────────────────── */
+        .hook-table-wrap {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .hook-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hook-table thead tr {
+            background: var(--surface-2);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hook-table th {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 11px 20px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .hook-table tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+        }
+
+        .hook-table tbody tr:last-child { border-bottom: none; }
+        .hook-table tbody tr:hover { background: var(--bg); }
+
+        .hook-table td {
+            padding: 14px 20px;
+            vertical-align: top;
+            font-size: 0.875rem;
+        }
+
+        .hook-table td.col-name {
+            white-space: nowrap;
+        }
+
+        /* Hook name in table */
+        .hn {
+            font-family: var(--mono);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Event badge */
+        .ev {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            padding: 2px 7px;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+        }
+
+        .ev-green  { color: var(--green);  background: var(--green-dim); }
+        .ev-red    { color: var(--red);    background: var(--red-dim);   }
+        .ev-blue   { color: var(--blue);   background: var(--blue-dim);  }
+        .ev-purple { color: var(--purple); background: var(--purple-dim);}
+        .ev-orange { color: var(--orange); background: var(--orange-dim);}
+        .ev-amber  { color: var(--amber);  background: var(--amber-dim); }
+
+        /* Block indicator */
+        .blocks {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--red);
+            background: var(--red-dim);
+            border: 1px solid #F5C8C8;
+            padding: 1px 6px;
+            border-radius: var(--radius-sm);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-left: 6px;
+        }
+
+        .col-desc {
+            color: var(--text-2);
+            line-height: 1.5;
+            font-size: 0.8375rem;
+        }
+
+        .col-desc code {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--text);
+            background: var(--surface-2);
+            padding: 1px 5px;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+        }
+
+        .col-desc strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Behavior list inside table cell */
+        .behaviors {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .behaviors li {
+            font-size: 0.8125rem;
+            color: var(--text-3);
+            padding: 1px 0 1px 16px;
+            position: relative;
+        }
+
+        .behaviors li::before {
+            content: '·';
+            position: absolute;
+            left: 4px;
+            color: var(--border-2);
+            font-weight: 700;
+        }
+
+        /* ── CALLOUT ───────────────────────────────────────────────── */
+        .callout {
+            display: flex;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+        }
+
+        .callout-warn {
+            background: var(--amber-dim);
+            border: 1px solid #F0D090;
+            color: var(--amber);
+        }
+
+        .callout-icon {
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            line-height: 1.5;
+        }
+
+        .callout-body { line-height: 1.5; color: var(--text-2); }
+        .callout-body strong { color: var(--text); }
+
+        /* ── SECURITY MATRIX ───────────────────────────────────────── */
+        .matrix-wrap {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .matrix-table thead tr {
+            background: var(--surface-2);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .matrix-table th {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 11px 18px;
+            text-align: left;
+        }
+
+        .matrix-table th:not(:first-child) { text-align: center; }
+
+        .matrix-table tbody tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .matrix-table tbody tr:last-child { border-bottom: none; }
+        .matrix-table tbody tr:hover { background: var(--bg); }
+
+        .matrix-table td {
+            padding: 12px 18px;
+            font-size: 0.8375rem;
+        }
+
+        .matrix-table td:first-child {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        .matrix-table td:not(:first-child) { text-align: center; }
+
+        .cell-yes {
+            color: var(--green);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .cell-no {
+            color: var(--border-2);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* ── DEPLOY PRIORITY ───────────────────────────────────────── */
+        .priority-list {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .priority-row {
+            display: grid;
+            grid-template-columns: 48px 1fr auto;
+            align-items: start;
+            gap: 16px;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+        }
+
+        .priority-row:last-child { border-bottom: none; }
+        .priority-row:hover { background: var(--bg); }
+
+        .priority-idx {
+            font-family: var(--mono);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--orange-mid);
+            line-height: 1.3;
+        }
+
+        .priority-hook {
+            font-family: var(--mono);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+
+        .priority-why {
+            font-size: 0.8125rem;
+            color: var(--text-3);
+            line-height: 1.45;
+        }
+
+        .priority-badge {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            align-self: start;
+        }
+
+        .badge-critical { color: var(--red);    background: var(--red-dim);    border: 1px solid #F5C8C8; }
+        .badge-high     { color: var(--amber);  background: var(--amber-dim);  border: 1px solid #F0D090; }
+        .badge-medium   { color: var(--blue);   background: var(--blue-dim);   border: 1px solid #C8DCF5; }
+
+        /* ── FOOTER ────────────────────────────────────────────────── */
+        hr.section-sep {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 48px 0;
+        }
+
+        .doc-footer {
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-3);
+        }
+    </style>
+</head>
+
+<body>
+<div class="shell">
+
+    <!-- ═══ SIDEBAR ══════════════════════════════════════════════════ -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-label">SDD · .claude/hooks</div>
+            <div class="brand-title">Hook System<br>Reference</div>
+        </div>
+
+        <div class="nav-group-label">Mục lục</div>
+        <a href="#architecture" class="nav-link">
+            <span class="nav-dot"></span> Kiến trúc
+        </a>
+        <a href="#lifecycle" class="nav-link">
+            <span class="nav-dot green"></span> Lifecycle Hooks
+        </a>
+        <a href="#security" class="nav-link">
+            <span class="nav-dot red"></span> Security Layer
+        </a>
+        <a href="#enrichment" class="nav-link">
+            <span class="nav-dot blue"></span> Enrichment Layer
+        </a>
+        <a href="#observability" class="nav-link">
+            <span class="nav-dot purple"></span> Observability Layer
+        </a>
+        <a href="#matrix" class="nav-link">
+            <span class="nav-dot"></span> Security Matrix
+        </a>
+        <a href="#deployment" class="nav-link">
+            <span class="nav-dot"></span> Thứ tự triển khai
+        </a>
+
+        <div class="sidebar-footer">
+            19 hooks · 4 layers<br>
+            Cập nhật 2026-04-17<br>
+            E:\SDD-Upgrade\.claude\hooks\
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN ══════════════════════════════════════════════════════ -->
+    <main class="main">
+
+        <!-- ── DOCUMENT HEADER ─────────────────────────────────────── -->
+        <header class="doc-header">
+            <div class="doc-eyebrow">
+                <span>SDD Framework</span>
+                <span class="doc-eyebrow-sep">/</span>
+                <span>Tài liệu nội bộ</span>
+                <span class="doc-eyebrow-sep">/</span>
+                <span>Hook System</span>
+            </div>
+            <h1 class="doc-title">Hook System<br>Technical Reference</h1>
+            <p class="doc-subtitle">
+                Tài liệu tham chiếu đầy đủ cho thư mục <code style="font-family:var(--mono);font-size:0.9em;background:var(--surface-2);padding:2px 6px;border-radius:4px;border:1px solid var(--border)">.claude/hooks/</code>.
+                Bao gồm lifecycle events, security guards, context enrichment và observability instrumentation.
+            </p>
+            <div class="doc-meta">
+                <div class="meta-stat">
+                    <span class="meta-num">19</span>
+                    <span class="meta-label">hook files</span>
+                </div>
+                <span class="meta-sep">·</span>
+                <div class="meta-stat">
+                    <span class="meta-num">4</span>
+                    <span class="meta-label">architectural layers</span>
+                </div>
+                <span class="meta-sep">·</span>
+                <div class="meta-stat">
+                    <span class="meta-num">6</span>
+                    <span class="meta-label">security fixes áp dụng</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── ARCHITECTURE / LIFECYCLE MAP ───────────────────────── -->
+        <section class="section section-anchor" id="architecture">
+            <div class="section-heading">
+                <span class="section-num">§ 00</span>
+                <h2>Lifecycle Event Map</h2>
+            </div>
+            <p class="section-desc">Thứ tự thực thi hook qua toàn bộ vòng đời session của Claude Code.</p>
+
+            <div class="diagram-block">
+                <div class="diagram-caption">// execution flow</div>
+                <pre class="diagram"><span class="dim">Claude Code Runtime</span>
+  │
+  ├── <span class="hl">SessionStart</span>       →  session-start.sh  +  detect-gaps.sh
+  │
+  ├── <span class="hl">UserPromptSubmit</span>   →  prompt-context.sh
+  │
+  ├── <span class="hl">PreToolUse</span>
+  │   ├── :Bash          →  bash-guard.sh  +  validate-commit.sh (git commit)
+  │   │                     validate-push.sh (git push)
+  │   ├── :Task          →  circuit-guard.sh
+  │   ├── :Write         →  pre-refactor-impact.sh
+  │   └── :Read          →  file-history.sh
+  │
+  ├── <span class="hl">PostToolUse</span>
+  │   └── :Write         →  log-writes.sh  +  validate-assets.sh
+  │
+  ├── <span class="hl">SubagentStart</span>      →  log-agent.sh
+  │
+  ├── <span class="hl">PreCompact</span>         →  pre-compact.sh
+  │
+  └── <span class="hl">Stop</span>               →  session-stop.sh  ──►  auto-dream.sh</pre>
+            </div>
+        </section>
+
+        <!-- ── LAYER 1: LIFECYCLE ───────────────────────────────────── -->
+        <section class="section section-anchor" id="lifecycle">
+            <div class="section-heading">
+                <span class="section-num">§ 01</span>
+                <h2>Lifecycle Hooks</h2>
+            </div>
+            <p class="section-desc">Kích hoạt tại ranh giới session. Không block (<code>exit 0</code>). Không yêu cầu dependency ngoài.</p>
+
+            <div class="hook-table-wrap">
+                <table class="hook-table">
+                    <thead>
+                        <tr>
+                            <th>Hook</th>
+                            <th>Event</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">session-start.sh</div>
+                            </td>
+                            <td><span class="ev ev-green">SessionStart</span></td>
+                            <td class="col-desc">
+                                <strong>Báo cáo đầu session.</strong> Inject đầy đủ working context ngay khi mở session, Claude không cần hỏi lại trạng thái.
+                                <ul class="behaviors">
+                                    <li>Current branch + 5 commits gần nhất</li>
+                                    <li>Trạng thái sprint / milestone đang chạy</li>
+                                    <li>Số open bug + TODO/FIXME trong <code>src/</code></li>
+                                    <li>Preview session state từ phiên trước</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">detect-gaps.sh</div>
+                            </td>
+                            <td><span class="ev ev-green">SessionStart</span></td>
+                            <td class="col-desc">
+                                <strong>Phát hiện lỗ hổng tài liệu.</strong> Đánh dấu code tồn tại nhưng thiếu documentation tương ứng.
+                                <ul class="behaviors">
+                                    <li>Codebase &gt;50 files nhưng ít design docs</li>
+                                    <li>Prototype thiếu <code>README</code> hoặc <code>CONCEPT</code></li>
+                                    <li><code>src/core</code> tồn tại nhưng không có <code>docs/architecture/</code></li>
+                                    <li>Thư mục <code>src/api</code> lớn nhưng không có design doc</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">session-stop.sh</div>
+                            </td>
+                            <td><span class="ev ev-orange">Stop</span></td>
+                            <td class="col-desc">
+                                <strong>Dọn dẹp cuối session.</strong> Archive state, tính thống kê session, kích hoạt memory consolidation nếu đủ điều kiện.
+                                <ul class="behaviors">
+                                    <li>Đọc <code>agent-audit.jsonl</code> → đếm subagent</li>
+                                    <li>Đọc git log (cửa sổ 8h) → đếm commit</li>
+                                    <li>Archive session vào <code>memory/archive/sessions/</code></li>
+                                    <li>Trigger <code>auto-dream.sh</code> nếu <code>MEMORY.md</code> &gt; 40 dòng</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">auto-dream.sh</div>
+                            </td>
+                            <td><span class="ev ev-orange">sub-process</span></td>
+                            <td class="col-desc">
+                                <strong>Dọn dẹp memory.</strong> Được gọi bởi <code>session-stop.sh</code>. Xóa và archive các memory entry lỗi thời.
+                                <ul class="behaviors">
+                                    <li>Archive file cũ (&gt;30 ngày, &lt;5 dòng)</li>
+                                    <li>Đánh dấu file quá lớn (&gt;50 dòng) để review thủ công</li>
+                                    <li>Xóa broken links trong <code>MEMORY.md</code></li>
+                                    <li>Idempotent — không ghi log nếu không có thay đổi</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr class="section-sep">
+
+        <!-- ── LAYER 2: SECURITY ────────────────────────────────────── -->
+        <section class="section section-anchor" id="security">
+            <div class="section-heading">
+                <span class="section-num">§ 02</span>
+                <h2>Security Layer</h2>
+            </div>
+            <p class="section-desc">Hooks thuộc <code>PreToolUse</code>. <code>exit 2</code> chặn tool call. Yêu cầu <code>jq</code> được cài đặt.</p>
+
+            <div class="callout callout-warn">
+                <span class="callout-icon">⚠</span>
+                <div class="callout-body">
+                    <strong>Hành vi blocking:</strong> Tất cả hook trong layer này có thể kết thúc bằng <code>exit 2</code>, ngăn tool call thực thi. Đảm bảo <code>jq</code> đã được cài — nếu thiếu, <code>bash-guard.sh</code> trả về <code>exit 1</code> và chặn toàn bộ Bash tool calls.
+                </div>
+            </div>
+
+            <div class="hook-table-wrap">
+                <table class="hook-table">
+                    <thead>
+                        <tr>
+                            <th>Hook</th>
+                            <th>Event</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">bash-guard.sh</div>
+                            </td>
+                            <td>
+                                <span class="ev ev-red">PreToolUse:Bash</span>
+                                <span class="blocks">blocks</span>
+                            </td>
+                            <td class="col-desc">
+                                <strong>Bộ bảo vệ tuyệt đối.</strong> Từ chối mọi shell pattern hủy diệt, không có ngoại lệ. Thiếu <code>jq</code> → <code>exit 1</code>, chặn toàn bộ Bash tool calls.
+                                <ul class="behaviors">
+                                    <li><code>rm -rf /</code> · <code>rm -rf .</code> · <code>rm -rf *</code> — xóa không thể phục hồi</li>
+                                    <li><code>curl | bash</code> · <code>wget | sh</code> — remote code execution</li>
+                                    <li><code>cat .env</code> · <code>tee .env</code> · <code>&gt; .env</code> — lộ secret</li>
+                                    <li><code>git push --force</code> — mất lịch sử vĩnh viễn</li>
+                                    <li><code>docker system prune</code> · <code>docker rm -f</code> — xóa production</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">validate-commit.sh</div>
+                            </td>
+                            <td>
+                                <span class="ev ev-red">PreToolUse:Bash</span>
+                                <span class="blocks">blocks</span>
+                            </td>
+                            <td class="col-desc">
+                                <strong>Kiểm soát thông minh commit.</strong> Chỉ kích hoạt khi lệnh là <code>git commit</code>. Sáu tầng validation trước khi cho phép commit.
+                                <ul class="behaviors">
+                                    <li>Kiểm tra staged files có tồn tại không</li>
+                                    <li>Validate định dạng Conventional Commits message</li>
+                                    <li>Từ chối <code>.env</code>, <code>*.key</code>, <code>credentials.json</code> trong staged set</li>
+                                    <li>Quét secret pattern: <code>API_KEY</code>, <code>token</code> trong diff</li>
+                                    <li><strong>M2 fix:</strong> watchdog 25s — hiển thị WARN thay vì SIGKILL</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">validate-push.sh</div>
+                            </td>
+                            <td>
+                                <span class="ev ev-red">PreToolUse:Bash</span>
+                                <span class="blocks">blocks</span>
+                            </td>
+                            <td class="col-desc">
+                                <strong>Bảo vệ push.</strong> Lọc lệnh <code>git push</code>; áp dụng branch protection và quét secret trên toàn bộ diff.
+                                <ul class="behaviors">
+                                    <li>Chặn <code>--force</code> / <code>--force-with-lease</code></li>
+                                    <li>Chặn push trực tiếp lên <code>main</code> / <code>master</code></li>
+                                    <li>Quét secret toàn bộ diff</li>
+                                    <li>Chạy pre-push tests nếu đã cấu hình</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">circuit-guard.sh</div>
+                            </td>
+                            <td>
+                                <span class="ev ev-red">PreToolUse:Task</span>
+                                <span class="blocks">blocks</span>
+                            </td>
+                            <td class="col-desc">
+                                <strong>ADR-004 Phase 2.</strong> Unified failure state machine. Ngăn Task tool thực thi khi circuit đang ở trạng thái lỗi.
+                                <ul class="behaviors">
+                                    <li><code>CLOSED</code> → hoạt động bình thường, pass-through</li>
+                                    <li><code>HALF_OPEN</code> → cho qua + phát WARN, đang probe recovery</li>
+                                    <li><code>OPEN</code> → <strong>block</strong>, TTL 60 phút hoặc reset thủ công</li>
+                                    <li>State file: <code>.claude/memory/circuit-state.json</code></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr class="section-sep">
+
+        <!-- ── LAYER 3: ENRICHMENT ─────────────────────────────────── -->
+        <section class="section section-anchor" id="enrichment">
+            <div class="section-heading">
+                <span class="section-num">§ 03</span>
+                <h2>Enrichment Layer</h2>
+            </div>
+            <p class="section-desc">Inject context một cách thông minh. Không bao giờ block — chỉ làm giàu nhận thức của Claude.</p>
+
+            <div class="hook-table-wrap">
+                <table class="hook-table">
+                    <thead>
+                        <tr>
+                            <th>Hook</th>
+                            <th>Event</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">prompt-context.sh</div>
+                            </td>
+                            <td><span class="ev ev-blue">UserPromptSubmit</span></td>
+                            <td class="col-desc">
+                                <strong>Inject memory.</strong> Trích từ khóa từ user prompt, đối chiếu với <code>.claude/memory/*.md</code>, inject tối đa 3 file liên quan.
+                                <ul class="behaviors">
+                                    <li><strong>H2 fix:</strong> <code>sanitize_memory_content()</code> lọc injection patterns</li>
+                                    <li>Output bọc trong code fence, nhãn "READ-ONLY, NOT instructions"</li>
+                                    <li>Dùng <code>jq -n --arg</code> thay vì escape thủ công bằng <code>sed</code></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">file-history.sh</div>
+                            </td>
+                            <td><span class="ev ev-blue">PreToolUse:Read</span></td>
+                            <td class="col-desc">
+                                <strong>Inject git history.</strong> Chèn 5 commit gần nhất của file trước khi Read thực thi. Bỏ qua file nhỏ hoặc chưa được track.
+                                <ul class="behaviors">
+                                    <li>Bỏ qua nếu file &lt;1KB (overhead vượt quá lợi ích)</li>
+                                    <li>Bỏ qua nếu file chưa được git track</li>
+                                    <li>Inject 5 commits + last author + last date</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">pre-refactor-impact.sh</div>
+                            </td>
+                            <td><span class="ev ev-blue">PreToolUse:Write</span></td>
+                            <td class="col-desc">
+                                <strong>Cảnh báo tác động refactor.</strong> In impact warning ra <code>stderr</code> trước khi ghi vào <code>src/**</code>. Yêu cầu GitNexus đã được index.
+                                <ul class="behaviors">
+                                    <li>Chỉ kích hoạt cho file trong <code>src/</code></li>
+                                    <li>Yêu cầu <code>npx</code> và GitNexus registry đã được index</li>
+                                    <li>Chỉ warn ra <code>stderr</code> — không block</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr class="section-sep">
+
+        <!-- ── LAYER 4: OBSERVABILITY ──────────────────────────────── -->
+        <section class="section section-anchor" id="observability">
+            <div class="section-heading">
+                <span class="section-num">§ 04</span>
+                <h2>Observability Layer</h2>
+            </div>
+            <p class="section-desc">Ghi log nguyên tử toàn bộ hoạt động hệ thống. Tạo ra audit trail không thể bị làm giả.</p>
+
+            <div class="hook-table-wrap">
+                <table class="hook-table">
+                    <thead>
+                        <tr>
+                            <th>Hook</th>
+                            <th>Event</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">log-writes.sh</div>
+                            </td>
+                            <td><span class="ev ev-purple">PostToolUse:Write</span></td>
+                            <td class="col-desc">
+                                <strong>Audit logger ghi file.</strong> Append một JSON entry vào <code>writes.jsonl</code> sau mỗi Write / Edit tool call.
+                                <ul class="behaviors">
+                                    <li><strong>H1 fix:</strong> <code>flock -x</code> bảo vệ atomic write</li>
+                                    <li>JSON sinh bằng <code>jq</code> — không escape thủ công</li>
+                                    <li>Graceful fallback nếu <code>flock</code> không có (Windows)</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">log-agent.sh</div>
+                            </td>
+                            <td><span class="ev ev-purple">SubagentStart</span></td>
+                            <td class="col-desc">
+                                <strong>Audit logger subagent.</strong> Append một JSON entry vào <code>agent-audit.jsonl</code> mỗi khi subagent khởi động.
+                                <ul class="behaviors">
+                                    <li><strong>H1 fix:</strong> <code>flock</code> + <code>jq</code>-based JSON generation</li>
+                                    <li>Kép output: <code>agent-audit.jsonl</code> (machine) + <code>.log</code> (human)</li>
+                                    <li>Được đọc bởi <code>session-stop.sh</code> để thống kê session</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">pre-compact.sh</div>
+                            </td>
+                            <td><span class="ev ev-purple">PreCompact</span></td>
+                            <td class="col-desc">
+                                <strong>Phao cứu sinh context.</strong> Dump toàn bộ working state vào conversation trước khi compaction. Claude không mất context qua quá trình nén.
+                                <ul class="behaviors">
+                                    <li><code>session-state/active.md</code> (giới hạn 100 dòng)</li>
+                                    <li>Git diff: unstaged, staged, và untracked files</li>
+                                    <li>WIP markers trong design docs</li>
+                                    <li>Last intent: commit cuối + staged stat + lần ghi cuối</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                <div class="hn">validate-assets.sh</div>
+                            </td>
+                            <td><span class="ev ev-purple">PostToolUse:Write</span></td>
+                            <td class="col-desc">
+                                <strong>Kiểm tra asset.</strong> Xác nhận naming convention và JSON validity cho file ghi vào <code>assets/</code>. Không block.
+                                <ul class="behaviors">
+                                    <li>Quy tắc đặt tên: <code>lowercase_with_underscores</code></li>
+                                    <li><code>assets/data/*.json</code> → validate JSON syntax</li>
+                                    <li>Chỉ warn ra <code>stderr</code> — không làm gián đoạn workflow</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr class="section-sep">
+
+        <!-- ── SECURITY MATRIX ─────────────────────────────────────── -->
+        <section class="section section-anchor" id="matrix">
+            <div class="section-heading">
+                <span class="section-num">§ 05</span>
+                <h2>Security Matrix</h2>
+            </div>
+            <p class="section-desc">Bản đồ coverage của hook theo CIA triad properties và auditability.</p>
+
+            <div class="matrix-wrap">
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Hook</th>
+                            <th>Availability</th>
+                            <th>Integrity</th>
+                            <th>Confidentiality</th>
+                            <th>Auditability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>bash-guard.sh</td>
+                            <td><span class="cell-yes">✓ Chặn rm -rf</span></td>
+                            <td><span class="cell-yes">✓ Chặn force push</span></td>
+                            <td><span class="cell-yes">✓ Chặn cat .env</span></td>
+                            <td><span class="cell-no">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>validate-commit.sh</td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ Quét secret trong diff</span></td>
+                            <td><span class="cell-yes">✓ Chặn sensitive files</span></td>
+                            <td><span class="cell-yes">✓ Commit log</span></td>
+                        </tr>
+                        <tr>
+                            <td>validate-push.sh</td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ Branch protection</span></td>
+                            <td><span class="cell-yes">✓ Quét secret khi push</span></td>
+                            <td><span class="cell-yes">✓ Push log</span></td>
+                        </tr>
+                        <tr>
+                            <td>circuit-guard.sh</td>
+                            <td><span class="cell-yes">✓ Chặn trạng thái OPEN</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ State transitions</span></td>
+                        </tr>
+                        <tr>
+                            <td>prompt-context.sh</td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ Lọc injection pattern</span></td>
+                            <td><span class="cell-no">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>log-writes.sh</td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ JSONL atomic</span></td>
+                        </tr>
+                        <tr>
+                            <td>log-agent.sh</td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ JSONL atomic</span></td>
+                        </tr>
+                        <tr>
+                            <td>pre-compact.sh</td>
+                            <td><span class="cell-yes">✓ Bảo tồn context</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ Compaction log</span></td>
+                        </tr>
+                        <tr>
+                            <td>session-stop.sh</td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-no">—</span></td>
+                            <td><span class="cell-yes">✓ Archive session</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <hr class="section-sep">
+
+        <!-- ── DEPLOYMENT PRIORITY ────────────────────────────────── -->
+        <section class="section section-anchor" id="deployment">
+            <div class="section-heading">
+                <span class="section-num">§ 06</span>
+                <h2>Thứ tự triển khai khuyến nghị</h2>
+            </div>
+            <p class="section-desc">Sắp xếp theo mức độ tác động. Triển khai các biện pháp rủi ro cao nhất trước.</p>
+
+            <div class="priority-list">
+                <div class="priority-row">
+                    <div class="priority-idx">01</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">bash-guard.sh</div>
+                        <div class="priority-why">Ngăn lệnh shell không thể đảo ngược (xóa, RCE). Side-effect không thể rollback.</div>
+                    </div>
+                    <span class="priority-badge badge-critical">Nghiêm trọng</span>
+                </div>
+                <div class="priority-row">
+                    <div class="priority-idx">02</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">validate-commit.sh</div>
+                        <div class="priority-why">Ngăn secret lọt vào git history. Không thể xóa sạch sau khi push mà không viết lại history.</div>
+                    </div>
+                    <span class="priority-badge badge-critical">Nghiêm trọng</span>
+                </div>
+                <div class="priority-row">
+                    <div class="priority-idx">03</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">session-start.sh + session-stop.sh</div>
+                        <div class="priority-why">Cung cấp working context khi mở session; archive state khi đóng. Nền tảng cho tất cả hook còn lại.</div>
+                    </div>
+                    <span class="priority-badge badge-high">Cao</span>
+                </div>
+                <div class="priority-row">
+                    <div class="priority-idx">04</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">pre-compact.sh</div>
+                        <div class="priority-why">Dump state trước compaction. Bảo tồn working context qua các sự kiện nén context.</div>
+                    </div>
+                    <span class="priority-badge badge-high">Cao</span>
+                </div>
+                <div class="priority-row">
+                    <div class="priority-idx">05</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">circuit-guard.sh</div>
+                        <div class="priority-why">Chặn Task tool khi circuit ở OPEN. Ngăn cascade failures qua chuỗi subagent.</div>
+                    </div>
+                    <span class="priority-badge badge-high">Cao</span>
+                </div>
+                <div class="priority-row">
+                    <div class="priority-idx">06</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">prompt-context.sh</div>
+                        <div class="priority-why">Yêu cầu <code>.claude/memory/*.md</code> đã có dữ liệu để có tác dụng. Triển khai sau khi memory được seed.</div>
+                    </div>
+                    <span class="priority-badge badge-medium">Trung bình</span>
+                </div>
+                <div class="priority-row">
+                    <div class="priority-idx">07</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">log-writes.sh</div>
+                        <div class="priority-why">Audit trail cho file writes. Dùng để debug và tổng kết session.</div>
+                    </div>
+                    <span class="priority-badge badge-medium">Trung bình</span>
+                </div>
+                <div class="priority-row">
+                    <div class="priority-idx">08</div>
+                    <div class="priority-body">
+                        <div class="priority-hook">log-agent.sh</div>
+                        <div class="priority-why">Audit trail cho subagent calls. Dùng để đo chi phí và phân tích workflow.</div>
+                    </div>
+                    <span class="priority-badge badge-medium">Trung bình</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FOOTER ───────────────────────────────────────────────── -->
+        <div class="doc-footer">
+            <span>SDD Framework × Hook Intelligence</span>
+            <span>19 hooks · 4 layers · 2026-04-17</span>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    // Highlight active sidebar link on scroll
+    const sections = document.querySelectorAll('.section-anchor');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                });
+            }
+        });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

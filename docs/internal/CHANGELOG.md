@@ -6,6 +6,97 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.35.0] - 2026-04-18
+
+**Chủ đề:** Hooks Visual Report — Redesign chuẩn Anthropic Technical Docs
+
+Phiên bản này tập trung hoàn toàn vào chất lượng tài liệu kỹ thuật. File `hooks_visual_report.html` được viết lại từ đầu — từ phong cách editorial/magazine sang chuẩn technical documentation của Anthropic, kèm nội dung song ngữ (mô tả tiếng Việt, thuật ngữ kỹ thuật giữ nguyên tiếng Anh).
+
+#### Redesign: `docs/hooks_visual_report.html` — Anthropic Technical Standard
+
+**Thay đổi cấu trúc:**
+- Bỏ layout full-width editorial → chuyển sang shell 2 cột: sidebar navigation cố định + main content area
+- Sidebar sticky với active-link highlighting qua `IntersectionObserver`
+- Font stack: `Inter` (body) + `JetBrains Mono` (code/identifiers) thay vì `Archivo` + `Source Serif 4`
+
+**Thay đổi design system:**
+- Loại bỏ card grid (`hook-grid`) — thay bằng `hook-table` (bảng tham chiếu kỹ thuật chuẩn)
+- Scroll reveal animation bị xóa (không phù hợp tài liệu kỹ thuật)
+- Color palette giữ nguyên Anthropic warm cream (`#F7F4EF`) nhưng tông trung tính hơn
+- Thêm `callout` component cho warning block (Security Layer)
+- `priority-list` layout: grid 3 cột (index + body + badge) thay vì card
+
+**Thay đổi nội dung:**
+- Toàn bộ mô tả dịch sang tiếng Việt tự nhiên
+- Giữ nguyên tiếng Anh: tên hook, event names, CLI flags, file paths, code identifiers, thuật ngữ kỹ thuật (`audit trail`, `idempotent`, `CIA triad`, `JSONL`...)
+- Eyebrow path: "SDD Framework / Tài liệu nội bộ / Hook System"
+- Section `§ 00` bổ sung diagram ASCII với syntax highlighting (`.hl` / `.dim` spans)
+
+**Files thay đổi:**
+- `docs/hooks_visual_report.html` — rewrite hoàn toàn (~1,200 dòng)
+
+#### Số liệu v1.35.0:
+
+- Files rewritten: 1 (`hooks_visual_report.html`)
+- Components mới: sidebar nav, hook-table, callout, priority-list
+- Nội dung: 100% bilingual (VI mô tả + EN technical terms)
+
+---
+
+### [v1.34.0] - 2026-04-18
+
+**Chủ đề:** Dream Loop Termination — Sửa vòng lặp vô hạn & chuẩn hóa Skills/Commands Boundary
+
+Phiên bản này giải quyết triệt để 2 pathologies đã được phát hiện qua phân tích thực tế: (1) vòng lặp dream vô hạn do `auto-dream.sh` luôn tạo archive file ngay cả khi không có gì thay đổi, (2) filename bug khiến dream log bị ghi sai tên. Đồng thời chuẩn hóa ranh giới Commands vs Skills và nâng cấp 2 skills quan trọng.
+
+#### Fix 1 — Dream Loop: No-op Guard (`auto-dream.sh`)
+
+- **Vấn đề:** `auto-dream.sh` luôn ghi file `*_dream.md` vào archive sau mỗi lần chạy, dù không archive/prune/flag gì cả. Điều này khiến `session-stop.sh` đếm archive files ngày càng tăng → Condition 1 (MEMORY.md > 40 lines hoặc archive count) luôn đúng → dream kích hoạt mỗi session → vòng lặp vô hạn.
+- **Fix:** Thêm guard: chỉ ghi `$DREAM_LOG` nếu `ARCHIVED > 0 || PRUNED > 0 || LARGE_COUNT > 0`. No-op run → print thông báo skip, không tạo file.
+
+#### Fix 2 — Filename Bug (`auto-dream.sh`)
+
+- **Vấn đề:** `DREAM_LOG="$ARCHIVE_DREAMS/$TIMESTAMP_dream.md"` — biến `$TIMESTAMP` bị concatenate trực tiếp với `_dream` tạo thành tên biến mới (`$TIMESTAMP_dream`) → không defined → filename rỗng → file được ghi vào thư mục sai.
+- **Fix:** `DREAM_LOG="$ARCHIVE_DREAMS/${TIMESTAMP}_dream.md"` — dùng `${}` để tách rõ tên biến.
+
+#### Fix 3 — Dream Cooldown Guard (`session-stop.sh`)
+
+- **Vấn đề:** Ngay cả khi `auto-dream.sh` được fix, Condition 1 (`MEMORY.md > 40 lines`) vẫn có thể luôn đúng vì `auto-dream.sh` không thể tự thu nhỏ `MEMORY.md`. Mỗi session ở state này sẽ re-trigger dream.
+- **Fix:** Sau khi xác định `DREAM_TRIGGERED=true`, kiểm tra xem có `*_dream.md` file nào được tạo trong 60 phút qua không. Nếu có → reset `DREAM_TRIGGERED=false` với reason `"Cooldown active — last dream < 60min ago"`.
+
+#### Fix 4 — Archive Cleanup (90+ stale files)
+
+- Xóa toàn bộ 39 `*_dream.md` và 39 `*_session.md` empty/no-op files từ ngày 2026-04-16 đến 2026-04-17 — những file này được tạo ra bởi bug filename + no-op loop trên.
+- Kết quả: archive folder sạch, chỉ chứa meaningful dream logs từ nay.
+
+#### Governance — Commands vs Skills Precedence
+
+- Tạo mới `.claude/docs/skills-precedence.md`: Tài liệu chính thức phân biệt ranh giới giữa **Workflow Commands** (gates xác định stage) và **Skills** (domain expertise cung cấp content). Commands CHỨA skills, không thay thế.
+- Cập nhật `CLAUDE.md`: Thêm callout `> **Commands vs Skills precedence:**` với link đến `skills-precedence.md`.
+
+#### Skills: backend-developer Agent Refactor
+
+- `backend-developer.md`: Thay thế `nodejs-backend-patterns` → `backend-patterns` (generic hơn, không bị lock vào Node.js-only).
+- Xóa skill `nodejs-backend-patterns/` (obsolete — nội dung đã được merge vào `backend-patterns`).
+
+#### Skills: Major Overhaul — `diagnose` & `fastapi-pro`
+
+- **`diagnose/SKILL.md`** (+282 lines): Nâng cấp toàn diện — thêm structured diagnostic report format, root cause analysis matrix, và integration với MAS agents (`investigator`, `verifier`, `solver`).
+- **`fastapi-pro/SKILL.md`** (refactor hoàn toàn): Chuyển từ capability-list sang execution-patterns — async patterns, Pydantic v2, dependency injection, production deployment với Uvicorn + Gunicorn.
+
+#### Docs: Hooks Visual Report
+
+- Thêm `docs/hooks_visual_report.html`: Báo cáo trực quan toàn bộ kiến trúc hook system — timeline, event coverage map, dependency graph, và security layer visualization.
+
+#### Số liệu v1.34.0:
+
+- Bugs fixed: 2 critical (filename + no-op loop) + 1 cooldown guard
+- Files removed: 80 no-op archive files + 2 obsolete skill files
+- New docs: `skills-precedence.md`, `hooks_visual_report.html`
+- Skills updated: `diagnose` (major), `fastapi-pro` (major), `frontend-patterns` (minor), `senior-frontend` (minor)
+
+---
+
 ### [v1.33.0] - 2026-04-17
 
 **Chủ đề:** The Great Pruning — Toàn bộ P0 Security & Architecture Fixes từ Audit Report v4
