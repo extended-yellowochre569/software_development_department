@@ -1,11 +1,11 @@
-﻿---
+---
 name: launch-checklist
-description: "Generates a comprehensive product launch checklist covering technical readiness, marketing, support, and go-live steps. Use when preparing for a product launch or when the user mentions launch checklist or go-live readiness."
+description: "Generates a comprehensive software launch checklist covering technical readiness, customer communications, support, and go-live steps. Use when preparing for a product launch or when the user mentions launch checklist or go-live readiness."
 argument-hint: "[launch-date or 'dry-run']"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
 effort: 3
-when_to_use: "When preparing for a product or feature launch and needing to validate all departments are ready"
+when_to_use: "When preparing for a software product or feature launch and needing to validate all departments are ready"
 ---
 
 When this skill is invoked:
@@ -16,15 +16,16 @@ When this skill is invoked:
    generates the checklist without creating sign-off entries.
 
 2. **Gather project context**:
-   - Read `CLAUDE.md` for tech stack, target platforms, and team structure
+   - Read `CLAUDE.md` for tech stack, release surfaces, and team structure
    - Read the latest milestone in `production/milestones/`
    - Read any existing release checklist in `production/releases/`
-   - Read the content calendar in `design/live-ops/content-calendar.md` if it exists
+   - Read any launch, support, or communications notes in `docs/launch/`,
+     `docs/runbooks/`, or `production/releases/` if they exist
 
 3. **Scan codebase health**:
    - Count `TODO`, `FIXME`, `HACK` comments and their locations
    - Check for any `console.log`, `print()`, or debug output left in production code
-   - Check for placeholder assets (search for `placeholder`, `temp_`, `WIP_`)
+   - Check for placeholder assets or copy (search for `placeholder`, `temp_`, `WIP_`)
    - Check for hardcoded test/dev values (localhost, test credentials, debug flags)
 
 4. **Generate the launch checklist**:
@@ -39,60 +40,54 @@ Generated: [Date]
 ## 1. Code Readiness
 
 ### Build Health
-- [ ] Clean build on all target platforms
-- [ ] Zero compiler warnings
+- [ ] Clean build or release artifact generated for all target surfaces
+- [ ] Zero release-blocking compiler or linter errors
 - [ ] All unit tests passing
 - [ ] All integration tests passing
-- [ ] Performance benchmarks within targets
-- [ ] No memory leaks (verified via extended soak test)
-- [ ] Build size within platform limits
-- [ ] Build version correctly set and tagged in source control
+- [ ] End-to-end or smoke tests passing for critical user journeys
+- [ ] Schema migrations tested with rollback or recovery plan
+- [ ] Release version correctly set and tagged in source control
+- [ ] Performance and reliability benchmarks within agreed targets
 
 ### Code Quality
 - [ ] TODO count: [N] (zero required for launch, or documented exceptions)
 - [ ] FIXME count: [N] (zero required)
 - [ ] HACK count: [N] (each must have documented justification)
-- [ ] No debug output in production code
+- [ ] No unintended debug output in production code
 - [ ] No hardcoded dev/test values
-- [ ] All feature flags set to production values
+- [ ] All feature flags reviewed for launch defaults
 - [ ] Error handling covers all critical paths
-- [ ] Crash reporting integrated and verified
+- [ ] Crash reporting and structured logging integrated and verified
+- [ ] Dependency vulnerabilities triaged and accepted risk documented
 
-### Security
-- [ ] No exposed API keys or credentials in source
-- [ ] Save data encrypted
-- [ ] Network communication secured (TLS/DTLS)
-- [ ] Anti-cheat measures active (if multiplayer)
-- [ ] Input validation on all server endpoints (if multiplayer)
-- [ ] Privacy policy compliance verified
+### Security and Privacy
+- [ ] No exposed API keys or credentials in source or build artifacts
+- [ ] Authentication, authorization, and input validation verified on public endpoints
+- [ ] Network communication secured (TLS, signed webhooks, secret rotation as applicable)
+- [ ] Abuse protection, rate limiting, or bot controls enabled where required
+- [ ] Privacy policy and data handling compliance verified
+- [ ] Backup and restore path validated for stateful systems
 
 ---
 
-## 2. Content Readiness
+## 2. Product Readiness
 
-### Assets
-- [ ] All placeholder art replaced with final assets
-- [ ] All placeholder audio replaced with final audio
-- [ ] Audio mix finalized and approved by audio director
-- [ ] All VFX polished and performance-verified
-- [ ] No missing or broken asset references
-- [ ] Asset naming conventions enforced
+### Functional Scope
+- [ ] All launch-scope features implemented or explicitly deferred
+- [ ] Critical user journeys tested end-to-end
+- [ ] Admin, support, and internal operational workflows verified
+- [ ] Billing, notifications, integrations, and webhooks tested if applicable
+- [ ] Data import/export, retention, or deletion flows verified if applicable
+- [ ] Release notes and known issues drafted
 
-### Text and Localization
+### UX, Content, and Localization
+- [ ] All placeholder copy and visuals replaced
 - [ ] All user-facing text proofread
 - [ ] No hardcoded strings (all externalized for localization)
 - [ ] All supported languages translated and verified
-- [ ] Text fits UI in all languages (text fitting pass complete)
-- [ ] Font coverage verified for all supported languages
-- [ ] Credits complete, accurate, and up to date
-
-### Product Content
-- [ ] All levels/maps playable from start to finish
-- [ ] Tutorial flow complete and tested with new users
-- [ ] All achievements/trophies implemented and tested
-- [ ] Save/load works correctly for all application states
-- [ ] Difficulty settings balanced and tested
-- [ ] End-product/credits sequence complete
+- [ ] Text fits UI in all supported languages
+- [ ] Help content, onboarding, and empty states reviewed
+- [ ] Customer-facing documentation links are current
 
 ---
 
@@ -100,101 +95,85 @@ Generated: [Date]
 
 ### Testing
 - [ ] Full regression test suite passed
-- [ ] Zero S1 (Critical) bugs open
-- [ ] Zero S2 (Major) bugs open (or documented exceptions)
-- [ ] Soak test passed (8+ hours continuous play)
-- [ ] Multiplayer stress test passed (if applicable)
-- [ ] All critical user paths tested on every platform
-- [ ] Edge cases tested (full storage, no network, suspend/resume)
+- [ ] Zero Sev1 (Critical) bugs open
+- [ ] Zero Sev2 (High/Major) bugs open, or documented exceptions with owner approval
+- [ ] Smoke test passed in staging or release candidate environment
+- [ ] User acceptance or stakeholder sign-off captured
+- [ ] Edge cases tested (no network, expired session, low storage, rate limits, retries)
+- [ ] Backup/restore or disaster recovery drill completed if applicable
 
-### Platform Certification
-- [ ] PC: Steam/Epic/GOG SDK requirements met
-- [ ] Console: TRC/TCR/Lotcheck submission prepared
-- [ ] Mobile: App Store/Play Store guidelines compliant
-- [ ] Accessibility: minimum standards met (remapping, text scaling, colorblind)
-- [ ] Age ratings obtained (ESRB, PEGI, regional)
+### Accessibility and Compliance
+- [ ] Accessibility basics covered for target surfaces
+- [ ] Consent, privacy, and legal notices reviewed
+- [ ] Audit logging or regulated workflow checks verified if required
+- [ ] App store or platform policy requirements met, if applicable
 
-### Performance
-- [ ] Target FPS met on minimum spec hardware
-- [ ] Load times within budget on all platforms
-- [ ] Memory usage within budget on all platforms
-- [ ] Network bandwidth within targets (if multiplayer)
-- [ ] No frame hitches in critical business critical moments
+### Performance and Reliability
+- [ ] Response time or startup time within budget
+- [ ] Memory and CPU usage within budget
+- [ ] Queue lag, background jobs, and async workflows within targets
+- [ ] No sustained error-rate spikes during release candidate soak window
+- [ ] Capacity and scaling assumptions reviewed for launch traffic
 
 ---
 
-## 4. Store and Distribution
+## 4. Distribution and Customer-Facing Assets
 
-### Store Pages
-- [ ] Store page copy finalized and proofread
-- [ ] Screenshots current and per-platform resolution
-- [ ] Trailers current and approved
-- [ ] Key art and capsule images finalized
-- [ ] System requirements accurate (PC)
-- [ ] Pricing configured for all regions
-- [ ] Pre-purchase/wishlist campaigns active (if applicable)
+### Release Assets
+- [ ] Changelog complete and proofread
+- [ ] Release notes complete and customer-appropriate
+- [ ] Version numbers aligned across app, API, docs, and packaging
+- [ ] Download links, package names, or deployment targets finalized
 
-### Legal
-- [ ] EULA finalized and approved by legal
-- [ ] Privacy policy published and linked
-- [ ] Third-party license attributions complete
-- [ ] Music/audio licensing verified
-- [ ] Trademark/IP clearance confirmed
-- [ ] GDPR/CCPA compliance verified (data collection, consent, deletion)
+### Launch Communications
+- [ ] Status page messaging prepared
+- [ ] Customer announcement drafted
+- [ ] In-app banner, modal, or changelog entry prepared if needed
+- [ ] Support macros / FAQ updated
+- [ ] Sales, customer success, and internal stakeholders briefed
+
+### Public Metadata
+- [ ] Marketing site or product page copy updated
+- [ ] Screenshots or release visuals current
+- [ ] Pricing, packaging, and plan entitlements verified
+- [ ] App store listing metadata current, if applicable
 
 ---
 
 ## 5. Infrastructure
 
-### Servers (if multiplayer/online)
-- [ ] Production servers provisioned and load-tested
-- [ ] Auto-scaling configured and tested
-- [ ] Database backups configured
-- [ ] CDN configured for content delivery
-- [ ] DDoS protection active
-- [ ] Monitoring and alerting configured
+### Production Readiness
+- [ ] Production infrastructure provisioned and sized for launch
+- [ ] Database backups configured and restore tested
+- [ ] CDN, cache invalidation, and asset delivery configured where applicable
+- [ ] Feature flag rollout strategy documented
+- [ ] Secrets and access reviews completed
+- [ ] Deployment and rollback runbooks current
 
 ### Analytics and Monitoring
-- [ ] Analytics pipeline verified and receiving data
+- [ ] Analytics pipeline verified and receiving expected events
 - [ ] Crash reporting active and dashboard accessible
-- [ ] Server monitoring dashboards live
-- [ ] Key metrics tracked: DAU, session length, retention, crashes
+- [ ] Monitoring dashboards live for core technical and business metrics
 - [ ] Alerts configured for critical thresholds
+- [ ] Incident escalation path and owners documented
 
 ---
 
-## 6. Community and Marketing
-
-### Community Readiness
-- [ ] Community guidelines published
-- [ ] Moderation team briefed and tools ready
-- [ ] Discord/forum/social channels set up
-- [ ] FAQ and known issues page prepared
-- [ ] Support email/ticketing system active
-
-### Marketing
-- [ ] Launch trailer published
-- [ ] Press/influencer review keys distributed
-- [ ] Social media launch posts scheduled
-- [ ] Launch day blog post/dev update drafted
-- [ ] Patch notes for launch version published
-
----
-
-## 7. Operations
+## 6. Support and Operations
 
 ### Team Readiness
 - [ ] On-call schedule set for first 72 hours post-launch
-- [ ] Incident response playbook reviewed by team
-- [ ] Rollback plan documented and tested
-- [ ] Hotfix pipeline tested (can ship emergency fix within 4 hours)
-- [ ] Communication plan for launch issues (who posts, where, how fast)
+- [ ] Incident response playbook reviewed by the team
+- [ ] Hotfix pipeline tested
+- [ ] Communication plan for launch issues documented
+- [ ] Support team briefed on known issues and escalation path
 
-### Day-One Plan
-- [ ] Day-one patch prepared (if needed)
-- [ ] Server unlock/go-live procedure documented
+### Launch Day Plan
+- [ ] Go-live sequence documented step by step
+- [ ] Rollback decision criteria documented
+- [ ] War room or launch channel established
 - [ ] Launch monitoring dashboard bookmarked by all leads
-- [ ] War room/channel established for launch day
+- [ ] Checkpoint times defined for launch-day review
 
 ---
 
@@ -209,11 +188,12 @@ Generated: [Date]
 [List items that have documented workarounds or accepted risk]
 
 ### Sign-Offs Required
-- [ ] Creative Director — Content and experience quality
-- [ ] Technical Director — Technical health and stability
-- [ ] QA Lead — Quality and test coverage
-- [ ] Producer — Schedule and overall readiness
-- [ ] Release Manager — Build and deployment readiness
+- [ ] Product Owner - Scope and customer readiness
+- [ ] Engineering Lead - Technical health and stability
+- [ ] QA Lead - Quality and test coverage
+- [ ] Release Manager - Deployment and rollback readiness
+- [ ] Security / Compliance Owner - Security and data handling
+- [ ] Support Lead - Support and incident readiness
 ```
 
 5. **Save the checklist** to
@@ -226,7 +206,7 @@ Generated: [Date]
 
 - **Question**: Reads launch date or `dry-run` argument; gathers context from CLAUDE.md and milestone files
 - **Options**: Skip
-- **Decision**: Skip — checklist is generated; Go/No-Go is advisory
+- **Decision**: Skip - checklist is generated; Go/No-Go is advisory
 - **Draft**: Summary statistics shown before saving
 - **Approval**: "May I write to `production/releases/launch-checklist-[date].md`?"
 

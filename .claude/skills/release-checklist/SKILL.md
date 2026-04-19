@@ -1,25 +1,25 @@
-﻿---
+---
 name: release-checklist
-description: "Generates a comprehensive pre-release validation checklist covering build verification, store metadata, and launch readiness. Use when preparing to release a product version or when the user mentions release checklist or pre-release validation."
-argument-hint: "[platform: pc|console|mobile|all]"
+description: "Generates a comprehensive pre-release validation checklist for software versions covering build verification, deployment readiness, and release risk. Use when preparing to release a product version or when the user mentions release checklist or pre-release validation."
+argument-hint: "[surface: web|api|desktop|mobile|all]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
 effort: 3
-when_to_use: "Use before releasing a product version to validate build completeness, store metadata, and launch readiness across target platforms."
+when_to_use: "Use before releasing a software version to validate build completeness, deployment readiness, and launch risk across target surfaces."
 ---
 
 When this skill is invoked:
 
 > **Explicit invocation only**: This skill should only run when the user explicitly requests it with `/release-checklist`. Do not auto-invoke based on context matching.
 
-1. **Read the argument** for the target platform (`pc`, `console`, `mobile`,
-   or `all`). If no platform is specified, default to `all`.
+1. **Read the argument** for the target surface (`web`, `api`, `desktop`,
+   `mobile`, or `all`). If no surface is specified, default to `all`.
 
-2. **Read CLAUDE.md** for project context, version information, and platform
-   targets.
+2. **Read `CLAUDE.md`** for project context, version information, and release
+   surfaces.
 
 3. **Read the current milestone** from `production/milestones/` to understand
-   what features and content should be included in this release.
+   what features and behaviors should be included in this release.
 
 4. **Scan the codebase** for outstanding issues:
    - Count `TODO` comments
@@ -27,13 +27,13 @@ When this skill is invoked:
    - Count `HACK` comments
    - Note their locations and severity
 
-5. **Check for test results** in any test output directories or CI logs if
-   available.
+5. **Check for test results** in any test output directories, CI logs, or
+   release validation notes if available.
 
 6. **Generate the release checklist**:
 
 ```markdown
-## Release Checklist: [Version] -- [Platform]
+## Release Checklist: [Version] -- [Surface]
 Generated: [Date]
 
 ### Codebase Health
@@ -42,122 +42,116 @@ Generated: [Date]
 - HACK count: [N] ([list all -- these need review])
 
 ### Build Verification
-- [ ] Clean build succeeds on all target platforms
-- [ ] No compiler warnings (zero-warning policy)
-- [ ] All assets included and loading correctly
-- [ ] Build size within budget ([target size])
+- [ ] Clean build succeeds for all target surfaces
+- [ ] No release-blocking compiler or linter errors
 - [ ] Build version number correctly set ([version])
-- [ ] Build is reproducible from tagged commit
+- [ ] Release artifact is reproducible from tagged commit
+- [ ] Configuration files and feature flags match release intent
+- [ ] Schema migrations tested with rollback or recovery plan
+- [ ] Packaging, signing, or publish steps validated where applicable
 
 ### Quality Gates
-- [ ] Zero S1 (Critical) bugs
-- [ ] Zero S2 (Major) bugs -- or documented exceptions with producer approval
-- [ ] All critical path features tested and signed off by QA
+- [ ] Zero Sev1 (Critical) bugs
+- [ ] Zero Sev2 (High/Major) bugs, or documented exceptions with owner approval
+- [ ] All critical-path features tested and signed off by QA
+- [ ] No regression from previous release
 - [ ] Performance within budgets:
-  - [ ] Target FPS met on minimum spec hardware
+  - [ ] Response time or startup time within target
   - [ ] Memory usage within budget
-  - [ ] Load times within budget
-  - [ ] No memory leaks over extended play sessions
-- [ ] No regression from previous build
-- [ ] Soak test passed (4+ hours continuous play)
+  - [ ] Load time or background job latency within budget
+  - [ ] No sustained error-rate increase during release candidate soak
+- [ ] Monitoring and alerting verified for release-critical paths
 
-### Content Complete
-- [ ] All placeholder assets replaced with final versions
-- [ ] All TODO/FIXME in content files resolved or documented
+### Product Complete
+- [ ] All placeholder content replaced or removed
+- [ ] All TODO/FIXME in user-facing flows resolved or documented
 - [ ] All user-facing text proofread
 - [ ] All text localization-ready (no hardcoded strings)
-- [ ] Audio mix finalized and approved
-- [ ] Credits complete and accurate
+- [ ] Analytics / telemetry events verified
+- [ ] Support and admin workflows tested
+- [ ] Known limitations documented for support and customers
 ```
 
-7. **Add platform-specific sections** based on the argument:
+7. **Add surface-specific sections** based on the argument:
 
-For `pc`:
+For `web`:
 ```markdown
-### Platform Requirements: PC
-- [ ] Minimum and recommended specs verified and documented
-- [ ] Keyboard+mouse controls fully functional
-- [ ] Controller support tested (Xbox, PlayStation, generic)
-- [ ] Resolution scaling tested (1080p, 1440p, 4K, ultrawide)
-- [ ] Windowed, borderless, and fullscreen modes working
-- [ ] Graphics settings save and load correctly
-- [ ] Steam/Epic/GOG SDK integrated and tested
-- [ ] Achievements functional
-- [ ] Cloud saves functional
-- [ ] Steam Deck compatibility verified (if targeting)
+### Surface Requirements: Web
+- [ ] Core journeys tested on supported browsers
+- [ ] Responsive layouts verified across target breakpoints
+- [ ] Authentication, session expiry, and logout flows verified
+- [ ] CDN, cache invalidation, and static asset delivery validated
+- [ ] CSP, cookie consent, and security headers reviewed
+- [ ] SEO metadata and robots/indexing settings reviewed if public-facing
 ```
 
-For `console`:
+For `api`:
 ```markdown
-### Platform Requirements: Console
-- [ ] TRC/TCR/Lotcheck requirements checklist complete
-- [ ] Platform-specific controller prompts display correctly
-- [ ] Suspend/resume works correctly
-- [ ] User switching handled properly
-- [ ] Network connectivity loss handled gracefully
-- [ ] Storage full scenario handled
-- [ ] Parental controls respected
-- [ ] Platform-specific achievement/trophy integration tested
-- [ ] First-party certification submission prepared
+### Surface Requirements: API
+- [ ] OpenAPI / schema docs updated
+- [ ] Backward compatibility or versioning impact assessed
+- [ ] Auth, rate limiting, and idempotency tested
+- [ ] Webhooks, retries, and signature verification tested if applicable
+- [ ] Consumer-facing breaking changes communicated
+- [ ] Database migrations validated against representative data
+```
+
+For `desktop`:
+```markdown
+### Surface Requirements: Desktop
+- [ ] Installer/package generated and verified
+- [ ] Code signing and notarization complete if required
+- [ ] Auto-update flow tested
+- [ ] Clean install, upgrade, and uninstall scenarios verified
+- [ ] File-system permissions and data directory behavior verified
+- [ ] Crash recovery and relaunch behavior tested
 ```
 
 For `mobile`:
 ```markdown
-### Platform Requirements: Mobile
+### Surface Requirements: Mobile
 - [ ] App store guidelines compliance verified
 - [ ] All required device permissions justified and documented
 - [ ] Privacy policy linked and accurate
-- [ ] Data safety/nutrition labels completed
-- [ ] Touch controls tested on multiple screen sizes
-- [ ] Battery usage within acceptable range
-- [ ] Background behavior correct (pause, resume, terminate)
-- [ ] Push notification permissions handled correctly
-- [ ] In-app purchase flow tested (if applicable)
-- [ ] App size within store limits
+- [ ] Background, resume, and offline behavior verified
+- [ ] Push notification and deep link flows tested if applicable
+- [ ] In-app purchase / subscription flows tested if applicable
+- [ ] Crash-free launch tested on supported OS/device matrix
 ```
 
-8. **Add store and launch sections**:
+8. **Add release distribution and launch sections**:
 
 ```markdown
-### Store / Distribution
-- [ ] Store page metadata complete and proofread
-  - [ ] Short description
-  - [ ] Long description
-  - [ ] Feature list
-  - [ ] System requirements (PC)
-- [ ] Screenshots up to date and per-platform resolution requirements met
-- [ ] Trailers up to date
-- [ ] Key art and capsule images current
-- [ ] Age rating obtained and configured:
-  - [ ] ESRB
-  - [ ] PEGI
-  - [ ] Other regional ratings as required
-- [ ] Legal notices, EULA, and privacy policy in place
-- [ ] Third-party license attributions complete
-- [ ] Pricing configured for all regions
+### Distribution / Release Assets
+- [ ] Changelog complete and proofread
+- [ ] Release notes complete and audience-appropriate
+- [ ] Customer support FAQ updated
+- [ ] Public status page, docs, or announcement content prepared
+- [ ] App store or download-page metadata current, if applicable
+- [ ] Legal notices, privacy policy, and third-party attributions in place
 
 ### Launch Readiness
 - [ ] Analytics / telemetry verified and receiving data
 - [ ] Crash reporting configured and dashboard accessible
-- [ ] Day-one patch prepared and tested (if needed)
-- [ ] On-call team schedule set for first 72 hours
-- [ ] Community launch announcements drafted
-- [ ] Press/influencer keys prepared for distribution
-- [ ] Support team briefed on known issues and FAQ
-- [ ] Rollback plan documented (if critical issues found post-launch)
+- [ ] Deployment window approved
+- [ ] Rollback plan documented and tested
+- [ ] On-call team schedule set for release window
+- [ ] Support team briefed on known issues and escalation path
+- [ ] Incident communication template prepared
 
 ### Go / No-Go: [READY / NOT READY]
 
 **Rationale:**
 [Summary of readiness assessment. List any blocking items that must be
-resolved before launch. If NOT READY, list the specific items that need
+resolved before release. If NOT READY, list the specific items that need
 resolution and estimated time to address them.]
 
 **Sign-offs Required:**
 - [ ] QA Lead
-- [ ] Technical Director
-- [ ] Producer
-- [ ] Creative Director
+- [ ] Engineering Lead
+- [ ] Product Owner
+- [ ] Release Manager
+- [ ] Security / Compliance Owner (if applicable)
 ```
 
 9. **Save the checklist** to
@@ -169,9 +163,9 @@ resolution and estimated time to address them.]
 
 ## Protocol
 
-- **Question**: Reads platform argument (`pc` / `console` / `mobile` / `all`); defaults to `all`
+- **Question**: Reads surface argument (`web` / `api` / `desktop` / `mobile` / `all`); defaults to `all`
 - **Options**: Skip
-- **Decision**: Skip — checklist is generated; Go/No-Go is advisory
+- **Decision**: Skip - checklist is generated; Go/No-Go is advisory
 - **Draft**: Summary shown before writing
 - **Approval**: "May I write to `production/releases/release-checklist-[version].md`?"
 
@@ -181,4 +175,4 @@ Deliver exactly:
 
 - **Checklist file** saved to `production/releases/release-checklist-[version].md`
 - **Summary**: total items / blockers count (FIXME/HACK/known bugs) / sign-offs pending
-- **Verdict**: `READY TO RELEASE` / `CONDITIONAL` / `BLOCKED — DO NOT RELEASE`
+- **Verdict**: `READY TO RELEASE` / `CONDITIONAL` / `BLOCKED - DO NOT RELEASE`

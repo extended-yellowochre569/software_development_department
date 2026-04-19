@@ -1,5 +1,5 @@
 ---
-name: ui-spec-creation
+name: ui-spec
 description: "Guidelines and procedures for creating comprehensive UI Specifications from PRDs and prototypes."
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write

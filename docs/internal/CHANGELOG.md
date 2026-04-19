@@ -6,6 +6,54 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.40.0] - 2026-04-19
+
+**Chủ đề:** Audit remediation cho skill layer - sửa routing `/ui-spec`, khôi phục template `brainstorm`, và rewrite release-gating sang ngữ cảnh software delivery
+
+Đợt cập nhật này đóng 3 vấn đề thực tế trong hệ skill: tên skill `/ui-spec` bị lệch so với thư mục và control plane, `brainstorm` tham chiếu tới template không tồn tại, và bộ skill release-gating (`gate-check`, `launch-checklist`, `release-checklist`) vẫn còn nghiêng mạnh về game production thay vì phần mềm/web/api/app delivery. Sau patch này, routing nhất quán hơn, luồng brainstorm không còn vỡ ngay ở bước tạo output, và release governance phản ánh đúng operational reality của Software Development Department.
+
+#### Fix - `.claude/skills/ui-spec/SKILL.md` - chuẩn hóa skill name
+
+- Đổi frontmatter `name: ui-spec-creation` -> `name: ui-spec` để khớp với thư mục `.claude/skills/ui-spec/`, invocation `/ui-spec`, và các tài liệu điều phối.
+- Loại bỏ nguy cơ routing fail hoặc chọn sai capability dù file skill vẫn tồn tại trên đĩa.
+
+#### New - `.claude/docs/templates/product-concept.md` - khôi phục template nguồn cho `brainstorm`
+
+- Tạo mới template `product-concept.md` tại đúng path mà `.claude/skills/brainstorm/SKILL.md` tham chiếu.
+- Template cover các phần cốt lõi cho concept synthesis: problem/why now, chosen concept, target users, core flow, product pillars, MVP scope, technical considerations, open questions, và next steps.
+- Kết quả: `brainstorm` có thể tạo concept document theo workflow đã mô tả thay vì dừng ở bước tham chiếu tài liệu thiếu.
+
+#### Rewrite - `.claude/skills/gate-check/SKILL.md` - phase gate cho software delivery
+
+- Rewrite toàn bộ phase definition từ tư duy game loop / playtest / certification sang software lifecycle: requirements, stack setup, CI/CD, environments, QA/UAT, observability, rollback, support readiness.
+- Thay các quality gates như "core loop", "playtest", "levels/assets complete" bằng acceptance criteria, release evidence, logs/metrics/error reporting, deployment script, và release runbook.
+- Follow-up actions cũng được cập nhật để trỏ sang skill phù hợp với hệ software hiện tại.
+
+#### Rewrite - `.claude/skills/launch-checklist/SKILL.md` - go-live checklist cho sản phẩm phần mềm
+
+- Thay các mục game/platform-specific như anti-cheat, achievements, ESRB/PEGI, target FPS, multiplayer server checks bằng launch checks phù hợp cho software: migrations, feature flags, telemetry, support playbooks, launch comms, incident escalation, rollout and rollback readiness.
+- Sign-off model được đổi sang Product / Engineering / QA / Release / Security / Support thay cho các vai trò production/game-oriented.
+- Checklist giờ usable cho web app, backend platform, SaaS feature launch, mobile app, và desktop software.
+
+#### Rewrite - `.claude/skills/release-checklist/SKILL.md` - pre-release validation theo surface
+
+- Đổi argument model từ `platform: pc|console|mobile|all` sang `surface: web|api|desktop|mobile|all`.
+- Bổ sung các section surface-specific mới:
+  - `web`: browser coverage, responsive verification, security headers, CDN/cache behavior
+  - `api`: versioning, compatibility, webhook/auth/rate limit validation, migration safety
+  - `desktop`: installer/signing/auto-update/install-upgrade-uninstall flows
+  - `mobile`: app-store compliance, permissions, background behavior, deep links, purchases
+- Store/distribution section được đổi thành release assets + deployment readiness + incident communication theo chuẩn software release.
+
+#### Tác động
+
+- **Skill routing reliability** tăng cho `/ui-spec`: invocation path giờ thống nhất với filesystem và docs.
+- **Brainstorm workflow completeness** được khôi phục: không còn tham chiếu template rỗng/missing ở đường dẫn chuẩn.
+- **Release governance fit** tăng rõ rệt cho SDD context: các verdict từ `gate-check`, `launch-checklist`, `release-checklist` giờ phản ánh software delivery thay vì tạo false blockers/noise kiểu game production.
+- **Validator status** không phát sinh fail mới; fail duy nhất còn lại sau patch vẫn là `skill-technical-document` (vấn đề độc lập đã được tách riêng).
+
+---
+
 ### [v1.39.0] - 2026-04-19
 
 **Chủ đề:** P1 Đợt 1 remediation từ Architecture Audit 2026-04-19 — structural integrity cho Role layer + Governance precedence

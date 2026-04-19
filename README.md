@@ -320,7 +320,7 @@ See [`UPGRADING.md`](UPGRADING.md) for pulling upstream changes without overwrit
 
 | Resource | Purpose |
 |---|---|
-| [`History_Update.md`](History_Update.md) | Full architecture changelog from v1.0.0 — the source of truth for what changed and why |
+| [`CHANGELOG.md`](CHANGELOG.md) | Current changelog entrypoint for release updates, with detailed history in `docs/internal/CHANGELOG.md` |
 | [`report_new_capacity_sdd_with_gitnexus.md`](report_new_capacity_sdd_with_gitnexus.md) | SDD + GitNexus Knowledge Graph integration capabilities |
 | [`plan_upgrade.md`](plan_upgrade.md) | Upgrade roadmap comparing SDD to competing frameworks |
 | [`compare_department_orchestrated.md`](compare_department_orchestrated.md) | Side-by-side: orchestrated multi-agent vs traditional single-session |
@@ -339,7 +339,7 @@ Tested on **Windows 10/11** with Git Bash. All hooks use POSIX-compatible patter
 
 **v1.31.0** — 2026-04-17
 
-See [`History_Update.md`](History_Update.md) for full changelog.
+See [`CHANGELOG.md`](CHANGELOG.md) for current release history and links to the detailed internal changelog.
 
 ---
 
