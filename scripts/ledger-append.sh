@@ -157,9 +157,12 @@ fi
 # ─── Atomic append (O_APPEND is atomic for <PIPE_BUF writes) ─────────────────
 printf '%s\n' "$LINE" >> "$LEDGER_FILE"
 
-# ─── Confirm (quiet by default, verbose if $VERBOSE set) ─────────────────────
-if [ "${VERBOSE:-0}" = "1" ]; then
-    echo "[ledger-append] OK: $AGENT/$TASK_ID → $OUTCOME ($RISK)" >&2
+# ─── Trigger Portal Update (fail-open, background) ──────────────────────────
+if command -v powershell >/dev/null 2>&1; then
+    # Use powershell for Windows native environments
+    powershell -ExecutionPolicy Bypass -File scripts/portal-update.ps1 >/dev/null 2>&1 &
+elif [ -f "scripts/portal-update.sh" ]; then
+    bash scripts/portal-update.sh >/dev/null 2>&1 &
 fi
 
 exit 0

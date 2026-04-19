@@ -6,6 +6,39 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.42.0] - 2026-04-19
+
+**Chủ đề:** SDD Governance Portal — dashboard ledger trực quan và tích hợp portal-update vào ledger-append
+
+Đợt cập nhật này bổ sung Governance Portal (HTML dashboard) hiển thị decision ledger dưới dạng bảng tương tác, kèm script tự động cập nhật portal-data.js mỗi khi có entry mới được append vào ledger. Đồng thời dọn dẹp 5 file retrospective cũ không còn được tham chiếu.
+
+#### New - `docs/internal/portal.html` - SDD Governance Portal dashboard
+
+- Dashboard HTML hiển thị toàn bộ decision ledger (`decision_ledger.jsonl`) dưới dạng bảng lọc được theo agent, risk tier, outcome, và date range.
+- Giao diện tiếng Việt, dark-mode-ready, dùng JetBrains Mono cho data rows.
+
+#### New - `docs/internal/portal-data.js` - ledger data snapshot cho portal
+
+- File JS inject `window.LEDGER_DATA` array — được portal.html load trực tiếp không cần backend.
+- Được sinh ra tự động bởi `scripts/portal-update.sh` / `scripts/portal-update.ps1`.
+
+#### New - `scripts/portal-update.sh` / `scripts/portal-update.ps1` - auto-regenerate portal data
+
+- Script đọc `production/traces/decision_ledger.jsonl`, parse từng entry, và ghi lại `docs/internal/portal-data.js`.
+- Chạy fail-open trong background sau mỗi lần `ledger-append.sh` được gọi.
+
+#### Fix - `scripts/ledger-append.sh` - tích hợp portal-update trigger
+
+- Thay block verbose logging bằng trigger gọi `portal-update.ps1` (Windows) hoặc `portal-update.sh` (Unix) sau mỗi append.
+- Chạy background (`&`), fail-open — không block luồng chính.
+
+#### Chore - xóa 5 file retrospective cũ
+
+- Xóa `report_new_capacity_sdd_with_gitnexus.md`, `report_upgrade_MAS.md`, `report_upgrade_claude_mem.md`, `report_upgrade_claude_mem_final.md`, `report_upgrade_claude_mem_other.md` khỏi `docs/internal/retrospectives/`.
+- Các file này không còn được tham chiếu và đã được thay thế bởi session logs trong `.claude/memory/archive/`.
+
+---
+
 ### [v1.40.0] - 2026-04-19
 
 **Chủ đề:** Audit remediation cho skill layer - sửa routing `/ui-spec`, khôi phục template `brainstorm`, và rewrite release-gating sang ngữ cảnh software delivery
