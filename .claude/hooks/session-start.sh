@@ -54,8 +54,11 @@ if [ -d "src" ]; then
     fi
 fi
 
-# --- Active session state recovery ---
-STATE_FILE="production/session-state/active.md"
+# --- Active session state recovery / bootstrap ---
+STATE_DIR="production/session-state"
+STATE_FILE="$STATE_DIR/active.md"
+mkdir -p "$STATE_DIR" 2>/dev/null
+
 if [ -f "$STATE_FILE" ]; then
     echo ""
     echo "=== ACTIVE SESSION STATE DETECTED ==="
@@ -69,6 +72,72 @@ if [ -f "$STATE_FILE" ]; then
         echo "  ... ($TOTAL_LINES total lines — read the full file to continue)"
     fi
     echo "=== END SESSION STATE PREVIEW ==="
+else
+    # Bootstrap a fresh active.md template so the live-checkpoint contract
+    # (spec §5.8, context-management.md) is satisfied from the first turn.
+    NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    CUR_BRANCH=${BRANCH:-main}
+    cat > "$STATE_FILE" <<EOF
+---
+session: init
+branch: $CUR_BRANCH
+tags: []
+started: $NOW
+lastActive: $NOW
+---
+
+# Active Session State
+
+> Live checkpoint for the current Claude Code session. The **file is the memory,
+> not the conversation**. Append a new \`<!-- STATUS -->\` block at the end on
+> every milestone or compaction; the last block wins.
+
+## Current Task
+
+_No active task — waiting for user direction._
+
+## Progress Checklist
+
+- [ ] _Fill in as work begins_
+
+## Key Decisions Made
+
+_None yet._
+
+## Files This Session
+
+| File | Action | Timestamp |
+|---|---|---|
+| _(none)_ | _(none)_ | _(none)_ |
+
+## Partial Reads This Session
+
+_None._
+
+## Cached Decisions (may be stale)
+
+_None._
+
+## Subagent Log
+
+| Timestamp | Agent | Task | Outcome |
+|---|---|---|---|
+| _(none)_ | _(none)_ | _(none)_ | _(none)_ |
+
+## Open Questions / Blockers
+
+_None._
+
+---
+
+<!-- STATUS: $NOW | Task: session initialized -->
+Fresh session-state bootstrap by session-start.sh. No work in progress.
+<!-- /STATUS -->
+EOF
+    echo ""
+    echo "=== ACTIVE SESSION STATE BOOTSTRAPPED ==="
+    echo "Created fresh $STATE_FILE (no prior session detected)."
+    echo "=== END STATE BOOTSTRAP ==="
 fi
 
 # exit 0 # REWARD: Removed to allow GitNexus check to run

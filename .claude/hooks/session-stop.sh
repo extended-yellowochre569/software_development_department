@@ -186,10 +186,24 @@ if [ "$DREAM_TRIGGERED" = true ]; then
     fi
 fi
 
-# Execute auto-dream if triggered
+# Execute auto-dream if triggered.
+# Capture exit code and stderr — never let auto-dream failures silently break
+# session teardown. Failures are logged to hook-errors.log and surfaced in
+# the summary, per Rule 9 (fail-open for optional background agents).
 DREAM_OUTPUT=""
+DREAM_EXIT=0
 if [ "$DREAM_TRIGGERED" = true ] && [ -f "$AUTO_DREAM_HOOK" ]; then
-    DREAM_OUTPUT=$(bash "$AUTO_DREAM_HOOK" 2>/dev/null)
+    DREAM_OUTPUT=$(bash "$AUTO_DREAM_HOOK" 2>&1)
+    DREAM_EXIT=$?
+    if [ "$DREAM_EXIT" -ne 0 ]; then
+        ERR_LOG="$SESSION_LOG_DIR/hook-errors.log"
+        {
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] auto-dream.sh exit=$DREAM_EXIT session=$SESSION_ID"
+            echo "$DREAM_OUTPUT"
+            echo "---"
+        } >> "$ERR_LOG" 2>/dev/null
+        DREAM_OUTPUT="⚠️ auto-dream.sh failed (exit $DREAM_EXIT) — see $ERR_LOG"
+    fi
 fi
 
 # ─── Print summary to stdout (visible in Claude's context) ───────────────────

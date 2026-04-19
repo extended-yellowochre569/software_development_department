@@ -6,6 +6,44 @@ Tài liệu này ghi lại lịch sử cập nhật tài liệu và source code 
 
 ## 🗓️ Lịch sử cập nhật
 
+### [v1.38.0] - 2026-04-19
+
+**Chủ đề:** P0 remediation từ Architecture Audit 2026-04-19 — đóng 3 spec-breaking gap
+
+Audit toàn hệ thống (`docs/internal/AUDIT_2026-04-19.md`, 6 parallel read-only subagents) phát hiện 3 P0 blocker phá vỡ letter-of-the-spec. Patch này đóng cả 3.
+
+> **Audit correction (cùng session):** một audit stream false-negative báo ADR-004 và ADR-005 *thiếu*; thực tế cả hai file đã tồn tại từ v1.36.0/v1.37.0 với 138/179 dòng content đầy đủ. Audit report đã được sửa và ghi chú ở header. Không có thay đổi nào đối với ADR trong patch này.
+
+#### Fix — `CLAUDE.md:23` — `/ui-spec` skill name
+
+- Đổi reference `ui-spec-creation` → `ui-spec` để khớp với filesystem (`.claude/skills/ui-spec/`).
+- Trước: invoke `/ui-spec` sẽ fail vì không tìm thấy skill `ui-spec-creation`.
+
+#### Fix — `.claude/hooks/session-stop.sh` — auto-dream error trap
+
+- `auto-dream.sh` trước đây invoke ngầm bằng `2>/dev/null` → mọi failure bị nuốt silently.
+- Patch: capture `$?` sau khi chạy; nếu non-zero → log vào `production/session-logs/hook-errors.log` và surface warning trong session summary.
+- Thực thi Coordination Rule 9 (fail-open for optional background agents): auto-dream fail không được block session teardown nhưng phải để lại dấu vết.
+
+#### Fix — `.claude/hooks/session-start.sh` — bootstrap `active.md` template
+
+- `production/session-state/` là thư mục gitignored; sau mỗi `session-stop.sh` (removes `active.md`) hoặc fresh clone, file biến mất → crash recovery contract §5.8 không có gì để recover.
+- Patch: nếu `active.md` không tồn tại, `session-start.sh` tự sinh template mới với YAML frontmatter hợp lệ (`session`, `branch`, `tags`, `started`, `lastActive`) và một `<!-- STATUS -->` block khởi tạo.
+- Kết quả: live-checkpoint contract luôn được duy trì từ turn đầu tiên.
+
+#### New — `docs/internal/AUDIT_2026-04-19.md`
+
+- Báo cáo audit toàn hệ thống v1.0: 6 stream (governance/runtime/roles/memory/coordination/§14 anomalies), compliance score ~80%, roadmap P0/P1/P2.
+- Có ghi chú chỉnh sửa (correction note) ở executive summary sau khi phát hiện subagent false-negative về ADRs.
+
+#### Tác động
+
+- **Spec compliance** tăng từ ~80% (audit sau correction) lên ước tính ~85%: đóng cả 3 P0, còn lại P1/P2 về documentation artifacts (§15 Control-Plane Map, Hook Responsibility Matrix, v.v.).
+- **Runtime behavior** không thay đổi với happy path; error path của `auto-dream` giờ observable.
+- **Fresh clone experience:** session đầu tiên trên máy mới sẽ có active.md hợp lệ ngay lập tức.
+
+---
+
 ### [v1.37.0] - 2026-04-18
 
 **Chủ đề:** UFSM Phase 2+3 — Hoàn thành vòng lặp Circuit Breaker (Sprint A Items 1 & 2)
