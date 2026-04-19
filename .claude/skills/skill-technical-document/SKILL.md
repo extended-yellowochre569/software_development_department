@@ -6,6 +6,10 @@ description: |
   reference", "visual report", "technical doc", "tạo report HTML", "làm tài
   liệu nội bộ", or when asked to document a subsystem (hooks, memory, agents,
   ADRs, audit findings) in a browser-readable format with sidebar navigation.
+argument-hint: "[document topic, subsystem, or report scope]"
+user-invocable: true
+allowed-tools: Read, Glob, Grep, Write
+effort: 3
 ---
 
 # Goal

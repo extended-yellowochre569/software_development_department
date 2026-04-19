@@ -318,7 +318,7 @@ Xem [`UPGRADING.md`](UPGRADING.md) để pull upstream changes mà không overwr
 
 | Tài liệu | Mục đích |
 |---|---|
-| [`CHANGELOG.md`](CHANGELOG.md) | Điểm vào changelog hiện tại cho các bản cập nhật, với lịch sử chi tiết trong `docs/internal/CHANGELOG.md` |
+| [`docs/internal/CHANGELOG.md`](docs/internal/CHANGELOG.md) | Changelog nội bộ và lịch sử cập nhật kiến trúc của repo |
 | [`report_new_capacity_sdd_with_gitnexus.md`](report_new_capacity_sdd_with_gitnexus.md) | Năng lực SDD khi tích hợp với GitNexus Knowledge Graph |
 | [`plan_upgrade.md`](plan_upgrade.md) | Upgrade roadmap so sánh SDD với các frameworks cạnh tranh |
 | [`compare_department_orchestrated.md`](compare_department_orchestrated.md) | So sánh: orchestrated multi-agent vs single-session truyền thống |
@@ -337,7 +337,7 @@ Xem [`UPGRADING.md`](UPGRADING.md) để pull upstream changes mà không overwr
 
 **v1.31.0** — 2026-04-17
 
-Xem [`CHANGELOG.md`](CHANGELOG.md) để theo dõi release history hiện tại và link tới changelog nội bộ chi tiết.
+Xem [`docs/internal/CHANGELOG.md`](docs/internal/CHANGELOG.md) để theo dõi lịch sử cập nhật.
 
 ---
 
